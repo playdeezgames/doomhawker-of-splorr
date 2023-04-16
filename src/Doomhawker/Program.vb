@@ -58,8 +58,9 @@ Module Program
     Private Sub SaveConfig(windowSize As (Integer, Integer), volume As Single)
         File.WriteAllText(ConfigFileName, JsonSerializer.Serialize(New DHConfig With {.SfxVolume = volume, .WindowHeight = windowSize.Item2, .WindowWidth = windowSize.Item1}))
     End Sub
-    Const DefaultWindowWidth = 1280
-    Const DefaultWindowHeight = 720
+    Const DefaultWindowScale = 6
+    Const DefaultWindowWidth = ViewWidth * DefaultWindowScale
+    Const DefaultWindowHeight = ViewHeight * DefaultWindowScale
     Const DefaultSfxVolume = 1.0F
     Private Function LoadConfig() As DHConfig
         Try
