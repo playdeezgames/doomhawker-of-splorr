@@ -10,5 +10,6 @@
         SetState(GameState.Title, New TitleState(Me, AddressOf SetCurrentState))
         SetState(GameState.MainMenu, New MainMenuState(Me, AddressOf SetCurrentState))
         SetState(GameState.ConfirmQuit, New ConfirmQuitState(Me, AddressOf SetCurrentState))
+        SetState(GameState.EditMenu, New EditMenuState(Me, AddressOf SetCurrentState))
     End Sub
 End Class

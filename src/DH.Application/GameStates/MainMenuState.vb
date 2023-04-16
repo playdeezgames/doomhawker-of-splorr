@@ -1,13 +1,13 @@
 ﻿Friend Class MainMenuState
     Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
-    Const EmbarkText = "Embark!"
+    Const EditText = "Edit"
     Const OptionsText = "Options"
     Const QuitText = "Quit"
     Const AboutText = "About"
     Private ReadOnly _menuItems As IReadOnlyList(Of String) =
         New List(Of String) From
         {
-            EmbarkText,
+            EditText,
             OptionsText,
             AboutText,
             QuitText
@@ -26,6 +26,8 @@
                 _currentMenuItem = (_currentMenuItem + 1) Mod _menuItems.Count
             Case Command.FireReleased
                 Select Case _menuItems(_currentMenuItem)
+                    Case EditText
+                        SetState(GameState.EditMenu)
                     Case QuitText
                         SetState(GameState.ConfirmQuit)
                 End Select
