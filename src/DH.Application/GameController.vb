@@ -7,6 +7,7 @@
         _configSink = configSink
         _configSink(Size, Volume)
         Initialize()
-        SetState(GameState.PlaceHolder, New TitleState(Me, AddressOf SetCurrentState))
+        SetState(GameState.Title, New TitleState(Me, AddressOf SetCurrentState))
+        SetState(GameState.MainMenu, New MainMenuState(Me, AddressOf SetCurrentState))
     End Sub
 End Class

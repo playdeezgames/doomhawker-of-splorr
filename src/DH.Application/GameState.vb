@@ -1,3 +1,4 @@
 ﻿Public Enum GameState
-    PlaceHolder
+    Title
+    MainMenu
 End Enum

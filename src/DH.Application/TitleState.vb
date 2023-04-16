@@ -6,6 +6,9 @@
     End Sub
 
     Public Overrides Sub HandleCommand(command As Command)
+        If command = Command.FireReleased Then
+            SetState(GameState.MainMenu)
+        End If
     End Sub
 
     ReadOnly hues As IReadOnlyList(Of Hue) = New List(Of Hue) From
@@ -26,7 +29,7 @@
 
     Private Sub RenderFooter(displayBuffer As IPixelSink(Of Hue))
         Dim font = Fonts(GameFont.Font3x5)
-        Const text = "Press FIRE To Start"
+        Const text = "Press FIRE"
         font.WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(text) \ 2, ViewHeight - font.Height), text, Hue.Gray)
     End Sub
 
