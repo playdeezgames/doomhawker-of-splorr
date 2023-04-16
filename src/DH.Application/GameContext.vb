@@ -1,6 +1,6 @@
 Public Module GameContext
-    Public Const ViewWidth = 160
-    Public Const ViewHeight = 90
+    Public Const ViewWidth = 192
+    Public Const ViewHeight = 108
     Friend Sub Initialize()
         InitializeFonts()
     End Sub

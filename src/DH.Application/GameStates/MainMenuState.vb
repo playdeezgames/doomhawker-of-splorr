@@ -24,6 +24,11 @@
                 _currentMenuItem = (_currentMenuItem + _menuItems.Count - 1) Mod _menuItems.Count
             Case Command.DownReleased
                 _currentMenuItem = (_currentMenuItem + 1) Mod _menuItems.Count
+            Case Command.FireReleased
+                Select Case _menuItems(_currentMenuItem)
+                    Case QuitText
+                        SetState(GameState.ConfirmQuit)
+                End Select
         End Select
     End Sub
 
