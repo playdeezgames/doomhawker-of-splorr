@@ -6,23 +6,21 @@
     End Sub
 
     Public Overrides Sub HandleCommand(command As Command)
+        Select Case command
+            Case Command.Down
+                Y += 1
+            Case Command.Up
+                Y -= 1
+            Case Command.Right
+                X += 1
+            Case Command.Left
+                X -= 1
+        End Select
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
-        For column = 0 To MazeColumns - 1
-            For row = 0 To MazeRows - 1
-                displayBuffer.Fill((column * CellWidth, row * CellHeight), (CellWidth \ 2, CellHeight \ 2), Hue.White)
-                Dim northDoor = Maze.GetCell(column, row).GetDoor(Direction.North)
-                If northDoor Is Nothing OrElse Not northDoor.Open Then
-                    displayBuffer.Fill((column * CellWidth + CellWidth \ 2, row * CellHeight), (CellWidth \ 2, CellHeight \ 2), Hue.White)
-                End If
-                Dim westDoor = Maze.GetCell(column, row).GetDoor(Direction.West)
-                If westDoor Is Nothing OrElse Not westDoor.Open Then
-                    displayBuffer.Fill((column * CellWidth, row * CellHeight + CellHeight \ 2), (CellWidth \ 2, CellHeight \ 2), Hue.White)
-                End If
-            Next
-        Next
+        displayBuffer.Fill((X * CellWidth, Y * CellHeight), (CellWidth, CellHeight), Hue.Blue)
     End Sub
 
     Public Overrides Sub Update(elapsedTime As TimeSpan)

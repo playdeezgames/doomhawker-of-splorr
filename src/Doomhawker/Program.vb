@@ -33,7 +33,7 @@ Module Program
         If newState.DPad.Right = ButtonState.Pressed AndAlso oldState.DPad.Right = ButtonState.Released Then
             results.Add(Command.Right)
         End If
-        If newState.Buttons.A = ButtonState.Pressed AndAlso oldState.Buttons.A = ButtonState.Released Then
+        If newState.Buttons.Y = ButtonState.Pressed AndAlso oldState.Buttons.A = ButtonState.Released Then
             results.Add(Command.Fire)
         End If
         Return results.ToArray
