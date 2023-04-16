@@ -22,19 +22,19 @@ Module Program
     Private Function GamePadTransformer(newState As GamePadState, oldState As GamePadState) As Command()
         Dim results As New List(Of Command)
         If newState.DPad.Up = ButtonState.Pressed AndAlso oldState.DPad.Up = ButtonState.Released Then
-            results.Add(Command.Up)
+            results.Add(Command.UpPressed)
         End If
         If newState.DPad.Down = ButtonState.Pressed AndAlso oldState.DPad.Down = ButtonState.Released Then
-            results.Add(Command.Down)
+            results.Add(Command.DownPressed)
         End If
         If newState.DPad.Left = ButtonState.Pressed AndAlso oldState.DPad.Left = ButtonState.Released Then
-            results.Add(Command.Left)
+            results.Add(Command.LeftPressed)
         End If
         If newState.DPad.Right = ButtonState.Pressed AndAlso oldState.DPad.Right = ButtonState.Released Then
-            results.Add(Command.Right)
+            results.Add(Command.RightPressed)
         End If
         If newState.Buttons.Y = ButtonState.Pressed AndAlso oldState.Buttons.A = ButtonState.Released Then
-            results.Add(Command.Fire)
+            results.Add(Command.FirePressed)
         End If
         Return results.ToArray
     End Function
@@ -61,11 +61,11 @@ Module Program
     Private ReadOnly keyTable As IReadOnlyDictionary(Of Keys, Command) =
         New Dictionary(Of Keys, Command) From
         {
-            {Keys.Up, Command.Up},
-            {Keys.Right, Command.Right},
-            {Keys.Left, Command.Left},
-            {Keys.Down, Command.Down},
-            {Keys.Space, Command.Fire}
+            {Keys.Up, Command.UpReleased},
+            {Keys.Right, Command.RightReleased},
+            {Keys.Left, Command.LeftReleased},
+            {Keys.Down, Command.DownReleased},
+            {Keys.Space, Command.FireReleased}
         }
     Private Function CommandTransformerator(key As Keys) As Command?
         If keyTable.ContainsKey(key) Then

@@ -20,6 +20,17 @@
         }
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
+        RenderTitle(displayBuffer)
+        RenderFooter(displayBuffer)
+    End Sub
+
+    Private Sub RenderFooter(displayBuffer As IPixelSink(Of Hue))
+        Dim font = Fonts(GameFont.Font3x5)
+        Const text = "Press FIRE To Start"
+        font.WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(text) \ 2, ViewHeight - font.Height), text, Hue.Gray)
+    End Sub
+
+    Private Sub RenderTitle(displayBuffer As IPixelSink(Of Hue))
         Dim font = Fonts(GameFont.Font8x8)
         Dim h = RNG.FromEnumerable(hues)
         font.WriteText(displayBuffer, (0, ViewHeight \ 2 - font.Height * 3 - font.Height \ 2), "Doomhawker", h)

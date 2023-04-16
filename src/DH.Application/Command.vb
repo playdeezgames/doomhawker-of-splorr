@@ -1,7 +1,12 @@
 ﻿Public Enum Command
-    Up
-    Right
-    Down
-    Left
-    Fire
+    UpPressed
+    RightPressed
+    DownPressed
+    LeftPressed
+    FirePressed
+    UpReleased
+    RightReleased
+    DownReleased
+    LeftReleased
+    FireReleased
 End Enum
