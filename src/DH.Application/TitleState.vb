@@ -8,12 +8,23 @@
     Public Overrides Sub HandleCommand(command As Command)
     End Sub
 
+    ReadOnly hues As IReadOnlyList(Of Hue) = New List(Of Hue) From
+        {
+            Hue.White,
+            Hue.Yellow,
+            Hue.LightGreen,
+            Hue.LightMagenta,
+            Hue.LightRed,
+            Hue.LightCyan,
+            Hue.LightBlue
+        }
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
         Dim font = Fonts(GameFont.Font8x8)
-        font.WriteText(displayBuffer, (0, ViewHeight \ 2 - font.Height * 2 - font.Height \ 2), "Doomhawker", Hue.Yellow)
-        font.WriteText(displayBuffer, (0, ViewHeight \ 2 - font.Height \ 2), "of", Hue.Yellow)
-        font.WriteText(displayBuffer, (0, ViewHeight \ 2 + font.Height * 2 - font.Height \ 2), "SPLORR!!", Hue.Yellow)
+        Dim h = RNG.FromEnumerable(hues)
+        font.WriteText(displayBuffer, (0, ViewHeight \ 2 - font.Height * 3 - font.Height \ 2), "Doomhawker", h)
+        font.WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth("of") \ 2, ViewHeight \ 2 - font.Height \ 2), "of", h)
+        font.WriteText(displayBuffer, (ViewWidth - font.TextWidth("SPLORR!!"), ViewHeight \ 2 + font.Height * 3 - font.Height \ 2), "SPLORR!!", h)
     End Sub
 
     Public Overrides Sub Update(elapsedTime As TimeSpan)
