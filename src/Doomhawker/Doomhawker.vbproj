@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -21,6 +21,7 @@
     <None Remove="Content\CyFont4x6.json" />
     <None Remove="Content\CyFont5x7.json" />
     <None Remove="Content\CyFont8x8.json" />
+    <None Remove="Icon.bmp" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,6 +37,10 @@
     <Content Include="Content\CyFont8x8.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Icon.bmp" />
   </ItemGroup>
 
   <ItemGroup>
