@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Doomhawker", "Doomhawker\Doomhawker.vbproj", "{E9964588-7469-4ECF-BC62-05F156B513AF}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "Doomhawker", "Doomhawker\Doomhawker.vbproj", "{E9964588-7469-4ECF-BC62-05F156B513AF}"
 EndProject
 Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "AOS.Presentation", "..\abettor-of-splorr\src\AOS.Presentation\AOS.Presentation.vbproj", "{F0C46F96-930D-4075-8092-45000BC48A6B}"
 EndProject
@@ -12,6 +12,17 @@ EndProject
 Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "DH.Application", "DH.Application\DH.Application.vbproj", "{8C40C2A2-5255-486E-9655-B5238EB57CAC}"
 EndProject
 Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "SPLORR.Game", "..\abettor-of-splorr\src\SPLORR.Game\SPLORR.Game.vbproj", "{265930F0-7AE6-4CC6-B293-709DA88E4A9E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_STUFF", "_STUFF", "{C5BF0C0A-1378-486E-855F-60699A07B8F4}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DH.Business", "DH.Business\DH.Business.vbproj", "{51E71177-E182-4802-8B66-9545F74E4F4A}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DH.Data", "DH.Data\DH.Data.vbproj", "{3F54B341-A222-47A1-8B82-DB50FD5D9F07}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Submodules", "Submodules", "{2D1C0088-5DE8-4ACC-8C23-97B17E04D042}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +50,22 @@ Global
 		{265930F0-7AE6-4CC6-B293-709DA88E4A9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{265930F0-7AE6-4CC6-B293-709DA88E4A9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{265930F0-7AE6-4CC6-B293-709DA88E4A9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51E71177-E182-4802-8B66-9545F74E4F4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51E71177-E182-4802-8B66-9545F74E4F4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51E71177-E182-4802-8B66-9545F74E4F4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51E71177-E182-4802-8B66-9545F74E4F4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F54B341-A222-47A1-8B82-DB50FD5D9F07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F54B341-A222-47A1-8B82-DB50FD5D9F07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F54B341-A222-47A1-8B82-DB50FD5D9F07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F54B341-A222-47A1-8B82-DB50FD5D9F07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F0C46F96-930D-4075-8092-45000BC48A6B} = {2D1C0088-5DE8-4ACC-8C23-97B17E04D042}
+		{69CCB5CF-C954-4273-9F46-260B3B2709EF} = {2D1C0088-5DE8-4ACC-8C23-97B17E04D042}
+		{265930F0-7AE6-4CC6-B293-709DA88E4A9E} = {2D1C0088-5DE8-4ACC-8C23-97B17E04D042}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA1E3722-CF29-4E01-8CD5-5D5F665CDDD0}

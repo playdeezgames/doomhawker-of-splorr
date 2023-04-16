@@ -1,2 +1,5 @@
-# doomhawker-of-splorr
+# Doomhawker of SPLORR!!
+
 My first attempt to consume git submodules
+
+
