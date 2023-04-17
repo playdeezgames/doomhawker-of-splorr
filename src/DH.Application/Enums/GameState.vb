@@ -8,4 +8,5 @@
     PickFont
     NewFontName
     EditFont
+    EditGlyph
 End Enum

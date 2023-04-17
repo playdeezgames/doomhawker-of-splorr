@@ -22,7 +22,7 @@
                 If _row < 0 Then
                     SetState(GameState.FontsMenu)
                 Else
-
+                    GlyphKey = ChrW(_row * CellColumns + _column + FirstCharacter)
                 End If
         End Select
     End Sub
