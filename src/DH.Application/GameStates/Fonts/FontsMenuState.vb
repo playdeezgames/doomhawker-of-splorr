@@ -11,7 +11,7 @@
             Case GoBackText
                 SetState(GameState.EditMenu)
             Case NewFontText
-                SetState(GameState.NewFont)
+                SetState(GameState.NewFontSize)
             Case EditFontText
                 SetState(GameState.PickFont)
         End Select

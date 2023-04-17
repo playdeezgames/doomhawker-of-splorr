@@ -4,6 +4,6 @@
     ConfirmQuit
     EditMenu
     FontsMenu
-    NewFont
+    NewFontSize
     PickFont
 End Enum

@@ -4,6 +4,8 @@ Public Module GameContext
     Public Const ViewWidth = 192
     Public Const ViewHeight = 108
     Public Editor As IEditor
+    Public NewFontWidth As Integer = 8
+    Public NewFontHeight As Integer = 8
     Friend Sub Initialize()
         Editor = New DH.Business.Editor(New EditorData)
         InitializeFonts()
