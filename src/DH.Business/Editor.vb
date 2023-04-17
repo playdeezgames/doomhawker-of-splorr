@@ -26,4 +26,8 @@ Public Class Editor
         _data.Fonts(name) = fontData
         Return New EditorFont(_data, name)
     End Function
+
+    Public Function GetFont(fontName As String) As IEditorFont Implements IEditor.GetFont
+        Return New EditorFont(_data, fontName)
+    End Function
 End Class

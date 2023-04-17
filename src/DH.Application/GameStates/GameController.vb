@@ -15,5 +15,6 @@
         SetState(GameState.NewFontSize, New NewFontSizeState(Me, AddressOf SetCurrentState))
         SetState(GameState.PickFont, New PickFontState(Me, AddressOf SetCurrentState))
         SetState(GameState.NewFontName, New NewFontNameState(Me, AddressOf SetCurrentState))
+        SetState(GameState.EditFont, New EditFontState(Me, AddressOf SetCurrentState))
     End Sub
 End Class

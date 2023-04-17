@@ -38,6 +38,7 @@ Friend Class NewFontNameState
                         FontName = ""
                     Case 136, 137, 138, 139
                         Editor.CreateFont(FontName, FontWidth, FontHeight)
+                        SetState(GameState.EditFont)
                     Case 140, 141, 142, 143
                         FontName = ""
                         SetState(GameState.FontsMenu)
