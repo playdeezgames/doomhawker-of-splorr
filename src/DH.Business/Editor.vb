@@ -6,13 +6,15 @@ Public Class Editor
     Sub New(data As EditorData)
         _data = data
     End Sub
+    Const FirstCharacter = 32
+    Const LastCharacter = 127
     Public Function CreateFont(name As String, width As Integer, height As Integer) As IEditorFont Implements IEditor.CreateFont
         Dim fontData As New FontData With
         {
             .Height = height,
             .Glyphs = New Dictionary(Of Char, GlyphData)
         }
-        For character = 32 To 127
+        For character = FirstCharacter To LastCharacter
             Dim glyphData = New GlyphData With
                 {
                     .Width = width,
