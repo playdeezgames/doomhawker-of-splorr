@@ -1,13 +1,19 @@
 ﻿Friend Class FontsMenuState
     Inherits BaseMenuState
     Const GoBackText = "Go Back"
+    Const NewFontText = "New Font..."
+    Const EditFontText = "Edit Font..."
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))
-        MyBase.New(parent, setState, New List(Of String) From {GoBackText})
+        MyBase.New(parent, setState, New List(Of String) From {GoBackText, NewFontText, EditFontText})
     End Sub
     Public Overrides Sub HandleMenuItem(menuItem As String)
         Select Case menuItem
             Case GoBackText
                 SetState(GameState.EditMenu)
+            Case NewFontText
+                SetState(GameState.NewFont)
+            Case EditFontText
+                SetState(GameState.PickFont)
         End Select
     End Sub
 End Class

@@ -12,5 +12,7 @@
         SetState(GameState.ConfirmQuit, New ConfirmQuitState(Me, AddressOf SetCurrentState))
         SetState(GameState.EditMenu, New EditMenuState(Me, AddressOf SetCurrentState))
         SetState(GameState.FontsMenu, New FontsMenuState(Me, AddressOf SetCurrentState))
+        SetState(GameState.NewFont, New NewFontState(Me, AddressOf SetCurrentState))
+        SetState(GameState.PickFont, New PickFontState(Me, AddressOf SetCurrentState))
     End Sub
 End Class
