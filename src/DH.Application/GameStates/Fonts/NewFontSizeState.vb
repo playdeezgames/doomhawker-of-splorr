@@ -22,13 +22,13 @@
             Case NeverMindText
                 SetState(GameState.FontsMenu)
             Case IncreaseWidthText
-                NewFontWidth += 1
+                FontWidth += 1
             Case IncreaseHeightText
-                NewFontHeight += 1
+                FontHeight += 1
             Case DecreaseWidthText
-                NewFontWidth = Math.Max(NewFontWidth - 1, 1)
+                FontWidth = Math.Max(FontWidth - 1, 1)
             Case DecreaseHeightText
-                NewFontHeight = Math.Max(NewFontHeight - 1, 1)
+                FontHeight = Math.Max(FontHeight - 1, 1)
             Case CreateText
                 SetState(GameState.NewFontName)
         End Select
@@ -36,7 +36,7 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font5x7)
-        font.WriteText(displayBuffer, (0, font.Height * 8), $"Width: {NewFontWidth}", Hue.White)
-        font.WriteText(displayBuffer, (0, font.Height * 9), $"Height: {NewFontHeight}", Hue.White)
+        font.WriteText(displayBuffer, (0, font.Height * 8), $"Width: {FontWidth}", Hue.White)
+        font.WriteText(displayBuffer, (0, font.Height * 9), $"Height: {FontHeight}", Hue.White)
     End Sub
 End Class

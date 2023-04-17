@@ -29,20 +29,20 @@ Friend Class NewFontNameState
             Case Command.FireReleased
                 Select Case AscW(_character)
                     Case 128, 129, 130, 131
-                        If NewFontName.Length > 1 Then
-                            NewFontName = NewFontName.Substring(0, NewFontName.Length - 1)
+                        If FontName.Length > 1 Then
+                            FontName = FontName.Substring(0, FontName.Length - 1)
                         Else
-                            NewFontName = ""
+                            FontName = ""
                         End If
                     Case 132, 133, 134, 135
-                        NewFontName = ""
+                        FontName = ""
                     Case 136, 137, 138, 139
-                        Dim editorFont = Editor.CreateFont(NewFontName, NewFontWidth, NewFontHeight)
+                        Editor.CreateFont(FontName, FontWidth, FontHeight)
                     Case 140, 141, 142, 143
-                        NewFontName = ""
+                        FontName = ""
                         SetState(GameState.FontsMenu)
                     Case Else
-                        NewFontName += _character
+                        FontName += _character
                 End Select
         End Select
     End Sub
@@ -66,7 +66,7 @@ Friend Class NewFontNameState
         Dim CellWidth = font.TextWidth(" ")
         Dim CellHeight = font.Height
         font.WriteText(displayBuffer, (0, 0), "Font Name:", Hue.White)
-        font.WriteText(displayBuffer, (0, font.Height), NewFontName, Hue.LightBlue)
+        font.WriteText(displayBuffer, (0, font.Height), FontName, Hue.LightBlue)
         For row = 0 To 5
             For column = 0 To 15
                 Dim ch As Char = ChrW(row * 16 + column + 32)
