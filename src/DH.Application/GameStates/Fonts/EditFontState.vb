@@ -2,11 +2,12 @@
     Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
     Private _row As Integer = 0
     Private _column As Integer = 0
-
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))
         MyBase.New(parent, setState)
     End Sub
-
+    Const CellRows = 6
+    Const CellColumns = 16
+    Const FirstCharacter = 32
     Public Overrides Sub HandleCommand(command As Command)
         Select Case command
             Case Command.UpReleased
@@ -17,11 +18,14 @@
                 _column = (_column + CellColumns - 1) Mod CellColumns
             Case Command.RightReleased
                 _column = (_column + 1) Mod CellColumns
+            Case Command.FireReleased
+                If _row < 0 Then
+                    SetState(GameState.FontsMenu)
+                Else
+
+                End If
         End Select
     End Sub
-    Const CellColumns = 16
-    Const CellRows = 6
-    Const FirstCharacter = 32
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.DarkGray)
         RenderEditorFont(displayBuffer)
