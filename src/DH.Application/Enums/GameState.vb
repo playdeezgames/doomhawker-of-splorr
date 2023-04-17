@@ -3,4 +3,5 @@
     MainMenu
     ConfirmQuit
     EditMenu
+    FontsMenu
 End Enum
