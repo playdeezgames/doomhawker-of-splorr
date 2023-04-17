@@ -30,7 +30,7 @@
             Case DecreaseHeightText
                 NewFontHeight = Math.Max(NewFontHeight - 1, 1)
             Case CreateText
-
+                SetState(GameState.NewFontName)
         End Select
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))

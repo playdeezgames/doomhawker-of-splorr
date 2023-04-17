@@ -6,6 +6,7 @@ Public Module GameContext
     Public Editor As IEditor
     Public NewFontWidth As Integer = 8
     Public NewFontHeight As Integer = 8
+    Public NewFontName As String = ""
     Friend Sub Initialize()
         Editor = New DH.Business.Editor(New EditorData)
         InitializeFonts()
