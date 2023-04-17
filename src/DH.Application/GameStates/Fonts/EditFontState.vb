@@ -23,6 +23,7 @@
                     SetState(GameState.FontsMenu)
                 Else
                     GlyphKey = ChrW(_row * CellColumns + _column + FirstCharacter)
+                    SetState(GameState.EditGlyph)
                 End If
         End Select
     End Sub
@@ -30,8 +31,8 @@
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.DarkGray)
         RenderEditorFont(displayBuffer)
         Dim font = Fonts(GameFont.Font5x7)
-        Dim text As String = ""
         Dim h As Hue = Hue.Gray
+        Dim text As String
         If _row >= 0 Then
             Dim ascii = FirstCharacter + _row * CellColumns + _column
             text = $"Character: {ascii}({ChrW(ascii)})"
