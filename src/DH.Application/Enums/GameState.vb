@@ -10,4 +10,5 @@
     EditFont
     EditGlyph
     SaveAs
+    LoadFrom
 End Enum

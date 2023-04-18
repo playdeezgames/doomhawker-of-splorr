@@ -18,5 +18,6 @@
         SetState(GameState.EditFont, New EditFontState(Me, AddressOf SetCurrentState))
         SetState(GameState.EditGlyph, New EditGlyphState(Me, AddressOf SetCurrentState))
         SetState(GameState.SaveAs, New SaveAsState(Me, AddressOf SetCurrentState))
+        SetState(GameState.LoadFrom, New LoadFromState(Me, AddressOf SetCurrentState))
     End Sub
 End Class

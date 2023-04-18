@@ -1,6 +1,6 @@
 ﻿Public Class Editor
     Implements IEditor
-    Private ReadOnly _data As EditorData
+    Private _data As EditorData
     Sub New(data As EditorData)
         _data = data
     End Sub
@@ -33,5 +33,9 @@
 
     Public Sub Save(fileName As String) Implements IEditor.Save
         File.WriteAllText(fileName, JsonSerializer.Serialize(_data))
+    End Sub
+
+    Public Sub Load(fileName As String) Implements IEditor.Load
+        _data = JsonSerializer.Deserialize(Of EditorData)(File.ReadAllText(fileName))
     End Sub
 End Class
