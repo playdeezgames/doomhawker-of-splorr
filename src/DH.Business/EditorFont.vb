@@ -18,4 +18,8 @@
         Me._data = data
         Me._fontName = name
     End Sub
+
+    Public Function GetGlyph(glyphKey As Char) As IEditorGlyph Implements IEditorFont.GetGlyph
+        Throw New NotImplementedException()
+    End Function
 End Class
