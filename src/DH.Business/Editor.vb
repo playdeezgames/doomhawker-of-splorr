@@ -1,8 +1,6 @@
-﻿Imports AOS.UI
-
-Public Class Editor
+﻿Public Class Editor
     Implements IEditor
-    Private _data As EditorData
+    Private ReadOnly _data As EditorData
     Sub New(data As EditorData)
         _data = data
     End Sub
@@ -32,4 +30,8 @@ Public Class Editor
     Public Function GetFont(fontName As String) As IEditorFont Implements IEditor.GetFont
         Return New EditorFont(_data, fontName)
     End Function
+
+    Public Sub Save(fileName As String) Implements IEditor.Save
+        File.WriteAllText(fileName, JsonSerializer.Serialize(_data))
+    End Sub
 End Class
