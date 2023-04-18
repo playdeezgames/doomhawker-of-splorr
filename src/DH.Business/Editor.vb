@@ -50,7 +50,11 @@
         _data.Terrains(terrainName) = New TerrainData With {
             .FontName = String.Empty,
             .GlyphKey = " "c,
-            .Tenantable = False}
+            .Tenantability = False}
+        Return New Terrain(_data, terrainName)
+    End Function
+
+    Public Function GetTerrain(terrainName As String) As ITerrain Implements IEditor.GetTerrain
         Return New Terrain(_data, terrainName)
     End Function
 End Class
