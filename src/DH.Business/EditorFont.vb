@@ -20,6 +20,6 @@
     End Sub
 
     Public Function GetGlyph(glyphKey As Char) As IEditorGlyph Implements IEditorFont.GetGlyph
-        Throw New NotImplementedException()
+        Return New EditorGlyph(_data, _fontName, glyphKey)
     End Function
 End Class
