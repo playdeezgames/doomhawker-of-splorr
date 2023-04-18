@@ -13,7 +13,11 @@
             Case NewFontText
                 SetState(GameState.NewFontSize)
             Case EditFontText
-                SetState(GameState.PickFont)
+                If Editor.FontNames.Any Then
+                    SetState(GameState.PickFont)
+                Else
+                    SetState(GameState.NewFontSize)
+                End If
         End Select
     End Sub
 End Class

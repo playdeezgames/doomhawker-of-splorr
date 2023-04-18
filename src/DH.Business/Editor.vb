@@ -6,6 +6,13 @@
     End Sub
     Const FirstCharacter = 32
     Const LastCharacter = 127
+
+    Public ReadOnly Property FontNames As IEnumerable(Of String) Implements IEditor.FontNames
+        Get
+            Return _data.Fonts.Keys
+        End Get
+    End Property
+
     Public Function CreateFont(name As String, width As Integer, height As Integer) As IEditorFont Implements IEditor.CreateFont
         Dim fontData As New FontData With
         {
