@@ -36,4 +36,12 @@
     Public Function IsSet(x As Integer, y As Integer) As Boolean Implements IEditorGlyph.IsSet
         Return GlyphData.Lines(y).Contains(x)
     End Function
+
+    Public Sub Toggle(x As Integer, y As Integer) Implements IEditorGlyph.Toggle
+        If IsSet(x, y) Then
+            GlyphData.Lines(y) = GlyphData.Lines(y).Where(Function(v) v <> x)
+        Else
+            GlyphData.Lines(y) = (New HashSet(Of Integer)(GlyphData.Lines(y)) From {x})
+        End If
+    End Sub
 End Class
