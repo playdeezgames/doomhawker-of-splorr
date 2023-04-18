@@ -8,6 +8,7 @@ Public Module GameContext
     Public FontHeight As Integer = 8
     Public FontName As String = ""
     Public GlyphKey As Char = ChrW(32)
+    Public TerrainName As String = ""
     Friend Sub Initialize()
         Editor = New DH.Business.Editor(New EditorData)
         InitializeFonts()

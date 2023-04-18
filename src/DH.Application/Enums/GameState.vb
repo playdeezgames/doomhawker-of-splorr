@@ -11,4 +11,7 @@
     EditGlyph
     SaveAs
     LoadFrom
+    TerrainsMenu
+    NewTerrainName
+    EditTerrain
 End Enum

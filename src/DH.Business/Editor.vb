@@ -45,4 +45,12 @@
     Public Sub Load(fileName As String) Implements IEditor.Load
         _data = JsonSerializer.Deserialize(Of EditorData)(File.ReadAllText(fileName))
     End Sub
+
+    Public Function CreateTerrain(terrainName As String) As ITerrain Implements IEditor.CreateTerrain
+        _data.Terrains(terrainName) = New TerrainData With {
+            .FontName = String.Empty,
+            .GlyphKey = " "c,
+            .Tenantable = False}
+        Return New Terrain(_data, terrainName)
+    End Function
 End Class

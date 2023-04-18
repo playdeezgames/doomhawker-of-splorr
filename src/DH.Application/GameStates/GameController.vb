@@ -19,5 +19,7 @@
         SetState(GameState.EditGlyph, New EditGlyphState(Me, AddressOf SetCurrentState))
         SetState(GameState.SaveAs, New SaveAsState(Me, AddressOf SetCurrentState))
         SetState(GameState.LoadFrom, New LoadFromState(Me, AddressOf SetCurrentState))
+        SetState(GameState.TerrainsMenu, New TerrainsMenuState(Me, AddressOf SetCurrentState))
+        SetState(GameState.NewTerrainName, New NewTerrainNameState(Me, AddressOf SetCurrentState))
     End Sub
 End Class
