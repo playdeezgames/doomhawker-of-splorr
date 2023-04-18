@@ -40,4 +40,13 @@
             Throw New NotImplementedException()
         End Set
     End Property
+
+    Public Property HueIndex As Integer Implements ITerrain.HueIndex
+        Get
+            Return TerrainData.HueIndex
+        End Get
+        Set(value As Integer)
+            Throw New NotImplementedException()
+        End Set
+    End Property
 End Class
