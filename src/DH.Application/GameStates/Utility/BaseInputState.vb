@@ -1,11 +1,12 @@
-﻿Friend Class NewFontNameState
+﻿Friend MustInherit Class BaseInputState
     Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
     Private _character As Char = " "c
     Private _buffer As String = ""
-    Private ReadOnly _caption As String = "Font Name:"
+    Private ReadOnly _caption As String
 
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))
+    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState), caption As String)
         MyBase.New(parent, setState)
+        _caption = caption
     End Sub
 
     Public Overrides Sub HandleCommand(command As Command)
@@ -37,8 +38,10 @@
                     Case 132, 133, 134, 135
                         _buffer = ""
                     Case 136, 137, 138, 139
-                        HandleDone()
+                        HandleDone(_buffer)
+                        _buffer = ""
                     Case 140, 141, 142, 143
+                        _buffer = ""
                         HandleCancel()
                     Case Else
                         _buffer += _character
@@ -46,17 +49,9 @@
         End Select
     End Sub
 
-    Private Sub HandleCancel()
-        _buffer = ""
-        FontName = ""
-        SetState(GameState.FontsMenu)
-    End Sub
+    Protected MustOverride Sub HandleCancel()
 
-    Private Sub HandleDone()
-        FontName = _buffer
-        Editor.CreateFont(FontName, FontWidth, FontHeight)
-        SetState(GameState.EditFont)
-    End Sub
+    Protected MustOverride Sub HandleDone(buffer As String)
 
     Private Sub ChangeCharacterBy(delta As Integer)
         Dim ascii = AscW(_character) + delta

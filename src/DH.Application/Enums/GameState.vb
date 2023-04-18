@@ -9,4 +9,5 @@
     NewFontName
     EditFont
     EditGlyph
+    SaveAs
 End Enum

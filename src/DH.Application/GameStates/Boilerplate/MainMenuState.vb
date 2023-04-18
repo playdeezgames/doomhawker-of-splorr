@@ -11,7 +11,7 @@
     Public Overrides Sub HandleMenuItem(menuItem As String)
         Select Case menuItem
             Case SaveText
-                Editor.Save("output.json")
+                SetState(GameState.SaveAs)
             Case EditText
                 SetState(GameState.EditMenu)
             Case QuitText
