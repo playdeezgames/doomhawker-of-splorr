@@ -57,4 +57,8 @@
     Public Function GetTerrain(terrainName As String) As ITerrain Implements IEditor.GetTerrain
         Return New Terrain(_data, terrainName)
     End Function
+
+    Public Function HasFont(fontName As String) As Boolean Implements IEditor.HasFont
+        Return _data.Fonts.ContainsKey(fontName)
+    End Function
 End Class

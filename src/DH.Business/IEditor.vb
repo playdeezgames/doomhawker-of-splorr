@@ -5,5 +5,6 @@ Public Interface IEditor
     Function GetFont(fontName As String) As IEditorFont
     Function CreateTerrain(terrainName As String) As ITerrain
     Function GetTerrain(terrainName As String) As ITerrain
+    Function HasFont(fontName As String) As Boolean
     ReadOnly Property FontNames As IEnumerable(Of String)
 End Interface
