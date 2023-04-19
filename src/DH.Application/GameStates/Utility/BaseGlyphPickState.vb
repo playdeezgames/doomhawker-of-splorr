@@ -40,6 +40,7 @@
     End Sub
     Protected MustOverride Sub HandleDone(glyph As Char)
     Protected MustOverride Sub HandleCancel()
+    Protected MustOverride Function FontNameSource() As String
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.DarkGray)
         RenderEditorFont(displayBuffer)
@@ -51,7 +52,7 @@
         font.WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(text) \ 2, 0), text, h)
     End Sub
     Private Sub RenderEditorFont(displayBuffer As IPixelSink(Of Hue))
-        Dim editorFont As IEditorFont = Editor.GetFont(FontName)
+        Dim editorFont As IEditorFont = Editor.GetFont(FontNameSource)
         Dim font As Font = editorFont.Font
         Dim cellWidth = font.TextWidth(" ")
         Dim cellHeight = font.Height
