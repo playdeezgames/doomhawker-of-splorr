@@ -21,4 +21,5 @@
     NewMapName
     PickMap
     NewMapSize
+    EditMap
 End Enum

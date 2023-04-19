@@ -85,4 +85,8 @@
     Public Function HasFont(fontName As String) As Boolean Implements IEditor.HasFont
         Return _data.Fonts.ContainsKey(fontName)
     End Function
+
+    Public Function CreateMap(mapName As String, columns As Integer, rows As Integer) As IEditorMap Implements IEditor.CreateMap
+        Throw New NotImplementedException()
+    End Function
 End Class

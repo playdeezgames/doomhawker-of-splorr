@@ -10,6 +10,8 @@ Public Module EditorContext
     Public GlyphKey As Char = ChrW(32)
     Public TerrainName As String = ""
     Public MapName As String = ""
+    Public MapWidth As Integer
+    Public MapHeight As Integer
     Public ReadOnly AllHues As IReadOnlyList(Of Hue) = New List(Of Hue) From {
         Hue.Black,
         Hue.Blue,

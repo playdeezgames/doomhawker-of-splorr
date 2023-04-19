@@ -28,5 +28,6 @@
         SetState(GameState.MapsMenu, New MapsMenuState(Me, AddressOf SetCurrentState))
         SetState(GameState.NewMapName, New NewMapNameState(Me, AddressOf SetCurrentState))
         SetState(GameState.PickMap, New PickMapState(Me, AddressOf SetCurrentState))
+        SetState(GameState.NewMapSize, New NewMapSizeState(Me, AddressOf SetCurrentState))
     End Sub
 End Class
