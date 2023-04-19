@@ -14,4 +14,6 @@
     TerrainsMenu
     NewTerrainName
     EditTerrain
+    PickTerrainFont
+    PickTerrainGlyph
 End Enum

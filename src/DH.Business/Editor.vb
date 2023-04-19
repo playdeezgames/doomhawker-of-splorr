@@ -13,6 +13,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property HasFonts As Boolean Implements IEditor.HasFonts
+        Get
+            Return _data.Fonts.Any
+        End Get
+    End Property
+
     Public Function CreateFont(name As String, width As Integer, height As Integer) As IEditorFont Implements IEditor.CreateFont
         Dim fontData As New FontData With
         {

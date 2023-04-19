@@ -19,7 +19,7 @@
             Return TerrainData.FontName
         End Get
         Set(value As String)
-            Throw New NotImplementedException()
+            TerrainData.FontName = value
         End Set
     End Property
 
@@ -28,7 +28,7 @@
             Return TerrainData.GlyphKey
         End Get
         Set(value As Char)
-            Throw New NotImplementedException()
+            TerrainData.GlyphKey = value
         End Set
     End Property
 
@@ -37,7 +37,7 @@
             Return TerrainData.Tenantability
         End Get
         Set(value As Boolean)
-            Throw New NotImplementedException()
+            TerrainData.Tenantability = value
         End Set
     End Property
 
@@ -46,7 +46,7 @@
             Return TerrainData.HueIndex
         End Get
         Set(value As Integer)
-            Throw New NotImplementedException()
+            TerrainData.HueIndex = value
         End Set
     End Property
 End Class

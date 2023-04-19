@@ -10,9 +10,22 @@
     End Sub
 
     Public Overrides Sub HandleMenuItem(menuItem As String)
+        Dim terrain As ITerrain = Editor.GetTerrain(TerrainName)
         Select Case menuItem
             Case GoBackText
                 SetState(GameState.TerrainsMenu)
+            Case ToggleTenantabilityText
+                terrain.Tenantability = Not terrain.Tenantability
+            Case ChangeHueText
+                terrain.HueIndex = (terrain.HueIndex + 1) Mod 15
+            Case ChangeGlyphText
+                If Editor.HasFont(terrain.FontName) Then
+                    SetState(GameState.PickTerrainGlyph)
+                End If
+            Case ChangeFontText
+                If Editor.HasFonts Then
+                    SetState(GameState.PickTerrainFont)
+                End If
         End Select
     End Sub
 
