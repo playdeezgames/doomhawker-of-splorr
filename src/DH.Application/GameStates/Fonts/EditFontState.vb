@@ -11,21 +11,41 @@
     Public Overrides Sub HandleCommand(command As Command)
         Select Case command
             Case Command.UpReleased
-                _row = Math.Max(-1, _row - 1)
-            Case Command.DownReleased
-                _row = Math.Min(CellRows - 1, _row + 1)
-            Case Command.LeftReleased
-                _column = (_column + CellColumns - 1) Mod CellColumns
-            Case Command.RightReleased
-                _column = (_column + 1) Mod CellColumns
-            Case Command.FireReleased
-                If _row < 0 Then
-                    SetState(GameState.FontsMenu)
+                If _row = 0 Then
+                    HandleCancel()
                 Else
-                    GlyphKey = ChrW(_row * CellColumns + _column + FirstCharacter)
-                    SetState(GameState.EditGlyph)
+                    _row -= 1
                 End If
+            Case Command.DownReleased
+                If _row = CellRows - 1 Then
+                    HandleCancel()
+                Else
+                    _row += 1
+                End If
+            Case Command.LeftReleased
+                If _column = 0 Then
+                    HandleCancel()
+                Else
+                    _column -= 1
+                End If
+            Case Command.RightReleased
+                If _column = CellColumns - 1 Then
+                    HandleCancel()
+                Else
+                    _column += 1
+                End If
+            Case Command.FireReleased
+                HandleDone(ChrW(_row * CellColumns + _column + FirstCharacter))
         End Select
+    End Sub
+
+    Private Sub HandleDone(glyph As Char)
+        GlyphKey = glyph
+        SetState(GameState.EditGlyph)
+    End Sub
+
+    Protected Sub HandleCancel()
+        SetState(GameState.FontsMenu)
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.DarkGray)
@@ -33,13 +53,8 @@
         Dim font = Fonts(GameFont.Font5x7)
         Dim h As Hue = Hue.Gray
         Dim text As String
-        If _row >= 0 Then
-            Dim ascii = FirstCharacter + _row * CellColumns + _column
-            text = $"Character: {ascii}({ChrW(ascii)})"
-        Else
-            text = "Done Editing"
-            h = Hue.White
-        End If
+        Dim ascii = FirstCharacter + _row * CellColumns + _column
+        text = $"Character: {ascii}({ChrW(ascii)})"
         font.WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(text) \ 2, 0), text, h)
     End Sub
 
