@@ -1,4 +1,4 @@
-﻿Friend Class PickTerrainGlyph
+﻿Friend Class PickTerrainGlyphState
     Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
 
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))

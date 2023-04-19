@@ -16,4 +16,5 @@
     EditTerrain
     PickTerrainFont
     PickTerrainGlyph
+    PickTerrain
 End Enum

@@ -19,6 +19,18 @@
         End Get
     End Property
 
+    Public ReadOnly Property TerrainNames As IEnumerable(Of String) Implements IEditor.TerrainNames
+        Get
+            Return _data.Terrains.Keys
+        End Get
+    End Property
+
+    Public ReadOnly Property HasTerrains As Boolean Implements IEditor.HasTerrains
+        Get
+            Return _data.Terrains.Any
+        End Get
+    End Property
+
     Public Function CreateFont(name As String, width As Integer, height As Integer) As IEditorFont Implements IEditor.CreateFont
         Dim fontData As New FontData With
         {

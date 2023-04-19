@@ -8,4 +8,6 @@ Public Interface IEditor
     Function HasFont(fontName As String) As Boolean
     ReadOnly Property HasFonts As Boolean
     ReadOnly Property FontNames As IEnumerable(Of String)
+    ReadOnly Property TerrainNames As IEnumerable(Of String)
+    ReadOnly Property HasTerrains As Boolean
 End Interface

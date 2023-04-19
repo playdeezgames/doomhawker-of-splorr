@@ -13,6 +13,12 @@
                 SetState(GameState.MainMenu)
             Case NewTerrainText
                 SetState(GameState.NewTerrainName)
+            Case EditTerrainText
+                If Editor.HasTerrains Then
+                    SetState(GameState.PickTerrain)
+                Else
+                    SetState(GameState.NewTerrainName)
+                End If
         End Select
     End Sub
 End Class
