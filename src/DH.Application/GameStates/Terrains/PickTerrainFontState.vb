@@ -1,19 +1,20 @@
 ﻿Friend Class PickTerrainFontState
-    Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
+    Inherits BasePickState
 
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))
         MyBase.New(parent, setState)
     End Sub
 
-    Public Overrides Sub HandleCommand(command As Command)
-        Throw New NotImplementedException()
+    Protected Overrides Sub HandlePick(picked As String)
+        Editor.GetTerrain(TerrainName).FontName = picked
+        SetState(GameState.EditTerrain)
     End Sub
 
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
-        Throw New NotImplementedException()
+    Protected Overrides Sub HandleCancel()
+        SetState(GameState.EditTerrain)
     End Sub
 
-    Public Overrides Sub Update(elapsedTime As TimeSpan)
-        Throw New NotImplementedException()
-    End Sub
+    Protected Overrides Function ListItemSource() As IEnumerable(Of String)
+        Return Editor.FontNames
+    End Function
 End Class
