@@ -1,19 +1,16 @@
 ﻿Friend Class EditTerrainState
     Inherits BaseMenuState
-    Const GoBackText = "Go Back"
     Const ChangeFontText = "Change Font..."
     Const ChangeGlyphText = "Change Glyph..."
     Const ChangeHueText = "Change Hue..."
     Const ToggleTenantabilityText = "Toggle Tenantability"
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))
-        MyBase.New(parent, setState, New List(Of String) From {GoBackText, ChangeFontText, ChangeGlyphText, ChangeHueText, ToggleTenantabilityText})
+        MyBase.New(parent, setState, New List(Of String) From {ChangeFontText, ChangeGlyphText, ChangeHueText, ToggleTenantabilityText})
     End Sub
 
     Public Overrides Sub HandleMenuItem(menuItem As String)
         Dim terrain As ITerrain = Editor.GetTerrain(TerrainName)
         Select Case menuItem
-            Case GoBackText
-                SetState(GameState.TerrainsMenu)
             Case ToggleTenantabilityText
                 terrain.Tenantability = Not terrain.Tenantability
             Case ChangeHueText
@@ -38,6 +35,10 @@
             Dim height = terrainFont.Height
             terrainFont.WriteText(displayBuffer, (ViewWidth - width, ViewHeight - height), $"{terrain.GlyphKey}", CType(terrain.HueIndex, Hue))
         End If
+    End Sub
+
+    Protected Overrides Sub HandleCancel()
+        SetState(GameState.TerrainsMenu)
     End Sub
 
     Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of Hue)) As ITerrain

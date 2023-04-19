@@ -10,6 +10,8 @@
         Select Case command
             Case Command.UpReleased, Command.DownReleased
                 _confirmation = Not _confirmation
+            Case Command.LeftReleased
+                SetState(GameState.MainMenu)
             Case Command.FireReleased
                 If _confirmation Then
                     QuitRequested = True

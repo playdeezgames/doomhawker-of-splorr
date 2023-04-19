@@ -18,9 +18,11 @@
                 _currentItem = (_currentItem + 1) Mod _menuItems.Count
             Case Command.FireReleased
                 HandleMenuItem(_menuItems(_currentItem))
+            Case Command.LeftReleased
+                HandleCancel()
         End Select
     End Sub
-
+    Protected MustOverride Sub HandleCancel()
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
         Dim font = Fonts(GameFont.Font5x7)

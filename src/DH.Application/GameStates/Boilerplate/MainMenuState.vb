@@ -21,4 +21,8 @@
                 SetState(GameState.ConfirmQuit)
         End Select
     End Sub
+
+    Protected Overrides Sub HandleCancel()
+        SetState(GameState.ConfirmQuit)
+    End Sub
 End Class
