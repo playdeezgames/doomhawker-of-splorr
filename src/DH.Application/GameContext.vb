@@ -9,6 +9,24 @@ Public Module GameContext
     Public FontName As String = ""
     Public GlyphKey As Char = ChrW(32)
     Public TerrainName As String = ""
+    Public ReadOnly AllHues As IReadOnlyList(Of Hue) = New List(Of Hue) From {
+        Hue.Black,
+        Hue.Blue,
+        Hue.Green,
+        Hue.Cyan,
+        Hue.Red,
+        Hue.Magenta,
+        Hue.Brown,
+        Hue.Gray,
+        Hue.DarkGray,
+        Hue.LightBlue,
+        Hue.LightGreen,
+        Hue.LightCyan,
+        Hue.LightRed,
+        Hue.LightMagenta,
+        Hue.Yellow,
+        Hue.White
+        }
     Friend Sub Initialize()
         Editor = New DH.Business.Editor(New EditorData)
         InitializeFonts()

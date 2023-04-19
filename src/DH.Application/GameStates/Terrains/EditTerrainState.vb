@@ -17,7 +17,7 @@
             Case ToggleTenantabilityText
                 terrain.Tenantability = Not terrain.Tenantability
             Case ChangeHueText
-                terrain.HueIndex = (terrain.HueIndex + 1) Mod 15
+                terrain.HueIndex = (terrain.HueIndex + 1) Mod AllHues.Count
             Case ChangeGlyphText
                 If Editor.HasFont(terrain.FontName) Then
                     SetState(GameState.PickTerrainGlyph)
@@ -46,7 +46,7 @@
         font.WriteText(displayBuffer, (0, font.Height * 6), $"Name: {TerrainName}", Hue.White)
         font.WriteText(displayBuffer, (0, font.Height * 7), $"Font: {terrain.FontName}", Hue.White)
         font.WriteText(displayBuffer, (0, font.Height * 8), $"Glyph: {AscW(terrain.GlyphKey)}", Hue.White)
-        font.WriteText(displayBuffer, (0, font.Height * 9), $"Hue: {CType(terrain.HueIndex, Hue)}", Hue.White)
+        font.WriteText(displayBuffer, (0, font.Height * 9), $"Hue: {AllHues(terrain.HueIndex)}", Hue.White)
         font.WriteText(displayBuffer, (0, font.Height * 10), $"Tenantable: {terrain.Tenantability}", Hue.White)
         Return terrain
     End Function

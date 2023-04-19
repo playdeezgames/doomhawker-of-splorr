@@ -1,19 +1,20 @@
 ﻿Friend Class PickTerrainGlyphState
-    Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
+    Inherits BaseGlyphPickState
 
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))
         MyBase.New(parent, setState)
     End Sub
 
-    Public Overrides Sub HandleCommand(command As Command)
-        Throw New NotImplementedException()
+    Protected Overrides Sub HandleDone(glyph As Char)
+        Editor.GetTerrain(TerrainName).GlyphKey = glyph
+        SetState(GameState.EditTerrain)
     End Sub
 
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
-        Throw New NotImplementedException()
+    Protected Overrides Sub HandleCancel()
+        SetState(GameState.EditTerrain)
     End Sub
 
-    Public Overrides Sub Update(elapsedTime As TimeSpan)
-        Throw New NotImplementedException()
-    End Sub
+    Protected Overrides Function FontNameSource() As String
+        Return Editor.GetTerrain(TerrainName).FontName
+    End Function
 End Class
