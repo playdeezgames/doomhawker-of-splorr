@@ -9,7 +9,7 @@ Module Program
         Using host As New Host(Of Hue, Command, Sfx)(
             "Doomhawker of SPLORR!!",
             gameController,
-            (GameContext.ViewWidth, GameContext.ViewHeight),
+            (EditorContext.ViewWidth, EditorContext.ViewHeight),
             AddressOf BufferCreatorator,
             AddressOf CommandTransformerator,
             AddressOf GamePadTransformer,

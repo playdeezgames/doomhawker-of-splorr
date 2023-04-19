@@ -17,4 +17,8 @@
     PickTerrainFont
     PickTerrainGlyph
     PickTerrain
+    MapsMenu
+    NewMapName
+    PickMap
+    NewMapSize
 End Enum

@@ -25,5 +25,8 @@
         SetState(GameState.PickTerrainFont, New PickTerrainFontState(Me, AddressOf SetCurrentState))
         SetState(GameState.PickTerrainGlyph, New PickTerrainGlyphState(Me, AddressOf SetCurrentState))
         SetState(GameState.PickTerrain, New PickTerrainState(Me, AddressOf SetCurrentState))
+        SetState(GameState.MapsMenu, New MapsMenuState(Me, AddressOf SetCurrentState))
+        SetState(GameState.NewMapName, New NewMapNameState(Me, AddressOf SetCurrentState))
+        SetState(GameState.PickMap, New PickMapState(Me, AddressOf SetCurrentState))
     End Sub
 End Class

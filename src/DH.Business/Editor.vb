@@ -31,6 +31,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property HasMaps As Boolean Implements IEditor.HasMaps
+        Get
+            Return _data.Maps.Any
+        End Get
+    End Property
+
     Public Function CreateFont(name As String, width As Integer, height As Integer) As IEditorFont Implements IEditor.CreateFont
         Dim fontData As New FontData With
         {

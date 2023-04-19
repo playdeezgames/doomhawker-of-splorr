@@ -1,6 +1,6 @@
 Imports DH.Data
 
-Public Module GameContext
+Public Module EditorContext
     Public Const ViewWidth = 192
     Public Const ViewHeight = 108
     Public Editor As IEditor
@@ -9,6 +9,7 @@ Public Module GameContext
     Public FontName As String = ""
     Public GlyphKey As Char = ChrW(32)
     Public TerrainName As String = ""
+    Public MapName As String = ""
     Public ReadOnly AllHues As IReadOnlyList(Of Hue) = New List(Of Hue) From {
         Hue.Black,
         Hue.Blue,

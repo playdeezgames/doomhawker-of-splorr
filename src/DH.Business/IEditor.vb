@@ -6,6 +6,7 @@ Public Interface IEditor
     Function CreateTerrain(terrainName As String) As ITerrain
     Function GetTerrain(terrainName As String) As ITerrain
     Function HasFont(fontName As String) As Boolean
+    ReadOnly Property HasMaps As Boolean
     ReadOnly Property HasFonts As Boolean
     ReadOnly Property FontNames As IEnumerable(Of String)
     ReadOnly Property TerrainNames As IEnumerable(Of String)
