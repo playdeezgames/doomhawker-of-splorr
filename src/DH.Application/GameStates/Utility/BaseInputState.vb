@@ -1,14 +1,21 @@
-﻿Friend MustInherit Class BaseInputState
+﻿Friend Class BaseInputState
     Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
     Private _character As Char = " "c
     Private _buffer As String = ""
     Private ReadOnly _caption As String
-
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState), caption As String)
+    Private ReadOnly _onCancel As Action
+    Private ReadOnly _onDone As Action(Of String)
+    Public Sub New(
+                  parent As IGameController(Of Hue, Command, Sfx),
+                  setState As Action(Of GameState),
+                  caption As String,
+                  onCancel As Action,
+                  onDone As Action(Of String))
         MyBase.New(parent, setState)
         _caption = caption
+        _onCancel = onCancel
+        _onDone = onDone
     End Sub
-
     Public Overrides Sub HandleCommand(command As Command)
         Select Case command
             Case Command.UpReleased
@@ -38,21 +45,16 @@
                     Case 132, 133, 134, 135
                         _buffer = ""
                     Case 136, 137, 138, 139
-                        HandleDone(_buffer)
+                        _onDone(_buffer)
                         _buffer = ""
                     Case 140, 141, 142, 143
                         _buffer = ""
-                        HandleCancel()
+                        _onCancel()
                     Case Else
                         _buffer += _character
                 End Select
         End Select
     End Sub
-
-    Protected MustOverride Sub HandleCancel()
-
-    Protected MustOverride Sub HandleDone(buffer As String)
-
     Private Sub ChangeCharacterBy(delta As Integer)
         Dim ascii = AscW(_character) + delta
         Const MinimumAscii = 32
@@ -65,7 +67,6 @@
         End While
         _character = ChrW(ascii)
     End Sub
-
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
         Dim font = Fonts(GameFont.Font5x7)
@@ -109,7 +110,6 @@
             font.WriteText(displayBuffer, (CellWidth * 12, 9 * CellHeight), " xx ", Hue.Gray)
         End If
     End Sub
-
     Public Overrides Sub Update(elapsedTime As TimeSpan)
     End Sub
 End Class
