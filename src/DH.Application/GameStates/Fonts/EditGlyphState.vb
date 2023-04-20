@@ -9,20 +9,37 @@
         Dim glyph = Editor.GetFont(EditorContext.FontName).GetGlyph(EditorContext.GlyphKey)
         Select Case command
             Case Command.LeftReleased
-                _x = Math.Max(_x - 1, -1)
-            Case Command.RightReleased
-                _x = Math.Min(_x + 1, glyph.Width - 1)
-            Case Command.UpReleased
-                _y = Math.Max(_y - 1, 0)
-            Case Command.DownReleased
-                _y = Math.Min(_y + 1, glyph.Height - 1)
-            Case Command.FireReleased
-                If _x = -1 Then
-                    SetState(GameState.EditFont)
+                If _x = 0 Then
+                    HandleDone()
                 Else
-                    glyph.Toggle(_x, _y)
+                    _x -= 1
                 End If
+            Case Command.RightReleased
+                If _x = glyph.Width - 1 Then
+                    HandleDone()
+                Else
+                    _x += 1
+                End If
+            Case Command.UpReleased
+                If _y = 0 Then
+                    HandleDone()
+                Else
+                    _y -= 1
+                End If
+            Case Command.DownReleased
+                If _y = glyph.Height - 1 Then
+                    HandleDone()
+                Else
+                    _y = _y + 1
+                End If
+            Case Command.FireReleased
+                glyph.Toggle(_x, _y)
         End Select
+    End Sub
+    Private Sub HandleDone()
+        _x = 0
+        _y = 0
+        SetState(GameState.EditFont)
     End Sub
     Const CellWidth = 8
     Const CellHeight = 8
