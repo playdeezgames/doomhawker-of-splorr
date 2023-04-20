@@ -49,8 +49,10 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
         DrawMap(displayBuffer)
-        Dim font = Fonts(GameFont.Font5x7)
-        font.WriteText(displayBuffer, (0, 0), $"({_column},{_row})", Hue.White)
+        Dim font = Fonts(GameFont.Font3x5)
+        Dim currentTerrain = Editor.GetMap(MapName).GetCell(_column, _row).Terrain.TerrainName
+        font.WriteText(displayBuffer, (0, 0), $"({_column},{_row}) {currentTerrain}", Hue.White)
+        font.WriteText(displayBuffer, (0, ViewHeight - font.Height), $"Placing: {TerrainName}", Hue.White)
     End Sub
 
     Private Sub DrawMap(displayBuffer As IPixelSink(Of Hue))

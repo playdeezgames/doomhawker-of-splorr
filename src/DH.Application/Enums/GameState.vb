@@ -25,4 +25,5 @@
     Settings
     PickMapTerrain
     PlaceMapTerrain
+    PickDefaultMapTerrain
 End Enum

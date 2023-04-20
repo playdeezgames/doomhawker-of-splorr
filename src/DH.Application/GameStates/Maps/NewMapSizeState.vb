@@ -31,6 +31,7 @@
                 Editor.CreateMap(MapName, MapWidth, MapHeight, TerrainName)
                 SetState(GameState.EditMap)
             Case PickTerrainText
+                SetState(GameState.PickDefaultMapTerrain)
         End Select
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
@@ -38,6 +39,7 @@
         Dim font = Fonts(GameFont.Font5x7)
         font.WriteText(displayBuffer, (0, font.Height * 8), $"Width: {MapWidth}", Hue.White)
         font.WriteText(displayBuffer, (0, font.Height * 9), $"Height: {MapHeight}", Hue.White)
+        font.WriteText(displayBuffer, (0, font.Height * 10), $"Terrain: {TerrainName}", Hue.White)
     End Sub
 
     Protected Overrides Sub HandleCancel()

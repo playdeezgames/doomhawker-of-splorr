@@ -24,14 +24,15 @@
         SetState(GameState.EditTerrain, New EditTerrainState(Me, AddressOf SetCurrentState))
         SetState(GameState.PickTerrainFont, New PickTerrainFontState(Me, AddressOf SetCurrentState))
         SetState(GameState.PickTerrainGlyph, New PickTerrainGlyphState(Me, AddressOf SetCurrentState))
-        SetState(GameState.PickTerrain, New PickTerrainState(Me, AddressOf SetCurrentState))
+        SetState(GameState.PickTerrain, New BasePickTerrainState(Me, AddressOf SetCurrentState, GameState.EditTerrain, GameState.TerrainsMenu))
         SetState(GameState.MapsMenu, New MapsMenuState(Me, AddressOf SetCurrentState))
         SetState(GameState.NewMapName, New NewMapNameState(Me, AddressOf SetCurrentState))
         SetState(GameState.PickMap, New PickMapState(Me, AddressOf SetCurrentState))
         SetState(GameState.NewMapSize, New NewMapSizeState(Me, AddressOf SetCurrentState))
         SetState(GameState.Settings, New SettingsState(Me, AddressOf SetCurrentState))
         SetState(GameState.EditMap, New EditMapState(Me, AddressOf SetCurrentState))
-        SetState(GameState.PickMapTerrain, New PickMapTerrainState(Me, AddressOf SetCurrentState))
+        SetState(GameState.PickMapTerrain, New BasePickTerrainState(Me, AddressOf SetCurrentState, GameState.PlaceMapTerrain, GameState.EditMap))
         SetState(GameState.PlaceMapTerrain, New PlaceMapTerrainState(Me, AddressOf SetCurrentState))
+        SetState(GameState.PickDefaultMapTerrain, New BasePickTerrainState(Me, AddressOf SetCurrentState, GameState.NewMapSize, GameState.NewMapSize))
     End Sub
 End Class
