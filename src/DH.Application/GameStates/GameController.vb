@@ -82,5 +82,17 @@
         SetState(GameState.PickMapTerrain, New BasePickTerrainState(Me, AddressOf SetCurrentState, GameState.PlaceMapTerrain, GameState.EditMap))
         SetState(GameState.PlaceMapTerrain, New PlaceMapTerrainState(Me, AddressOf SetCurrentState))
         SetState(GameState.PickDefaultMapTerrain, New BasePickTerrainState(Me, AddressOf SetCurrentState, GameState.NewMapSize, GameState.NewMapSize))
+        SetState(GameState.RenameMap, New BaseInputState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "New Map Name:",
+                 Sub()
+                     SetCurrentState(GameState.EditMap)
+                 End Sub,
+                 Sub(buffer)
+                     Editor.RenameMap(MapName, buffer)
+                     MapName = buffer
+                     SetCurrentState(GameState.EditMap)
+                 End Sub))
     End Sub
 End Class

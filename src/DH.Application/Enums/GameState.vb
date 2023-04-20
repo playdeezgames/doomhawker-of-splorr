@@ -26,4 +26,5 @@
     PickMapTerrain
     PlaceMapTerrain
     PickDefaultMapTerrain
+    RenameMap
 End Enum

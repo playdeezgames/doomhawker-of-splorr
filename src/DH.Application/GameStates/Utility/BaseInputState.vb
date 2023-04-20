@@ -93,21 +93,21 @@
         End If
         If _character >= ChrW(132) AndAlso _character < ChrW(136) Then
             displayBuffer.Fill((CellWidth * 4, 9 * CellHeight), (CellWidth * 4, CellHeight), Hue.White)
-            font.WriteText(displayBuffer, (CellWidth * 4, 9 * CellHeight), " <x ", Hue.Black)
+            font.WriteText(displayBuffer, (CellWidth * 4, 9 * CellHeight), " << ", Hue.Black)
         Else
-            font.WriteText(displayBuffer, (CellWidth * 4, 9 * CellHeight), " <x ", Hue.Gray)
+            font.WriteText(displayBuffer, (CellWidth * 4, 9 * CellHeight), " << ", Hue.Gray)
         End If
         If _character >= ChrW(136) AndAlso _character < ChrW(140) Then
             displayBuffer.Fill((CellWidth * 8, 9 * CellHeight), (CellWidth * 4, CellHeight), Hue.White)
-            font.WriteText(displayBuffer, (CellWidth * 8, 9 * CellHeight), " => ", Hue.Black)
+            font.WriteText(displayBuffer, (CellWidth * 8, 9 * CellHeight), " OK ", Hue.Black)
         Else
-            font.WriteText(displayBuffer, (CellWidth * 8, 9 * CellHeight), " => ", Hue.Gray)
+            font.WriteText(displayBuffer, (CellWidth * 8, 9 * CellHeight), " OK ", Hue.Gray)
         End If
         If _character >= ChrW(140) AndAlso _character < ChrW(144) Then
             displayBuffer.Fill((CellWidth * 12, 9 * CellHeight), (CellWidth * 4, CellHeight), Hue.White)
-            font.WriteText(displayBuffer, (CellWidth * 12, 9 * CellHeight), " xx ", Hue.Black)
+            font.WriteText(displayBuffer, (CellWidth * 12, 9 * CellHeight), " XX ", Hue.Black)
         Else
-            font.WriteText(displayBuffer, (CellWidth * 12, 9 * CellHeight), " xx ", Hue.Gray)
+            font.WriteText(displayBuffer, (CellWidth * 12, 9 * CellHeight), " XX ", Hue.Gray)
         End If
     End Sub
     Public Overrides Sub Update(elapsedTime As TimeSpan)

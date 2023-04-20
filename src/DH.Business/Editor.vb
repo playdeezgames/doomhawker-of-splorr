@@ -127,4 +127,10 @@
     Public Function GetMap(mapName As String) As IEditorMap Implements IEditor.GetMap
         Return New EditorMap(_data, mapName)
     End Function
+
+    Public Sub RenameMap(fromMapName As String, toMapName As String) Implements IEditor.RenameMap
+        Dim temp = _data.Maps(fromMapName)
+        _data.Maps.Remove(fromMapName)
+        _data.Maps.Add(toMapName, temp)
+    End Sub
 End Class

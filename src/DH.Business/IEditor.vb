@@ -16,4 +16,5 @@ Public Interface IEditor
     Property MapCellHeight As Integer
     ReadOnly Property MapNames As IEnumerable(Of String)
     Function GetMap(mapName As String) As IEditorMap
+    Sub RenameMap(fromMapName As String, toMapName As String)
 End Interface
