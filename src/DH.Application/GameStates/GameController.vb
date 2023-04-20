@@ -14,19 +14,47 @@
         SetState(GameState.FontsMenu, New FontsMenuState(Me, AddressOf SetCurrentState))
         SetState(GameState.NewFontSize, New NewFontSizeState(Me, AddressOf SetCurrentState))
         SetState(GameState.PickFont, New PickFontState(Me, AddressOf SetCurrentState))
-        SetState(GameState.NewFontName, New NewFontNameState(Me, AddressOf SetCurrentState))
+        SetState(GameState.NewFontName, New BaseInputState(Me, AddressOf SetCurrentState, "Font Name:",
+                                                           Sub()
+                                                               FontName = ""
+                                                               SetCurrentState(GameState.FontsMenu)
+                                                           End Sub,
+                                                            Sub(buffer)
+                                                                FontName = buffer
+                                                                Editor.CreateFont(FontName, FontWidth, FontHeight)
+                                                                SetCurrentState(GameState.EditFont)
+                                                            End Sub))
         SetState(GameState.EditFont, New EditFontState(Me, AddressOf SetCurrentState))
         SetState(GameState.EditGlyph, New EditGlyphState(Me, AddressOf SetCurrentState))
-        SetState(GameState.SaveAs, New SaveAsState(Me, AddressOf SetCurrentState))
-        SetState(GameState.LoadFrom, New LoadFromState(Me, AddressOf SetCurrentState))
+        SetState(GameState.SaveAs, New BaseInputState(Me, AddressOf SetCurrentState, "Save Filename:", Sub() SetCurrentState(GameState.MainMenu), Sub(buffer)
+                                                                                                                                               Editor.Save(buffer)
+                                                                                                                                                      SetCurrentState(GameState.MainMenu)
+                                                                                                                                                  End Sub))
+        SetState(GameState.LoadFrom, New BaseInputState(Me, AddressOf SetCurrentState, "Open Filename:",
+                   Sub() SetCurrentState(GameState.MainMenu),
+                   Sub(buffer)
+                       Editor.Load(buffer)
+                       SetCurrentState(GameState.MainMenu)
+                   End Sub))
         SetState(GameState.TerrainsMenu, New TerrainsMenuState(Me, AddressOf SetCurrentState))
-        SetState(GameState.NewTerrainName, New NewTerrainNameState(Me, AddressOf SetCurrentState))
+        SetState(GameState.NewTerrainName, New BaseInputState(Me, AddressOf SetCurrentState, "Terrain Name:", Sub()
+                                                                                                                  TerrainName = ""
+                                                                                                                  SetCurrentState(GameState.TerrainsMenu)
+                                                                                                              End Sub,
+                                                      Sub(buffer)
+                                                          TerrainName = buffer
+                                                          Editor.CreateTerrain(TerrainName)
+                                                          SetCurrentState(GameState.EditTerrain)
+                                                      End Sub))
         SetState(GameState.EditTerrain, New EditTerrainState(Me, AddressOf SetCurrentState))
         SetState(GameState.PickTerrainFont, New PickTerrainFontState(Me, AddressOf SetCurrentState))
         SetState(GameState.PickTerrainGlyph, New PickTerrainGlyphState(Me, AddressOf SetCurrentState))
         SetState(GameState.PickTerrain, New BasePickTerrainState(Me, AddressOf SetCurrentState, GameState.EditTerrain, GameState.TerrainsMenu))
         SetState(GameState.MapsMenu, New MapsMenuState(Me, AddressOf SetCurrentState))
-        SetState(GameState.NewMapName, New NewMapNameState(Me, AddressOf SetCurrentState))
+        SetState(GameState.NewMapName, New BaseInputState(Me, AddressOf SetCurrentState, "Map Name:", Sub() SetCurrentState(GameState.MapsMenu), Sub(buffer)
+                                                                                                                                              MapName = buffer
+                                                                                                                                                     SetCurrentState(GameState.NewMapSize)
+                                                                                                                                                 End Sub))
         SetState(GameState.PickMap, New PickMapState(Me, AddressOf SetCurrentState))
         SetState(GameState.NewMapSize, New NewMapSizeState(Me, AddressOf SetCurrentState))
         SetState(GameState.Settings, New SettingsState(Me, AddressOf SetCurrentState))
