@@ -6,7 +6,7 @@ Public Interface IEditor
     Function CreateTerrain(terrainName As String) As ITerrain
     Function GetTerrain(terrainName As String) As ITerrain
     Function HasFont(fontName As String) As Boolean
-    Function CreateMap(mapName As String, columns As Integer, rows As Integer) As IEditorMap
+    Function CreateMap(mapName As String, columns As Integer, rows As Integer, terrainName As String) As IEditorMap
     ReadOnly Property HasMaps As Boolean
     ReadOnly Property HasFonts As Boolean
     ReadOnly Property FontNames As IEnumerable(Of String)

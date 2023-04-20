@@ -5,6 +5,7 @@
     Const IncreaseHeightText = "Increase Height"
     Const DecreaseWidthText = "Decrease Width"
     Const DecreaseHeightText = "Decrease Height"
+    Const PickTerrainText = "Pick Terrain..."
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))
         MyBase.New(parent, setState, New List(Of String) From
                    {
@@ -12,7 +13,8 @@
                         IncreaseWidthText,
                         IncreaseHeightText,
                         DecreaseWidthText,
-                        DecreaseHeightText
+                        DecreaseHeightText,
+                        PickTerrainText
                    })
     End Sub
     Public Overrides Sub HandleMenuItem(menuItem As String)
@@ -26,8 +28,9 @@
             Case DecreaseHeightText
                 MapHeight = Math.Max(MapHeight - 1, 1)
             Case CreateText
-                Editor.CreateMap(MapName, MapWidth, MapHeight)
+                Editor.CreateMap(MapName, MapWidth, MapHeight, TerrainName)
                 SetState(GameState.EditMap)
+            Case PickTerrainText
         End Select
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))

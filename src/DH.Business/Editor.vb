@@ -110,10 +110,10 @@
         Return _data.Fonts.ContainsKey(fontName)
     End Function
 
-    Public Function CreateMap(mapName As String, columns As Integer, rows As Integer) As IEditorMap Implements IEditor.CreateMap
+    Public Function CreateMap(mapName As String, columns As Integer, rows As Integer, terrainName As String) As IEditorMap Implements IEditor.CreateMap
         Dim cells = New List(Of MapCellData)
         While cells.Count < columns * rows
-            cells.Add(New MapCellData)
+            cells.Add(New MapCellData With {.Terrain = terrainName})
         End While
         _data.Maps(mapName) = New MapData With
             {
