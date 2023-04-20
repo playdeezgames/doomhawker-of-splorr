@@ -12,4 +12,6 @@ Public Interface IEditor
     ReadOnly Property FontNames As IEnumerable(Of String)
     ReadOnly Property TerrainNames As IEnumerable(Of String)
     ReadOnly Property HasTerrains As Boolean
+    Property MapCellWidth As Integer
+    Property MapCellHeight As Integer
 End Interface

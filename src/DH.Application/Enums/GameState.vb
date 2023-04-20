@@ -22,4 +22,5 @@
     PickMap
     NewMapSize
     EditMap
+    Settings
 End Enum

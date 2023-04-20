@@ -37,6 +37,24 @@
         End Get
     End Property
 
+    Public Property MapCellWidth As Integer Implements IEditor.MapCellWidth
+        Get
+            Return _data.MapCellWidth
+        End Get
+        Set(value As Integer)
+            _data.MapCellWidth = value
+        End Set
+    End Property
+
+    Public Property MapCellHeight As Integer Implements IEditor.MapCellHeight
+        Get
+            Return _data.MapCellHeight
+        End Get
+        Set(value As Integer)
+            _data.MapCellHeight = value
+        End Set
+    End Property
+
     Public Function CreateFont(name As String, width As Integer, height As Integer) As IEditorFont Implements IEditor.CreateFont
         Dim fontData As New FontData With
         {
