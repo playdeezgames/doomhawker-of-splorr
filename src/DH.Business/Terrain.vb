@@ -49,4 +49,22 @@
             TerrainData.HueIndex = value
         End Set
     End Property
+
+    Public Property Font As IEditorFont Implements ITerrain.Font
+        Get
+            If _data.Fonts.ContainsKey(TerrainData.FontName) Then
+                Return New EditorFont(_data, TerrainData.FontName)
+            End If
+            Return Nothing
+        End Get
+        Set(value As IEditorFont)
+            Throw New NotImplementedException()
+        End Set
+    End Property
+
+    Public ReadOnly Property TerrainName As String Implements ITerrain.TerrainName
+        Get
+            Return _terrainName
+        End Get
+    End Property
 End Class

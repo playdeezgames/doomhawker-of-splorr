@@ -24,4 +24,5 @@
     EditMap
     Settings
     PickMapTerrain
+    PlaceMapTerrain
 End Enum

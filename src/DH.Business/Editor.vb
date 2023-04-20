@@ -123,4 +123,8 @@
             }
         Return New EditorMap(_data, mapName)
     End Function
+
+    Public Function GetMap(mapName As String) As IEditorMap Implements IEditor.GetMap
+        Return New EditorMap(_data, mapName)
+    End Function
 End Class
