@@ -55,6 +55,12 @@
         End Set
     End Property
 
+    Public ReadOnly Property MapNames As IEnumerable(Of String) Implements IEditor.MapNames
+        Get
+            Return _data.Maps.Keys
+        End Get
+    End Property
+
     Public Function CreateFont(name As String, width As Integer, height As Integer) As IEditorFont Implements IEditor.CreateFont
         Dim fontData As New FontData With
         {

@@ -1,19 +1,20 @@
 ﻿Friend Class PickMapState
-    Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
+    Inherits BasePickState
 
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))
         MyBase.New(parent, setState)
     End Sub
 
-    Public Overrides Sub HandleCommand(command As Command)
-        Throw New NotImplementedException()
+    Protected Overrides Sub HandlePick(picked As String)
+        MapName = picked
+        SetState(GameState.EditMap)
     End Sub
 
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
-        Throw New NotImplementedException()
+    Protected Overrides Sub HandleCancel()
+        SetState(GameState.MapsMenu)
     End Sub
 
-    Public Overrides Sub Update(elapsedTime As TimeSpan)
-        Throw New NotImplementedException()
-    End Sub
+    Protected Overrides Function ListItemSource() As IEnumerable(Of String)
+        Return Editor.MapNames
+    End Function
 End Class

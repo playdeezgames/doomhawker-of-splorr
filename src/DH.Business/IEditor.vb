@@ -14,4 +14,5 @@ Public Interface IEditor
     ReadOnly Property HasTerrains As Boolean
     Property MapCellWidth As Integer
     Property MapCellHeight As Integer
+    ReadOnly Property MapNames As IEnumerable(Of String)
 End Interface

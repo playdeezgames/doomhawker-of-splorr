@@ -30,5 +30,6 @@
         SetState(GameState.PickMap, New PickMapState(Me, AddressOf SetCurrentState))
         SetState(GameState.NewMapSize, New NewMapSizeState(Me, AddressOf SetCurrentState))
         SetState(GameState.Settings, New SettingsState(Me, AddressOf SetCurrentState))
+        SetState(GameState.EditMap, New EditMapState(Me, AddressOf SetCurrentState))
     End Sub
 End Class

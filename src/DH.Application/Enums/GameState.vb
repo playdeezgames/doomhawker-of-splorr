@@ -23,4 +23,5 @@
     NewMapSize
     EditMap
     Settings
+    PickMapTerrain
 End Enum
