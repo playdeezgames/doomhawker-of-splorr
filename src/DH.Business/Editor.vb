@@ -105,6 +105,16 @@
     End Function
 
     Public Function CreateMap(mapName As String, columns As Integer, rows As Integer) As IEditorMap Implements IEditor.CreateMap
-        Throw New NotImplementedException()
+        Dim cells = New List(Of MapCellData)
+        While cells.Count < columns * rows
+            cells.Add(New MapCellData)
+        End While
+        _data.Maps(mapName) = New MapData With
+            {
+                .Columns = columns,
+                .Rows = rows,
+                .Cells = cells
+            }
+        Return New EditorMap(_data, mapName)
     End Function
 End Class
