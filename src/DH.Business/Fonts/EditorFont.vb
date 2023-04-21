@@ -14,6 +14,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property FontName As String Implements IEditorFont.FontName
+        Get
+            Return _fontName
+        End Get
+    End Property
+
     Public Sub New(data As EditorData, name As String)
         Me._data = data
         Me._fontName = name

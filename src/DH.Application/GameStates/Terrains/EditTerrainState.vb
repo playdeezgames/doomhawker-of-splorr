@@ -16,7 +16,7 @@
             Case ChangeHueText
                 terrain.HueIndex = (terrain.HueIndex + 1) Mod AllHues.Count
             Case ChangeGlyphText
-                If Editor.HasFont(terrain.FontName) Then
+                If terrain.Font IsNot Nothing Then
                     SetState(GameState.PickTerrainGlyph)
                 End If
             Case ChangeFontText
@@ -29,8 +29,8 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         MyBase.Render(displayBuffer)
         Dim terrain As ITerrain = ShowStatistics(displayBuffer)
-        If Editor.HasFont(terrain.FontName) Then
-            Dim terrainFont = Editor.GetFont(terrain.FontName).Font
+        If terrain.Font IsNot Nothing Then
+            Dim terrainFont = terrain.Font.Font
             Dim width = terrainFont.TextWidth($"{terrain.GlyphKey}")
             Dim height = terrainFont.Height
             terrainFont.WriteText(displayBuffer, (ViewWidth - width, ViewHeight - height), $"{terrain.GlyphKey}", CType(terrain.HueIndex, Hue))
@@ -45,7 +45,7 @@
         Dim font = Fonts(GameFont.Font5x7)
         Dim terrain As ITerrain = Editor.GetTerrain(TerrainName)
         font.WriteText(displayBuffer, (0, font.Height * 6), $"Name: {TerrainName}", Hue.White)
-        font.WriteText(displayBuffer, (0, font.Height * 7), $"Font: {terrain.FontName}", Hue.White)
+        font.WriteText(displayBuffer, (0, font.Height * 7), $"Font: {terrain.Font.FontName}", Hue.White)
         font.WriteText(displayBuffer, (0, font.Height * 8), $"Glyph: {AscW(terrain.GlyphKey)}", Hue.White)
         font.WriteText(displayBuffer, (0, font.Height * 9), $"Hue: {AllHues(terrain.HueIndex)}", Hue.White)
         font.WriteText(displayBuffer, (0, font.Height * 10), $"Tenantable: {terrain.Tenantability}", Hue.White)

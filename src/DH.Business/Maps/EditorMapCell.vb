@@ -29,6 +29,15 @@
         End Set
     End Property
 
+    Public Property Item As IItemInstance Implements IEditorMapCell.Item
+        Get
+            Throw New NotImplementedException()
+        End Get
+        Set(value As IItemInstance)
+            Throw New NotImplementedException()
+        End Set
+    End Property
+
     Public Sub New(data As EditorData, mapName As String, column As Integer, row As Integer)
         Me._data = data
         Me._mapName = mapName

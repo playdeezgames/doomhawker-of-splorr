@@ -6,7 +6,7 @@
     End Sub
 
     Protected Overrides Sub HandlePick(picked As String)
-        Editor.GetTerrain(TerrainName).FontName = picked
+        Editor.GetTerrain(TerrainName).Font = Editor.GetFont(picked)
         SetState(GameState.EditTerrain)
     End Sub
 

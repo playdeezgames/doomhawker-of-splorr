@@ -58,7 +58,11 @@
             Return Nothing
         End Get
         Set(value As IEditorFont)
-            Throw New NotImplementedException()
+            If value IsNot Nothing Then
+                TerrainData.FontName = value.FontName
+            Else
+                TerrainData.FontName = Nothing
+            End If
         End Set
     End Property
 
