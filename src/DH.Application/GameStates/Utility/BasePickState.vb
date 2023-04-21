@@ -2,10 +2,22 @@
     Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
     Private _index As Integer = 0
     Private ReadOnly _caption As String = ""
+    Private ReadOnly _onPick As Action(Of String)
+    Private ReadOnly _onCancel As Action
+    Private ReadOnly _listSource As Func(Of IEnumerable(Of String))
 
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState), caption As String)
+    Public Sub New(
+                  parent As IGameController(Of Hue, Command, Sfx),
+                  setState As Action(Of GameState),
+                  caption As String,
+                  onCancel As Action,
+                  onPick As Action(Of String),
+                  listSource As Func(Of IEnumerable(Of String)))
         MyBase.New(parent, setState)
         _caption = caption
+        _onCancel = onCancel
+        _onPick = onPick
+        _listSource = listSource
     End Sub
     Protected MustOverride Function ListItemSource() As IEnumerable(Of String)
     Protected MustOverride Sub HandlePick(picked As String)
