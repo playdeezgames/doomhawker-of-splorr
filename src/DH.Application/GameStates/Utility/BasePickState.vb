@@ -1,4 +1,4 @@
-﻿Friend MustInherit Class BasePickState
+﻿Friend Class BasePickState
     Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
     Private _index As Integer = 0
     Private ReadOnly _caption As String = ""

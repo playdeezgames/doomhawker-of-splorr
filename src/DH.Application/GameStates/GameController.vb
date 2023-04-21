@@ -62,7 +62,16 @@
                      SetCurrentState(GameState.EditTerrain)
                  End Sub))
         SetState(GameState.EditTerrain, New EditTerrainState(Me, AddressOf SetCurrentState))
-        SetState(GameState.PickTerrainFont, New PickTerrainFontState(Me, AddressOf SetCurrentState))
+        SetState(GameState.PickTerrainFont, New BasePickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                "Choose Font",
+                Sub() SetCurrentState(GameState.EditTerrain),
+                Sub(picked)
+                    Editor.GetTerrain(TerrainName).Font = Editor.GetFont(picked)
+                    SetCurrentState(GameState.EditTerrain)
+                End Sub,
+                Function() Editor.FontNames))
         SetState(GameState.PickTerrainGlyph, New PickTerrainGlyphState(Me, AddressOf SetCurrentState))
         SetState(GameState.PickTerrain, New BasePickTerrainState(Me, AddressOf SetCurrentState, GameState.EditTerrain, GameState.TerrainsMenu))
         SetState(GameState.MapsMenu, New MapsMenuState(Me, AddressOf SetCurrentState))
