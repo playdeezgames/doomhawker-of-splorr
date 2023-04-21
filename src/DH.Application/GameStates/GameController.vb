@@ -13,7 +13,16 @@
         SetState(GameState.EditMenu, New EditMenuState(Me, AddressOf SetCurrentState))
         SetState(GameState.FontsMenu, New FontsMenuState(Me, AddressOf SetCurrentState))
         SetState(GameState.NewFontSize, New NewFontSizeState(Me, AddressOf SetCurrentState))
-        SetState(GameState.PickFont, New PickFontState(Me, AddressOf SetCurrentState))
+        SetState(GameState.PickFont, New BasePickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                "Choose Font",
+                Sub() SetCurrentState(GameState.FontsMenu),
+                Sub(picked)
+                    FontName = picked
+                    SetCurrentState(GameState.EditFont)
+                End Sub,
+                Function() Editor.FontNames))
         SetState(GameState.NewFontName, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,
