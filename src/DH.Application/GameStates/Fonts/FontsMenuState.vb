@@ -1,7 +1,7 @@
 ﻿Friend Class FontsMenuState
     Inherits BaseMenuState
     Const NewFontText = "New Font..."
-    Const EditFontText = "Edit Font..."
+    Const EditFontText = "Pick Font..."
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))
         MyBase.New(parent, setState, New List(Of String) From {NewFontText, EditFontText})
     End Sub
@@ -17,8 +17,12 @@
                 End If
         End Select
     End Sub
-
     Protected Overrides Sub HandleCancel()
         SetState(GameState.EditMenu)
+    End Sub
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
+        MyBase.Render(displayBuffer)
+        Dim font = Fonts(GameFont.Font5x7)
+        font.WriteText(displayBuffer, (0, ViewHeight - font.Height), $"Font Count: {Editor.FontNames.Count}", Hue.White)
     End Sub
 End Class
