@@ -2,7 +2,7 @@
     Inherits BasePickState
 
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))
-        MyBase.New(parent, setState)
+        MyBase.New(parent, setState, "Choose Map")
     End Sub
 
     Protected Overrides Sub HandlePick(picked As String)

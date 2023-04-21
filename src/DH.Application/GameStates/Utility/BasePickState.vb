@@ -1,9 +1,11 @@
 ﻿Friend MustInherit Class BasePickState
     Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
     Private _index As Integer = 0
+    Private ReadOnly _caption As String = ""
 
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))
+    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState), caption As String)
         MyBase.New(parent, setState)
+        _caption = caption
     End Sub
     Protected MustOverride Function ListItemSource() As IEnumerable(Of String)
     Protected MustOverride Sub HandlePick(picked As String)
@@ -35,6 +37,7 @@
             font.WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(text) \ 2, y), text, h)
             y += font.Height
         Next
+        font.WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(_caption) \ 2, 0), _caption, Hue.White)
     End Sub
 
     Public Overrides Sub Update(elapsedTime As TimeSpan)

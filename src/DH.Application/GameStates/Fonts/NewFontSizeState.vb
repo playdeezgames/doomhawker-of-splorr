@@ -32,8 +32,8 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font5x7)
-        font.WriteText(displayBuffer, (0, font.Height * 8), $"Width: {FontWidth}", Hue.White)
-        font.WriteText(displayBuffer, (0, font.Height * 9), $"Height: {FontHeight}", Hue.White)
+        font.WriteText(displayBuffer, (0, font.Height * 8), $"Font Width: {FontWidth}", Hue.White)
+        font.WriteText(displayBuffer, (0, font.Height * 9), $"Font Height: {FontHeight}", Hue.White)
     End Sub
 
     Protected Overrides Sub HandleCancel()
