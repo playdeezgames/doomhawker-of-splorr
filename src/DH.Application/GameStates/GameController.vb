@@ -82,7 +82,16 @@
                 End Sub,
                 Function() Editor.FontNames))
         SetState(GameState.PickTerrainGlyph, New PickTerrainGlyphState(Me, AddressOf SetCurrentState))
-        SetState(GameState.PickTerrain, New BasePickTerrainState(Me, AddressOf SetCurrentState, GameState.EditTerrain, GameState.TerrainsMenu))
+        SetState(GameState.PickTerrain, New BasePickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Choose Terrain",
+                 Sub() SetCurrentState(GameState.TerrainsMenu),
+                 Sub(picked)
+                     TerrainName = picked
+                     SetCurrentState(GameState.EditTerrain)
+                 End Sub,
+                 Function() Editor.TerrainNames))
         SetState(GameState.MapsMenu, New MapsMenuState(Me, AddressOf SetCurrentState))
         SetState(GameState.NewMapName, New BaseInputState(
                  Me,
@@ -106,9 +115,27 @@
         SetState(GameState.NewMapSize, New NewMapSizeState(Me, AddressOf SetCurrentState))
         SetState(GameState.Settings, New SettingsState(Me, AddressOf SetCurrentState))
         SetState(GameState.EditMap, New EditMapState(Me, AddressOf SetCurrentState))
-        SetState(GameState.PickMapTerrain, New BasePickTerrainState(Me, AddressOf SetCurrentState, GameState.PlaceMapTerrain, GameState.EditMap))
+        SetState(GameState.PickMapTerrain, New BasePickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Choose Terrain",
+                 Sub() SetCurrentState(GameState.EditMap),
+                 Sub(picked)
+                     TerrainName = picked
+                     SetCurrentState(GameState.PlaceMapTerrain)
+                 End Sub,
+                 Function() Editor.TerrainNames))
         SetState(GameState.PlaceMapTerrain, New PlaceMapTerrainState(Me, AddressOf SetCurrentState))
-        SetState(GameState.PickDefaultMapTerrain, New BasePickTerrainState(Me, AddressOf SetCurrentState, GameState.NewMapSize, GameState.NewMapSize))
+        SetState(GameState.PickDefaultMapTerrain, New BasePickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Choose Terrain",
+                 Sub() SetCurrentState(GameState.NewMapSize),
+                 Sub(picked)
+                     TerrainName = picked
+                     SetCurrentState(GameState.NewMapSize)
+                 End Sub,
+                 Function() Editor.TerrainNames))
         SetState(GameState.RenameMap, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,
