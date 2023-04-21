@@ -27,4 +27,7 @@
     PlaceMapTerrain
     PickDefaultMapTerrain
     RenameMap
+    PickRenameFont
+    PickCloneFont
+    PickDeleteFont
 End Enum
