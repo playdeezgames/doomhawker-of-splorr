@@ -15,4 +15,10 @@
     Protected Overrides Function FontNameSource() As String
         Return FontName
     End Function
+
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
+        MyBase.Render(displayBuffer)
+        Dim font = Fonts(GameFont.Font5x7)
+        font.WriteText(displayBuffer, (0, ViewHeight - font.Height), $"Font Name: {FontName}", Hue.White)
+    End Sub
 End Class

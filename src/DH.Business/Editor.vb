@@ -133,4 +133,15 @@
         _data.Maps.Remove(fromMapName)
         _data.Maps.Add(toMapName, temp)
     End Sub
+
+    Public Sub RenameFont(fromFontName As String, toFontName As String) Implements IEditor.RenameFont
+        Dim temp = _data.Fonts(fromFontName)
+        _data.Fonts.Remove(fromFontName)
+        _data.Fonts.Add(toFontName, temp)
+    End Sub
+
+    Public Sub CloneFont(fromFontName As String, toFontName As String) Implements IEditor.CloneFont
+        Dim temp = _data.Fonts(fromFontName)
+        _data.Fonts.Add(toFontName, temp)
+    End Sub
 End Class

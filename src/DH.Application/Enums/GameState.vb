@@ -30,4 +30,6 @@
     PickRenameFont
     PickCloneFont
     PickDeleteFont
+    RenameFont
+    CloneFont
 End Enum

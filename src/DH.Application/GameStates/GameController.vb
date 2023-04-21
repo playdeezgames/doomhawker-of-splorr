@@ -148,5 +148,52 @@
                      MapName = buffer
                      SetCurrentState(GameState.EditMap)
                  End Sub))
+        SetState(GameState.PickRenameFont, New BasePickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Pick Font To Rename",
+                 Sub()
+                     SetCurrentState(GameState.FontsMenu)
+                 End Sub,
+                 Sub(picked)
+                     FontName = picked
+                     SetCurrentState(GameState.RenameFont)
+                 End Sub,
+                 Function() Editor.FontNames))
+        SetState(GameState.RenameFont, New BaseInputState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Rename Font To:",
+                 Sub()
+                     SetCurrentState(GameState.FontsMenu)
+                 End Sub,
+                 Sub(buffer)
+                     Editor.RenameFont(FontName, buffer)
+                     SetCurrentState(GameState.FontsMenu)
+                 End Sub))
+        SetState(GameState.PickCloneFont, New BasePickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Pick Font To Clone",
+                 Sub()
+                     SetCurrentState(GameState.FontsMenu)
+                 End Sub,
+                 Sub(picked)
+                     FontName = picked
+                     SetCurrentState(GameState.CloneFont)
+                 End Sub,
+                 Function() Editor.FontNames))
+        SetState(GameState.CloneFont, New BaseInputState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Cloned Font Name:",
+                 Sub()
+                     SetCurrentState(GameState.FontsMenu)
+                 End Sub,
+                 Sub(buffer)
+                     Editor.CloneFont(FontName, buffer)
+                     FontName = buffer
+                     SetCurrentState(GameState.EditFont)
+                 End Sub))
     End Sub
 End Class

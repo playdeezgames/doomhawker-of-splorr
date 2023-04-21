@@ -17,4 +17,6 @@ Public Interface IEditor
     ReadOnly Property MapNames As IEnumerable(Of String)
     Function GetMap(mapName As String) As IEditorMap
     Sub RenameMap(fromMapName As String, toMapName As String)
+    Sub RenameFont(fromFontName As String, toFontName As String)
+    Sub CloneFont(fromFontName As String, toFontName As String)
 End Interface
