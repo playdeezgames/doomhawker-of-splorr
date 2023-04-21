@@ -16,14 +16,4 @@
         _nextState = nextState
         _cancelState = cancelState
     End Sub
-    Protected Overrides Sub HandlePick(picked As String)
-        TerrainName = picked
-        SetState(_nextState)
-    End Sub
-    Protected Overrides Sub HandleCancel()
-        SetState(_cancelState)
-    End Sub
-    Protected Overrides Function ListItemSource() As IEnumerable(Of String)
-        Return Editor.TerrainNames
-    End Function
 End Class

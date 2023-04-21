@@ -12,14 +12,4 @@
             End Sub,
             Function() Editor.FontNames)
     End Sub
-    Protected Overrides Function ListItemSource() As IEnumerable(Of String)
-        Return Editor.FontNames
-    End Function
-    Protected Overrides Sub HandlePick(picked As String)
-        FontName = picked
-        SetState(GameState.EditFont)
-    End Sub
-    Protected Overrides Sub HandleCancel()
-        SetState(GameState.FontsMenu)
-    End Sub
 End Class

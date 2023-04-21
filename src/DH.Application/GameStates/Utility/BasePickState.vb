@@ -19,26 +19,23 @@
         _onPick = onPick
         _listSource = listSource
     End Sub
-    Protected MustOverride Function ListItemSource() As IEnumerable(Of String)
-    Protected MustOverride Sub HandlePick(picked As String)
-    Protected MustOverride Sub HandleCancel()
     Public Overrides Sub HandleCommand(command As Command)
         Select Case command
             Case Command.UpReleased
-                _index = (_index + ListItemSource().Count - 1) Mod ListItemSource().Count
+                _index = (_index + _listSource().Count - 1) Mod _listSource().Count
             Case Command.DownReleased
-                _index = (_index + 1) Mod ListItemSource().Count
+                _index = (_index + 1) Mod _listSource().Count
             Case Command.LeftReleased
-                HandleCancel()
+                _onCancel()
             Case Command.FireReleased
-                HandlePick(ListItemSource().ToList(_index))
+                _onPick(_listSource().ToList(_index))
         End Select
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
         Dim font = Fonts(GameFont.Font5x7)
-        Dim listItems = ListItemSource().ToList
+        Dim listItems = _listSource().ToList
         If _index > listItems.Count - 1 Then
             _index = 0
         End If

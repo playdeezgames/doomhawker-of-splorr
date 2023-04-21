@@ -13,17 +13,4 @@
             End Sub,
             Function() Editor.MapNames)
     End Sub
-
-    Protected Overrides Sub HandlePick(picked As String)
-        MapName = picked
-        SetState(GameState.EditMap)
-    End Sub
-
-    Protected Overrides Sub HandleCancel()
-        SetState(GameState.MapsMenu)
-    End Sub
-
-    Protected Overrides Function ListItemSource() As IEnumerable(Of String)
-        Return Editor.MapNames
-    End Function
 End Class
