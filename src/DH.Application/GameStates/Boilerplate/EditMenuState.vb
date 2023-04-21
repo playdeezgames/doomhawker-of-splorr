@@ -1,8 +1,8 @@
 ﻿Friend Class EditMenuState
     Inherits BaseMenuState
-    Const EditFontsText = "Edit Fonts..."
-    Const EditTerrainsText = "Edit Terrains..."
-    Const EditMapsText = "Edit Maps..."
+    Const EditFontsText = "Fonts..."
+    Const EditTerrainsText = "Terrains..."
+    Const EditMapsText = "Maps..."
     Const SettingsText = "Settings..."
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))
         MyBase.New(parent, setState, New List(Of String) From {

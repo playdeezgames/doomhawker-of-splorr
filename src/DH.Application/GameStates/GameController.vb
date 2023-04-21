@@ -45,7 +45,7 @@
                  Sub() SetCurrentState(GameState.MainMenu),
                  Sub(buffer)
                      Editor.Load(buffer)
-                     SetCurrentState(GameState.MainMenu)
+                     SetCurrentState(GameState.EditMenu)
                  End Sub))
         SetState(GameState.TerrainsMenu, New TerrainsMenuState(Me, AddressOf SetCurrentState))
         SetState(GameState.NewTerrainName, New BaseInputState(
