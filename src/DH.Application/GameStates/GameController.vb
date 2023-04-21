@@ -93,7 +93,16 @@
                      MapName = buffer
                      SetCurrentState(GameState.NewMapSize)
                  End Sub))
-        SetState(GameState.PickMap, New PickMapState(Me, AddressOf SetCurrentState))
+        SetState(GameState.PickMap, New BasePickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Choose Map",
+                 Sub() SetCurrentState(GameState.MapsMenu),
+                 Sub(picked)
+                     MapName = picked
+                     SetCurrentState(GameState.EditMap)
+                 End Sub,
+                 Function() Editor.MapNames))
         SetState(GameState.NewMapSize, New NewMapSizeState(Me, AddressOf SetCurrentState))
         SetState(GameState.Settings, New SettingsState(Me, AddressOf SetCurrentState))
         SetState(GameState.EditMap, New EditMapState(Me, AddressOf SetCurrentState))
