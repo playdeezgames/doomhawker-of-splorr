@@ -40,7 +40,4 @@
         font.WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth("of") \ 2, ViewHeight \ 2 - font.Height \ 2), "of", h)
         font.WriteText(displayBuffer, (ViewWidth - font.TextWidth("SPLORR!!"), ViewHeight \ 2 + font.Height * 3 - font.Height \ 2), "SPLORR!!", h)
     End Sub
-
-    Public Overrides Sub Update(elapsedTime As TimeSpan)
-    End Sub
 End Class

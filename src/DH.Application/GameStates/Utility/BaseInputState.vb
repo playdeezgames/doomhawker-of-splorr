@@ -110,6 +110,4 @@
             font.WriteText(displayBuffer, (CellWidth * 12, 9 * CellHeight), " XX ", Hue.Gray)
         End If
     End Sub
-    Public Overrides Sub Update(elapsedTime As TimeSpan)
-    End Sub
 End Class

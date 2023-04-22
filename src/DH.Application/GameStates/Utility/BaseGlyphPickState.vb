@@ -73,6 +73,4 @@
             Next
         Next
     End Sub
-    Public Overrides Sub Update(elapsedTime As TimeSpan)
-    End Sub
 End Class

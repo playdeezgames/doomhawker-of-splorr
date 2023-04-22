@@ -35,6 +35,4 @@
         font.WriteText(displayBuffer, (0, font.Height), "No", If(_confirmation, Hue.Blue, Hue.LightBlue))
         font.WriteText(displayBuffer, (0, font.Height * 2), "Yes", If(_confirmation, Hue.LightBlue, Hue.Blue))
     End Sub
-    Public Overrides Sub Update(elapsedTime As TimeSpan)
-    End Sub
 End Class

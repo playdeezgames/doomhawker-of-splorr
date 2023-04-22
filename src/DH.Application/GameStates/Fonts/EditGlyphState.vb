@@ -67,6 +67,4 @@
             font.WriteText(displayBuffer, (0, font.Height), $"Y:{_y}", Hue.Gray)
         End If
     End Sub
-    Public Overrides Sub Update(elapsedTime As TimeSpan)
-    End Sub
 End Class

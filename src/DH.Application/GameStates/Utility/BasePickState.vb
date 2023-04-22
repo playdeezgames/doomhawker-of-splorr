@@ -48,7 +48,4 @@
         Next
         font.WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(_caption) \ 2, 0), _caption, Hue.White)
     End Sub
-
-    Public Overrides Sub Update(elapsedTime As TimeSpan)
-    End Sub
 End Class
