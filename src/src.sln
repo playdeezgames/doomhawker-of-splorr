@@ -16,11 +16,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_STUFF", "_STUFF", "{C5BF0C0A-1378-486E-855F-60699A07B8F4}"
 	ProjectSection(SolutionItems) = preProject
 		..\README.md = ..\README.md
+		..\shippit.sh = ..\shippit.sh
 	EndProjectSection
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DH.Business", "DH.Business\DH.Business.vbproj", "{51E71177-E182-4802-8B66-9545F74E4F4A}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "DH.Business", "DH.Business\DH.Business.vbproj", "{51E71177-E182-4802-8B66-9545F74E4F4A}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DH.Data", "DH.Data\DH.Data.vbproj", "{3F54B341-A222-47A1-8B82-DB50FD5D9F07}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "DH.Data", "DH.Data\DH.Data.vbproj", "{3F54B341-A222-47A1-8B82-DB50FD5D9F07}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Submodules", "Submodules", "{2D1C0088-5DE8-4ACC-8C23-97B17E04D042}"
 EndProject
