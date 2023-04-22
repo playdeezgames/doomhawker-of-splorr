@@ -1,15 +1,15 @@
 ﻿Friend Class EditFontState
     Inherits BaseGlyphPickState
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))
+    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent, setState)
     End Sub
     Protected Overrides Sub HandleDone(glyph As Char)
         GlyphKey = glyph
-        SetState(GameState.EditGlyph)
+        SetState(GameState.EditGlyph, False)
     End Sub
 
     Protected Overrides Sub HandleCancel()
-        SetState(GameState.FontsMenu)
+        SetState(GameState.FontsMenu, False)
     End Sub
 
     Protected Overrides Function FontNameSource() As String

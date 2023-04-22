@@ -5,7 +5,7 @@
     Const DecreaseWidthText = "Decrease Cell Width"
     Const DecreaseHeightText = "Decrease Cell Height"
 
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))
+    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent, setState, New List(Of String) From {
                    IncreaseWidthText,
                    IncreaseHeightText,
@@ -28,7 +28,7 @@
     End Sub
 
     Protected Overrides Sub HandleCancel()
-        SetState(GameState.EditMenu)
+        SetState(GameState.EditMenu, False)
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))

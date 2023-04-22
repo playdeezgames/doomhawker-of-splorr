@@ -8,7 +8,7 @@
 
     Public Sub New(
                   parent As IGameController(Of Hue, Command, Sfx),
-                  setState As Action(Of GameState),
+                  setState As Action(Of GameState?, Boolean),
                   caption As String,
                   onCancel As Action,
                   onPick As Action(Of String),

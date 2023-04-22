@@ -4,7 +4,7 @@
     Const ChangeGlyphText = "Change Glyph..."
     Const ChangeHueText = "Change Hue..."
     Const ToggleTenantabilityText = "Toggle Tenantability"
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))
+    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent, setState, New List(Of String) From {ChangeFontText, ChangeGlyphText, ChangeHueText, ToggleTenantabilityText})
     End Sub
 
@@ -17,11 +17,11 @@
                 terrain.HueIndex = (terrain.HueIndex + 1) Mod AllHues.Count
             Case ChangeGlyphText
                 If terrain.Font IsNot Nothing Then
-                    SetState(GameState.PickTerrainGlyph)
+                    SetState(GameState.PickTerrainGlyph, False)
                 End If
             Case ChangeFontText
                 If Editor.HasFonts Then
-                    SetState(GameState.PickTerrainFont)
+                    SetState(GameState.PickTerrainFont, False)
                 End If
         End Select
     End Sub
@@ -38,7 +38,7 @@
     End Sub
 
     Protected Overrides Sub HandleCancel()
-        SetState(GameState.TerrainsMenu)
+        SetState(GameState.TerrainsMenu, False)
     End Sub
 
     Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of Hue)) As ITerrain

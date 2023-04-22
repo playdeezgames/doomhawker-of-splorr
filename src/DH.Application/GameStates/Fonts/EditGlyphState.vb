@@ -1,6 +1,6 @@
 ﻿Friend Class EditGlyphState
     Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))
+    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent, setState)
     End Sub
     Private _x As Integer = 0
@@ -39,7 +39,7 @@
     Private Sub HandleDone()
         _x = 0
         _y = 0
-        SetState(GameState.EditFont)
+        SetState(GameState.EditFont, False)
     End Sub
     Const CellWidth = 8
     Const CellHeight = 8

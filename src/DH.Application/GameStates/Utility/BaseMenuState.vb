@@ -3,7 +3,7 @@
     Private ReadOnly _menuItems As IReadOnlyList(Of String)
     Private _currentItem As Integer = 0
 
-    Protected Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState), menuItems As IReadOnlyList(Of String))
+    Protected Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean), menuItems As IReadOnlyList(Of String))
         MyBase.New(parent, setState)
         _menuItems = menuItems
     End Sub

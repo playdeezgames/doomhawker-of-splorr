@@ -5,7 +5,7 @@
     Const IncreaseHeightText = "Increase Height"
     Const DecreaseWidthText = "Decrease Width"
     Const DecreaseHeightText = "Decrease Height"
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))
+    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent, setState, New List(Of String) From
                    {
                         CreateText,
@@ -26,7 +26,7 @@
             Case DecreaseHeightText
                 FontHeight = Math.Max(FontHeight - 1, 1)
             Case CreateText
-                SetState(GameState.NewFontName)
+                SetState(GameState.NewFontName, False)
         End Select
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
@@ -37,6 +37,6 @@
     End Sub
 
     Protected Overrides Sub HandleCancel()
-        SetState(GameState.FontsMenu)
+        SetState(GameState.FontsMenu, False)
     End Sub
 End Class

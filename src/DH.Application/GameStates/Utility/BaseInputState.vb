@@ -7,7 +7,7 @@
     Private ReadOnly _onDone As Action(Of String)
     Public Sub New(
                   parent As IGameController(Of Hue, Command, Sfx),
-                  setState As Action(Of GameState),
+                  setState As Action(Of GameState?, Boolean),
                   caption As String,
                   onCancel As Action,
                   onDone As Action(Of String))

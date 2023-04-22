@@ -5,7 +5,7 @@
     Const RenameFontText = "Rename Font..."
     Const DeleteFontText = "Delete Font..."
     Const CloneFontText = "Clone Font..."
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))
+    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent, setState, New List(Of String) From {
                    NewFontText,
                    PickFontText,
@@ -16,29 +16,29 @@
     Public Overrides Sub HandleMenuItem(menuItem As String)
         Select Case menuItem
             Case NewFontText
-                SetState(GameState.NewFontSize)
+                SetState(GameState.NewFontSize, False)
             Case PickFontText
                 If Editor.HasFonts Then
-                    SetState(GameState.PickFont)
+                    SetState(GameState.PickFont, False)
                 Else
-                    SetState(GameState.NewFontSize)
+                    SetState(GameState.NewFontSize, False)
                 End If
             Case RenameFontText
                 If Editor.HasFonts Then
-                    SetState(GameState.PickRenameFont)
+                    SetState(GameState.PickRenameFont, False)
                 End If
             Case CloneFontText
                 If Editor.HasFonts Then
-                    SetState(GameState.PickCloneFont)
+                    SetState(GameState.PickCloneFont, False)
                 End If
             Case DeleteFontText
                 If Editor.HasFonts Then
-                    SetState(GameState.PickDeleteFont)
+                    SetState(GameState.PickDeleteFont, False)
                 End If
         End Select
     End Sub
     Protected Overrides Sub HandleCancel()
-        SetState(GameState.EditMenu)
+        SetState(GameState.EditMenu, False)
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         MyBase.Render(displayBuffer)

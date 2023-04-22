@@ -3,7 +3,7 @@
     Const PlaceTerrainText = "Place Terrain..."
     Const RenameMapText = "Rename Map..."
 
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))
+    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent, setState, New List(Of String) From {
                     PlaceTerrainText,
                     RenameMapText
@@ -13,14 +13,14 @@
     Public Overrides Sub HandleMenuItem(menuItem As String)
         Select Case menuItem
             Case PlaceTerrainText
-                SetState(GameState.PickMapTerrain)
+                SetState(GameState.PickMapTerrain, False)
             Case RenameMapText
-                SetState(GameState.RenameMap)
+                SetState(GameState.RenameMap, False)
         End Select
     End Sub
 
     Protected Overrides Sub HandleCancel()
-        SetState(GameState.MapsMenu)
+        SetState(GameState.MapsMenu, False)
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))

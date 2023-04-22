@@ -6,7 +6,7 @@
     Const DecreaseWidthText = "Decrease Width"
     Const DecreaseHeightText = "Decrease Height"
     Const PickTerrainText = "Pick Terrain..."
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))
+    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent, setState, New List(Of String) From
                    {
                         CreateText,
@@ -29,9 +29,9 @@
                 MapHeight = Math.Max(MapHeight - 1, 1)
             Case CreateText
                 Editor.CreateMap(MapName, MapWidth, MapHeight, TerrainName)
-                SetState(GameState.EditMap)
+                SetState(GameState.EditMap, False)
             Case PickTerrainText
-                SetState(GameState.PickDefaultMapTerrain)
+                SetState(GameState.PickDefaultMapTerrain, False)
         End Select
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
@@ -43,6 +43,6 @@
     End Sub
 
     Protected Overrides Sub HandleCancel()
-        SetState(GameState.MapsMenu)
+        SetState(GameState.MapsMenu, False)
     End Sub
 End Class

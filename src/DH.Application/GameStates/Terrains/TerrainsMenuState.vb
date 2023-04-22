@@ -2,24 +2,24 @@
     Inherits BaseMenuState
     Const NewTerrainText = "New Terrain..."
     Const EditTerrainText = "Pick Terrain..."
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))
+    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent, setState, New List(Of String) From {NewTerrainText, EditTerrainText})
     End Sub
 
     Public Overrides Sub HandleMenuItem(menuItem As String)
         Select Case menuItem
             Case NewTerrainText
-                SetState(GameState.NewTerrainName)
+                SetState(GameState.NewTerrainName, False)
             Case EditTerrainText
                 If Editor.HasTerrains Then
-                    SetState(GameState.PickTerrain)
+                    SetState(GameState.PickTerrain, False)
                 Else
-                    SetState(GameState.NewTerrainName)
+                    SetState(GameState.NewTerrainName, False)
                 End If
         End Select
     End Sub
     Protected Overrides Sub HandleCancel()
-        SetState(GameState.MainMenu)
+        SetState(GameState.MainMenu, False)
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         MyBase.Render(displayBuffer)

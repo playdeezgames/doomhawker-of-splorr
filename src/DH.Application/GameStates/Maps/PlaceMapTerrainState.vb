@@ -3,7 +3,7 @@
     Private _column As Integer = 0
     Private _row As Integer = 0
 
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))
+    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent, setState)
     End Sub
 
@@ -43,7 +43,7 @@
     Private Sub HandleCancel()
         _row = 0
         _column = 0
-        SetState(GameState.EditMap)
+        SetState(GameState.EditMap, False)
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))

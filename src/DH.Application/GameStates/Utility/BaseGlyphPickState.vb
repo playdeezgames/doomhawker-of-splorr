@@ -2,7 +2,7 @@
     Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
     Private _row As Integer = 0
     Private _column As Integer = 0
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))
+    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent, setState)
     End Sub
     Const CellRows = 6

@@ -1,13 +1,13 @@
 ﻿Friend Class TitleState
     Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
 
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))
+    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent, setState)
     End Sub
 
     Public Overrides Sub HandleCommand(command As Command)
         If command = Command.FireReleased Then
-            SetState(GameState.MainMenu)
+            SetState(GameState.MainMenu, False)
         End If
     End Sub
 

@@ -2,7 +2,7 @@
     Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
     Private _confirmation As Boolean = False
 
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState))
+    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent, setState)
     End Sub
 
@@ -11,12 +11,12 @@
             Case Command.UpReleased, Command.DownReleased
                 _confirmation = Not _confirmation
             Case Command.LeftReleased
-                SetState(GameState.MainMenu)
+                SetState(GameState.MainMenu, False)
             Case Command.FireReleased
                 If _confirmation Then
                     QuitRequested = True
                 Else
-                    SetState(GameState.MainMenu)
+                    SetState(GameState.MainMenu, False)
                 End If
         End Select
     End Sub
