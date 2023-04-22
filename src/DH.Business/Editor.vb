@@ -52,6 +52,16 @@
             Return _data.Maps.Keys
         End Get
     End Property
+    Public ReadOnly Property HasItems As Boolean Implements IEditor.HasItems
+        Get
+            Return _data.Items.Any
+        End Get
+    End Property
+    Public ReadOnly Property ItemNames As IEnumerable(Of String) Implements IEditor.ItemNames
+        Get
+            Return _data.Items.Keys
+        End Get
+    End Property
     Public Function CreateFont(name As String, width As Integer, height As Integer) As IEditorFont Implements IEditor.CreateFont
         Dim fontData As New FontData With
         {

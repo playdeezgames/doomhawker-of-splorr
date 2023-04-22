@@ -11,8 +11,13 @@
         SetFileStates()
         SetFontStates()
         SetTerrainStates()
+        SetItemStates()
         SetMapStates()
         SetCurrentState(GameState.Title, True)
+    End Sub
+
+    Private Sub SetItemStates()
+        SetState(GameState.ItemsMenu, New ItemsMenuState(Me, AddressOf SetCurrentState))
     End Sub
 
     Private Sub SetBoilerplateStates()

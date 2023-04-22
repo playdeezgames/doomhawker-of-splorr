@@ -39,4 +39,7 @@
     ConfirmDeleteTerrain
     CloneMap
     ConfirmDeleteMap
+    ItemsMenu
+    NewItemName
+    PickItem
 End Enum

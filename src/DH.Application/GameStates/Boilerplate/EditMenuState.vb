@@ -2,12 +2,14 @@
     Inherits BaseMenuState
     Const EditFontsText = "Fonts..."
     Const EditTerrainsText = "Terrains..."
+    Const EditItemsText = "Items..."
     Const EditMapsText = "Maps..."
     Const SettingsText = "Settings..."
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent, setState, New List(Of String) From {
                    EditFontsText,
                    EditTerrainsText,
+                   EditItemsText,
                    EditMapsText,
                    SettingsText})
     End Sub
@@ -21,6 +23,8 @@
                 SetState(GameState.MapsMenu)
             Case SettingsText
                 SetState(GameState.Settings)
+            Case EditItemsText
+                SetState(GameState.ItemsMenu)
         End Select
     End Sub
 

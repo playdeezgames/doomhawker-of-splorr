@@ -15,6 +15,7 @@ Public Interface IEditor
     Property MapCellWidth As Integer
     Property MapCellHeight As Integer
     ReadOnly Property MapNames As IEnumerable(Of String)
+    ReadOnly Property HasItems As Boolean
     Function GetMap(mapName As String) As IEditorMap
     Sub RenameMap(fromMapName As String, toMapName As String)
     Sub RenameFont(fromFontName As String, toFontName As String)
@@ -25,4 +26,5 @@ Public Interface IEditor
     Sub DeleteTerrain(terrainName As String)
     Sub CloneMap(fromMapName As String, toMapName As String)
     Sub DeleteMap(mapName As String)
+    ReadOnly Property ItemNames As IEnumerable(Of String)
 End Interface
