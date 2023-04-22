@@ -2,11 +2,15 @@
     Inherits BaseMenuState
     Const PlaceTerrainText = "Place Terrain..."
     Const RenameMapText = "Rename Map..."
+    Const CloneMapText = "Clone Map..."
+    Const DeleteMapText = "Delete Map..."
 
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent, setState, New List(Of String) From {
                     PlaceTerrainText,
-                    RenameMapText
+                    RenameMapText,
+                    CloneMapText,
+                    DeleteMapText
                    })
     End Sub
 
@@ -16,6 +20,10 @@
                 SetState(GameState.PickMapTerrain)
             Case RenameMapText
                 SetState(GameState.RenameMap)
+            Case CloneMapText
+                SetState(GameState.CloneMap)
+            Case DeleteMapText
+                SetState(GameState.ConfirmDeleteMap)
         End Select
     End Sub
 

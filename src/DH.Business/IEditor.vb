@@ -23,4 +23,6 @@ Public Interface IEditor
     Sub RenameTerrain(fromTerrainName As String, toTerrainName As String)
     Sub CloneTerrain(fromTerrainName As String, toTerrainName As String)
     Sub DeleteTerrain(terrainName As String)
+    Sub CloneMap(fromMapName As String, toMapName As String)
+    Sub DeleteMap(mapName As String)
 End Interface

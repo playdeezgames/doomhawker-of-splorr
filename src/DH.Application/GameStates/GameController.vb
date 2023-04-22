@@ -7,37 +7,24 @@
         _configSink = configSink
         _configSink(Size, Volume)
         Initialize()
+        SetBoilerplateStates()
+        SetFileStates()
+        SetFontStates()
+        SetTerrainStates()
+        SetMapStates()
+        SetCurrentState(GameState.Title, True)
+    End Sub
+
+    Private Sub SetBoilerplateStates()
         SetState(GameState.Title, New TitleState(Me, AddressOf SetCurrentState))
         SetState(GameState.MainMenu, New MainMenuState(Me, AddressOf SetCurrentState))
         SetState(GameState.ConfirmQuit, New ConfirmQuitState(Me, AddressOf SetCurrentState))
         SetState(GameState.EditMenu, New EditMenuState(Me, AddressOf SetCurrentState))
-        SetState(GameState.FontsMenu, New FontsMenuState(Me, AddressOf SetCurrentState))
-        SetState(GameState.NewFontSize, New NewFontSizeState(Me, AddressOf SetCurrentState))
-        SetState(GameState.PickFont, New BasePickState(
-                 Me,
-                 AddressOf SetCurrentState,
-                "Choose Font",
-                Sub() TransitionToState(GameState.FontsMenu),
-                Sub(picked)
-                    FontName = picked
-                    TransitionToState(GameState.EditFont)
-                End Sub,
-                Function() Editor.FontNames))
-        SetState(GameState.NewFontName, New BaseInputState(
-                 Me,
-                 AddressOf SetCurrentState,
-                 "Font Name:",
-                Sub()
-                    FontName = ""
-                    TransitionToState(GameState.FontsMenu)
-                End Sub,
-                Sub(buffer)
-                    FontName = buffer
-                    Editor.CreateFont(FontName, FontWidth, FontHeight)
-                    TransitionToState(GameState.EditFont)
-                End Sub))
-        SetState(GameState.EditFont, New EditFontState(Me, AddressOf SetCurrentState))
-        SetState(GameState.EditGlyph, New EditGlyphState(Me, AddressOf SetCurrentState))
+        SetState(GameState.Settings, New SettingsState(Me, AddressOf SetCurrentState))
+        SetState(GameState.Messages, New MessagesState(Me, AddressOf SetCurrentState))
+    End Sub
+
+    Private Sub SetFileStates()
         SetState(GameState.SaveAs, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,
@@ -70,6 +57,135 @@
                          SetStates(GameState.Messages, GameState.MainMenu)
                      End Try
                  End Sub))
+    End Sub
+
+    Private Sub SetMapStates()
+        SetState(GameState.EditMap, New EditMapState(Me, AddressOf SetCurrentState))
+        SetState(GameState.MapsMenu, New MapsMenuState(Me, AddressOf SetCurrentState))
+        SetState(GameState.NewMapName, New BaseInputState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Map Name:",
+                 Sub() TransitionToState(GameState.MapsMenu),
+                 Sub(buffer)
+                     MapName = buffer
+                     TransitionToState(GameState.NewMapSize)
+                 End Sub))
+        SetState(GameState.PickMap, New BasePickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Choose Map",
+                 Sub() TransitionToState(GameState.MapsMenu),
+                 Sub(picked)
+                     MapName = picked
+                     TransitionToState(GameState.EditMap)
+                 End Sub,
+                 Function() Editor.MapNames))
+        SetState(GameState.NewMapSize, New NewMapSizeState(Me, AddressOf SetCurrentState))
+        SetState(GameState.CloneMap, New BaseInputState(
+                         Me,
+                         AddressOf SetCurrentState,
+                         "Cloned Map Name:",
+                         Sub()
+                             TransitionToState(GameState.EditMap)
+                         End Sub,
+                         Sub(buffer)
+                             Editor.CloneMap(MapName, buffer)
+                             MapName = buffer
+                             TransitionToState(GameState.EditMap)
+                         End Sub))
+        SetState(GameState.PickMapTerrain, New BasePickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Choose Terrain",
+                 Sub() TransitionToState(GameState.EditMap),
+                 Sub(picked)
+                     TerrainName = picked
+                     TransitionToState(GameState.PlaceMapTerrain)
+                 End Sub,
+                 Function() Editor.TerrainNames))
+        SetState(GameState.PlaceMapTerrain, New PlaceMapTerrainState(Me, AddressOf SetCurrentState))
+        SetState(GameState.PickDefaultMapTerrain, New BasePickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Choose Terrain",
+                 Sub() TransitionToState(GameState.NewMapSize),
+                 Sub(picked)
+                     TerrainName = picked
+                     TransitionToState(GameState.NewMapSize)
+                 End Sub,
+                 Function() Editor.TerrainNames))
+        SetState(GameState.RenameMap, New BaseInputState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "New Map Name:",
+                 Sub()
+                     TransitionToState(GameState.EditMap)
+                 End Sub,
+                 Sub(buffer)
+                     Editor.RenameMap(MapName, buffer)
+                     MapName = buffer
+                     TransitionToState(GameState.EditMap)
+                 End Sub))
+        SetState(GameState.ConfirmDeleteMap, New BaseConfirmState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Confirm map deletion?",
+                 Hue.Red,
+                 Sub(confirmation)
+                     If confirmation Then
+                         Editor.DeleteMap(MapName)
+                         TransitionToState(GameState.MapsMenu)
+                         Return
+                     End If
+                     TransitionToState(GameState.EditMap)
+                 End Sub,
+                 Sub()
+                     TransitionToState(GameState.EditMap)
+                 End Sub))
+    End Sub
+
+    Private Sub SetTerrainStates()
+        SetState(GameState.RenameTerrain, New BaseInputState(
+                         Me,
+                         AddressOf SetCurrentState,
+                         "New Terrain Name:",
+                         Sub()
+                             TransitionToState(GameState.EditTerrain)
+                         End Sub,
+                         Sub(buffer)
+                             Editor.RenameTerrain(TerrainName, buffer)
+                             TerrainName = buffer
+                             TransitionToState(GameState.EditTerrain)
+                         End Sub))
+        SetState(GameState.CloneTerrain, New BaseInputState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Cloned Terrain Name:",
+                 Sub()
+                     TransitionToState(GameState.EditTerrain)
+                 End Sub,
+                 Sub(buffer)
+                     Editor.CloneTerrain(TerrainName, buffer)
+                     TerrainName = buffer
+                     TransitionToState(GameState.EditTerrain)
+                 End Sub))
+        SetState(GameState.ConfirmDeleteTerrain, New BaseConfirmState(
+                         Me,
+                         AddressOf SetCurrentState,
+                         "Confirm terrain deletion?",
+                         Hue.Red,
+                         Sub(confirmation)
+                             If confirmation Then
+                                 Editor.DeleteTerrain(TerrainName)
+                                 TransitionToState(GameState.TerrainsMenu)
+                                 Return
+                             End If
+                             TransitionToState(GameState.EditTerrain)
+                         End Sub,
+                         Sub()
+                             TransitionToState(GameState.EditTerrain)
+                         End Sub))
         SetState(GameState.TerrainsMenu, New TerrainsMenuState(Me, AddressOf SetCurrentState))
         SetState(GameState.NewTerrainName, New BaseInputState(
                  Me,
@@ -106,61 +222,61 @@
                      TransitionToState(GameState.EditTerrain)
                  End Sub,
                  Function() Editor.TerrainNames))
-        SetState(GameState.MapsMenu, New MapsMenuState(Me, AddressOf SetCurrentState))
-        SetState(GameState.NewMapName, New BaseInputState(
+    End Sub
+
+    Private Sub SetFontStates()
+        SetState(GameState.FontsMenu, New FontsMenuState(Me, AddressOf SetCurrentState))
+        SetState(GameState.NewFontSize, New NewFontSizeState(Me, AddressOf SetCurrentState))
+        SetState(GameState.PickFont, New BasePickState(
                  Me,
                  AddressOf SetCurrentState,
-                 "Map Name:",
-                 Sub() TransitionToState(GameState.MapsMenu),
-                 Sub(buffer)
-                     MapName = buffer
-                     TransitionToState(GameState.NewMapSize)
-                 End Sub))
-        SetState(GameState.PickMap, New BasePickState(
+                "Choose Font",
+                Sub() TransitionToState(GameState.FontsMenu),
+                Sub(picked)
+                    FontName = picked
+                    TransitionToState(GameState.EditFont)
+                End Sub,
+                Function() Editor.FontNames))
+        SetState(GameState.NewFontName, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,
-                 "Choose Map",
-                 Sub() TransitionToState(GameState.MapsMenu),
-                 Sub(picked)
-                     MapName = picked
-                     TransitionToState(GameState.EditMap)
-                 End Sub,
-                 Function() Editor.MapNames))
-        SetState(GameState.NewMapSize, New NewMapSizeState(Me, AddressOf SetCurrentState))
-        SetState(GameState.Settings, New SettingsState(Me, AddressOf SetCurrentState))
-        SetState(GameState.EditMap, New EditMapState(Me, AddressOf SetCurrentState))
-        SetState(GameState.PickMapTerrain, New BasePickState(
+                 "Font Name:",
+                Sub()
+                    FontName = ""
+                    TransitionToState(GameState.FontsMenu)
+                End Sub,
+                Sub(buffer)
+                    FontName = buffer
+                    Editor.CreateFont(FontName, FontWidth, FontHeight)
+                    TransitionToState(GameState.EditFont)
+                End Sub))
+        SetState(GameState.EditFont, New EditFontState(Me, AddressOf SetCurrentState))
+        SetState(GameState.EditGlyph, New EditGlyphState(Me, AddressOf SetCurrentState))
+        SetState(GameState.PickDeleteFont, New BasePickState(
                  Me,
                  AddressOf SetCurrentState,
-                 "Choose Terrain",
-                 Sub() TransitionToState(GameState.EditMap),
-                 Sub(picked)
-                     TerrainName = picked
-                     TransitionToState(GameState.PlaceMapTerrain)
-                 End Sub,
-                 Function() Editor.TerrainNames))
-        SetState(GameState.PlaceMapTerrain, New PlaceMapTerrainState(Me, AddressOf SetCurrentState))
-        SetState(GameState.PickDefaultMapTerrain, New BasePickState(
-                 Me,
-                 AddressOf SetCurrentState,
-                 "Choose Terrain",
-                 Sub() TransitionToState(GameState.NewMapSize),
-                 Sub(picked)
-                     TerrainName = picked
-                     TransitionToState(GameState.NewMapSize)
-                 End Sub,
-                 Function() Editor.TerrainNames))
-        SetState(GameState.RenameMap, New BaseInputState(
-                 Me,
-                 AddressOf SetCurrentState,
-                 "New Map Name:",
+                 "Pick Font to Delete",
                  Sub()
-                     TransitionToState(GameState.EditMap)
+                     TransitionToState(GameState.FontsMenu)
                  End Sub,
-                 Sub(buffer)
-                     Editor.RenameMap(MapName, buffer)
-                     MapName = buffer
-                     TransitionToState(GameState.EditMap)
+                 Sub(picked)
+                     FontName = picked
+                     TransitionToState(GameState.ConfirmDeleteFont)
+                 End Sub,
+                 Function() Editor.FontNames))
+        SetState(GameState.ConfirmDeleteFont, New BaseConfirmState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Confirm font deletion?",
+                 Hue.Red,
+                 Sub(confirmation)
+                     If confirmation Then
+                         Editor.DeleteFont(FontName)
+                     End If
+                     TransitionToState(GameState.FontsMenu)
+                 End Sub,
+                 Sub()
+                     TransitionToState(GameState.FontsMenu)
                  End Sub))
         SetState(GameState.PickRenameFont, New BasePickState(
                  Me,
@@ -209,74 +325,6 @@
                      FontName = buffer
                      TransitionToState(GameState.EditFont)
                  End Sub))
-        SetState(GameState.Messages, New MessagesState(Me, AddressOf SetCurrentState))
-        SetState(GameState.PickDeleteFont, New BasePickState(
-                 Me,
-                 AddressOf SetCurrentState,
-                 "Pick Font to Delete",
-                 Sub()
-                     TransitionToState(GameState.FontsMenu)
-                 End Sub,
-                 Sub(picked)
-                     FontName = picked
-                     TransitionToState(GameState.ConfirmDeleteFont)
-                 End Sub,
-                 Function() Editor.FontNames))
-        SetState(GameState.ConfirmDeleteFont, New BaseConfirmState(
-                 Me,
-                 AddressOf SetCurrentState,
-                 "Confirm font deletion?",
-                 Hue.Red,
-                 Sub(confirmation)
-                     If confirmation Then
-                         Editor.DeleteFont(FontName)
-                     End If
-                     TransitionToState(GameState.FontsMenu)
-                 End Sub,
-                 Sub()
-                     TransitionToState(GameState.FontsMenu)
-                 End Sub))
-        SetState(GameState.RenameTerrain, New BaseInputState(
-                 Me,
-                 AddressOf SetCurrentState,
-                 "New Terrain Name:",
-                 Sub()
-                     TransitionToState(GameState.EditTerrain)
-                 End Sub,
-                 Sub(buffer)
-                     Editor.RenameTerrain(TerrainName, buffer)
-                     TerrainName = buffer
-                     TransitionToState(GameState.EditTerrain)
-                 End Sub))
-        SetState(GameState.CloneTerrain, New BaseInputState(
-                 Me,
-                 AddressOf SetCurrentState,
-                 "Cloned Terrain Name:",
-                 Sub()
-                     TransitionToState(GameState.EditTerrain)
-                 End Sub,
-                 Sub(buffer)
-                     Editor.CloneTerrain(TerrainName, buffer)
-                     TerrainName = buffer
-                     TransitionToState(GameState.EditTerrain)
-                 End Sub))
-        SetState(GameState.ConfirmDeleteTerrain, New BaseConfirmState(
-                 Me,
-                 AddressOf SetCurrentState,
-                 "Confirm terrain deletion?",
-                 Hue.Red,
-                 Sub(confirmation)
-                     If confirmation Then
-                         Editor.DeleteTerrain(TerrainName)
-                         TransitionToState(GameState.TerrainsMenu)
-                         Return
-                     End If
-                     TransitionToState(GameState.EditTerrain)
-                 End Sub,
-                 Sub()
-                     TransitionToState(GameState.EditTerrain)
-                 End Sub))
-        SetCurrentState(GameState.Title, True)
     End Sub
 
     Private Sub TransitionToState(nextState As GameState)

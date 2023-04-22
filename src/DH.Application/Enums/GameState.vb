@@ -37,4 +37,6 @@
     RenameTerrain
     CloneTerrain
     ConfirmDeleteTerrain
+    CloneMap
+    ConfirmDeleteMap
 End Enum

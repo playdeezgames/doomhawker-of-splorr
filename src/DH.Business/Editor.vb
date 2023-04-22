@@ -139,4 +139,13 @@
     Public Sub DeleteTerrain(terrainName As String) Implements IEditor.DeleteTerrain
         _data.Terrains.Remove(terrainName)
     End Sub
+
+    Public Sub CloneMap(fromMapName As String, toMapName As String) Implements IEditor.CloneMap
+        Dim temp = _data.Maps(fromMapName)
+        _data.Maps.Add(toMapName, temp)
+    End Sub
+
+    Public Sub DeleteMap(mapName As String) Implements IEditor.DeleteMap
+        _data.Maps.Remove(mapName)
+    End Sub
 End Class
