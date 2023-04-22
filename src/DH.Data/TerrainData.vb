@@ -1,6 +1,4 @@
 ﻿Public Class TerrainData
-    Public Property FontName As String
-    Public Property GlyphKey As Char
+    Inherits SpriteData
     Public Property Tenantability As Boolean
-    Public Property HueIndex As Integer
 End Class
