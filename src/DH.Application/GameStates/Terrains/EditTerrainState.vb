@@ -4,8 +4,23 @@
     Const ChangeGlyphText = "Change Glyph..."
     Const ChangeHueText = "Change Hue..."
     Const ToggleTenantabilityText = "Toggle Tenantability"
+    Const RenameTerrainText = "Rename Terrain..."
+    Const CloneTerrainText = "Clone Terrain..."
+    Const DeleteTerrainText = "Delete Terrain..."
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
-        MyBase.New(parent, setState, New List(Of String) From {ChangeFontText, ChangeGlyphText, ChangeHueText, ToggleTenantabilityText})
+        MyBase.New(
+            parent,
+            setState,
+            New List(Of String) From
+            {
+                RenameTerrainText,
+                ChangeFontText,
+                ChangeGlyphText,
+                ChangeHueText,
+                ToggleTenantabilityText,
+                CloneTerrainText,
+                DeleteTerrainText
+            })
     End Sub
 
     Public Overrides Sub HandleMenuItem(menuItem As String)
@@ -23,6 +38,12 @@
                 If Editor.HasFonts Then
                     SetState(GameState.PickTerrainFont)
                 End If
+            Case RenameTerrainText
+                SetState(GameState.RenameTerrain)
+            Case CloneTerrainText
+                SetState(GameState.CloneTerrain)
+            Case DeleteTerrainText
+                SetState(GameState.ConfirmDeleteTerrain)
         End Select
     End Sub
 

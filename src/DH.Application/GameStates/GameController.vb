@@ -236,6 +236,46 @@
                  Sub()
                      TransitionToState(GameState.FontsMenu)
                  End Sub))
+        SetState(GameState.RenameTerrain, New BaseInputState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "New Terrain Name:",
+                 Sub()
+                     TransitionToState(GameState.EditTerrain)
+                 End Sub,
+                 Sub(buffer)
+                     Editor.RenameTerrain(TerrainName, buffer)
+                     TerrainName = buffer
+                     TransitionToState(GameState.EditTerrain)
+                 End Sub))
+        SetState(GameState.CloneTerrain, New BaseInputState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Cloned Terrain Name:",
+                 Sub()
+                     TransitionToState(GameState.EditTerrain)
+                 End Sub,
+                 Sub(buffer)
+                     Editor.CloneTerrain(TerrainName, buffer)
+                     TerrainName = buffer
+                     TransitionToState(GameState.EditTerrain)
+                 End Sub))
+        SetState(GameState.ConfirmDeleteTerrain, New BaseConfirmState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Confirm terrain deletion?",
+                 Hue.Red,
+                 Sub(confirmation)
+                     If confirmation Then
+                         Editor.DeleteTerrain(TerrainName)
+                         TransitionToState(GameState.TerrainsMenu)
+                         Return
+                     End If
+                     TransitionToState(GameState.EditTerrain)
+                 End Sub,
+                 Sub()
+                     TransitionToState(GameState.EditTerrain)
+                 End Sub))
         SetCurrentState(GameState.Title, True)
     End Sub
 

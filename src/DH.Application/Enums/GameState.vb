@@ -34,4 +34,7 @@
     CloneFont
     Messages
     ConfirmDeleteFont
+    RenameTerrain
+    CloneTerrain
+    ConfirmDeleteTerrain
 End Enum

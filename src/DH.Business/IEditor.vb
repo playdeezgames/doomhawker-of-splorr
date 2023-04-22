@@ -20,4 +20,7 @@ Public Interface IEditor
     Sub RenameFont(fromFontName As String, toFontName As String)
     Sub CloneFont(fromFontName As String, toFontName As String)
     Sub DeleteFont(fontName As String)
+    Sub RenameTerrain(fromTerrainName As String, toTerrainName As String)
+    Sub CloneTerrain(fromTerrainName As String, toTerrainName As String)
+    Sub DeleteTerrain(terrainName As String)
 End Interface
