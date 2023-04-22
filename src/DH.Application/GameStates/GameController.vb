@@ -50,11 +50,6 @@
                      {
                         (Hue.Green, "You saved it!")
                      }})
-                     Messages.Enqueue(New EditorMessage With {
-                     .Lines = New List(Of (Hue, String)) From
-                     {
-                        (Hue.Green, "I AM TEST!")
-                     }})
                      SetCurrentState(GameState.MainMenu, False)
                      SetCurrentState(GameState.Messages, True)
                  End Sub))
