@@ -45,7 +45,18 @@
                  Sub() SetCurrentState(GameState.MainMenu, False),
                  Sub(buffer)
                      Editor.Save(buffer)
+                     Messages.Enqueue(New EditorMessage With {
+                     .Lines = New List(Of (Hue, String)) From
+                     {
+                        (Hue.Green, "You saved it!")
+                     }})
+                     Messages.Enqueue(New EditorMessage With {
+                     .Lines = New List(Of (Hue, String)) From
+                     {
+                        (Hue.Green, "I AM TEST!")
+                     }})
                      SetCurrentState(GameState.MainMenu, False)
+                     SetCurrentState(GameState.Messages, True)
                  End Sub))
         SetState(GameState.LoadFrom, New BaseInputState(
                  Me,
@@ -195,6 +206,7 @@
                      FontName = buffer
                      SetCurrentState(GameState.EditFont, False)
                  End Sub))
+        SetState(GameState.Messages, New MessagesState(Me, AddressOf SetCurrentState))
         SetCurrentState(GameState.Title, True)
     End Sub
 End Class

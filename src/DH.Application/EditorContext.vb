@@ -12,6 +12,7 @@ Public Module EditorContext
     Public MapName As String = ""
     Public MapWidth As Integer
     Public MapHeight As Integer
+    Public Messages As New Queue(Of EditorMessage)
     Public ReadOnly AllHues As IReadOnlyList(Of Hue) = New List(Of Hue) From {
         Hue.Black,
         Hue.Blue,

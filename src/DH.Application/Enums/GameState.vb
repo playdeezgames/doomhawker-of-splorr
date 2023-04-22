@@ -32,4 +32,5 @@
     PickDeleteFont
     RenameFont
     CloneFont
+    Messages
 End Enum
