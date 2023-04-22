@@ -212,6 +212,32 @@
                      SetCurrentState(GameState.EditFont, False)
                  End Sub))
         SetState(GameState.Messages, New MessagesState(Me, AddressOf SetCurrentState))
+        SetState(GameState.PickDeleteFont, New BasePickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Pick Font to Delete",
+                 Sub()
+                     SetCurrentState(GameState.FontsMenu, False)
+                 End Sub,
+                 Sub(picked)
+                     FontName = picked
+                     SetCurrentState(GameState.ConfirmDeleteFont, False)
+                 End Sub,
+                 Function() Editor.FontNames))
+        SetState(GameState.ConfirmDeleteFont, New BaseConfirmState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Confirm font deletion?",
+                 Hue.Red,
+                 Sub(confirmation)
+                     If confirmation Then
+                         Editor.DeleteFont(FontName)
+                     End If
+                     SetCurrentState(GameState.FontsMenu, False)
+                 End Sub,
+                 Sub()
+                     SetCurrentState(GameState.FontsMenu, False)
+                 End Sub))
         SetCurrentState(GameState.Title, True)
     End Sub
 End Class

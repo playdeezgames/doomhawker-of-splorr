@@ -144,4 +144,8 @@
         Dim temp = _data.Fonts(fromFontName)
         _data.Fonts.Add(toFontName, temp)
     End Sub
+
+    Public Sub DeleteFont(fontName As String) Implements IEditor.DeleteFont
+        _data.Fonts.Remove(fontName)
+    End Sub
 End Class

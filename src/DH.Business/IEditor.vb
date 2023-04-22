@@ -19,4 +19,5 @@ Public Interface IEditor
     Sub RenameMap(fromMapName As String, toMapName As String)
     Sub RenameFont(fromFontName As String, toFontName As String)
     Sub CloneFont(fromFontName As String, toFontName As String)
+    Sub DeleteFont(fontName As String)
 End Interface

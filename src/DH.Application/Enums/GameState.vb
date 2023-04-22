@@ -33,4 +33,5 @@
     RenameFont
     CloneFont
     Messages
+    ConfirmDeleteFont
 End Enum
