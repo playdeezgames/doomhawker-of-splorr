@@ -59,8 +59,18 @@
                  "Open Filename:",
                  Sub() SetCurrentState(GameState.MainMenu, False),
                  Sub(buffer)
-                     Editor.Load(buffer)
-                     SetCurrentState(GameState.EditMenu, False)
+                     Try
+                         Editor.Load(buffer)
+                         SetCurrentState(GameState.EditMenu, False)
+                     Catch ex As Exception
+                         Messages.Enqueue(New EditorMessage With {
+                         .Lines = New List(Of (Hue, String)) From
+                         {
+                            (Hue.Red, "Failed to load!")
+                         }})
+                         SetCurrentState(GameState.MainMenu, False)
+                         SetCurrentState(GameState.Messages, True)
+                     End Try
                  End Sub))
         SetState(GameState.TerrainsMenu, New TerrainsMenuState(Me, AddressOf SetCurrentState))
         SetState(GameState.NewTerrainName, New BaseInputState(
