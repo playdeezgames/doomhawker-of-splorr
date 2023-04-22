@@ -12,17 +12,17 @@
     Public Overrides Sub HandleMenuItem(menuItem As String)
         Select Case menuItem
             Case NewMapText
-                SetState(GameState.NewMapName, False)
+                SetState(GameState.NewMapName)
             Case EditMapText
                 If Editor.HasMaps Then
-                    SetState(GameState.PickMap, False)
+                    SetState(GameState.PickMap)
                 Else
-                    SetState(GameState.NewMapName, False)
+                    SetState(GameState.NewMapName)
                 End If
         End Select
     End Sub
     Protected Overrides Sub HandleCancel()
-        SetState(GameState.MainMenu, False)
+        SetState(GameState.MainMenu)
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         MyBase.Render(displayBuffer)

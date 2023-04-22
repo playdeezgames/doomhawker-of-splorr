@@ -13,14 +13,14 @@
     Public Overrides Sub HandleMenuItem(menuItem As String)
         Select Case menuItem
             Case PlaceTerrainText
-                SetState(GameState.PickMapTerrain, False)
+                SetState(GameState.PickMapTerrain)
             Case RenameMapText
-                SetState(GameState.RenameMap, False)
+                SetState(GameState.RenameMap)
         End Select
     End Sub
 
     Protected Overrides Sub HandleCancel()
-        SetState(GameState.MapsMenu, False)
+        SetState(GameState.MapsMenu)
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))

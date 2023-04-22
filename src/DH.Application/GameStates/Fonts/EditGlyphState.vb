@@ -39,7 +39,7 @@
     Private Sub HandleDone()
         _x = 0
         _y = 0
-        SetState(GameState.EditFont, False)
+        SetState(GameState.EditFont)
     End Sub
     Const CellWidth = 8
     Const CellHeight = 8

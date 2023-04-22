@@ -12,17 +12,17 @@
     Public Overrides Sub HandleMenuItem(menuItem As String)
         Select Case menuItem
             Case SaveText
-                SetState(GameState.SaveAs, False)
+                SetState(GameState.SaveAs)
             Case LoadText
-                SetState(GameState.LoadFrom, False)
+                SetState(GameState.LoadFrom)
             Case EditText
-                SetState(GameState.EditMenu, False)
+                SetState(GameState.EditMenu)
             Case QuitText
-                SetState(GameState.ConfirmQuit, False)
+                SetState(GameState.ConfirmQuit)
         End Select
     End Sub
 
     Protected Overrides Sub HandleCancel()
-        SetState(GameState.ConfirmQuit, False)
+        SetState(GameState.ConfirmQuit)
     End Sub
 End Class

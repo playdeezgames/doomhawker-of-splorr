@@ -17,11 +17,11 @@
                 terrain.HueIndex = (terrain.HueIndex + 1) Mod AllHues.Count
             Case ChangeGlyphText
                 If terrain.Font IsNot Nothing Then
-                    SetState(GameState.PickTerrainGlyph, False)
+                    SetState(GameState.PickTerrainGlyph)
                 End If
             Case ChangeFontText
                 If Editor.HasFonts Then
-                    SetState(GameState.PickTerrainFont, False)
+                    SetState(GameState.PickTerrainFont)
                 End If
         End Select
     End Sub
@@ -38,7 +38,7 @@
     End Sub
 
     Protected Overrides Sub HandleCancel()
-        SetState(GameState.TerrainsMenu, False)
+        SetState(GameState.TerrainsMenu)
     End Sub
 
     Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of Hue)) As ITerrain

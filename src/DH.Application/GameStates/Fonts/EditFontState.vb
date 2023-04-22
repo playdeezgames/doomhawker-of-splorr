@@ -5,11 +5,11 @@
     End Sub
     Protected Overrides Sub HandleDone(glyph As Char)
         GlyphKey = glyph
-        SetState(GameState.EditGlyph, False)
+        SetState(GameState.EditGlyph)
     End Sub
 
     Protected Overrides Sub HandleCancel()
-        SetState(GameState.FontsMenu, False)
+        SetState(GameState.FontsMenu)
     End Sub
 
     Protected Overrides Function FontNameSource() As String

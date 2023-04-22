@@ -7,7 +7,7 @@
 
     Public Overrides Sub HandleCommand(command As Command)
         If command = Command.FireReleased Then
-            SetState(GameState.MainMenu, False)
+            SetState(GameState.MainMenu)
         End If
     End Sub
 

@@ -16,29 +16,29 @@
     Public Overrides Sub HandleMenuItem(menuItem As String)
         Select Case menuItem
             Case NewFontText
-                SetState(GameState.NewFontSize, False)
+                SetState(GameState.NewFontSize)
             Case PickFontText
                 If Editor.HasFonts Then
-                    SetState(GameState.PickFont, False)
+                    SetState(GameState.PickFont)
                 Else
-                    SetState(GameState.NewFontSize, False)
+                    SetState(GameState.NewFontSize)
                 End If
             Case RenameFontText
                 If Editor.HasFonts Then
-                    SetState(GameState.PickRenameFont, False)
+                    SetState(GameState.PickRenameFont)
                 End If
             Case CloneFontText
                 If Editor.HasFonts Then
-                    SetState(GameState.PickCloneFont, False)
+                    SetState(GameState.PickCloneFont)
                 End If
             Case DeleteFontText
                 If Editor.HasFonts Then
-                    SetState(GameState.PickDeleteFont, False)
+                    SetState(GameState.PickDeleteFont)
                 End If
         End Select
     End Sub
     Protected Overrides Sub HandleCancel()
-        SetState(GameState.EditMenu, False)
+        SetState(GameState.EditMenu)
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         MyBase.Render(displayBuffer)

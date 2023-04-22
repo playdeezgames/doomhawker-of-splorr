@@ -14,17 +14,17 @@
     Public Overrides Sub HandleMenuItem(menuItem As String)
         Select Case menuItem
             Case EditFontsText
-                SetState(GameState.FontsMenu, False)
+                SetState(GameState.FontsMenu)
             Case EditTerrainsText
-                SetState(GameState.TerrainsMenu, False)
+                SetState(GameState.TerrainsMenu)
             Case EditMapsText
-                SetState(GameState.MapsMenu, False)
+                SetState(GameState.MapsMenu)
             Case SettingsText
-                SetState(GameState.Settings, False)
+                SetState(GameState.Settings)
         End Select
     End Sub
 
     Protected Overrides Sub HandleCancel()
-        SetState(GameState.MainMenu, False)
+        SetState(GameState.MainMenu)
     End Sub
 End Class

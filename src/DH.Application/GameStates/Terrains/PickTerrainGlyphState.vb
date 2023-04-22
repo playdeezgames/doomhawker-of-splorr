@@ -7,11 +7,11 @@
 
     Protected Overrides Sub HandleDone(glyph As Char)
         Editor.GetTerrain(TerrainName).GlyphKey = glyph
-        SetState(GameState.EditTerrain, False)
+        SetState(GameState.EditTerrain)
     End Sub
 
     Protected Overrides Sub HandleCancel()
-        SetState(GameState.EditTerrain, False)
+        SetState(GameState.EditTerrain)
     End Sub
 
     Protected Overrides Function FontNameSource() As String

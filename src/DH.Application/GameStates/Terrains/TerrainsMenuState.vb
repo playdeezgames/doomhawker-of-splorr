@@ -9,17 +9,17 @@
     Public Overrides Sub HandleMenuItem(menuItem As String)
         Select Case menuItem
             Case NewTerrainText
-                SetState(GameState.NewTerrainName, False)
+                SetState(GameState.NewTerrainName)
             Case EditTerrainText
                 If Editor.HasTerrains Then
-                    SetState(GameState.PickTerrain, False)
+                    SetState(GameState.PickTerrain)
                 Else
-                    SetState(GameState.NewTerrainName, False)
+                    SetState(GameState.NewTerrainName)
                 End If
         End Select
     End Sub
     Protected Overrides Sub HandleCancel()
-        SetState(GameState.MainMenu, False)
+        SetState(GameState.MainMenu)
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         MyBase.Render(displayBuffer)

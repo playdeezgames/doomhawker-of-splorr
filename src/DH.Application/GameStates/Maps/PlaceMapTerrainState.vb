@@ -43,7 +43,7 @@
     Private Sub HandleCancel()
         _row = 0
         _column = 0
-        SetState(GameState.EditMap, False)
+        SetState(GameState.EditMap)
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))

@@ -29,9 +29,9 @@
                 MapHeight = Math.Max(MapHeight - 1, 1)
             Case CreateText
                 Editor.CreateMap(MapName, MapWidth, MapHeight, TerrainName)
-                SetState(GameState.EditMap, False)
+                SetState(GameState.EditMap)
             Case PickTerrainText
-                SetState(GameState.PickDefaultMapTerrain, False)
+                SetState(GameState.PickDefaultMapTerrain)
         End Select
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
@@ -43,6 +43,6 @@
     End Sub
 
     Protected Overrides Sub HandleCancel()
-        SetState(GameState.MapsMenu, False)
+        SetState(GameState.MapsMenu)
     End Sub
 End Class
