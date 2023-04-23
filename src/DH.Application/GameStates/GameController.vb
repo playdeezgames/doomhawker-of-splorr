@@ -421,7 +421,7 @@
                      TransitionToState(GameState.FontsMenu)
                  End Sub,
                  Sub(buffer)
-                     Editor.CloneFont(FontName, buffer)
+                     Editor.Fonts.Clone(FontName, buffer)
                      FontName = buffer
                      TransitionToState(GameState.EditFont)
                  End Sub))
