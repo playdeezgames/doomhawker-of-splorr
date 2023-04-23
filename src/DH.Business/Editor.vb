@@ -95,9 +95,6 @@
         _data.Maps.Remove(fromMapName)
         _data.Maps.Add(toMapName, temp)
     End Sub
-    Public Sub RenameFont(fromFontName As String, toFontName As String) Implements IEditor.RenameFont
-        Fonts.Rename(fromFontName, toFontName)
-    End Sub
     Public Sub CloneFont(fromFontName As String, toFontName As String) Implements IEditor.CloneFont
         Fonts.Clone(fromFontName, toFontName)
     End Sub

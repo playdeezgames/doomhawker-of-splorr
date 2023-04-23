@@ -6,7 +6,6 @@ Public Interface IEditor
 
     ReadOnly Property Fonts As IFontEditor
 
-    Sub RenameFont(fromFontName As String, toFontName As String)
     Sub CloneFont(fromFontName As String, toFontName As String)
     Sub DeleteFont(fontName As String)
 

@@ -398,7 +398,7 @@
                      TransitionToState(GameState.FontsMenu)
                  End Sub,
                  Sub(buffer)
-                     Editor.RenameFont(FontName, buffer)
+                     Editor.Fonts.Rename(FontName, buffer)
                      TransitionToState(GameState.FontsMenu)
                  End Sub))
         SetState(GameState.PickCloneFont, New BasePickState(
