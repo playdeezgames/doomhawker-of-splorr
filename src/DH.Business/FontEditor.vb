@@ -60,8 +60,4 @@
     Public Function Retrieve(name As String) As IEditorFont Implements IFontEditor.Retrieve
         Return New EditorFont(_data, name)
     End Function
-
-    Public Function Has(name As String) As Boolean Implements IFontEditor.Has
-        Return _data.Fonts.ContainsKey(name)
-    End Function
 End Class
