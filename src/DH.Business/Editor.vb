@@ -4,11 +4,6 @@
     Sub New(data As EditorData)
         _data = data
     End Sub
-    Public ReadOnly Property TerrainNames As IEnumerable(Of String) Implements IEditor.TerrainNames
-        Get
-            Return _data.Terrains.Keys
-        End Get
-    End Property
     Public ReadOnly Property HasTerrains As Boolean Implements IEditor.HasTerrains
         Get
             Return _data.Terrains.Any

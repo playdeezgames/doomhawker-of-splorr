@@ -193,7 +193,7 @@
                      TerrainName = picked
                      TransitionToState(GameState.PlaceMapTerrain)
                  End Sub,
-                 Function() Editor.TerrainNames))
+                 Function() Editor.Terrains.Names))
         SetState(GameState.PlaceMapTerrain, New PlaceMapTerrainState(Me, AddressOf SetCurrentState))
         SetState(GameState.PickDefaultMapTerrain, New BasePickState(
                  Me,
@@ -204,7 +204,7 @@
                      TerrainName = picked
                      TransitionToState(GameState.NewMapSize)
                  End Sub,
-                 Function() Editor.TerrainNames))
+                 Function() Editor.Terrains.Names))
         SetState(GameState.RenameMap, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,
@@ -321,7 +321,7 @@
                      TerrainName = picked
                      TransitionToState(GameState.EditTerrain)
                  End Sub,
-                 Function() Editor.TerrainNames))
+                 Function() Editor.Terrains.Names))
     End Sub
 
     Private Sub SetFontStates()

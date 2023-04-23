@@ -7,7 +7,6 @@ Public Interface IEditor
     ReadOnly Property Fonts As IFontEditor
     ReadOnly Property Terrains As ITerrainEditor
 
-    ReadOnly Property TerrainNames As IEnumerable(Of String)
     ReadOnly Property HasTerrains As Boolean
     Sub RenameTerrain(fromTerrainName As String, toTerrainName As String)
     Sub CloneTerrain(fromTerrainName As String, toTerrainName As String)

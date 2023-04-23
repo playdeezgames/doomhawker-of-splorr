@@ -24,6 +24,6 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font5x7)
-        font.WriteText(displayBuffer, (0, ViewHeight - font.Height), $"Terrain Count: {Editor.TerrainNames.Count}", Hue.White)
+        font.WriteText(displayBuffer, (0, ViewHeight - font.Height), $"Terrain Count: {Editor.Terrains.Names.Count}", Hue.White)
     End Sub
 End Class

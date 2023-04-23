@@ -9,7 +9,7 @@
 
     Public ReadOnly Property Names As IEnumerable(Of String) Implements ITerrainEditor.Names
         Get
-            Throw New NotImplementedException()
+            Return _data.Terrains.Keys
         End Get
     End Property
 
