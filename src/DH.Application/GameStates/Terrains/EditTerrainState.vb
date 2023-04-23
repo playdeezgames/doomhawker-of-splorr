@@ -24,7 +24,7 @@
     End Sub
 
     Public Overrides Sub HandleMenuItem(menuItem As String)
-        Dim terrain As ITerrain = Editor.GetTerrain(TerrainName)
+        Dim terrain As ITerrain = Editor.Terrains.Retrieve(TerrainName)
         Select Case menuItem
             Case ToggleTenantabilityText
                 terrain.Tenantability = Not terrain.Tenantability
@@ -64,7 +64,7 @@
 
     Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of Hue)) As ITerrain
         Dim font = Fonts(GameFont.Font5x7)
-        Dim terrain As ITerrain = Editor.GetTerrain(TerrainName)
+        Dim terrain As ITerrain = Editor.Terrains.Retrieve(TerrainName)
         font.WriteText(displayBuffer, (0, font.Height * 8), $"Name: {TerrainName}", Hue.White)
         font.WriteText(displayBuffer, (0, font.Height * 9), $"Font: {terrain.Font?.FontName}", Hue.White)
         font.WriteText(displayBuffer, (0, font.Height * 10), $"Glyph: {AscW(terrain.GlyphKey)}", Hue.White)

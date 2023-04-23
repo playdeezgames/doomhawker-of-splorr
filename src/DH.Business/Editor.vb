@@ -69,9 +69,6 @@
     Public Sub Load(fileName As String) Implements IEditor.Load
         _data = JsonSerializer.Deserialize(Of EditorData)(File.ReadAllText(fileName))
     End Sub
-    Public Function GetTerrain(terrainName As String) As ITerrain Implements IEditor.GetTerrain
-        Return New Terrain(_data, terrainName)
-    End Function
     Public Function CreateMap(mapName As String, columns As Integer, rows As Integer, terrainName As String) As IEditorMap Implements IEditor.CreateMap
         Dim cells = New List(Of MapCellData)
         While cells.Count < columns * rows

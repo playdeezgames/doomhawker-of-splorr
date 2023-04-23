@@ -297,7 +297,7 @@
                 "Choose Font",
                 Sub() TransitionToState(GameState.EditTerrain),
                 Sub(picked)
-                    Editor.GetTerrain(TerrainName).Font = Editor.Fonts.Retrieve(picked)
+                    Editor.Terrains.Retrieve(TerrainName).Font = Editor.Fonts.Retrieve(picked)
                     TransitionToState(GameState.EditTerrain)
                 End Sub,
                 Function() Editor.Fonts.Names))
@@ -305,13 +305,13 @@
                  Me,
                  AddressOf SetCurrentState,
                  Sub(glyph)
-                     Editor.GetTerrain(TerrainName).GlyphKey = glyph
+                     Editor.Terrains.Retrieve(TerrainName).GlyphKey = glyph
                      TransitionToState(GameState.EditTerrain)
                  End Sub,
                  Sub()
                      TransitionToState(GameState.EditTerrain)
                  End Sub,
-                 Function() Editor.GetTerrain(TerrainName).FontName))
+                 Function() Editor.Terrains.Retrieve(TerrainName).FontName))
         SetState(GameState.PickTerrain, New BasePickState(
                  Me,
                  AddressOf SetCurrentState,

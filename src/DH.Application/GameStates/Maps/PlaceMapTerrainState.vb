@@ -36,7 +36,7 @@
                 End If
             Case Command.FireReleased
                 Dim mapCell = map.GetCell(_column, _row)
-                mapCell.Terrain = Editor.GetTerrain(TerrainName)
+                mapCell.Terrain = Editor.Terrains.Retrieve(TerrainName)
         End Select
     End Sub
 

@@ -41,6 +41,6 @@
     End Function
 
     Public Function Retrieve(name As String) As ITerrain Implements ITerrainEditor.Retrieve
-        Throw New NotImplementedException()
+        Return New Terrain(_data, name)
     End Function
 End Class
