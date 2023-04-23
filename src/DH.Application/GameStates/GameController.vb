@@ -82,6 +82,16 @@
                          Sub()
                              TransitionToState(GameState.EditItem)
                          End Sub))
+        SetState(GameState.PickItemFont, New BasePickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                "Choose Font",
+                Sub() TransitionToState(GameState.EditItem),
+                Sub(picked)
+                    Editor.GetItem(ItemName).Font = Editor.GetFont(picked)
+                    TransitionToState(GameState.EditItem)
+                End Sub,
+                Function() Editor.FontNames))
     End Sub
 
     Private Sub SetBoilerplateStates()
@@ -280,7 +290,17 @@
                     TransitionToState(GameState.EditTerrain)
                 End Sub,
                 Function() Editor.FontNames))
-        SetState(GameState.PickTerrainGlyph, New PickTerrainGlyphState(Me, AddressOf SetCurrentState))
+        SetState(GameState.PickTerrainGlyph, New BaseGlyphPickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 Sub(glyph)
+                     Editor.GetTerrain(TerrainName).GlyphKey = glyph
+                     TransitionToState(GameState.EditTerrain)
+                 End Sub,
+                 Sub()
+                     TransitionToState(GameState.EditTerrain)
+                 End Sub,
+                 Function() Editor.GetTerrain(TerrainName).FontName))
         SetState(GameState.PickTerrain, New BasePickState(
                  Me,
                  AddressOf SetCurrentState,

@@ -1,9 +1,20 @@
-﻿Friend MustInherit Class BaseGlyphPickState
+﻿Friend Class BaseGlyphPickState
     Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
     Private _row As Integer = 0
     Private _column As Integer = 0
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
+    Private ReadOnly _onDone As Action(Of Char)
+    Private ReadOnly _onCancel As Action
+    Private ReadOnly _fontSource As Func(Of String)
+    Public Sub New(
+                  parent As IGameController(Of Hue, Command, Sfx),
+                  setState As Action(Of GameState?, Boolean),
+                  onDone As Action(Of Char),
+                  onCancel As Action,
+                  fontSource As Func(Of String))
         MyBase.New(parent, setState)
+        _onDone = onDone
+        _onCancel = onCancel
+        _fontSource = fontSource
     End Sub
     Const CellRows = 6
     Const CellColumns = 16
@@ -12,35 +23,32 @@
         Select Case command
             Case Command.UpReleased
                 If _row = 0 Then
-                    HandleCancel()
+                    _onCancel()
                 Else
                     _row -= 1
                 End If
             Case Command.DownReleased
                 If _row = CellRows - 1 Then
-                    HandleCancel()
+                    _onCancel()
                 Else
                     _row += 1
                 End If
             Case Command.LeftReleased
                 If _column = 0 Then
-                    HandleCancel()
+                    _onCancel()
                 Else
                     _column -= 1
                 End If
             Case Command.RightReleased
                 If _column = CellColumns - 1 Then
-                    HandleCancel()
+                    _onCancel()
                 Else
                     _column += 1
                 End If
             Case Command.FireReleased
-                HandleDone(ChrW(_row * CellColumns + _column + FirstCharacter))
+                _onDone(ChrW(_row * CellColumns + _column + FirstCharacter))
         End Select
     End Sub
-    Protected MustOverride Sub HandleDone(glyph As Char)
-    Protected MustOverride Sub HandleCancel()
-    Protected MustOverride Function FontNameSource() As String
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.DarkGray)
         RenderEditorFont(displayBuffer)
@@ -52,7 +60,7 @@
         font.WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(text) \ 2, 0), text, h)
     End Sub
     Private Sub RenderEditorFont(displayBuffer As IPixelSink(Of Hue))
-        Dim editorFont As IEditorFont = Editor.GetFont(FontNameSource)
+        Dim editorFont As IEditorFont = Editor.GetFont(_fontSource())
         Dim font As Font = editorFont.Font
         Dim cellWidth = font.TextWidth(" ")
         Dim cellHeight = font.Height
