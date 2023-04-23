@@ -42,6 +42,12 @@
         End Set
     End Property
 
+    Public ReadOnly Property FontName As String Implements IItem.FontName
+        Get
+            Return ItemData.FontName
+        End Get
+    End Property
+
     Public Sub New(data As EditorData, itemName As String)
         _data = data
         _itemName = itemName

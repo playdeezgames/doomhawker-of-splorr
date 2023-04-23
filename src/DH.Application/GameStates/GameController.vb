@@ -92,6 +92,17 @@
                     TransitionToState(GameState.EditItem)
                 End Sub,
                 Function() Editor.FontNames))
+        SetState(GameState.PickItemGlyph, New BaseGlyphPickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 Sub(glyph)
+                     Editor.GetItem(ItemName).GlyphKey = glyph
+                     TransitionToState(GameState.EditItem)
+                 End Sub,
+                 Sub()
+                     TransitionToState(GameState.EditItem)
+                 End Sub,
+                 Function() Editor.GetItem(ItemName).FontName))
     End Sub
 
     Private Sub SetBoilerplateStates()
