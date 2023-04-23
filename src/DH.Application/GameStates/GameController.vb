@@ -91,7 +91,7 @@
                     Editor.GetItem(ItemName).Font = Editor.Fonts.Retrieve(picked)
                     TransitionToState(GameState.EditItem)
                 End Sub,
-                Function() Editor.FontNames))
+                Function() Editor.Fonts.Names))
         SetState(GameState.PickItemGlyph, New BaseGlyphPickState(
                  Me,
                  AddressOf SetCurrentState,
@@ -300,7 +300,7 @@
                     Editor.GetTerrain(TerrainName).Font = Editor.Fonts.Retrieve(picked)
                     TransitionToState(GameState.EditTerrain)
                 End Sub,
-                Function() Editor.FontNames))
+                Function() Editor.Fonts.Names))
         SetState(GameState.PickTerrainGlyph, New BaseGlyphPickState(
                  Me,
                  AddressOf SetCurrentState,
@@ -336,7 +336,7 @@
                     FontName = picked
                     TransitionToState(GameState.EditFont)
                 End Sub,
-                Function() Editor.FontNames))
+                Function() Editor.Fonts.Names))
         SetState(GameState.NewFontName, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,
@@ -363,7 +363,7 @@
                      FontName = picked
                      TransitionToState(GameState.ConfirmDeleteFont)
                  End Sub,
-                 Function() Editor.FontNames))
+                 Function() Editor.Fonts.Names))
         SetState(GameState.ConfirmDeleteFont, New BaseConfirmState(
                  Me,
                  AddressOf SetCurrentState,
@@ -389,7 +389,7 @@
                      FontName = picked
                      TransitionToState(GameState.RenameFont)
                  End Sub,
-                 Function() Editor.FontNames))
+                 Function() Editor.Fonts.Names))
         SetState(GameState.RenameFont, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,
@@ -412,7 +412,7 @@
                      FontName = picked
                      TransitionToState(GameState.CloneFont)
                  End Sub,
-                 Function() Editor.FontNames))
+                 Function() Editor.Fonts.Names))
         SetState(GameState.CloneFont, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,

@@ -4,11 +4,6 @@
     Sub New(data As EditorData)
         _data = data
     End Sub
-    Public ReadOnly Property FontNames As IEnumerable(Of String) Implements IEditor.FontNames
-        Get
-            Return Fonts.Names
-        End Get
-    End Property
     Public ReadOnly Property TerrainNames As IEnumerable(Of String) Implements IEditor.TerrainNames
         Get
             Return _data.Terrains.Keys
