@@ -11,7 +11,7 @@
             Case NewTerrainText
                 SetState(GameState.NewTerrainName)
             Case EditTerrainText
-                If Editor.HasTerrains Then
+                If Editor.Terrains.HasAny Then
                     SetState(GameState.PickTerrain)
                 Else
                     SetState(GameState.NewTerrainName)

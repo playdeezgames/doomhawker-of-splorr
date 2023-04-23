@@ -4,11 +4,6 @@
     Sub New(data As EditorData)
         _data = data
     End Sub
-    Public ReadOnly Property HasTerrains As Boolean Implements IEditor.HasTerrains
-        Get
-            Return _data.Terrains.Any
-        End Get
-    End Property
     Public ReadOnly Property HasMaps As Boolean Implements IEditor.HasMaps
         Get
             Return _data.Maps.Any

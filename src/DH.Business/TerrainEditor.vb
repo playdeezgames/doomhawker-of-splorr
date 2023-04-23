@@ -15,7 +15,7 @@
 
     Public ReadOnly Property HasAny As Boolean Implements ITerrainEditor.HasAny
         Get
-            Throw New NotImplementedException()
+            Return _data.Terrains.Any
         End Get
     End Property
 
