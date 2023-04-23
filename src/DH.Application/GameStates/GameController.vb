@@ -267,7 +267,7 @@
                          Hue.Red,
                          Sub(confirmation)
                              If confirmation Then
-                                 Editor.DeleteTerrain(TerrainName)
+                                 Editor.Terrains.Delete(TerrainName)
                                  TransitionToState(GameState.TerrainsMenu)
                                  Return
                              End If

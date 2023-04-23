@@ -1,7 +1,7 @@
 ﻿Friend Class TerrainEditor
     Implements ITerrainEditor
 
-    Private _data As EditorData
+    Private ReadOnly _data As EditorData
 
     Public Sub New(data As EditorData)
         Me._data = data
@@ -31,7 +31,7 @@
     End Sub
 
     Public Sub Delete(name As String) Implements ITerrainEditor.Delete
-        Throw New NotImplementedException()
+        _data.Terrains.Remove(name)
     End Sub
 
     Public Function Create(name As String) As ITerrain Implements ITerrainEditor.Create
