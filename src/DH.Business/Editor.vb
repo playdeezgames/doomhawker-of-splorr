@@ -4,16 +4,14 @@
     Sub New(data As EditorData)
         _data = data
     End Sub
-    Const FirstCharacter = 32
-    Const LastCharacter = 127
     Public ReadOnly Property FontNames As IEnumerable(Of String) Implements IEditor.FontNames
         Get
-            Return _data.Fonts.Keys
+            Return Fonts.Names
         End Get
     End Property
     Public ReadOnly Property HasFonts As Boolean Implements IEditor.HasFonts
         Get
-            Return _data.Fonts.Any
+            Return Fonts.HasAny
         End Get
     End Property
     Public ReadOnly Property TerrainNames As IEnumerable(Of String) Implements IEditor.TerrainNames
@@ -62,28 +60,18 @@
             Return _data.Items.Keys
         End Get
     End Property
+
+    Public ReadOnly Property Fonts As IFontEditor Implements IEditor.Fonts
+        Get
+            Return New FontEditor(_data)
+        End Get
+    End Property
+
     Public Function CreateFont(name As String, width As Integer, height As Integer) As IEditorFont Implements IEditor.CreateFont
-        Dim fontData As New FontData With
-        {
-            .Height = height,
-            .Glyphs = New Dictionary(Of Char, GlyphData)
-        }
-        For character = FirstCharacter To LastCharacter
-            Dim glyphData = New GlyphData With
-                {
-                    .Width = width,
-                    .Lines = New Dictionary(Of Integer, IEnumerable(Of Integer))
-                }
-            For line = 0 To height - 1
-                glyphData.Lines(line) = Array.Empty(Of Integer)
-            Next
-            fontData.Glyphs(ChrW(character)) = glyphData
-        Next
-        _data.Fonts(name) = fontData
-        Return New EditorFont(_data, name)
+        Return Fonts.Create(name, width, height)
     End Function
     Public Function GetFont(fontName As String) As IEditorFont Implements IEditor.GetFont
-        Return New EditorFont(_data, fontName)
+        Return Fonts.Retrieve(fontName)
     End Function
     Public Sub Save(fileName As String) Implements IEditor.Save
         File.WriteAllText(fileName, JsonSerializer.Serialize(_data))
@@ -103,7 +91,7 @@
         Return New Terrain(_data, terrainName)
     End Function
     Public Function HasFont(fontName As String) As Boolean Implements IEditor.HasFont
-        Return _data.Fonts.ContainsKey(fontName)
+        Return Fonts.Has(fontName)
     End Function
     Public Function CreateMap(mapName As String, columns As Integer, rows As Integer, terrainName As String) As IEditorMap Implements IEditor.CreateMap
         Dim cells = New List(Of MapCellData)
@@ -127,16 +115,13 @@
         _data.Maps.Add(toMapName, temp)
     End Sub
     Public Sub RenameFont(fromFontName As String, toFontName As String) Implements IEditor.RenameFont
-        Dim temp = _data.Fonts(fromFontName)
-        _data.Fonts.Remove(fromFontName)
-        _data.Fonts.Add(toFontName, temp)
+        Fonts.Rename(fromFontName, toFontName)
     End Sub
     Public Sub CloneFont(fromFontName As String, toFontName As String) Implements IEditor.CloneFont
-        Dim temp = _data.Fonts(fromFontName)
-        _data.Fonts.Add(toFontName, temp)
+        Fonts.Clone(fromFontName, toFontName)
     End Sub
     Public Sub DeleteFont(fontName As String) Implements IEditor.DeleteFont
-        _data.Fonts.Remove(fontName)
+        Fonts.Delete(fontName)
     End Sub
     Public Sub RenameTerrain(fromTerrainName As String, toTerrainName As String) Implements IEditor.RenameTerrain
         Dim temp = _data.Terrains(fromTerrainName)
