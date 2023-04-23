@@ -1,7 +1,7 @@
 ﻿Friend Class FontEditor
     Implements IFontEditor
 
-    Private _data As EditorData
+    Private ReadOnly _data As EditorData
 
     Public Sub New(data As EditorData)
         Me._data = data
