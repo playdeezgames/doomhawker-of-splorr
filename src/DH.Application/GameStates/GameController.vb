@@ -38,10 +38,50 @@
                  "Choose Item",
                  Sub() TransitionToState(GameState.ItemsMenu),
                  Sub(picked)
-                     TerrainName = picked
+                     ItemName = picked
                      TransitionToState(GameState.EditItem)
                  End Sub,
                  Function() Editor.ItemNames))
+        SetState(GameState.RenameItem, New BaseInputState(
+                         Me,
+                         AddressOf SetCurrentState,
+                         "New Item Name:",
+                         Sub()
+                             TransitionToState(GameState.EditItem)
+                         End Sub,
+                         Sub(buffer)
+                             Editor.RenameItem(ItemName, buffer)
+                             ItemName = buffer
+                             TransitionToState(GameState.EditItem)
+                         End Sub))
+        SetState(GameState.CloneItem, New BaseInputState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Cloned Item Name:",
+                 Sub()
+                     TransitionToState(GameState.EditItem)
+                 End Sub,
+                 Sub(buffer)
+                     Editor.CloneItem(ItemName, buffer)
+                     ItemName = buffer
+                     TransitionToState(GameState.EditItem)
+                 End Sub))
+        SetState(GameState.ConfirmDeleteItem, New BaseConfirmState(
+                         Me,
+                         AddressOf SetCurrentState,
+                         "Confirm item deletion?",
+                         Hue.Red,
+                         Sub(confirmation)
+                             If confirmation Then
+                                 Editor.DeleteItem(ItemName)
+                                 TransitionToState(GameState.ItemsMenu)
+                                 Return
+                             End If
+                             TransitionToState(GameState.EditItem)
+                         End Sub,
+                         Sub()
+                             TransitionToState(GameState.EditItem)
+                         End Sub))
     End Sub
 
     Private Sub SetBoilerplateStates()

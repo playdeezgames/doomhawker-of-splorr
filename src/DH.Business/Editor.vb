@@ -171,4 +171,19 @@
     Public Function GetItem(itemName As String) As IItem Implements IEditor.GetItem
         Return New Item(_data, itemName)
     End Function
+
+    Public Sub RenameItem(fromItemName As String, toItemName As String) Implements IEditor.RenameItem
+        Dim temp = _data.Items(fromItemName)
+        _data.Items.Remove(fromItemName)
+        _data.Items.Add(toItemName, temp)
+    End Sub
+
+    Public Sub CloneItem(fromItemName As String, toItemName As String) Implements IEditor.CloneItem
+        Dim temp = _data.Items(fromItemName)
+        _data.Items.Add(toItemName, temp)
+    End Sub
+
+    Public Sub DeleteItem(itemName As String) Implements IEditor.DeleteItem
+        _data.Items.Remove(itemName)
+    End Sub
 End Class
