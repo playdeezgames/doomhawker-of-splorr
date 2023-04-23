@@ -95,7 +95,8 @@
         _data.Terrains(terrainName) = New TerrainData With {
             .FontName = String.Empty,
             .GlyphKey = " "c,
-            .Tenantability = False}
+            .Tenantability = False,
+            .HueIndex = 0}
         Return New Terrain(_data, terrainName)
     End Function
     Public Function GetTerrain(terrainName As String) As ITerrain Implements IEditor.GetTerrain
@@ -158,4 +159,12 @@
     Public Sub DeleteMap(mapName As String) Implements IEditor.DeleteMap
         _data.Maps.Remove(mapName)
     End Sub
+
+    Public Function CreateItem(itemName As String) As IItem Implements IEditor.CreateItem
+        _data.Items(itemName) = New ItemData With {
+            .FontName = String.Empty,
+            .GlyphKey = " "c,
+            .HueIndex = 0}
+        Return New Item(_data, itemName)
+    End Function
 End Class

@@ -18,6 +18,29 @@
 
     Private Sub SetItemStates()
         SetState(GameState.ItemsMenu, New ItemsMenuState(Me, AddressOf SetCurrentState))
+        SetState(GameState.NewItemName, New BaseInputState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Item Name:",
+                 Sub()
+                     ItemName = ""
+                     TransitionToState(GameState.ItemsMenu)
+                 End Sub,
+                 Sub(buffer)
+                     ItemName = buffer
+                     Editor.CreateItem(ItemName)
+                     TransitionToState(GameState.EditItem)
+                 End Sub))
+        SetState(GameState.PickItem, New BasePickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Choose Item",
+                 Sub() TransitionToState(GameState.ItemsMenu),
+                 Sub(picked)
+                     TerrainName = picked
+                     TransitionToState(GameState.EditItem)
+                 End Sub,
+                 Function() Editor.ItemNames))
     End Sub
 
     Private Sub SetBoilerplateStates()

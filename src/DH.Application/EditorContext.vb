@@ -9,6 +9,7 @@ Public Module EditorContext
     Public FontName As String = ""
     Public GlyphKey As Char = ChrW(32)
     Public TerrainName As String = ""
+    Public ItemName As String = ""
     Public MapName As String = ""
     Public MapWidth As Integer
     Public MapHeight As Integer

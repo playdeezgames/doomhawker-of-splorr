@@ -42,4 +42,5 @@
     ItemsMenu
     NewItemName
     PickItem
+    EditItem
 End Enum
