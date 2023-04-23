@@ -35,7 +35,7 @@
                     SetState(GameState.PickTerrainGlyph)
                 End If
             Case ChangeFontText
-                If Editor.HasFonts Then
+                If Editor.Fonts.HasAny Then
                     SetState(GameState.PickTerrainFont)
                 End If
             Case RenameTerrainText

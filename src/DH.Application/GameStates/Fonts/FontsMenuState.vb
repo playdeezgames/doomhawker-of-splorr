@@ -18,21 +18,21 @@
             Case NewFontText
                 SetState(GameState.NewFontSize)
             Case PickFontText
-                If Editor.HasFonts Then
+                If Editor.Fonts.HasAny Then
                     SetState(GameState.PickFont)
                 Else
                     SetState(GameState.NewFontSize)
                 End If
             Case RenameFontText
-                If Editor.HasFonts Then
+                If Editor.Fonts.HasAny Then
                     SetState(GameState.PickRenameFont)
                 End If
             Case CloneFontText
-                If Editor.HasFonts Then
+                If Editor.Fonts.HasAny Then
                     SetState(GameState.PickCloneFont)
                 End If
             Case DeleteFontText
-                If Editor.HasFonts Then
+                If Editor.Fonts.HasAny Then
                     SetState(GameState.PickDeleteFont)
                 End If
         End Select

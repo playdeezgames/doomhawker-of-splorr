@@ -9,11 +9,6 @@
             Return Fonts.Names
         End Get
     End Property
-    Public ReadOnly Property HasFonts As Boolean Implements IEditor.HasFonts
-        Get
-            Return Fonts.HasAny
-        End Get
-    End Property
     Public ReadOnly Property TerrainNames As IEnumerable(Of String) Implements IEditor.TerrainNames
         Get
             Return _data.Terrains.Keys
@@ -83,9 +78,6 @@
     End Function
     Public Function GetTerrain(terrainName As String) As ITerrain Implements IEditor.GetTerrain
         Return New Terrain(_data, terrainName)
-    End Function
-    Public Function HasFont(fontName As String) As Boolean Implements IEditor.HasFont
-        Return Fonts.Has(fontName)
     End Function
     Public Function CreateMap(mapName As String, columns As Integer, rows As Integer, terrainName As String) As IEditorMap Implements IEditor.CreateMap
         Dim cells = New List(Of MapCellData)

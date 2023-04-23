@@ -6,8 +6,6 @@ Public Interface IEditor
 
     ReadOnly Property Fonts As IFontEditor
 
-    Function HasFont(fontName As String) As Boolean
-    ReadOnly Property HasFonts As Boolean
     ReadOnly Property FontNames As IEnumerable(Of String)
     Sub RenameFont(fromFontName As String, toFontName As String)
     Sub CloneFont(fromFontName As String, toFontName As String)

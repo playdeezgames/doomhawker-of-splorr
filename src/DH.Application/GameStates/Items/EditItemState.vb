@@ -31,7 +31,7 @@
                     SetState(GameState.PickItemGlyph)
                 End If
             Case ChangeFontText
-                If Editor.HasFonts Then
+                If Editor.Fonts.HasAny Then
                     SetState(GameState.PickItemFont)
                 End If
             Case RenameItemText
