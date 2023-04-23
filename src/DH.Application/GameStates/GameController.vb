@@ -287,7 +287,7 @@
                  End Sub,
                  Sub(buffer)
                      TerrainName = buffer
-                     Editor.CreateTerrain(TerrainName)
+                     Editor.Terrains.Create(TerrainName)
                      TransitionToState(GameState.EditTerrain)
                  End Sub))
         SetState(GameState.EditTerrain, New EditTerrainState(Me, AddressOf SetCurrentState))

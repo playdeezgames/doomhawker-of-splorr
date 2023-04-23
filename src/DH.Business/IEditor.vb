@@ -5,8 +5,8 @@ Public Interface IEditor
     Property MapCellHeight As Integer
 
     ReadOnly Property Fonts As IFontEditor
+    ReadOnly Property Terrains As ITerrainEditor
 
-    Function CreateTerrain(terrainName As String) As ITerrain
     Function GetTerrain(terrainName As String) As ITerrain
     ReadOnly Property TerrainNames As IEnumerable(Of String)
     ReadOnly Property HasTerrains As Boolean
