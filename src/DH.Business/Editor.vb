@@ -67,9 +67,6 @@
         End Get
     End Property
 
-    Public Function CreateFont(name As String, width As Integer, height As Integer) As IEditorFont Implements IEditor.CreateFont
-        Return Fonts.Create(name, width, height)
-    End Function
     Public Function GetFont(fontName As String) As IEditorFont Implements IEditor.GetFont
         Return Fonts.Retrieve(fontName)
     End Function

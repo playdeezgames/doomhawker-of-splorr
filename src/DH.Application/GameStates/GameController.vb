@@ -347,7 +347,7 @@
                 End Sub,
                 Sub(buffer)
                     FontName = buffer
-                    Editor.CreateFont(FontName, FontWidth, FontHeight)
+                    Editor.Fonts.Create(FontName, FontWidth, FontHeight)
                     TransitionToState(GameState.EditFont)
                 End Sub))
         SetState(GameState.EditFont, New EditFontState(Me, AddressOf SetCurrentState))

@@ -6,7 +6,6 @@ Public Interface IEditor
 
     ReadOnly Property Fonts As IFontEditor
 
-    Function CreateFont(name As String, width As Integer, weight As Integer) As IEditorFont
     Function GetFont(fontName As String) As IEditorFont
     Function HasFont(fontName As String) As Boolean
     ReadOnly Property HasFonts As Boolean
