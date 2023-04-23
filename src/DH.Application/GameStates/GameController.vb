@@ -256,7 +256,7 @@
                      TransitionToState(GameState.EditTerrain)
                  End Sub,
                  Sub(buffer)
-                     Editor.CloneTerrain(TerrainName, buffer)
+                     Editor.Terrains.Clone(TerrainName, buffer)
                      TerrainName = buffer
                      TransitionToState(GameState.EditTerrain)
                  End Sub))

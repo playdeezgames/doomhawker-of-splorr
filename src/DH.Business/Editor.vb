@@ -80,10 +80,6 @@
         _data.Maps.Remove(fromMapName)
         _data.Maps.Add(toMapName, temp)
     End Sub
-    Public Sub CloneTerrain(fromTerrainName As String, toTerrainName As String) Implements IEditor.CloneTerrain
-        Dim temp = _data.Terrains(fromTerrainName)
-        _data.Terrains.Add(toTerrainName, temp)
-    End Sub
     Public Sub DeleteTerrain(terrainName As String) Implements IEditor.DeleteTerrain
         _data.Terrains.Remove(terrainName)
     End Sub

@@ -7,7 +7,6 @@ Public Interface IEditor
     ReadOnly Property Fonts As IFontEditor
     ReadOnly Property Terrains As ITerrainEditor
 
-    Sub CloneTerrain(fromTerrainName As String, toTerrainName As String)
     Sub DeleteTerrain(terrainName As String)
 
     Function CreateMap(mapName As String, columns As Integer, rows As Integer, terrainName As String) As IEditorMap
