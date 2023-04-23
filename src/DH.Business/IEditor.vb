@@ -6,8 +6,6 @@ Public Interface IEditor
 
     ReadOnly Property Fonts As IFontEditor
 
-    Sub DeleteFont(fontName As String)
-
     Function CreateTerrain(terrainName As String) As ITerrain
     Function GetTerrain(terrainName As String) As ITerrain
     ReadOnly Property TerrainNames As IEnumerable(Of String)

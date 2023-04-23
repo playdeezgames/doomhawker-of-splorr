@@ -95,9 +95,6 @@
         _data.Maps.Remove(fromMapName)
         _data.Maps.Add(toMapName, temp)
     End Sub
-    Public Sub DeleteFont(fontName As String) Implements IEditor.DeleteFont
-        Fonts.Delete(fontName)
-    End Sub
     Public Sub RenameTerrain(fromTerrainName As String, toTerrainName As String) Implements IEditor.RenameTerrain
         Dim temp = _data.Terrains(fromTerrainName)
         _data.Terrains.Remove(fromTerrainName)

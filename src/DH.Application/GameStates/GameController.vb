@@ -371,7 +371,7 @@
                  Hue.Red,
                  Sub(confirmation)
                      If confirmation Then
-                         Editor.DeleteFont(FontName)
+                         Editor.Fonts.Delete(FontName)
                      End If
                      TransitionToState(GameState.FontsMenu)
                  End Sub,
