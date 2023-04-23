@@ -27,5 +27,6 @@ Public Interface IEditor
     Sub CloneMap(fromMapName As String, toMapName As String)
     Sub DeleteMap(mapName As String)
     Function CreateItem(itemName As String) As IItem
+    Function GetItem(itemName As String) As IItem
     ReadOnly Property ItemNames As IEnumerable(Of String)
 End Interface

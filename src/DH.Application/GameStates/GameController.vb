@@ -18,6 +18,7 @@
 
     Private Sub SetItemStates()
         SetState(GameState.ItemsMenu, New ItemsMenuState(Me, AddressOf SetCurrentState))
+        SetState(GameState.EditItem, New EditItemState(Me, AddressOf SetCurrentState))
         SetState(GameState.NewItemName, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,

@@ -43,4 +43,9 @@
     NewItemName
     PickItem
     EditItem
+    PickItemGlyph
+    PickItemFont
+    RenameItem
+    CloneItem
+    ConfirmDeleteItem
 End Enum

@@ -167,4 +167,8 @@
             .HueIndex = 0}
         Return New Item(_data, itemName)
     End Function
+
+    Public Function GetItem(itemName As String) As IItem Implements IEditor.GetItem
+        Return New Item(_data, itemName)
+    End Function
 End Class
