@@ -67,9 +67,6 @@
         End Get
     End Property
 
-    Public Function GetFont(fontName As String) As IEditorFont Implements IEditor.GetFont
-        Return Fonts.Retrieve(fontName)
-    End Function
     Public Sub Save(fileName As String) Implements IEditor.Save
         File.WriteAllText(fileName, JsonSerializer.Serialize(_data))
     End Sub

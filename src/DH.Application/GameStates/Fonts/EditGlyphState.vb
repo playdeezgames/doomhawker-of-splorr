@@ -6,7 +6,7 @@
     Private _x As Integer = 0
     Private _y As Integer = 0
     Public Overrides Sub HandleCommand(command As Command)
-        Dim glyph = Editor.GetFont(EditorContext.FontName).GetGlyph(EditorContext.GlyphKey)
+        Dim glyph = Editor.Fonts.Retrieve(EditorContext.FontName).GetGlyph(EditorContext.GlyphKey)
         Select Case command
             Case Command.LeftReleased
                 If _x = 0 Then
@@ -45,7 +45,7 @@
     Const CellHeight = 8
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.DarkGray)
-        Dim glyph = Editor.GetFont(EditorContext.FontName).GetGlyph(EditorContext.GlyphKey)
+        Dim glyph = Editor.Fonts.Retrieve(EditorContext.FontName).GetGlyph(EditorContext.GlyphKey)
         For x = 0 To glyph.Width - 1
             For y = 0 To glyph.Height - 1
                 Dim plot = (ViewWidth - glyph.Width * CellWidth + x * CellWidth, y * CellHeight)

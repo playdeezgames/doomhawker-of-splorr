@@ -88,7 +88,7 @@
                 "Choose Font",
                 Sub() TransitionToState(GameState.EditItem),
                 Sub(picked)
-                    Editor.GetItem(ItemName).Font = Editor.GetFont(picked)
+                    Editor.GetItem(ItemName).Font = Editor.Fonts.Retrieve(picked)
                     TransitionToState(GameState.EditItem)
                 End Sub,
                 Function() Editor.FontNames))
@@ -297,7 +297,7 @@
                 "Choose Font",
                 Sub() TransitionToState(GameState.EditTerrain),
                 Sub(picked)
-                    Editor.GetTerrain(TerrainName).Font = Editor.GetFont(picked)
+                    Editor.GetTerrain(TerrainName).Font = Editor.Fonts.Retrieve(picked)
                     TransitionToState(GameState.EditTerrain)
                 End Sub,
                 Function() Editor.FontNames))
