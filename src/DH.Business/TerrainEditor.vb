@@ -20,7 +20,9 @@
     End Property
 
     Public Sub Rename(fromName As String, toName As String) Implements ITerrainEditor.Rename
-        Throw New NotImplementedException()
+        Dim temp = _data.Terrains(fromName)
+        _data.Terrains.Remove(fromName)
+        _data.Terrains.Add(toName, temp)
     End Sub
 
     Public Sub Clone(fromName As String, toName As String) Implements ITerrainEditor.Clone

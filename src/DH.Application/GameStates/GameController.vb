@@ -244,7 +244,7 @@
                              TransitionToState(GameState.EditTerrain)
                          End Sub,
                          Sub(buffer)
-                             Editor.RenameTerrain(TerrainName, buffer)
+                             Editor.Terrains.Rename(TerrainName, buffer)
                              TerrainName = buffer
                              TransitionToState(GameState.EditTerrain)
                          End Sub))
