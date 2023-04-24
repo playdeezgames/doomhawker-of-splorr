@@ -14,7 +14,7 @@
             Case NewItemText
                 SetState(GameState.NewItemName)
             Case PickItemText
-                If Editor.HasItems Then
+                If Editor.Items.HasAny Then
                     SetState(GameState.PickItem)
                 Else
                     SetState(GameState.NewItemName)

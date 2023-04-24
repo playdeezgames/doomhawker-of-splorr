@@ -20,11 +20,6 @@
             _data.MapCellHeight = value
         End Set
     End Property
-    Public ReadOnly Property HasItems As Boolean Implements IEditor.HasItems
-        Get
-            Return _data.Items.Any
-        End Get
-    End Property
     Public ReadOnly Property ItemNames As IEnumerable(Of String) Implements IEditor.ItemNames
         Get
             Return _data.Items.Keys
