@@ -28,4 +28,8 @@
         _data.Fonts(name) = fontData
         Return New EditorFont(_data, name)
     End Function
+
+    Public Sub Export(name As String, fileName As String) Implements IFontEditor.Export
+        File.WriteAllText(fileName, JsonSerializer.Serialize(_data.Fonts(name)))
+    End Sub
 End Class

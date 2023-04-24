@@ -60,4 +60,6 @@
     RenameCreature
     CloneCreature
     ConfirmDeleteCreature
+    PickExportFont
+    ExportFontAs
 End Enum

@@ -439,6 +439,16 @@
                     TransitionToState(GameState.EditFont)
                 End Sub,
                 Function() Editor.Fonts.Names))
+        SetState(GameState.PickExportFont, New BasePickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                "Choose Export Font",
+                Sub() TransitionToState(GameState.FontsMenu),
+                Sub(picked)
+                    FontName = picked
+                    TransitionToState(GameState.ExportFontAs)
+                End Sub,
+                Function() Editor.Fonts.Names))
         SetState(GameState.NewFontName, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,
@@ -526,6 +536,20 @@
                      Editor.Fonts.Clone(FontName, buffer)
                      FontName = buffer
                      TransitionToState(GameState.EditFont)
+                 End Sub))
+        SetState(GameState.ExportFontAs, New BaseInputState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Export Filename:",
+                 Sub() TransitionToState(GameState.FontsMenu),
+                 Sub(buffer)
+                     Editor.Fonts.Export(FontName, buffer)
+                     Messages.Enqueue(New EditorMessage With {
+                     .Lines = New List(Of (Hue, String)) From
+                     {
+                        (Hue.Green, "You exported it!")
+                     }})
+                     SetStates(GameState.Messages, GameState.FontsMenu)
                  End Sub))
     End Sub
 
