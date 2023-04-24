@@ -7,6 +7,7 @@ Public Interface IEditor
     ReadOnly Property Fonts As IFontEditor
     ReadOnly Property Terrains As ITerrainEditor
     ReadOnly Property Maps As IMapEditor
+    ReadOnly Property Items As IItemEditor
 
     Function CreateItem(itemName As String) As IItem
     ReadOnly Property HasItems As Boolean

@@ -49,6 +49,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property Items As IItemEditor Implements IEditor.Items
+        Get
+            Return New ItemEditor(_data)
+        End Get
+    End Property
+
     Public Sub Save(fileName As String) Implements IEditor.Save
         File.WriteAllText(fileName, JsonSerializer.Serialize(_data))
     End Sub
