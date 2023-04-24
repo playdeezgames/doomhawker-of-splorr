@@ -44,6 +44,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property Creatures As ICreatureEditor Implements IEditor.Creatures
+        Get
+            Return New CreatureEditor(_data)
+        End Get
+    End Property
+
     Public Sub Save(fileName As String) Implements IEditor.Save
         File.WriteAllText(fileName, JsonSerializer.Serialize(_data))
     End Sub
