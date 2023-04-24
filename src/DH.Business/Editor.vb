@@ -20,12 +20,6 @@
             _data.MapCellHeight = value
         End Set
     End Property
-    Public ReadOnly Property ItemNames As IEnumerable(Of String) Implements IEditor.ItemNames
-        Get
-            Return _data.Items.Keys
-        End Get
-    End Property
-
     Public ReadOnly Property Fonts As IFontEditor Implements IEditor.Fonts
         Get
             Return New FontEditor(_data)

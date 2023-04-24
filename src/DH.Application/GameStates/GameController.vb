@@ -41,7 +41,7 @@
                      ItemName = picked
                      TransitionToState(GameState.EditItem)
                  End Sub,
-                 Function() Editor.ItemNames))
+                 Function() Editor.Items.Names))
         SetState(GameState.RenameItem, New BaseInputState(
                          Me,
                          AddressOf SetCurrentState,

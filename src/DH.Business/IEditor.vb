@@ -8,5 +8,4 @@ Public Interface IEditor
     ReadOnly Property Terrains As ITerrainEditor
     ReadOnly Property Maps As IMapEditor
     ReadOnly Property Items As IItemEditor
-    ReadOnly Property ItemNames As IEnumerable(Of String)
 End Interface
