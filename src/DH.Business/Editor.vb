@@ -53,6 +53,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property Maps As IMapEditor Implements IEditor.Maps
+        Get
+            Return New MapEditor(_data)
+        End Get
+    End Property
+
     Public Sub Save(fileName As String) Implements IEditor.Save
         File.WriteAllText(fileName, JsonSerializer.Serialize(_data))
     End Sub

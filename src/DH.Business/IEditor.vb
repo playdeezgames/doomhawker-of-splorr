@@ -6,6 +6,7 @@ Public Interface IEditor
 
     ReadOnly Property Fonts As IFontEditor
     ReadOnly Property Terrains As ITerrainEditor
+    ReadOnly Property Maps As IMapEditor
 
     Function CreateMap(mapName As String, columns As Integer, rows As Integer, terrainName As String) As IEditorMap
     ReadOnly Property HasMaps As Boolean
