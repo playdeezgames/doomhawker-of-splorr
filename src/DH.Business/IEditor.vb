@@ -9,7 +9,6 @@ Public Interface IEditor
     ReadOnly Property Maps As IMapEditor
     ReadOnly Property Items As IItemEditor
 
-    Function GetItem(itemName As String) As IItem
     Sub RenameItem(fromItemName As String, toItemName As String)
     Sub CloneItem(fromItemName As String, toItemName As String)
     Sub DeleteItem(itemName As String)

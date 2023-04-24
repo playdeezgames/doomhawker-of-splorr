@@ -88,7 +88,7 @@
                 "Choose Font",
                 Sub() TransitionToState(GameState.EditItem),
                 Sub(picked)
-                    Editor.GetItem(ItemName).Font = Editor.Fonts.Retrieve(picked)
+                    Editor.Items.Retrieve(ItemName).Font = Editor.Fonts.Retrieve(picked)
                     TransitionToState(GameState.EditItem)
                 End Sub,
                 Function() Editor.Fonts.Names))
@@ -96,13 +96,13 @@
                  Me,
                  AddressOf SetCurrentState,
                  Sub(glyph)
-                     Editor.GetItem(ItemName).GlyphKey = glyph
+                     Editor.Items.Retrieve(ItemName).GlyphKey = glyph
                      TransitionToState(GameState.EditItem)
                  End Sub,
                  Sub()
                      TransitionToState(GameState.EditItem)
                  End Sub,
-                 Function() Editor.GetItem(ItemName).FontName))
+                 Function() Editor.Items.Retrieve(ItemName).FontName))
     End Sub
 
     Private Sub SetBoilerplateStates()

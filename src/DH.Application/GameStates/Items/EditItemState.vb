@@ -22,7 +22,7 @@
     End Sub
 
     Public Overrides Sub HandleMenuItem(menuItem As String)
-        Dim item As IItem = Editor.GetItem(ItemName)
+        Dim item As IItem = Editor.Items.Retrieve(ItemName)
         Select Case menuItem
             Case ChangeHueText
                 item.HueIndex = (item.HueIndex + 1) Mod AllHues.Count
@@ -60,7 +60,7 @@
 
     Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of Hue)) As IItem
         Dim font = Fonts(GameFont.Font5x7)
-        Dim item As IItem = Editor.GetItem(ItemName)
+        Dim item As IItem = Editor.Items.Retrieve(ItemName)
         font.WriteText(displayBuffer, (0, font.Height * 8), $"Name: {ItemName}", Hue.White)
         font.WriteText(displayBuffer, (0, font.Height * 9), $"Font: {item.Font?.FontName}", Hue.White)
         font.WriteText(displayBuffer, (0, font.Height * 10), $"Glyph: {AscW(item.GlyphKey)}", Hue.White)
