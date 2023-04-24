@@ -213,7 +213,7 @@
                      TransitionToState(GameState.EditMap)
                  End Sub,
                  Sub(buffer)
-                     Editor.RenameMap(MapName, buffer)
+                     Editor.Maps.Rename(MapName, buffer)
                      MapName = buffer
                      TransitionToState(GameState.EditMap)
                  End Sub))

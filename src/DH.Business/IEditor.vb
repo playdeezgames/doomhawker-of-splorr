@@ -8,7 +8,6 @@ Public Interface IEditor
     ReadOnly Property Terrains As ITerrainEditor
     ReadOnly Property Maps As IMapEditor
 
-    Sub RenameMap(fromMapName As String, toMapName As String)
     Sub CloneMap(fromMapName As String, toMapName As String)
     Sub DeleteMap(mapName As String)
 
