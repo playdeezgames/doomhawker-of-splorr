@@ -25,7 +25,7 @@
                 MapCellData.Terrain = Nothing
                 Return
             End If
-            MapCellData.Terrain = value.TerrainName
+            MapCellData.Terrain = value.Name
         End Set
     End Property
 

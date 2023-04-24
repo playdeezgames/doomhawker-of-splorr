@@ -66,7 +66,7 @@
         End Set
     End Property
 
-    Public ReadOnly Property TerrainName As String Implements ITerrain.TerrainName
+    Public ReadOnly Property Name As String Implements ITerrain.Name
         Get
             Return _terrainName
         End Get

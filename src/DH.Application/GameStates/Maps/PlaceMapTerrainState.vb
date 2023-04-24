@@ -14,7 +14,7 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font3x5)
-        Dim currentTerrain = Editor.Maps.Retrieve(MapName).GetCell(Column, Row).Terrain.TerrainName
+        Dim currentTerrain = Editor.Maps.Retrieve(MapName).GetCell(Column, Row).Terrain.Name
         font.WriteText(displayBuffer, (0, 0), $"({Column},{Row}) {currentTerrain}", Hue.White)
         font.WriteText(displayBuffer, (0, ViewHeight - font.Height), $"Placing: {TerrainName}", Hue.White)
     End Sub

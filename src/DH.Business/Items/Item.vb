@@ -42,10 +42,13 @@
         End Set
     End Property
 
-    Public ReadOnly Property FontName As String Implements IItem.FontName
+    Public Property FontName As String Implements IItem.FontName
         Get
             Return ItemData.FontName
         End Get
+        Set(value As String)
+            ItemData.FontName = value
+        End Set
     End Property
 
     Public ReadOnly Property Name As String Implements IItem.Name
