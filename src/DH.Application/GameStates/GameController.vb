@@ -12,8 +12,13 @@
         SetFontStates()
         SetTerrainStates()
         SetItemStates()
+        SetCreatureStates()
         SetMapStates()
         SetCurrentState(GameState.Title, True)
+    End Sub
+
+    Private Sub SetCreatureStates()
+        SetState(GameState.CreaturesMenu, New CreaturesMenuState(Me, AddressOf SetCurrentState))
     End Sub
 
     Private Sub SetItemStates()

@@ -51,4 +51,7 @@
     PickMapItem
     PlaceMapItem
     RemoveMapItem
+    CreaturesMenu
+    NewCreatureName
+    PickCreature
 End Enum
