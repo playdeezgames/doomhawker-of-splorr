@@ -61,14 +61,6 @@
     Public Sub Load(fileName As String) Implements IEditor.Load
         _data = JsonSerializer.Deserialize(Of EditorData)(File.ReadAllText(fileName))
     End Sub
-    Public Function CreateItem(itemName As String) As IItem Implements IEditor.CreateItem
-        _data.Items(itemName) = New ItemData With {
-            .FontName = String.Empty,
-            .GlyphKey = " "c,
-            .HueIndex = 0}
-        Return New Item(_data, itemName)
-    End Function
-
     Public Function GetItem(itemName As String) As IItem Implements IEditor.GetItem
         Return New Item(_data, itemName)
     End Function

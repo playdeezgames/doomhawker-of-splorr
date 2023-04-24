@@ -29,7 +29,7 @@
                  End Sub,
                  Sub(buffer)
                      ItemName = buffer
-                     Editor.CreateItem(ItemName)
+                     Editor.Items.Create(ItemName)
                      TransitionToState(GameState.EditItem)
                  End Sub))
         SetState(GameState.PickItem, New BasePickState(

@@ -9,7 +9,6 @@ Public Interface IEditor
     ReadOnly Property Maps As IMapEditor
     ReadOnly Property Items As IItemEditor
 
-    Function CreateItem(itemName As String) As IItem
     ReadOnly Property HasItems As Boolean
     Function GetItem(itemName As String) As IItem
     Sub RenameItem(fromItemName As String, toItemName As String)
