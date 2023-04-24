@@ -14,7 +14,7 @@
             Case NewMapText
                 SetState(GameState.NewMapName)
             Case EditMapText
-                If Editor.HasMaps Then
+                If Editor.Maps.HasAny Then
                     SetState(GameState.PickMap)
                 Else
                     SetState(GameState.NewMapName)

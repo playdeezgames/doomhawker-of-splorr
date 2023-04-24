@@ -4,11 +4,6 @@
     Sub New(data As EditorData)
         _data = data
     End Sub
-    Public ReadOnly Property HasMaps As Boolean Implements IEditor.HasMaps
-        Get
-            Return _data.Maps.Any
-        End Get
-    End Property
     Public Property MapCellWidth As Integer Implements IEditor.MapCellWidth
         Get
             Return _data.MapCellWidth
