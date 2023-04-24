@@ -19,6 +19,91 @@
 
     Private Sub SetCreatureStates()
         SetState(GameState.CreaturesMenu, New CreaturesMenuState(Me, AddressOf SetCurrentState))
+        SetState(GameState.EditCreature, New EditCreatureState(Me, AddressOf SetCurrentState))
+        SetState(GameState.NewCreatureName, New BaseInputState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Creature Name:",
+                 Sub()
+                     CreatureName = ""
+                     TransitionToState(GameState.CreaturesMenu)
+                 End Sub,
+                 Sub(buffer)
+                     CreatureName = buffer
+                     Editor.Creatures.Create(CreatureName)
+                     TransitionToState(GameState.EditCreature)
+                 End Sub))
+        SetState(GameState.PickCreature, New BasePickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Choose Creature",
+                 Sub() TransitionToState(GameState.CreaturesMenu),
+                 Sub(picked)
+                     CreatureName = picked
+                     TransitionToState(GameState.EditCreature)
+                 End Sub,
+                 Function() Editor.Creatures.Names))
+        SetState(GameState.RenameCreature, New BaseInputState(
+                         Me,
+                         AddressOf SetCurrentState,
+                         "New Creature Name:",
+                         Sub()
+                             TransitionToState(GameState.EditCreature)
+                         End Sub,
+                         Sub(buffer)
+                             Editor.Creatures.Rename(CreatureName, buffer)
+                             CreatureName = buffer
+                             TransitionToState(GameState.EditCreature)
+                         End Sub))
+        SetState(GameState.CloneCreature, New BaseInputState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Cloned Creature Name:",
+                 Sub()
+                     TransitionToState(GameState.EditCreature)
+                 End Sub,
+                 Sub(buffer)
+                     Editor.Creatures.Clone(CreatureName, buffer)
+                     CreatureName = buffer
+                     TransitionToState(GameState.EditCreature)
+                 End Sub))
+        SetState(GameState.ConfirmDeleteCreature, New BaseConfirmState(
+                         Me,
+                         AddressOf SetCurrentState,
+                         "Confirm creature deletion?",
+                         Hue.Red,
+                         Sub(confirmation)
+                             If confirmation Then
+                                 Editor.Creatures.Delete(CreatureName)
+                                 TransitionToState(GameState.CreaturesMenu)
+                                 Return
+                             End If
+                             TransitionToState(GameState.EditCreature)
+                         End Sub,
+                         Sub()
+                             TransitionToState(GameState.EditCreature)
+                         End Sub))
+        SetState(GameState.PickCreatureFont, New BasePickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                "Choose Font",
+                Sub() TransitionToState(GameState.EditCreature),
+                Sub(picked)
+                    Editor.Creatures.Retrieve(CreatureName).Font = Editor.Fonts.Retrieve(picked)
+                    TransitionToState(GameState.EditCreature)
+                End Sub,
+                Function() Editor.Fonts.Names))
+        SetState(GameState.PickCreatureGlyph, New BaseGlyphPickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 Sub(glyph)
+                     Editor.Creatures.Retrieve(CreatureName).GlyphKey = glyph
+                     TransitionToState(GameState.EditCreature)
+                 End Sub,
+                 Sub()
+                     TransitionToState(GameState.EditCreature)
+                 End Sub,
+                 Function() Editor.Creatures.Retrieve(CreatureName).FontName))
     End Sub
 
     Private Sub SetItemStates()

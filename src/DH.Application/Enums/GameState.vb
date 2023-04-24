@@ -54,4 +54,10 @@
     CreaturesMenu
     NewCreatureName
     PickCreature
+    EditCreature
+    PickCreatureGlyph
+    PickCreatureFont
+    RenameCreature
+    CloneCreature
+    ConfirmDeleteCreature
 End Enum

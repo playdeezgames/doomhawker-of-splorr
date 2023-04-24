@@ -12,7 +12,7 @@
     Public Function Create(name As String) As ICreature Implements ICreatureEditor.Create
         _data.Creatures.Add(name, New CreatureData With
                             {
-                                .FontName = Nothing,
+                                .FontName = String.Empty,
                                 .GlyphKey = ChrW(32),
                                 .HueIndex = 0
                             })
