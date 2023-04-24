@@ -56,7 +56,4 @@
     Public Sub Load(fileName As String) Implements IEditor.Load
         _data = JsonSerializer.Deserialize(Of EditorData)(File.ReadAllText(fileName))
     End Sub
-    Public Sub DeleteItem(itemName As String) Implements IEditor.DeleteItem
-        _data.Items.Remove(itemName)
-    End Sub
 End Class

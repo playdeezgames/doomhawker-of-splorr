@@ -73,7 +73,7 @@
                          Hue.Red,
                          Sub(confirmation)
                              If confirmation Then
-                                 Editor.DeleteItem(ItemName)
+                                 Editor.Items.Delete(ItemName)
                                  TransitionToState(GameState.ItemsMenu)
                                  Return
                              End If
