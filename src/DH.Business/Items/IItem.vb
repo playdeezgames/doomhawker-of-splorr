@@ -3,4 +3,5 @@
     Property Font As IEditorFont
     Property GlyphKey As Char
     ReadOnly Property FontName As String
+    ReadOnly Property Name As String
 End Interface

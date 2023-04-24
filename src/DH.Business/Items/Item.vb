@@ -48,6 +48,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property Name As String Implements IItem.Name
+        Get
+            Return _itemName
+        End Get
+    End Property
+
     Public Sub New(data As EditorData, itemName As String)
         _data = data
         _itemName = itemName

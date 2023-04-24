@@ -31,10 +31,20 @@
 
     Public Property Item As IItemInstance Implements IEditorMapCell.Item
         Get
-            Throw New NotImplementedException()
+            If MapCellData.Item Is Nothing Then
+                Return Nothing
+            End If
+            Return New ItemInstance(_data, _mapName, _column, _row)
         End Get
         Set(value As IItemInstance)
-            Throw New NotImplementedException()
+            If value Is Nothing Then
+                MapCellData.Item = Nothing
+                Return
+            End If
+            MapCellData.Item = New ItemInstanceData With
+                {
+                    .ItemName = value.Item.Name
+                }
         End Set
     End Property
 

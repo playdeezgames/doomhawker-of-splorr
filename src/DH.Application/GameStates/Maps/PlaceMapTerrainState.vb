@@ -72,6 +72,11 @@
                     Dim font = terrain.Font.Font
                     font.WriteText(displayBuffer, (plotX, plotY), $"{terrain.GlyphKey}", AllHues(terrain.HueIndex))
                 End If
+                Dim itemInstance As IItemInstance = cell.Item
+                If itemInstance IsNot Nothing Then
+                    Dim font = itemInstance.Item.Font.Font
+                    font.WriteText(displayBuffer, (plotX, plotY), $"{itemInstance.Item.GlyphKey}", AllHues(itemInstance.Item.HueIndex))
+                End If
             Next
         Next
     End Sub
