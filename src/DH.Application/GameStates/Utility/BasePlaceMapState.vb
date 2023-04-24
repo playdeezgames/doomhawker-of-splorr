@@ -1,9 +1,19 @@
-﻿Public Class BasePlaceMapState
+﻿Friend MustInherit Class BasePlaceMapState
     Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
     Private _column As Integer = 0
     Private _row As Integer = 0
     Private ReadOnly _onCancel As Action
     Private ReadOnly _onPlace As Action(Of Integer, Integer)
+    Protected ReadOnly Property Column As Integer
+        Get
+            Return _column
+        End Get
+    End Property
+    Protected ReadOnly Property Row As Integer
+        Get
+            Return _row
+        End Get
+    End Property
 
     Public Sub New(
                   parent As IGameController(Of Hue, Command, Sfx),
@@ -65,11 +75,11 @@
         Dim offsetX = ViewWidth \ 2 - cellWidth \ 2 - _column * cellWidth
         Dim offsetY = ViewHeight \ 2 - cellHeight \ 2 - _row * cellHeight
         Dim map = Editor.Maps.Retrieve(MapName)
-        For column = 0 To map.Columns - 1
-            For row = 0 To map.Rows - 1
-                Dim plotX = column * cellWidth + offsetX
-                Dim plotY = row * cellHeight + offsetY
-                Dim cell = map.GetCell(column, row)
+        For c = 0 To map.Columns - 1
+            For r = 0 To map.Rows - 1
+                Dim plotX = c * cellWidth + offsetX
+                Dim plotY = r * cellHeight + offsetY
+                Dim cell = map.GetCell(c, r)
                 Dim terrain = cell.Terrain
                 If terrain IsNot Nothing Then
                     Dim font = terrain.Font.Font
