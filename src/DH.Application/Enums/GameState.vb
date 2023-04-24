@@ -50,4 +50,5 @@
     ConfirmDeleteItem
     PickMapItem
     PlaceMapItem
+    RemoveMapItem
 End Enum

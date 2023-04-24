@@ -206,6 +206,7 @@
                  Function() Editor.Items.Names))
         SetState(GameState.PlaceMapTerrain, New PlaceMapTerrainState(Me, AddressOf SetCurrentState))
         SetState(GameState.PlaceMapItem, New PlaceMapItemState(Me, AddressOf SetCurrentState))
+        SetState(GameState.RemoveMapItem, New RemoveMapItemState(Me, AddressOf SetCurrentState))
         SetState(GameState.PickDefaultMapTerrain, New BasePickState(
                  Me,
                  AddressOf SetCurrentState,

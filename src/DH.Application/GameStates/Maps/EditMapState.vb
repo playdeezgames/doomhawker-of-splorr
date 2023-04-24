@@ -1,7 +1,8 @@
 ﻿Friend Class EditMapState
     Inherits BaseMenuState
     Const PlaceTerrainText = "Place Terrain..."
-    Const PlaceItemText = "Place Item..."
+    Const PlaceItemText = "Place Items..."
+    Const RemoveItemsText = "Remove Items..."
     Const RenameMapText = "Rename Map..."
     Const CloneMapText = "Clone Map..."
     Const DeleteMapText = "Delete Map..."
@@ -10,6 +11,7 @@
         MyBase.New(parent, setState, New List(Of String) From {
                     PlaceTerrainText,
                     PlaceItemText,
+                    RemoveItemsText,
                     RenameMapText,
                     CloneMapText,
                     DeleteMapText
@@ -22,6 +24,8 @@
                 SetState(GameState.PickMapTerrain)
             Case PlaceItemText
                 SetState(GameState.PickMapItem)
+            Case RemoveItemsText
+                SetState(GameState.RemoveMapItem)
             Case RenameMapText
                 SetState(GameState.RenameMap)
             Case CloneMapText
