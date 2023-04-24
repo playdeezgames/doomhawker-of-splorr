@@ -180,7 +180,7 @@
                              TransitionToState(GameState.EditMap)
                          End Sub,
                          Sub(buffer)
-                             Editor.CloneMap(MapName, buffer)
+                             Editor.Maps.Clone(MapName, buffer)
                              MapName = buffer
                              TransitionToState(GameState.EditMap)
                          End Sub))

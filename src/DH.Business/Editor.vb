@@ -55,11 +55,6 @@
     Public Sub Load(fileName As String) Implements IEditor.Load
         _data = JsonSerializer.Deserialize(Of EditorData)(File.ReadAllText(fileName))
     End Sub
-    Public Sub CloneMap(fromMapName As String, toMapName As String) Implements IEditor.CloneMap
-        Dim temp = _data.Maps(fromMapName)
-        _data.Maps.Add(toMapName, temp)
-    End Sub
-
     Public Sub DeleteMap(mapName As String) Implements IEditor.DeleteMap
         _data.Maps.Remove(mapName)
     End Sub
