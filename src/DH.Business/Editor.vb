@@ -55,10 +55,6 @@
     Public Sub Load(fileName As String) Implements IEditor.Load
         _data = JsonSerializer.Deserialize(Of EditorData)(File.ReadAllText(fileName))
     End Sub
-    Public Sub DeleteMap(mapName As String) Implements IEditor.DeleteMap
-        _data.Maps.Remove(mapName)
-    End Sub
-
     Public Function CreateItem(itemName As String) As IItem Implements IEditor.CreateItem
         _data.Items(itemName) = New ItemData With {
             .FontName = String.Empty,

@@ -224,7 +224,7 @@
                  Hue.Red,
                  Sub(confirmation)
                      If confirmation Then
-                         Editor.DeleteMap(MapName)
+                         Editor.Maps.Delete(MapName)
                          TransitionToState(GameState.MapsMenu)
                          Return
                      End If
