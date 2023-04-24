@@ -8,7 +8,6 @@ Public Interface IEditor
     ReadOnly Property Terrains As ITerrainEditor
     ReadOnly Property Maps As IMapEditor
 
-    ReadOnly Property MapNames As IEnumerable(Of String)
     ReadOnly Property HasItems As Boolean
     Function GetMap(mapName As String) As IEditorMap
     Sub RenameMap(fromMapName As String, toMapName As String)

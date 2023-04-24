@@ -170,7 +170,7 @@
                      MapName = picked
                      TransitionToState(GameState.EditMap)
                  End Sub,
-                 Function() Editor.MapNames))
+                 Function() Editor.Maps.Names))
         SetState(GameState.NewMapSize, New NewMapSizeState(Me, AddressOf SetCurrentState))
         SetState(GameState.CloneMap, New BaseInputState(
                          Me,
