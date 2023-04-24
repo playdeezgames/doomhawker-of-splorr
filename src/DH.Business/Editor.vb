@@ -55,9 +55,6 @@
     Public Sub Load(fileName As String) Implements IEditor.Load
         _data = JsonSerializer.Deserialize(Of EditorData)(File.ReadAllText(fileName))
     End Sub
-    Public Function GetMap(mapName As String) As IEditorMap Implements IEditor.GetMap
-        Return New EditorMap(_data, mapName)
-    End Function
     Public Sub RenameMap(fromMapName As String, toMapName As String) Implements IEditor.RenameMap
         Dim temp = _data.Maps(fromMapName)
         _data.Maps.Remove(fromMapName)

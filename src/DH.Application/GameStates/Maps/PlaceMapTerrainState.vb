@@ -8,7 +8,7 @@
     End Sub
 
     Public Overrides Sub HandleCommand(command As Command)
-        Dim map = Editor.GetMap(MapName)
+        Dim map = Editor.Maps.Retrieve(MapName)
         Select Case command
             Case Command.UpReleased
                 If _row = 0 Then
@@ -50,7 +50,7 @@
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
         DrawMap(displayBuffer)
         Dim font = Fonts(GameFont.Font3x5)
-        Dim currentTerrain = Editor.GetMap(MapName).GetCell(_column, _row).Terrain.TerrainName
+        Dim currentTerrain = Editor.Maps.Retrieve(MapName).GetCell(_column, _row).Terrain.TerrainName
         font.WriteText(displayBuffer, (0, 0), $"({_column},{_row}) {currentTerrain}", Hue.White)
         font.WriteText(displayBuffer, (0, ViewHeight - font.Height), $"Placing: {TerrainName}", Hue.White)
     End Sub
@@ -61,7 +61,7 @@
         displayBuffer.Fill((ViewWidth \ 2 - cellWidth \ 2, ViewHeight \ 2 - cellHeight \ 2), (cellWidth, cellHeight), Hue.White)
         Dim offsetX = ViewWidth \ 2 - cellWidth \ 2 - _column * cellWidth
         Dim offsetY = ViewHeight \ 2 - cellHeight \ 2 - _row * cellHeight
-        Dim map = Editor.GetMap(MapName)
+        Dim map = Editor.Maps.Retrieve(MapName)
         For column = 0 To map.Columns - 1
             For row = 0 To map.Rows - 1
                 Dim plotX = column * cellWidth + offsetX

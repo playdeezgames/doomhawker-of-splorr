@@ -8,13 +8,12 @@ Public Interface IEditor
     ReadOnly Property Terrains As ITerrainEditor
     ReadOnly Property Maps As IMapEditor
 
-    ReadOnly Property HasItems As Boolean
-    Function GetMap(mapName As String) As IEditorMap
     Sub RenameMap(fromMapName As String, toMapName As String)
     Sub CloneMap(fromMapName As String, toMapName As String)
     Sub DeleteMap(mapName As String)
 
     Function CreateItem(itemName As String) As IItem
+    ReadOnly Property HasItems As Boolean
     Function GetItem(itemName As String) As IItem
     Sub RenameItem(fromItemName As String, toItemName As String)
     Sub CloneItem(fromItemName As String, toItemName As String)
