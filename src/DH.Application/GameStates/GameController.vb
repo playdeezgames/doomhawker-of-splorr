@@ -50,7 +50,7 @@
                              TransitionToState(GameState.EditItem)
                          End Sub,
                          Sub(buffer)
-                             Editor.RenameItem(ItemName, buffer)
+                             Editor.Items.Rename(ItemName, buffer)
                              ItemName = buffer
                              TransitionToState(GameState.EditItem)
                          End Sub))

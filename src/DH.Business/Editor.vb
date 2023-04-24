@@ -56,12 +56,6 @@
     Public Sub Load(fileName As String) Implements IEditor.Load
         _data = JsonSerializer.Deserialize(Of EditorData)(File.ReadAllText(fileName))
     End Sub
-    Public Sub RenameItem(fromItemName As String, toItemName As String) Implements IEditor.RenameItem
-        Dim temp = _data.Items(fromItemName)
-        _data.Items.Remove(fromItemName)
-        _data.Items.Add(toItemName, temp)
-    End Sub
-
     Public Sub CloneItem(fromItemName As String, toItemName As String) Implements IEditor.CloneItem
         Dim temp = _data.Items(fromItemName)
         _data.Items.Add(toItemName, temp)
