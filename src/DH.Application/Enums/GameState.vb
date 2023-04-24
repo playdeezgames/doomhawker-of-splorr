@@ -48,4 +48,6 @@
     RenameItem
     CloneItem
     ConfirmDeleteItem
+    PickMapItem
+    PlaceMapItem
 End Enum

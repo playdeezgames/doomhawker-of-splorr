@@ -194,7 +194,18 @@
                      TransitionToState(GameState.PlaceMapTerrain)
                  End Sub,
                  Function() Editor.Terrains.Names))
+        SetState(GameState.PickMapItem, New BasePickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Choose Item",
+                 Sub() TransitionToState(GameState.EditMap),
+                 Sub(picked)
+                     ItemName = picked
+                     TransitionToState(GameState.PlaceMapItem)
+                 End Sub,
+                 Function() Editor.Items.Names))
         SetState(GameState.PlaceMapTerrain, New PlaceMapTerrainState(Me, AddressOf SetCurrentState))
+        SetState(GameState.PlaceMapItem, New PlaceMapItemState(Me, AddressOf SetCurrentState))
         SetState(GameState.PickDefaultMapTerrain, New BasePickState(
                  Me,
                  AddressOf SetCurrentState,
