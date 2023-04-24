@@ -9,7 +9,6 @@ Public Interface IEditor
     ReadOnly Property Maps As IMapEditor
     ReadOnly Property Items As IItemEditor
 
-    Sub CloneItem(fromItemName As String, toItemName As String)
     Sub DeleteItem(itemName As String)
     ReadOnly Property ItemNames As IEnumerable(Of String)
 End Interface

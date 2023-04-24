@@ -62,7 +62,7 @@
                      TransitionToState(GameState.EditItem)
                  End Sub,
                  Sub(buffer)
-                     Editor.CloneItem(ItemName, buffer)
+                     Editor.Items.Clone(ItemName, buffer)
                      ItemName = buffer
                      TransitionToState(GameState.EditItem)
                  End Sub))
