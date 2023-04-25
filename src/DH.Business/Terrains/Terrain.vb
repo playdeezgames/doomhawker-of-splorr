@@ -1,4 +1,5 @@
 ﻿Friend Class Terrain
+    Inherits Sprite
     Implements ITerrain
 
     Private ReadOnly _data As EditorData
@@ -10,27 +11,10 @@
     End Property
 
     Public Sub New(data As EditorData, terrainName As String)
+        MyBase.New(data.Terrains(terrainName), terrainName)
         Me._data = data
         Me._terrainName = terrainName
     End Sub
-
-    Public Property FontName As String Implements ITerrain.FontName
-        Get
-            Return TerrainData.FontName
-        End Get
-        Set(value As String)
-            TerrainData.FontName = value
-        End Set
-    End Property
-
-    Public Property GlyphKey As Char Implements ITerrain.GlyphKey
-        Get
-            Return TerrainData.GlyphKey
-        End Get
-        Set(value As Char)
-            TerrainData.GlyphKey = value
-        End Set
-    End Property
 
     Public Property Tenantability As Boolean Implements ITerrain.Tenantability
         Get
@@ -41,16 +25,7 @@
         End Set
     End Property
 
-    Public Property HueIndex As Integer Implements ITerrain.HueIndex
-        Get
-            Return TerrainData.HueIndex
-        End Get
-        Set(value As Integer)
-            TerrainData.HueIndex = value
-        End Set
-    End Property
-
-    Public Property Font As IEditorFont Implements ITerrain.Font
+    Public Overrides Property Font As IEditorFont
         Get
             If _data.Fonts.ContainsKey(TerrainData.FontName) Then
                 Return New EditorFont(_data, TerrainData.FontName)
@@ -59,16 +34,10 @@
         End Get
         Set(value As IEditorFont)
             If value IsNot Nothing Then
-                TerrainData.FontName = value.FontName
+                FontName = value.FontName
             Else
-                TerrainData.FontName = Nothing
+                FontName = Nothing
             End If
         End Set
-    End Property
-
-    Public ReadOnly Property Name As String Implements ITerrain.Name
-        Get
-            Return _terrainName
-        End Get
     End Property
 End Class
