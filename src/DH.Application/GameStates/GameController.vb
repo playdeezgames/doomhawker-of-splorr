@@ -294,8 +294,19 @@
                      TransitionToState(GameState.PlaceMapItem)
                  End Sub,
                  Function() Editor.Items.Names))
+        SetState(GameState.PickMapCreature, New BasePickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Choose Creature",
+                 Sub() TransitionToState(GameState.EditMap),
+                 Sub(picked)
+                     CreatureName = picked
+                     TransitionToState(GameState.PlaceMapCreature)
+                 End Sub,
+                 Function() Editor.Items.Names))
         SetState(GameState.PlaceMapTerrain, New PlaceMapTerrainState(Me, AddressOf SetCurrentState))
         SetState(GameState.PlaceMapItem, New PlaceMapItemState(Me, AddressOf SetCurrentState))
+        SetState(GameState.PlaceMapCreature, New PlaceMapCreatureState(Me, AddressOf SetCurrentState))
         SetState(GameState.RemoveMapItem, New RemoveMapItemState(Me, AddressOf SetCurrentState))
         SetState(GameState.PickDefaultMapTerrain, New BasePickState(
                  Me,

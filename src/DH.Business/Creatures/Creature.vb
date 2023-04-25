@@ -15,4 +15,14 @@
         Me._data = data
         Me._name = name
     End Sub
+
+    Public Function CreateInstance(mapName As String, column As Integer, row As Integer) As ICreatureInstance Implements ICreature.CreateInstance
+        Dim mapData = _data.Maps(mapName)
+        Dim mapCellData = mapData.Cells(column + row * mapData.Columns)
+        mapCellData.Creature = New CreatureInstanceData With
+            {
+                .CreatureName = Name
+            }
+        Return New CreatureInstance(_data, mapName, column, row)
+    End Function
 End Class

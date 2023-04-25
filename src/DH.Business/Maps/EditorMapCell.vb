@@ -48,6 +48,25 @@
         End Set
     End Property
 
+    Public Property Creature As ICreatureInstance Implements IEditorMapCell.Creature
+        Get
+            If MapCellData.Creature Is Nothing Then
+                Return Nothing
+            End If
+            Return New CreatureInstance(_data, _mapName, _column, _row)
+        End Get
+        Set(value As ICreatureInstance)
+            If value Is Nothing Then
+                MapCellData.Creature = Nothing
+                Return
+            End If
+            MapCellData.Creature = New CreatureInstanceData With
+                {
+                    .CreatureName = value.Creature.Name
+                }
+        End Set
+    End Property
+
     Public Sub New(data As EditorData, mapName As String, column As Integer, row As Integer)
         Me._data = data
         Me._mapName = mapName
