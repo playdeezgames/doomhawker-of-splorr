@@ -14,7 +14,12 @@
         SetItemStates()
         SetCreatureStates()
         SetMapStates()
+        SetAvatarStates()
         SetCurrentState(GameState.Title, True)
+    End Sub
+
+    Private Sub SetAvatarStates()
+        SetState(GameState.AvatarMenu, New AvatarMenuState(Me, AddressOf SetCurrentState))
     End Sub
 
     Private Sub SetCreatureStates()

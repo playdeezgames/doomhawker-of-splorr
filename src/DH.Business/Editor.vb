@@ -50,10 +50,23 @@
         End Get
     End Property
 
+    Public ReadOnly Property Avatar As IAvatar Implements IEditor.Avatar
+        Get
+            If _data.Avatar Is Nothing Then
+                Return Nothing
+            End If
+            Return New Avatar(_data)
+        End Get
+    End Property
+
     Public Sub Save(fileName As String) Implements IEditor.Save
         File.WriteAllText(fileName, JsonSerializer.Serialize(_data))
     End Sub
     Public Sub Load(fileName As String) Implements IEditor.Load
         _data = JsonSerializer.Deserialize(Of EditorData)(File.ReadAllText(fileName))
+    End Sub
+
+    Public Sub ClearAvatar() Implements IEditor.ClearAvatar
+        _data.Avatar = Nothing
     End Sub
 End Class

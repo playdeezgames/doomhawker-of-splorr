@@ -5,6 +5,7 @@
     Const EditItemsText = "Items..."
     Const EditCreaturesText = "Creatures..."
     Const EditMapsText = "Maps..."
+    Const AvatarText = "Avatar..."
     Const SettingsText = "Settings..."
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent, setState, New List(Of String) From {
@@ -13,6 +14,7 @@
                    EditItemsText,
                    EditCreaturesText,
                    EditMapsText,
+                   AvatarText,
                    SettingsText})
     End Sub
     Public Overrides Sub HandleMenuItem(menuItem As String)
@@ -29,6 +31,8 @@
                 SetState(GameState.ItemsMenu)
             Case EditCreaturesText
                 SetState(GameState.CreaturesMenu)
+            Case AvatarText
+                SetState(GameState.AvatarMenu)
         End Select
     End Sub
 
