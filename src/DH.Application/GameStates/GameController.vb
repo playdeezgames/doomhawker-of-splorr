@@ -308,6 +308,7 @@
         SetState(GameState.PlaceMapItem, New PlaceMapItemState(Me, AddressOf SetCurrentState))
         SetState(GameState.PlaceMapCreature, New PlaceMapCreatureState(Me, AddressOf SetCurrentState))
         SetState(GameState.RemoveMapItem, New RemoveMapItemState(Me, AddressOf SetCurrentState))
+        SetState(GameState.RemoveMapCreature, New RemoveMapCreatureState(Me, AddressOf SetCurrentState))
         SetState(GameState.PickDefaultMapTerrain, New BasePickState(
                  Me,
                  AddressOf SetCurrentState,

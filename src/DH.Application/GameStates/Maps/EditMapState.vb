@@ -4,6 +4,7 @@
     Const PlaceItemText = "Place Items..."
     Const RemoveItemsText = "Remove Items..."
     Const PlaceCreaturesText = "Place Creatures..."
+    Const RemoveCreaturesText = "Remove Creatures..."
     Const RenameMapText = "Rename Map..."
     Const CloneMapText = "Clone Map..."
     Const DeleteMapText = "Delete Map..."
@@ -14,6 +15,7 @@
                     PlaceItemText,
                     RemoveItemsText,
                     PlaceCreaturesText,
+                    RemoveCreaturesText,
                     RenameMapText,
                     CloneMapText,
                     DeleteMapText
@@ -30,6 +32,8 @@
                 SetState(GameState.PickMapCreature)
             Case RemoveItemsText
                 SetState(GameState.RemoveMapItem)
+            Case RemoveCreaturesText
+                SetState(GameState.RemoveMapCreature)
             Case RenameMapText
                 SetState(GameState.RenameMap)
             Case CloneMapText

@@ -64,4 +64,5 @@
     ExportFontAs
     PickMapCreature
     PlaceMapCreature
+    RemoveMapCreature
 End Enum
