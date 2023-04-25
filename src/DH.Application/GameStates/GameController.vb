@@ -303,7 +303,7 @@
                      CreatureName = picked
                      TransitionToState(GameState.PlaceMapCreature)
                  End Sub,
-                 Function() Editor.Items.Names))
+                 Function() Editor.Creatures.Names))
         SetState(GameState.PlaceMapTerrain, New PlaceMapTerrainState(Me, AddressOf SetCurrentState))
         SetState(GameState.PlaceMapItem, New PlaceMapItemState(Me, AddressOf SetCurrentState))
         SetState(GameState.PlaceMapCreature, New PlaceMapCreatureState(Me, AddressOf SetCurrentState))

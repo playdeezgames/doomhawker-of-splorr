@@ -90,6 +90,11 @@
                     Dim font = itemInstance.Item.Font.Font
                     font.WriteText(displayBuffer, (plotX, plotY), $"{itemInstance.Item.GlyphKey}", AllHues(itemInstance.Item.HueIndex))
                 End If
+                Dim creatureInstance As ICreatureInstance = cell.Creature
+                If creatureInstance IsNot Nothing Then
+                    Dim font = creatureInstance.Creature.Font.Font
+                    font.WriteText(displayBuffer, (plotX, plotY), $"{creatureInstance.Creature.GlyphKey}", AllHues(creatureInstance.Creature.HueIndex))
+                End If
             Next
         Next
     End Sub

@@ -19,7 +19,7 @@
         End Select
     End Sub
     Protected Overrides Sub HandleCancel()
-        SetState(GameState.MainMenu)
+        SetState(GameState.EditMenu)
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         MyBase.Render(displayBuffer)
