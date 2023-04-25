@@ -31,6 +31,8 @@
             font.WriteText(displayBuffer, (0, font.Height * 5), $"Map Name: {avatar.MapName}", Hue.White)
             font.WriteText(displayBuffer, (0, font.Height * 6), $"Column: {avatar.Column}", Hue.White)
             font.WriteText(displayBuffer, (0, font.Height * 7), $"Row: {avatar.Row}", Hue.White)
+            Dim creature As ICreatureInstance = avatar.Creature
+            font.WriteText(displayBuffer, (0, font.Height * 8), $"Creature: {creature.Creature.Name}", Hue.White)
         End If
     End Sub
 End Class

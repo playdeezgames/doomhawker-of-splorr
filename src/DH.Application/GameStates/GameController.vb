@@ -20,6 +20,21 @@
 
     Private Sub SetAvatarStates()
         SetState(GameState.AvatarMenu, New AvatarMenuState(Me, AddressOf SetCurrentState))
+        SetState(GameState.PickAvatarMap, New BasePickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Pick Avatar Map",
+                 Sub()
+                     SetCurrentState(GameState.AvatarMenu, False)
+                 End Sub,
+                 Sub(picked)
+                     MapName = picked
+                     SetCurrentState(GameState.PickAvatarCreatureInstance, False)
+                 End Sub,
+                 Function() Editor.Maps.Names))
+        SetState(GameState.PickAvatarCreatureInstance, New PickAvatarCreatureInstanceState(
+                 Me,
+                 AddressOf SetCurrentState))
     End Sub
 
     Private Sub SetCreatureStates()

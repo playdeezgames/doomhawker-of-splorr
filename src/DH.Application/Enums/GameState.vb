@@ -67,4 +67,5 @@
     RemoveMapCreature
     AvatarMenu
     PickAvatarMap
+    PickAvatarCreatureInstance
 End Enum

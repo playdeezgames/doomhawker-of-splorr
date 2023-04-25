@@ -25,4 +25,22 @@
             Return New Creature(_data, CreatureInstanceData.CreatureName)
         End Get
     End Property
+
+    Public ReadOnly Property MapName As String Implements ICreatureInstance.MapName
+        Get
+            Return _mapName
+        End Get
+    End Property
+
+    Public ReadOnly Property Column As Integer Implements ICreatureInstance.Column
+        Get
+            Return _column
+        End Get
+    End Property
+
+    Public ReadOnly Property Row As Integer Implements ICreatureInstance.Row
+        Get
+            Return _row
+        End Get
+    End Property
 End Class

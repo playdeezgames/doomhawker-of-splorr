@@ -2,6 +2,7 @@ Public Interface IEditor
     Sub Save(fileName As String)
     Sub Load(fileName As String)
     Sub ClearAvatar()
+    Sub SetAvatar(creature As ICreatureInstance)
     Property MapCellWidth As Integer
     Property MapCellHeight As Integer
 

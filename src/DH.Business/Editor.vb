@@ -69,4 +69,13 @@
     Public Sub ClearAvatar() Implements IEditor.ClearAvatar
         _data.Avatar = Nothing
     End Sub
+
+    Public Sub SetAvatar(creature As ICreatureInstance) Implements IEditor.SetAvatar
+        _data.Avatar = New AvatarData With
+            {
+                .MapName = creature.MapName,
+                .Column = creature.Column,
+                .Row = creature.Row
+            }
+    End Sub
 End Class
