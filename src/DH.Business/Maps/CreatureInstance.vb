@@ -12,6 +12,28 @@
         Me._column = column
         Me._row = row
     End Sub
+
+    Public Sub Move(direction As Direction) Implements ICreatureInstance.Move
+        'determine next location
+        'check for untenantable terrain
+        'when untenantable:
+        '-trigger any bump event
+        '-cancel move
+        '-result: bump
+        'when tenantable:
+        '-check for creature
+        '-when creature found:
+        '--cancel move
+        '--result: creature
+        '-check for item
+        '-when item found:
+        '--cancel move
+        '--result: item
+        '-move avatar
+        '-trigger any move event there might be
+        '-result: moved
+    End Sub
+
     Private ReadOnly Property CreatureInstanceData As CreatureInstanceData
         Get
             Dim map = _data.Maps(_mapName)

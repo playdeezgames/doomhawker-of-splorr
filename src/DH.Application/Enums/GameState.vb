@@ -68,4 +68,6 @@
     AvatarMenu
     PickAvatarMap
     PickAvatarCreatureInstance
+    Navigate
+    GameMenu
 End Enum

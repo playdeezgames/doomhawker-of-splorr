@@ -65,16 +65,16 @@
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
-        DrawMap(displayBuffer)
+        DrawMap(displayBuffer, MapName, _column, _row, Hue.White)
     End Sub
 
-    Private Sub DrawMap(displayBuffer As IPixelSink(Of Hue))
+    Friend Shared Sub DrawMap(displayBuffer As IPixelSink(Of Hue), mapName As String, column As Integer, row As Integer, cursorHue As Hue)
         Dim cellWidth = Editor.MapCellWidth
         Dim cellHeight = Editor.MapCellHeight
-        displayBuffer.Fill((ViewWidth \ 2 - cellWidth \ 2, ViewHeight \ 2 - cellHeight \ 2), (cellWidth, cellHeight), Hue.White)
-        Dim offsetX = ViewWidth \ 2 - cellWidth \ 2 - _column * cellWidth
-        Dim offsetY = ViewHeight \ 2 - cellHeight \ 2 - _row * cellHeight
-        Dim map = Editor.Maps.Retrieve(MapName)
+        displayBuffer.Fill((ViewWidth \ 2 - cellWidth \ 2, ViewHeight \ 2 - cellHeight \ 2), (cellWidth, cellHeight), cursorHue)
+        Dim offsetX = ViewWidth \ 2 - cellWidth \ 2 - column * cellWidth
+        Dim offsetY = ViewHeight \ 2 - cellHeight \ 2 - row * cellHeight
+        Dim map = Editor.Maps.Retrieve(mapName)
         For c = 0 To map.Columns - 1
             For r = 0 To map.Rows - 1
                 Dim plotX = c * cellWidth + offsetX
