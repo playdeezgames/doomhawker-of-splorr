@@ -8,14 +8,16 @@
     Const QuitText = "Quit"
     Const AboutText = "About"
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
-        MyBase.New(parent, setState, New List(Of String) From {
-                   EmbarkText,
-                   EditText,
-                   SaveText,
-                   LoadText,
-                   OptionsText,
-                   AboutText,
-                   QuitText})
+        MyBase.New(parent,
+                   setState,
+                   New List(Of String) From {
+                       EmbarkText,
+                       EditText,
+                       SaveText,
+                       LoadText,
+                       OptionsText,
+                       AboutText,
+                       QuitText})
     End Sub
     Public Overrides Sub HandleMenuItem(menuItem As String)
         Select Case menuItem
