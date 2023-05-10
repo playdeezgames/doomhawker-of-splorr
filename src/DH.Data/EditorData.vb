@@ -1,4 +1,87 @@
 Public Class EditorData
+    Public Property Colors As New List(Of ColorData) From
+        {
+            New ColorData With {
+                .Red = 0,
+                .Green = 0,
+                .Blue = 0
+            },
+            New ColorData With {
+                .Red = 0,
+                .Green = 0,
+                .Blue = 170
+            },
+            New ColorData With {
+                .Red = 0,
+                .Green = 170,
+                .Blue = 0
+            },
+            New ColorData With {
+                .Red = 0,
+                .Green = 170,
+                .Blue = 170
+            },
+            New ColorData With {
+                .Red = 170,
+                .Green = 0,
+                .Blue = 0
+            },
+            New ColorData With {
+                .Red = 170,
+                .Green = 0,
+                .Blue = 170
+            },
+            New ColorData With {
+                .Red = 170,
+                .Green = 85,
+                .Blue = 0
+            },
+            New ColorData With {
+                .Red = 170,
+                .Green = 170,
+                .Blue = 170
+            },
+            New ColorData With {
+                .Red = 85,
+                .Green = 85,
+                .Blue = 85
+            },
+            New ColorData With {
+                .Red = 85,
+                .Green = 85,
+                .Blue = 255
+            },
+            New ColorData With {
+                .Red = 85,
+                .Green = 255,
+                .Blue = 85
+            },
+            New ColorData With {
+                .Red = 85,
+                .Green = 255,
+                .Blue = 255
+            },
+            New ColorData With {
+                .Red = 255,
+                .Green = 85,
+                .Blue = 85
+            },
+            New ColorData With {
+                .Red = 255,
+                .Green = 85,
+                .Blue = 255
+            },
+            New ColorData With {
+                .Red = 255,
+                .Green = 255,
+                .Blue = 85
+            },
+            New ColorData With {
+                .Red = 255,
+                .Green = 255,
+                .Blue = 255
+            }
+        }
     Public Property Fonts As New Dictionary(Of String, FontData)
     Public Property Terrains As New Dictionary(Of String, TerrainData)
     Public Property Maps As New Dictionary(Of String, MapData)
