@@ -10,6 +10,7 @@
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent,
                    setState,
+                   "",
                    New List(Of String) From {
                        EmbarkText,
                        EditText,
@@ -17,26 +18,25 @@
                        LoadText,
                        OptionsText,
                        AboutText,
-                       QuitText})
-    End Sub
-    Public Overrides Sub HandleMenuItem(menuItem As String)
-        Select Case menuItem
-            Case EmbarkText
-                If Editor.Avatar IsNot Nothing Then
-                    SetState(GameState.Navigate)
-                End If
-            Case SaveText
-                SetState(GameState.SaveAs)
-            Case LoadText
-                SetState(GameState.LoadFrom)
-            Case EditText
-                SetState(GameState.EditMenu)
-            Case QuitText
-                SetState(GameState.ConfirmQuit)
-        End Select
-    End Sub
-
-    Protected Overrides Sub HandleCancel()
-        SetState(GameState.ConfirmQuit)
+                       QuitText},
+                   Sub(menuItem)
+                       Select Case menuItem
+                           Case EmbarkText
+                               If Editor.Avatar IsNot Nothing Then
+                                   setState(GameState.Navigate, False)
+                               End If
+                           Case SaveText
+                               setState(GameState.SaveAs, False)
+                           Case LoadText
+                               setState(GameState.LoadFrom, False)
+                           Case EditText
+                               setState(GameState.EditMenu, False)
+                           Case QuitText
+                               setState(GameState.ConfirmQuit, False)
+                       End Select
+                   End Sub,
+                   Sub()
+                       setState(GameState.ConfirmQuit, False)
+                   End Sub)
     End Sub
 End Class

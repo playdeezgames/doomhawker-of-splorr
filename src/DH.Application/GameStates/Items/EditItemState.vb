@@ -10,6 +10,7 @@
         MyBase.New(
             parent,
             setState,
+            "",
             New List(Of String) From
             {
                 RenameItemText,
@@ -18,29 +19,31 @@
                 ChangeHueText,
                 CloneItemText,
                 DeleteItemText
-            })
-    End Sub
-
-    Public Overrides Sub HandleMenuItem(menuItem As String)
-        Dim item As IItem = Editor.Items.Retrieve(ItemName)
-        Select Case menuItem
-            Case ChangeHueText
-                item.HueIndex = (item.HueIndex + 1) Mod AllHues.Count
-            Case ChangeGlyphText
-                If item.Font IsNot Nothing Then
-                    SetState(GameState.PickItemGlyph)
-                End If
-            Case ChangeFontText
-                If Editor.Fonts.HasAny Then
-                    SetState(GameState.PickItemFont)
-                End If
-            Case RenameItemText
-                SetState(GameState.RenameItem)
-            Case CloneItemText
-                SetState(GameState.CloneItem)
-            Case DeleteItemText
-                SetState(GameState.ConfirmDeleteItem)
-        End Select
+            },
+            Sub(menuItem)
+                Dim item As IItem = Editor.Items.Retrieve(ItemName)
+                Select Case menuItem
+                    Case ChangeHueText
+                        item.HueIndex = (item.HueIndex + 1) Mod AllHues.Count
+                    Case ChangeGlyphText
+                        If item.Font IsNot Nothing Then
+                            setState(GameState.PickItemGlyph, False)
+                        End If
+                    Case ChangeFontText
+                        If Editor.Fonts.HasAny Then
+                            setState(GameState.PickItemFont, False)
+                        End If
+                    Case RenameItemText
+                        setState(GameState.RenameItem, False)
+                    Case CloneItemText
+                        setState(GameState.CloneItem, False)
+                    Case DeleteItemText
+                        setState(GameState.ConfirmDeleteItem, False)
+                End Select
+            End Sub,
+            Sub()
+                setState(GameState.ItemsMenu, False)
+            End Sub)
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
@@ -52,10 +55,6 @@
             Dim height = terrainFont.Height
             terrainFont.WriteText(displayBuffer, (ViewWidth - width, ViewHeight - height), $"{item.GlyphKey}", AllHues(item.HueIndex))
         End If
-    End Sub
-
-    Protected Overrides Sub HandleCancel()
-        SetState(GameState.ItemsMenu)
     End Sub
 
     Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of Hue)) As IItem

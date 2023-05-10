@@ -3,24 +3,26 @@
     Const ChooseAvatarText = "Choose Avatar..."
     Const ClearAvatarText = "Clear Avatar"
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
-        MyBase.New(parent, setState, New List(Of String) From
+        MyBase.New(
+            parent,
+            setState,
+            "",
+            New List(Of String) From
                    {
                     ChooseAvatarText,
                     ClearAvatarText
-                   })
-    End Sub
-
-    Public Overrides Sub HandleMenuItem(menuItem As String)
-        Select Case menuItem
-            Case ChooseAvatarText
-                SetState(GameState.PickAvatarMap)
-            Case ClearAvatarText
-                Editor.ClearAvatar()
-        End Select
-    End Sub
-
-    Protected Overrides Sub HandleCancel()
-        SetState(GameState.EditMenu)
+                   },
+            Sub(menuItem)
+                Select Case menuItem
+                    Case ChooseAvatarText
+                        setState(GameState.PickAvatarMap, False)
+                    Case ClearAvatarText
+                        Editor.ClearAvatar()
+                End Select
+            End Sub,
+            Sub()
+                setState(GameState.EditMenu, False)
+            End Sub)
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))

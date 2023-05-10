@@ -6,31 +6,32 @@
     Const DecreaseHeightText = "Decrease Cell Height"
 
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
-        MyBase.New(parent, setState, New List(Of String) From {
+        MyBase.New(
+            parent,
+            setState,
+            "",
+            New List(Of String) From {
                    IncreaseWidthText,
                    IncreaseHeightText,
                    DecreaseWidthText,
                    DecreaseHeightText
-                   })
+                   },
+            Sub(menuItem)
+                Select Case menuItem
+                    Case IncreaseWidthText
+                        Editor.MapCellWidth += 1
+                    Case IncreaseHeightText
+                        Editor.MapCellHeight += 1
+                    Case DecreaseWidthText
+                        Editor.MapCellWidth -= 1
+                    Case DecreaseHeightText
+                        Editor.MapCellHeight -= 1
+                End Select
+            End Sub,
+            Sub()
+                setState(GameState.EditMenu, False)
+            End Sub)
     End Sub
-
-    Public Overrides Sub HandleMenuItem(menuItem As String)
-        Select Case menuItem
-            Case IncreaseWidthText
-                Editor.MapCellWidth += 1
-            Case IncreaseHeightText
-                Editor.MapCellHeight += 1
-            Case DecreaseWidthText
-                Editor.MapCellWidth -= 1
-            Case DecreaseHeightText
-                Editor.MapCellHeight -= 1
-        End Select
-    End Sub
-
-    Protected Overrides Sub HandleCancel()
-        SetState(GameState.EditMenu)
-    End Sub
-
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font5x7)

@@ -3,26 +3,29 @@
     Const NewCreatureText = "New Creature..."
     Const PickCreatureText = "Pick Creature..."
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
-        MyBase.New(parent, setState, New List(Of String) From {
+        MyBase.New(
+            parent,
+            setState,
+            "",
+            New List(Of String) From {
                     NewCreatureText,
                     PickCreatureText
-                   })
-    End Sub
-
-    Public Overrides Sub HandleMenuItem(menuItem As String)
-        Select Case menuItem
-            Case NewCreatureText
-                SetState(GameState.NewCreatureName)
-            Case PickCreatureText
-                If Editor.Items.HasAny Then
-                    SetState(GameState.PickCreature)
-                Else
-                    SetState(GameState.NewCreatureName)
-                End If
-        End Select
-    End Sub
-    Protected Overrides Sub HandleCancel()
-        SetState(GameState.EditMenu)
+                   },
+            Sub(menuItem)
+                Select Case menuItem
+                    Case NewCreatureText
+                        setState(GameState.NewCreatureName, False)
+                    Case PickCreatureText
+                        If Editor.Items.HasAny Then
+                            setState(GameState.PickCreature, False)
+                        Else
+                            setState(GameState.NewCreatureName, False)
+                        End If
+                End Select
+            End Sub,
+            Sub()
+                setState(GameState.EditMenu, False)
+            End Sub)
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         MyBase.Render(displayBuffer)

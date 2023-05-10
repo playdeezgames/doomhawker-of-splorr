@@ -10,7 +10,11 @@
     Const DeleteMapText = "Delete Map..."
 
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
-        MyBase.New(parent, setState, New List(Of String) From {
+        MyBase.New(
+            parent,
+            setState,
+            "",
+            New List(Of String) From {
                     PlaceTerrainText,
                     PlaceItemText,
                     RemoveItemsText,
@@ -19,34 +23,31 @@
                     RenameMapText,
                     CloneMapText,
                     DeleteMapText
-                   })
+                   },
+            Sub(menuItem)
+                Select Case menuItem
+                    Case PlaceTerrainText
+                        setState(GameState.PickMapTerrain, False)
+                    Case PlaceItemText
+                        setState(GameState.PickMapItem, False)
+                    Case PlaceCreaturesText
+                        setState(GameState.PickMapCreature, False)
+                    Case RemoveItemsText
+                        setState(GameState.RemoveMapItem, False)
+                    Case RemoveCreaturesText
+                        setState(GameState.RemoveMapCreature, False)
+                    Case RenameMapText
+                        setState(GameState.RenameMap, False)
+                    Case CloneMapText
+                        setState(GameState.CloneMap, False)
+                    Case DeleteMapText
+                        setState(GameState.ConfirmDeleteMap, False)
+                End Select
+            End Sub,
+            Sub()
+                setState(GameState.MapsMenu, False)
+            End Sub)
     End Sub
-
-    Public Overrides Sub HandleMenuItem(menuItem As String)
-        Select Case menuItem
-            Case PlaceTerrainText
-                SetState(GameState.PickMapTerrain)
-            Case PlaceItemText
-                SetState(GameState.PickMapItem)
-            Case PlaceCreaturesText
-                SetState(GameState.PickMapCreature)
-            Case RemoveItemsText
-                SetState(GameState.RemoveMapItem)
-            Case RemoveCreaturesText
-                SetState(GameState.RemoveMapCreature)
-            Case RenameMapText
-                SetState(GameState.RenameMap)
-            Case CloneMapText
-                SetState(GameState.CloneMap)
-            Case DeleteMapText
-                SetState(GameState.ConfirmDeleteMap)
-        End Select
-    End Sub
-
-    Protected Overrides Sub HandleCancel()
-        SetState(GameState.MapsMenu)
-    End Sub
-
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font5x7)

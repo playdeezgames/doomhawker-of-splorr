@@ -10,6 +10,7 @@
         MyBase.New(
             parent,
             setState,
+            "",
             New List(Of String) From
             {
                 RenameCreatureText,
@@ -18,31 +19,32 @@
                 ChangeHueText,
                 CloneCreatureText,
                 DeleteCreatureText
-            })
+            },
+            Sub(menuItem)
+                Dim creature As ICreature = Editor.Creatures.Retrieve(CreatureName)
+                Select Case menuItem
+                    Case ChangeHueText
+                        creature.HueIndex = (creature.HueIndex + 1) Mod AllHues.Count
+                    Case ChangeGlyphText
+                        If creature.Font IsNot Nothing Then
+                            setState(GameState.PickCreatureGlyph, False)
+                        End If
+                    Case ChangeFontText
+                        If Editor.Fonts.HasAny Then
+                            setState(GameState.PickCreatureFont, False)
+                        End If
+                    Case RenameCreatureText
+                        setState(GameState.RenameCreature, False)
+                    Case CloneCreatureText
+                        setState(GameState.CloneCreature, False)
+                    Case DeleteCreatureText
+                        setState(GameState.ConfirmDeleteCreature, False)
+                End Select
+            End Sub,
+            Sub()
+                setState(GameState.CreaturesMenu, False)
+            End Sub)
     End Sub
-
-    Public Overrides Sub HandleMenuItem(menuItem As String)
-        Dim creature As ICreature = Editor.Creatures.Retrieve(CreatureName)
-        Select Case menuItem
-            Case ChangeHueText
-                creature.HueIndex = (creature.HueIndex + 1) Mod AllHues.Count
-            Case ChangeGlyphText
-                If creature.Font IsNot Nothing Then
-                    SetState(GameState.PickCreatureGlyph)
-                End If
-            Case ChangeFontText
-                If Editor.Fonts.HasAny Then
-                    SetState(GameState.PickCreatureFont)
-                End If
-            Case RenameCreatureText
-                SetState(GameState.RenameCreature)
-            Case CloneCreatureText
-                SetState(GameState.CloneCreature)
-            Case DeleteCreatureText
-                SetState(GameState.ConfirmDeleteCreature)
-        End Select
-    End Sub
-
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         MyBase.Render(displayBuffer)
         Dim creature As ICreature = ShowStatistics(displayBuffer)
@@ -53,11 +55,6 @@
             terrainFont.WriteText(displayBuffer, (ViewWidth - width, ViewHeight - height), $"{creature.GlyphKey}", AllHues(creature.HueIndex))
         End If
     End Sub
-
-    Protected Overrides Sub HandleCancel()
-        SetState(GameState.CreaturesMenu)
-    End Sub
-
     Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of Hue)) As ICreature
         Dim font = Fonts(GameFont.Font5x7)
         Dim creature As ICreature = Editor.Creatures.Retrieve(CreatureName)

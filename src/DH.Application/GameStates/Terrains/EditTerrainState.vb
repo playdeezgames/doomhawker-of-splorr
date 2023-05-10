@@ -11,6 +11,7 @@
         MyBase.New(
             parent,
             setState,
+            "",
             New List(Of String) From
             {
                 RenameTerrainText,
@@ -20,33 +21,34 @@
                 ToggleTenantabilityText,
                 CloneTerrainText,
                 DeleteTerrainText
-            })
+            },
+            Sub(menuItem)
+                Dim terrain As ITerrain = Editor.Terrains.Retrieve(TerrainName)
+                Select Case menuItem
+                    Case ToggleTenantabilityText
+                        terrain.Tenantability = Not terrain.Tenantability
+                    Case ChangeHueText
+                        terrain.HueIndex = (terrain.HueIndex + 1) Mod AllHues.Count
+                    Case ChangeGlyphText
+                        If terrain.Font IsNot Nothing Then
+                            setState(GameState.PickTerrainGlyph, False)
+                        End If
+                    Case ChangeFontText
+                        If Editor.Fonts.HasAny Then
+                            setState(GameState.PickTerrainFont, False)
+                        End If
+                    Case RenameTerrainText
+                        setState(GameState.RenameTerrain, False)
+                    Case CloneTerrainText
+                        setState(GameState.CloneTerrain, False)
+                    Case DeleteTerrainText
+                        setState(GameState.ConfirmDeleteTerrain, False)
+                End Select
+            End Sub,
+            Sub()
+                setState(GameState.TerrainsMenu, False)
+            End Sub)
     End Sub
-
-    Public Overrides Sub HandleMenuItem(menuItem As String)
-        Dim terrain As ITerrain = Editor.Terrains.Retrieve(TerrainName)
-        Select Case menuItem
-            Case ToggleTenantabilityText
-                terrain.Tenantability = Not terrain.Tenantability
-            Case ChangeHueText
-                terrain.HueIndex = (terrain.HueIndex + 1) Mod AllHues.Count
-            Case ChangeGlyphText
-                If terrain.Font IsNot Nothing Then
-                    SetState(GameState.PickTerrainGlyph)
-                End If
-            Case ChangeFontText
-                If Editor.Fonts.HasAny Then
-                    SetState(GameState.PickTerrainFont)
-                End If
-            Case RenameTerrainText
-                SetState(GameState.RenameTerrain)
-            Case CloneTerrainText
-                SetState(GameState.CloneTerrain)
-            Case DeleteTerrainText
-                SetState(GameState.ConfirmDeleteTerrain)
-        End Select
-    End Sub
-
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         MyBase.Render(displayBuffer)
         Dim terrain As ITerrain = ShowStatistics(displayBuffer)
@@ -57,11 +59,6 @@
             terrainFont.WriteText(displayBuffer, (ViewWidth - width, ViewHeight - height), $"{terrain.GlyphKey}", CType(terrain.HueIndex, Hue))
         End If
     End Sub
-
-    Protected Overrides Sub HandleCancel()
-        SetState(GameState.TerrainsMenu)
-    End Sub
-
     Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of Hue)) As ITerrain
         Dim font = Fonts(GameFont.Font5x7)
         Dim terrain As ITerrain = Editor.Terrains.Retrieve(TerrainName)

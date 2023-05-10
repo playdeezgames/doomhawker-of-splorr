@@ -3,23 +3,26 @@
     Const NewTerrainText = "New Terrain..."
     Const EditTerrainText = "Pick Terrain..."
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
-        MyBase.New(parent, setState, New List(Of String) From {NewTerrainText, EditTerrainText})
-    End Sub
-
-    Public Overrides Sub HandleMenuItem(menuItem As String)
-        Select Case menuItem
-            Case NewTerrainText
-                SetState(GameState.NewTerrainName)
-            Case EditTerrainText
-                If Editor.Terrains.HasAny Then
-                    SetState(GameState.PickTerrain)
-                Else
-                    SetState(GameState.NewTerrainName)
-                End If
-        End Select
-    End Sub
-    Protected Overrides Sub HandleCancel()
-        SetState(GameState.EditMenu)
+        MyBase.New(
+            parent,
+            setState,
+            "",
+            New List(Of String) From {NewTerrainText, EditTerrainText},
+            Sub(menuItem)
+                Select Case menuItem
+                    Case NewTerrainText
+                        setState(GameState.NewTerrainName, False)
+                    Case EditTerrainText
+                        If Editor.Terrains.HasAny Then
+                            setState(GameState.PickTerrain, False)
+                        Else
+                            setState(GameState.NewTerrainName, False)
+                        End If
+                End Select
+            End Sub,
+            Sub()
+                setState(GameState.EditMenu, False)
+            End Sub)
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         MyBase.Render(displayBuffer)
