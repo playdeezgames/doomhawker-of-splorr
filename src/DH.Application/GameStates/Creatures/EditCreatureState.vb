@@ -58,10 +58,10 @@
     Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of Integer)) As ICreature
         Dim font = Fonts(GameFont.Font5x7)
         Dim creature As ICreature = Editor.Creatures.Retrieve(CreatureName)
-        font.WriteText(displayBuffer, (0, font.Height * 8), $"Name: {CreatureName}", 15)
-        font.WriteText(displayBuffer, (0, font.Height * 9), $"Font: {creature.Font?.FontName}", 15)
-        font.WriteText(displayBuffer, (0, font.Height * 10), $"Glyph: {AscW(creature.GlyphKey)}", 15)
-        font.WriteText(displayBuffer, (0, font.Height * 11), $"Hue: {AllHues(creature.HueIndex)}", 15)
+        font.WriteText(displayBuffer, (Zero, font.Height * 8), $"Name: {CreatureName}", 15)
+        font.WriteText(displayBuffer, (Zero, font.Height * 9), $"Font: {creature.Font?.FontName}", 15)
+        font.WriteText(displayBuffer, (Zero, font.Height * 10), $"Glyph: {AscW(creature.GlyphKey)}", 15)
+        font.WriteText(displayBuffer, (Zero, font.Height * 11), $"Hue: {AllHues(creature.HueIndex)}", 15)
         Return creature
     End Function
 End Class

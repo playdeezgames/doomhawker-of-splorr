@@ -39,7 +39,7 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font5x7)
-        font.WriteText(displayBuffer, (0, font.Height * 8), $"Font Width: {FontWidth}", 15)
-        font.WriteText(displayBuffer, (0, font.Height * 9), $"Font Height: {FontHeight}", 15)
+        font.WriteText(displayBuffer, (Zero, font.Height * 8), $"Font Width: {FontWidth}", 15)
+        font.WriteText(displayBuffer, (Zero, font.Height * 9), $"Font Height: {FontHeight}", 15)
     End Sub
 End Class

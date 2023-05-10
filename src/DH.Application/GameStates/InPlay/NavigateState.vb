@@ -21,10 +21,9 @@ Friend Class NavigateState
                 Editor.Avatar.Creature.Move(Direction.East)
         End Select
     End Sub
-
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
-        displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), 0)
+        displayBuffer.Fill((Zero, Zero), (ViewWidth, ViewHeight), Zero)
         Dim avatar = Editor.Avatar
-        BasePlaceMapState.DrawMap(displayBuffer, avatar.MapName, avatar.Column, avatar.Row, 0)
+        BasePlaceMapState.DrawMap(displayBuffer, avatar.MapName, avatar.Column, avatar.Row, Zero)
     End Sub
 End Class

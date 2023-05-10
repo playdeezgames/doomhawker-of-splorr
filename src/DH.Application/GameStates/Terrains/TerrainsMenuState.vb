@@ -27,6 +27,6 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font5x7)
-        font.WriteText(displayBuffer, (0, ViewHeight - font.Height), $"Terrain Count: {Editor.Terrains.Names.Count}", 15)
+        font.WriteText(displayBuffer, (Zero, ViewHeight - font.Height), $"Terrain Count: {Editor.Terrains.Names.Count}", 15)
     End Sub
 End Class

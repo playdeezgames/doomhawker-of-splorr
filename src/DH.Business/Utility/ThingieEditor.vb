@@ -2,6 +2,7 @@
     Implements IThingieEditor(Of TThingie)
     Private ReadOnly _thingieSource As Func(Of Dictionary(Of String, TData))
     Private ReadOnly _thingieRetriever As Func(Of String, TThingie)
+    Protected Const Zero = 0
 
     Sub New(thingieSource As Func(Of Dictionary(Of String, TData)), thingieRetriever As Func(Of String, TThingie))
         _thingieSource = thingieSource

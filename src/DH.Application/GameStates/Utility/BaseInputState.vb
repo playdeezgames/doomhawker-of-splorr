@@ -38,7 +38,7 @@
                 Select Case AscW(_character)
                     Case 128, 129, 130, 131
                         If _buffer.Length > 1 Then
-                            _buffer = _buffer.Substring(0, _buffer.Length - 1)
+                            _buffer = _buffer.Substring(Zero, _buffer.Length - 1)
                         Else
                             _buffer = ""
                         End If
@@ -68,44 +68,44 @@
         _character = ChrW(ascii)
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
-        displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), 0)
+        displayBuffer.Fill((Zero, Zero), (ViewWidth, ViewHeight), Zero)
         Dim font = Fonts(GameFont.Font5x7)
         Dim CellWidth = font.TextWidth(" ")
         Dim CellHeight = font.Height
-        font.WriteText(displayBuffer, (0, 0), _caption, 15)
-        font.WriteText(displayBuffer, (0, font.Height), _buffer, 9)
-        For row = 0 To 5
-            For column = 0 To 15
+        font.WriteText(displayBuffer, (Zero, Zero), _caption, 15)
+        font.WriteText(displayBuffer, (Zero, font.Height), _buffer, 9)
+        For row = Zero To 5
+            For column = Zero To 15
                 Dim ch As Char = ChrW(row * 16 + column + 32)
                 If ch = _character Then
                     displayBuffer.Fill((column * CellWidth, (row + 3) * CellHeight), (CellWidth, CellHeight), 15)
-                    font.WriteText(displayBuffer, (column * CellWidth, (row + 3) * CellHeight), $"{ch}", 0)
+                    font.WriteText(displayBuffer, (column * CellWidth, (row + 3) * CellHeight), $"{ch}", Zero)
                 Else
                     font.WriteText(displayBuffer, (column * CellWidth, (row + 3) * CellHeight), $"{ch}", 7)
                 End If
             Next
         Next
         If _character >= ChrW(128) AndAlso _character < ChrW(132) Then
-            displayBuffer.Fill((0, 9 * CellHeight), (CellWidth * 4, CellHeight), 15)
-            font.WriteText(displayBuffer, (0, 9 * CellHeight), " <- ", 0)
+            displayBuffer.Fill((Zero, 9 * CellHeight), (CellWidth * 4, CellHeight), 15)
+            font.WriteText(displayBuffer, (Zero, 9 * CellHeight), " <- ", Zero)
         Else
-            font.WriteText(displayBuffer, (0, 9 * CellHeight), " <- ", 7)
+            font.WriteText(displayBuffer, (Zero, 9 * CellHeight), " <- ", 7)
         End If
         If _character >= ChrW(132) AndAlso _character < ChrW(136) Then
             displayBuffer.Fill((CellWidth * 4, 9 * CellHeight), (CellWidth * 4, CellHeight), 15)
-            font.WriteText(displayBuffer, (CellWidth * 4, 9 * CellHeight), " << ", 0)
+            font.WriteText(displayBuffer, (CellWidth * 4, 9 * CellHeight), " << ", Zero)
         Else
             font.WriteText(displayBuffer, (CellWidth * 4, 9 * CellHeight), " << ", 7)
         End If
         If _character >= ChrW(136) AndAlso _character < ChrW(140) Then
             displayBuffer.Fill((CellWidth * 8, 9 * CellHeight), (CellWidth * 4, CellHeight), 15)
-            font.WriteText(displayBuffer, (CellWidth * 8, 9 * CellHeight), " OK ", 0)
+            font.WriteText(displayBuffer, (CellWidth * 8, 9 * CellHeight), " OK ", Zero)
         Else
             font.WriteText(displayBuffer, (CellWidth * 8, 9 * CellHeight), " OK ", 7)
         End If
         If _character >= ChrW(140) AndAlso _character < ChrW(144) Then
             displayBuffer.Fill((CellWidth * 12, 9 * CellHeight), (CellWidth * 4, CellHeight), 15)
-            font.WriteText(displayBuffer, (CellWidth * 12, 9 * CellHeight), " XX ", 0)
+            font.WriteText(displayBuffer, (CellWidth * 12, 9 * CellHeight), " XX ", Zero)
         Else
             font.WriteText(displayBuffer, (CellWidth * 12, 9 * CellHeight), " XX ", 7)
         End If

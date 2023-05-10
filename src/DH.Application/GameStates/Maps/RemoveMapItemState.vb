@@ -15,7 +15,7 @@
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font3x5)
         Dim currentItem = Editor.Maps.Retrieve(MapName).GetCell(Column, Row).Item?.Item?.Name
-        font.WriteText(displayBuffer, (0, 0), $"({Column},{Row}) {If(currentItem, "(none)")}", 15)
-        font.WriteText(displayBuffer, (0, ViewHeight - font.Height), $"Removing Items", 15)
+        font.WriteText(displayBuffer, (Zero, Zero), $"({Column},{Row}) {If(currentItem, "(none)")}", 15)
+        font.WriteText(displayBuffer, (Zero, ViewHeight - font.Height), $"Removing Items", 15)
     End Sub
 End Class

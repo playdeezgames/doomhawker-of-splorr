@@ -20,7 +20,7 @@
                     .Width = width,
                     .Lines = New Dictionary(Of Integer, IEnumerable(Of Integer))
                 }
-            For line = 0 To height - 1
+            For line = Zero To height - 1
                 glyphData.Lines(line) = Array.Empty(Of Integer)
             Next
             fontData.Glyphs(ChrW(character)) = glyphData

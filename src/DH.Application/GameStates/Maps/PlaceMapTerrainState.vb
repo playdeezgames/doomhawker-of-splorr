@@ -15,7 +15,7 @@
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font3x5)
         Dim currentTerrain = Editor.Maps.Retrieve(MapName).GetCell(Column, Row).Terrain.Name
-        font.WriteText(displayBuffer, (0, 0), $"({Column},{Row}) {currentTerrain}", 15)
-        font.WriteText(displayBuffer, (0, ViewHeight - font.Height), $"Placing: {TerrainName}", 15)
+        font.WriteText(displayBuffer, (Zero, Zero), $"({Column},{Row}) {currentTerrain}", 15)
+        font.WriteText(displayBuffer, (Zero, ViewHeight - font.Height), $"Placing: {TerrainName}", 15)
     End Sub
 End Class

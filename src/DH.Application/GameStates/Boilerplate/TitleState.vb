@@ -22,7 +22,7 @@
             9
         }
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
-        displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), 0)
+        displayBuffer.Fill((Zero, Zero), (ViewWidth, ViewHeight), Zero)
         RenderTitle(displayBuffer)
         RenderFooter(displayBuffer)
     End Sub
@@ -36,7 +36,7 @@
     Private Sub RenderTitle(displayBuffer As IPixelSink(Of Integer))
         Dim font = Fonts(GameFont.Font8x8)
         Dim h = RNG.FromEnumerable(hues)
-        font.WriteText(displayBuffer, (0, ViewHeight \ 2 - font.Height * 3 - font.Height \ 2), "Doomhawker", h)
+        font.WriteText(displayBuffer, (Zero, ViewHeight \ 2 - font.Height * 3 - font.Height \ 2), "Doomhawker", h)
         font.WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth("of") \ 2, ViewHeight \ 2 - font.Height \ 2), "of", h)
         font.WriteText(displayBuffer, (ViewWidth - font.TextWidth("SPLORR!!"), ViewHeight \ 2 + font.Height * 3 - font.Height \ 2), "SPLORR!!", h)
     End Sub

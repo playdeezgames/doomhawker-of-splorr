@@ -62,11 +62,11 @@
     Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of Integer)) As ITerrain
         Dim font = Fonts(GameFont.Font5x7)
         Dim terrain As ITerrain = Editor.Terrains.Retrieve(TerrainName)
-        font.WriteText(displayBuffer, (0, font.Height * 8), $"Name: {TerrainName}", 15)
-        font.WriteText(displayBuffer, (0, font.Height * 9), $"Font: {terrain.Font?.FontName}", 15)
-        font.WriteText(displayBuffer, (0, font.Height * 10), $"Glyph: {AscW(terrain.GlyphKey)}", 15)
-        font.WriteText(displayBuffer, (0, font.Height * 11), $"Hue: {AllHues(terrain.HueIndex)}", 15)
-        font.WriteText(displayBuffer, (0, font.Height * 12), $"Tenantable: {terrain.Tenantability}", 15)
+        font.WriteText(displayBuffer, (Zero, font.Height * 8), $"Name: {TerrainName}", 15)
+        font.WriteText(displayBuffer, (Zero, font.Height * 9), $"Font: {terrain.Font?.FontName}", 15)
+        font.WriteText(displayBuffer, (Zero, font.Height * 10), $"Glyph: {AscW(terrain.GlyphKey)}", 15)
+        font.WriteText(displayBuffer, (Zero, font.Height * 11), $"Hue: {AllHues(terrain.HueIndex)}", 15)
+        font.WriteText(displayBuffer, (Zero, font.Height * 12), $"Tenantable: {terrain.Tenantability}", 15)
         Return terrain
     End Function
 End Class

@@ -1,6 +1,6 @@
 ﻿Friend Class BasePickState
     Inherits BaseGameState(Of Integer, Command, Sfx, GameState)
-    Private _index As Integer = 0
+    Private _index As Integer = Zero
     Private ReadOnly _caption As String = ""
     Private ReadOnly _onPick As Action(Of String)
     Private ReadOnly _onCancel As Action
@@ -33,19 +33,19 @@
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
-        displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), 0)
+        displayBuffer.Fill((Zero, Zero), (ViewWidth, ViewHeight), Zero)
         Dim font = Fonts(GameFont.Font5x7)
         Dim listItems = _listSource().ToList
         If _index > listItems.Count - 1 Then
-            _index = 0
+            _index = Zero
         End If
         Dim y = ViewHeight \ 2 - font.Height \ 2 - _index * font.Height
-        For index = 0 To listItems.Count - 1
+        For index = Zero To listItems.Count - 1
             Dim h As Integer = If(index = _index, 9, 1)
             Dim text = listItems(index)
             font.WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(text) \ 2, y), text, h)
             y += font.Height
         Next
-        font.WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(_caption) \ 2, 0), _caption, 15)
+        font.WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(_caption) \ 2, Zero), _caption, 15)
     End Sub
 End Class

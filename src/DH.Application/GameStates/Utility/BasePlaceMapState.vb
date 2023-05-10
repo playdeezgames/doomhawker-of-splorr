@@ -1,7 +1,7 @@
 ﻿Friend MustInherit Class BasePlaceMapState
     Inherits BaseGameState(Of Integer, Command, Sfx, GameState)
-    Private _column As Integer = 0
-    Private _row As Integer = 0
+    Private _column As Integer = Zero
+    Private _row As Integer = Zero
     Private ReadOnly _onCancel As Action
     Private ReadOnly _onPlace As Action(Of Integer, Integer)
     Protected ReadOnly Property Column As Integer
@@ -29,7 +29,7 @@
         Dim map = Editor.Maps.Retrieve(MapName)
         Select Case command
             Case Command.UpReleased
-                If _row = 0 Then
+                If _row = Zero Then
                     HandleCancel()
                 Else
                     _row -= 1
@@ -41,7 +41,7 @@
                     _row += 1
                 End If
             Case Command.LeftReleased
-                If _column = 0 Then
+                If _column = Zero Then
                     HandleCancel()
                 Else
                     _column -= 1
@@ -58,13 +58,13 @@
     End Sub
 
     Private Sub HandleCancel()
-        _row = 0
-        _column = 0
+        _row = Zero
+        _column = Zero
         _onCancel()
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
-        displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), 0)
+        displayBuffer.Fill((Zero, Zero), (ViewWidth, ViewHeight), Zero)
         DrawMap(displayBuffer, MapName, _column, _row, 15)
     End Sub
 
@@ -75,8 +75,8 @@
         Dim offsetX = ViewWidth \ 2 - cellWidth \ 2 - column * cellWidth
         Dim offsetY = ViewHeight \ 2 - cellHeight \ 2 - row * cellHeight
         Dim map = Editor.Maps.Retrieve(mapName)
-        For c = 0 To map.Columns - 1
-            For r = 0 To map.Rows - 1
+        For c = Zero To map.Columns - 1
+            For r = Zero To map.Rows - 1
                 Dim plotX = c * cellWidth + offsetX
                 Dim plotY = r * cellHeight + offsetY
                 Dim cell = map.GetCell(c, r)

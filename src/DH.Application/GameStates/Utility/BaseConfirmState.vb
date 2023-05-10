@@ -29,10 +29,10 @@
         End Select
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
-        displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), 0)
+        displayBuffer.Fill((Zero, Zero), (ViewWidth, ViewHeight), Zero)
         Dim font = Fonts(GameFont.Font5x7)
-        font.WriteText(displayBuffer, (0, 0), _caption, _hue)
-        font.WriteText(displayBuffer, (0, font.Height), "No", If(_confirmation, 1, 9))
-        font.WriteText(displayBuffer, (0, font.Height * 2), "Yes", If(_confirmation, 9, 1))
+        font.WriteText(displayBuffer, (Zero, Zero), _caption, _hue)
+        font.WriteText(displayBuffer, (Zero, font.Height), "No", If(_confirmation, 1, 9))
+        font.WriteText(displayBuffer, (Zero, font.Height * 2), "Yes", If(_confirmation, 9, 1))
     End Sub
 End Class

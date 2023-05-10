@@ -2,7 +2,7 @@
     Inherits BaseGameState(Of Integer, Command, Sfx, GameState)
     Private ReadOnly _caption As String
     Private ReadOnly _menuItems As IReadOnlyList(Of String)
-    Private _currentItem As Integer = 0
+    Private _currentItem As Integer = Zero
     Private ReadOnly _onMenuItem As Action(Of String)
     Private ReadOnly _onCancel As Action
     Protected ReadOnly Property CurrentItemText As String
@@ -36,17 +36,17 @@
         End Select
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
-        displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), 0)
+        displayBuffer.Fill((Zero, Zero), (ViewWidth, ViewHeight), Zero)
         Dim font = Fonts(GameFont.Font5x7)
-        Dim y = 0
+        Dim y = Zero
         If Not String.IsNullOrWhiteSpace(_caption) Then
-            font.WriteText(displayBuffer, (0, y), _caption, 7)
+            font.WriteText(displayBuffer, (Zero, y), _caption, 7)
             y += font.Height
         End If
-        Dim row = 0
+        Dim row = Zero
         For Each menuItem In _menuItems
             Dim h As Integer = If(row = _currentItem, 9, 1)
-            font.WriteText(displayBuffer, (0, y), menuItem, h)
+            font.WriteText(displayBuffer, (Zero, y), menuItem, h)
             row += 1
             y += font.Height
         Next

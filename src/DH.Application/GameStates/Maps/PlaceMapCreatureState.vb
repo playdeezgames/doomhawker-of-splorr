@@ -15,7 +15,7 @@
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font3x5)
         Dim currentCreature = Editor.Maps.Retrieve(MapName).GetCell(Column, Row).Creature?.Creature?.Name
-        font.WriteText(displayBuffer, (0, 0), $"({Column},{Row}) {If(currentCreature, "(none)")}", 15)
-        font.WriteText(displayBuffer, (0, ViewHeight - font.Height), $"Placing: {CreatureName}", 15)
+        font.WriteText(displayBuffer, (Zero, Zero), $"({Column},{Row}) {If(currentCreature, "(none)")}", 15)
+        font.WriteText(displayBuffer, (Zero, ViewHeight - font.Height), $"Placing: {CreatureName}", 15)
     End Sub
 End Class

@@ -56,14 +56,13 @@
             terrainFont.WriteText(displayBuffer, (ViewWidth - width, ViewHeight - height), $"{item.GlyphKey}", AllHues(item.HueIndex))
         End If
     End Sub
-
     Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of Integer)) As IItem
         Dim font = Fonts(GameFont.Font5x7)
         Dim item As IItem = Editor.Items.Retrieve(ItemName)
-        font.WriteText(displayBuffer, (0, font.Height * 8), $"Name: {ItemName}", 15)
-        font.WriteText(displayBuffer, (0, font.Height * 9), $"Font: {item.Font?.FontName}", 15)
-        font.WriteText(displayBuffer, (0, font.Height * 10), $"Glyph: {AscW(item.GlyphKey)}", 15)
-        font.WriteText(displayBuffer, (0, font.Height * 11), $"Hue: {AllHues(item.HueIndex)}", 15)
+        font.WriteText(displayBuffer, (Zero, font.Height * 8), $"Name: {ItemName}", 15)
+        font.WriteText(displayBuffer, (Zero, font.Height * 9), $"Font: {item.Font?.FontName}", 15)
+        font.WriteText(displayBuffer, (Zero, font.Height * 10), $"Glyph: {AscW(item.GlyphKey)}", 15)
+        font.WriteText(displayBuffer, (Zero, font.Height * 11), $"Hue: {AllHues(item.HueIndex)}", 15)
         Return item
     End Function
 End Class

@@ -12,11 +12,11 @@
         End If
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
-        displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), 0)
+        displayBuffer.Fill((Zero, Zero), (ViewWidth, ViewHeight), Zero)
         Dim font = Fonts(GameFont.Font5x7)
-        Dim y = 0
+        Dim y = Zero
         For Each line In Messages.Peek.Lines
-            font.WriteText(displayBuffer, (0, y), line.Item2, line.Item1)
+            font.WriteText(displayBuffer, (Zero, y), line.Item2, line.Item1)
             y += font.Height
         Next
     End Sub

@@ -10,7 +10,7 @@
         _data.Items(name) = New ItemData With {
             .FontName = String.Empty,
             .GlyphKey = " "c,
-            .HueIndex = 0}
+            .HueIndex = Zero}
         Return New Item(_data, name)
     End Function
 End Class
