@@ -15,23 +15,8 @@ Public Module EditorContext
     Public MapWidth As Integer
     Public MapHeight As Integer
     Public Messages As New Queue(Of EditorMessage)
-    Public ReadOnly AllHues As IReadOnlyList(Of Hue) = New List(Of Hue) From {
-        Hue.Black,
-        Hue.Blue,
-        Hue.Green,
-        Hue.Cyan,
-        Hue.Red,
-        Hue.Magenta,
-        Hue.Brown,
-        Hue.Gray,
-        Hue.DarkGray,
-        Hue.LightBlue,
-        Hue.LightGreen,
-        Hue.LightCyan,
-        Hue.LightRed,
-        Hue.LightMagenta,
-        Hue.Yellow,
-        Hue.White
+    Public ReadOnly AllHues As IReadOnlyList(Of Integer) = New List(Of Integer) From {
+        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
         }
     Friend Sub Initialize()
         Editor = New DH.Business.Editor(New EditorData)

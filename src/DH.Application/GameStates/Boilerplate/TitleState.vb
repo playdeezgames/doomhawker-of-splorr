@@ -1,7 +1,7 @@
 ﻿Friend Class TitleState
-    Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
+    Inherits BaseGameState(Of Integer, Command, Sfx, GameState)
 
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
+    Public Sub New(parent As IGameController(Of Integer, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent, setState)
     End Sub
 
@@ -11,29 +11,29 @@
         End If
     End Sub
 
-    ReadOnly hues As IReadOnlyList(Of Hue) = New List(Of Hue) From
+    ReadOnly hues As IReadOnlyList(Of Integer) = New List(Of Integer) From
         {
-            Hue.White,
-            Hue.Yellow,
-            Hue.LightGreen,
-            Hue.LightMagenta,
-            Hue.LightRed,
-            Hue.LightCyan,
-            Hue.LightBlue
+            15,
+            14,
+            13,
+            12,
+            11,
+            10,
+            9
         }
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
-        displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
+        displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), 0)
         RenderTitle(displayBuffer)
         RenderFooter(displayBuffer)
     End Sub
 
-    Private Sub RenderFooter(displayBuffer As IPixelSink(Of Hue))
+    Private Sub RenderFooter(displayBuffer As IPixelSink(Of Integer))
         Dim font = Fonts(GameFont.Font3x5)
         Const text = "Press FIRE"
-        font.WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(text) \ 2, ViewHeight - font.Height), text, Hue.Gray)
+        font.WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(text) \ 2, ViewHeight - font.Height), text, 7)
     End Sub
 
-    Private Sub RenderTitle(displayBuffer As IPixelSink(Of Hue))
+    Private Sub RenderTitle(displayBuffer As IPixelSink(Of Integer))
         Dim font = Fonts(GameFont.Font8x8)
         Dim h = RNG.FromEnumerable(hues)
         font.WriteText(displayBuffer, (0, ViewHeight \ 2 - font.Height * 3 - font.Height \ 2), "Doomhawker", h)

@@ -7,7 +7,7 @@
     Const RenameTerrainText = "Rename Terrain..."
     Const CloneTerrainText = "Clone Terrain..."
     Const DeleteTerrainText = "Delete Terrain..."
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
+    Public Sub New(parent As IGameController(Of Integer, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(
             parent,
             setState,
@@ -49,24 +49,24 @@
                 setState(GameState.TerrainsMenu, False)
             End Sub)
     End Sub
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
         MyBase.Render(displayBuffer)
         Dim terrain As ITerrain = ShowStatistics(displayBuffer)
         If terrain.Font IsNot Nothing Then
             Dim terrainFont = terrain.Font.Font
             Dim width = terrainFont.TextWidth($"{terrain.GlyphKey}")
             Dim height = terrainFont.Height
-            terrainFont.WriteText(displayBuffer, (ViewWidth - width, ViewHeight - height), $"{terrain.GlyphKey}", CType(terrain.HueIndex, Hue))
+            terrainFont.WriteText(displayBuffer, (ViewWidth - width, ViewHeight - height), $"{terrain.GlyphKey}", terrain.HueIndex)
         End If
     End Sub
-    Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of Hue)) As ITerrain
+    Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of Integer)) As ITerrain
         Dim font = Fonts(GameFont.Font5x7)
         Dim terrain As ITerrain = Editor.Terrains.Retrieve(TerrainName)
-        font.WriteText(displayBuffer, (0, font.Height * 8), $"Name: {TerrainName}", Hue.White)
-        font.WriteText(displayBuffer, (0, font.Height * 9), $"Font: {terrain.Font?.FontName}", Hue.White)
-        font.WriteText(displayBuffer, (0, font.Height * 10), $"Glyph: {AscW(terrain.GlyphKey)}", Hue.White)
-        font.WriteText(displayBuffer, (0, font.Height * 11), $"Hue: {AllHues(terrain.HueIndex)}", Hue.White)
-        font.WriteText(displayBuffer, (0, font.Height * 12), $"Tenantable: {terrain.Tenantability}", Hue.White)
+        font.WriteText(displayBuffer, (0, font.Height * 8), $"Name: {TerrainName}", 15)
+        font.WriteText(displayBuffer, (0, font.Height * 9), $"Font: {terrain.Font?.FontName}", 15)
+        font.WriteText(displayBuffer, (0, font.Height * 10), $"Glyph: {AscW(terrain.GlyphKey)}", 15)
+        font.WriteText(displayBuffer, (0, font.Height * 11), $"Hue: {AllHues(terrain.HueIndex)}", 15)
+        font.WriteText(displayBuffer, (0, font.Height * 12), $"Tenantable: {terrain.Tenantability}", 15)
         Return terrain
     End Function
 End Class

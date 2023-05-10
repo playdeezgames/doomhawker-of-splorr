@@ -6,7 +6,7 @@
     Const RenameItemText = "Rename Item..."
     Const CloneItemText = "Clone Item..."
     Const DeleteItemText = "Delete Item..."
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
+    Public Sub New(parent As IGameController(Of Integer, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(
             parent,
             setState,
@@ -46,7 +46,7 @@
             End Sub)
     End Sub
 
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
         MyBase.Render(displayBuffer)
         Dim item As IItem = ShowStatistics(displayBuffer)
         If item.Font IsNot Nothing Then
@@ -57,13 +57,13 @@
         End If
     End Sub
 
-    Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of Hue)) As IItem
+    Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of Integer)) As IItem
         Dim font = Fonts(GameFont.Font5x7)
         Dim item As IItem = Editor.Items.Retrieve(ItemName)
-        font.WriteText(displayBuffer, (0, font.Height * 8), $"Name: {ItemName}", Hue.White)
-        font.WriteText(displayBuffer, (0, font.Height * 9), $"Font: {item.Font?.FontName}", Hue.White)
-        font.WriteText(displayBuffer, (0, font.Height * 10), $"Glyph: {AscW(item.GlyphKey)}", Hue.White)
-        font.WriteText(displayBuffer, (0, font.Height * 11), $"Hue: {AllHues(item.HueIndex)}", Hue.White)
+        font.WriteText(displayBuffer, (0, font.Height * 8), $"Name: {ItemName}", 15)
+        font.WriteText(displayBuffer, (0, font.Height * 9), $"Font: {item.Font?.FontName}", 15)
+        font.WriteText(displayBuffer, (0, font.Height * 10), $"Glyph: {AscW(item.GlyphKey)}", 15)
+        font.WriteText(displayBuffer, (0, font.Height * 11), $"Hue: {AllHues(item.HueIndex)}", 15)
         Return item
     End Function
 End Class

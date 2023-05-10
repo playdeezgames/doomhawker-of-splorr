@@ -9,7 +9,7 @@
     Const CloneMapText = "Clone Map..."
     Const DeleteMapText = "Delete Map..."
 
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
+    Public Sub New(parent As IGameController(Of Integer, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(
             parent,
             setState,
@@ -48,9 +48,9 @@
                 setState(GameState.MapsMenu, False)
             End Sub)
     End Sub
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font5x7)
-        font.WriteText(displayBuffer, (0, ViewHeight - font.Height), $"Map Name: {MapName}", Hue.White)
+        font.WriteText(displayBuffer, (0, ViewHeight - font.Height), $"Map Name: {MapName}", 15)
     End Sub
 End Class

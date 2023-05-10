@@ -1,9 +1,9 @@
 ﻿Imports System.Data.Common
 
 Friend Class NavigateState
-    Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
+    Inherits BaseGameState(Of Integer, Command, Sfx, GameState)
 
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
+    Public Sub New(parent As IGameController(Of Integer, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent, setState)
     End Sub
 
@@ -22,9 +22,9 @@ Friend Class NavigateState
         End Select
     End Sub
 
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
-        displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
+        displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), 0)
         Dim avatar = Editor.Avatar
-        BasePlaceMapState.DrawMap(displayBuffer, avatar.MapName, avatar.Column, avatar.Row, Hue.Black)
+        BasePlaceMapState.DrawMap(displayBuffer, avatar.MapName, avatar.Column, avatar.Row, 0)
     End Sub
 End Class

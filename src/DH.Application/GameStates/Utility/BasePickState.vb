@@ -1,5 +1,5 @@
 ﻿Friend Class BasePickState
-    Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
+    Inherits BaseGameState(Of Integer, Command, Sfx, GameState)
     Private _index As Integer = 0
     Private ReadOnly _caption As String = ""
     Private ReadOnly _onPick As Action(Of String)
@@ -7,7 +7,7 @@
     Private ReadOnly _listSource As Func(Of IEnumerable(Of String))
 
     Public Sub New(
-                  parent As IGameController(Of Hue, Command, Sfx),
+                  parent As IGameController(Of Integer, Command, Sfx),
                   setState As Action(Of GameState?, Boolean),
                   caption As String,
                   onCancel As Action,
@@ -32,8 +32,8 @@
         End Select
     End Sub
 
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
-        displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
+        displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), 0)
         Dim font = Fonts(GameFont.Font5x7)
         Dim listItems = _listSource().ToList
         If _index > listItems.Count - 1 Then
@@ -41,11 +41,11 @@
         End If
         Dim y = ViewHeight \ 2 - font.Height \ 2 - _index * font.Height
         For index = 0 To listItems.Count - 1
-            Dim h As Hue = If(index = _index, Hue.LightBlue, Hue.Blue)
+            Dim h As Integer = If(index = _index, 9, 1)
             Dim text = listItems(index)
             font.WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(text) \ 2, y), text, h)
             y += font.Height
         Next
-        font.WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(_caption) \ 2, 0), _caption, Hue.White)
+        font.WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(_caption) \ 2, 0), _caption, 15)
     End Sub
 End Class

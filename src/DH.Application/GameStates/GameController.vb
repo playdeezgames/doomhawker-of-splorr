@@ -1,5 +1,5 @@
 ﻿Public Class GameController
-    Inherits BaseGameController(Of Hue, Command, Sfx, GameState)
+    Inherits BaseGameController(Of Integer, Command, Sfx, GameState)
     Private ReadOnly _configSink As Action(Of (Integer, Integer), Single)
 
     Public Sub New(windowSizeSource As Func(Of (Integer, Integer)), volumeSource As Func(Of Single), configSink As Action(Of (Integer, Integer), Single))
@@ -97,7 +97,7 @@
                          Me,
                          AddressOf SetCurrentState,
                          "Confirm creature deletion?",
-                         Hue.Red,
+                         4,
                          Sub(confirmation)
                              If confirmation Then
                                  Editor.Creatures.Delete(CreatureName)
@@ -186,7 +186,7 @@
                          Me,
                          AddressOf SetCurrentState,
                          "Confirm item deletion?",
-                         Hue.Red,
+                         4,
                          Sub(confirmation)
                              If confirmation Then
                                  Editor.Items.Delete(ItemName)
@@ -239,9 +239,9 @@
                  Sub(buffer)
                      Editor.Save(buffer)
                      Messages.Enqueue(New EditorMessage With {
-                     .Lines = New List(Of (Hue, String)) From
+                     .Lines = New List(Of (Integer, String)) From
                      {
-                        (Hue.Green, "You saved it!")
+                        (2, "You saved it!")
                      }})
                      SetStates(GameState.Messages, GameState.MainMenu)
                  End Sub))
@@ -256,9 +256,9 @@
                          TransitionToState(GameState.EditMenu)
                      Catch ex As Exception
                          Messages.Enqueue(New EditorMessage With {
-                         .Lines = New List(Of (Hue, String)) From
+                         .Lines = New List(Of (Integer, String)) From
                          {
-                            (Hue.Red, "Failed to load!")
+                            (4, "Failed to load!")
                          }})
                          SetStates(GameState.Messages, GameState.MainMenu)
                      End Try
@@ -361,7 +361,7 @@
                  Me,
                  AddressOf SetCurrentState,
                  "Confirm map deletion?",
-                 Hue.Red,
+                 4,
                  Sub(confirmation)
                      If confirmation Then
                          Editor.Maps.Delete(MapName)
@@ -404,7 +404,7 @@
                          Me,
                          AddressOf SetCurrentState,
                          "Confirm terrain deletion?",
-                         Hue.Red,
+                         4,
                          Sub(confirmation)
                              If confirmation Then
                                  Editor.Terrains.Delete(TerrainName)
@@ -518,7 +518,7 @@
                  Me,
                  AddressOf SetCurrentState,
                  "Confirm font deletion?",
-                 Hue.Red,
+                 4,
                  Sub(confirmation)
                      If confirmation Then
                          Editor.Fonts.Delete(FontName)
@@ -583,9 +583,9 @@
                  Sub(buffer)
                      Editor.Fonts.Export(FontName, buffer)
                      Messages.Enqueue(New EditorMessage With {
-                     .Lines = New List(Of (Hue, String)) From
+                     .Lines = New List(Of (Integer, String)) From
                      {
-                        (Hue.Green, "You exported it!")
+                        (2, "You exported it!")
                      }})
                      SetStates(GameState.Messages, GameState.FontsMenu)
                  End Sub))
