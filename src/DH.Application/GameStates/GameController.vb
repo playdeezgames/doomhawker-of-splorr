@@ -46,6 +46,79 @@
                 End Sub,
                 Function() Editor.Colors.Names))
         SetState(GameState.EditColor, New EditColorState(Me, AddressOf SetCurrentState))
+        SetState(GameState.PickRenameColor, New BasePickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Pick Color To Rename",
+                 Sub()
+                     TransitionToState(GameState.ColorsMenu)
+                 End Sub,
+                 Sub(picked)
+                     ColorName = picked
+                     TransitionToState(GameState.RenameColor)
+                 End Sub,
+                 Function() Editor.Colors.Names))
+        SetState(GameState.RenameColor, New BaseInputState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Rename Color To:",
+                 Sub()
+                     TransitionToState(GameState.ColorsMenu)
+                 End Sub,
+                 Sub(buffer)
+                     Editor.Colors.Rename(ColorName, buffer)
+                     TransitionToState(GameState.ColorsMenu)
+                 End Sub))
+        SetState(GameState.PickDeleteColor, New BasePickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Pick Color to Delete",
+                 Sub()
+                     TransitionToState(GameState.ColorsMenu)
+                 End Sub,
+                 Sub(picked)
+                     ColorName = picked
+                     TransitionToState(GameState.ConfirmDeleteColor)
+                 End Sub,
+                 Function() Editor.Colors.Names))
+        SetState(GameState.ConfirmDeleteColor, New BaseConfirmState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Confirm Color Deletion?",
+                 Red,
+                 Sub(confirmation)
+                     If confirmation Then
+                         Editor.Colors.Delete(ColorName)
+                     End If
+                     TransitionToState(GameState.ColorsMenu)
+                 End Sub,
+                 Sub()
+                     TransitionToState(GameState.ColorsMenu)
+                 End Sub))
+        SetState(GameState.PickCloneColor, New BasePickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Pick Color To Clone",
+                 Sub()
+                     TransitionToState(GameState.ColorsMenu)
+                 End Sub,
+                 Sub(picked)
+                     ColorName = picked
+                     TransitionToState(GameState.CloneColor)
+                 End Sub,
+                 Function() Editor.Colors.Names))
+        SetState(GameState.CloneColor, New BaseInputState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Cloned Color Name:",
+                 Sub()
+                     TransitionToState(GameState.ColorsMenu)
+                 End Sub,
+                 Sub(buffer)
+                     Editor.Colors.Clone(ColorName, buffer)
+                     ColorName = buffer
+                     TransitionToState(GameState.EditColor)
+                 End Sub))
     End Sub
 
     Private Sub SetInPlayStates()

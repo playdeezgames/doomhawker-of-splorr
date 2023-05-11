@@ -77,4 +77,7 @@
     PickCloneColor
     PickDeleteColor
     EditColor
+    RenameColor
+    ConfirmDeleteColor
+    CloneColor
 End Enum
