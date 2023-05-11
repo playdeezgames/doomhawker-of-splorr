@@ -9,6 +9,7 @@
         Initialize()
         SetBoilerplateStates()
         SetFileStates()
+        SetColorStates()
         SetFontStates()
         SetTerrainStates()
         SetItemStates()
@@ -17,6 +18,34 @@
         SetAvatarStates()
         SetInPlayStates()
         SetCurrentState(GameState.Title, True)
+    End Sub
+
+    Private Sub SetColorStates()
+        SetState(GameState.ColorsMenu, New ColorsMenuState(Me, AddressOf SetCurrentState))
+        SetState(GameState.NewColorName, New BaseInputState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Color Name:",
+                Sub()
+                    ColorName = ""
+                    TransitionToState(GameState.ColorsMenu)
+                End Sub,
+                Sub(buffer)
+                    ColorName = buffer
+                    Editor.Colors.Create(ColorName, 0, 0, 0)
+                    TransitionToState(GameState.EditColor)
+                End Sub))
+        SetState(GameState.PickColor, New BasePickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                "Choose Color",
+                Sub() TransitionToState(GameState.ColorsMenu),
+                Sub(picked)
+                    ColorName = picked
+                    TransitionToState(GameState.EditColor)
+                End Sub,
+                Function() Editor.Colors.Names))
+        SetState(GameState.EditColor, New EditColorState(Me, AddressOf SetCurrentState))
     End Sub
 
     Private Sub SetInPlayStates()

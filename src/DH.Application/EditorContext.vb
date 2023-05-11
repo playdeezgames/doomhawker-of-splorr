@@ -7,6 +7,7 @@ Public Module EditorContext
     Public FontWidth As Integer = 8
     Public FontHeight As Integer = 8
     Public FontName As String = ""
+    Public ColorName As String = ""
     Public GlyphKey As Char = ChrW(32)
     Public TerrainName As String = ""
     Public ItemName As String = ""

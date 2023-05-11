@@ -7,12 +7,14 @@
     Const EditMapsText = "Maps..."
     Const AvatarText = "Avatar..."
     Const SettingsText = "Settings..."
+    Const EditColorsText = "Colors..."
     Public Sub New(parent As IGameController(Of String, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(
             parent,
             setState,
-            "",
+            "Edit Menu:",
             New List(Of String) From {
+                   EditColorsText,
                    EditFontsText,
                    EditTerrainsText,
                    EditItemsText,
@@ -22,6 +24,8 @@
                    SettingsText},
             Sub(menuItem)
                 Select Case menuItem
+                    Case EditColorsText
+                        setState(GameState.ColorsMenu, False)
                     Case EditFontsText
                         setState(GameState.FontsMenu, False)
                     Case EditTerrainsText

@@ -70,4 +70,11 @@
     PickAvatarCreatureInstance
     Navigate
     GameMenu
+    ColorsMenu
+    NewColorName
+    PickColor
+    PickRenameColor
+    PickCloneColor
+    PickDeleteColor
+    EditColor
 End Enum
