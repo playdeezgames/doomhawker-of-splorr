@@ -6,12 +6,12 @@
         MyBase.New(Function() data.Terrains, Function(name) New Terrain(data, name))
         _data = data
     End Sub
-    Public Function Create(name As String) As ITerrain Implements ITerrainEditor.Create
+    Public Function Create(name As String, hue As String) As ITerrain Implements ITerrainEditor.Create
         _data.Terrains(name) = New TerrainData With {
             .FontName = String.Empty,
             .GlyphKey = " "c,
             .Tenantability = False,
-            .HueIndex = 0}
+            .Hue = hue}
         Return New Terrain(_data, name)
     End Function
 End Class

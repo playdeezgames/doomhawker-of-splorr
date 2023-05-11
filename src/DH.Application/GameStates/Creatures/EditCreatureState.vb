@@ -24,7 +24,8 @@
                 Dim creature As ICreature = Editor.Creatures.Retrieve(CreatureName)
                 Select Case menuItem
                     Case ChangeHueText
-                        creature.HueIndex = (creature.HueIndex + 1) Mod AllHues.Count
+                        'creature.HueIndex = (creature.HueIndex + 1) Mod AllHues.Count
+                        Throw New NotImplementedException
                     Case ChangeGlyphText
                         If creature.Font IsNot Nothing Then
                             setState(GameState.PickCreatureGlyph, False)
@@ -52,7 +53,7 @@
             Dim terrainFont = creature.Font.Font
             Dim width = terrainFont.TextWidth($"{creature.GlyphKey}")
             Dim height = terrainFont.Height
-            terrainFont.WriteText(displayBuffer, (ViewWidth - width, ViewHeight - height), $"{creature.GlyphKey}", AllHues(creature.HueIndex))
+            terrainFont.WriteText(displayBuffer, (ViewWidth - width, ViewHeight - height), $"{creature.GlyphKey}", creature.Hue)
         End If
     End Sub
     Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of String)) As ICreature
@@ -61,7 +62,7 @@
         font.WriteText(displayBuffer, (Zero, font.Height * 8), $"Name: {CreatureName}", White)
         font.WriteText(displayBuffer, (Zero, font.Height * 9), $"Font: {creature.Font?.FontName}", White)
         font.WriteText(displayBuffer, (Zero, font.Height * 10), $"Glyph: {AscW(creature.GlyphKey)}", White)
-        font.WriteText(displayBuffer, (Zero, font.Height * 11), $"Hue: {AllHues(creature.HueIndex)}", White)
+        font.WriteText(displayBuffer, (Zero, font.Height * 11), $"Hue: {creature.Hue}", White)
         Return creature
     End Function
 End Class

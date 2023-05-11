@@ -28,7 +28,8 @@
                     Case ToggleTenantabilityText
                         terrain.Tenantability = Not terrain.Tenantability
                     Case ChangeHueText
-                        terrain.HueIndex = (terrain.HueIndex + 1) Mod AllHues.Count
+                        'terrain.HueIndex = (terrain.HueIndex + 1) Mod AllHues.Count
+                        Throw New NotImplementedException
                     Case ChangeGlyphText
                         If terrain.Font IsNot Nothing Then
                             setState(GameState.PickTerrainGlyph, False)
@@ -56,7 +57,7 @@
             Dim terrainFont = terrain.Font.Font
             Dim width = terrainFont.TextWidth($"{terrain.GlyphKey}")
             Dim height = terrainFont.Height
-            terrainFont.WriteText(displayBuffer, (ViewWidth - width, ViewHeight - height), $"{terrain.GlyphKey}", AllHues(terrain.HueIndex))
+            terrainFont.WriteText(displayBuffer, (ViewWidth - width, ViewHeight - height), $"{terrain.GlyphKey}", terrain.Hue)
         End If
     End Sub
     Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of String)) As ITerrain
@@ -65,7 +66,7 @@
         font.WriteText(displayBuffer, (Zero, font.Height * 8), $"Name: {TerrainName}", White)
         font.WriteText(displayBuffer, (Zero, font.Height * 9), $"Font: {terrain.Font?.FontName}", White)
         font.WriteText(displayBuffer, (Zero, font.Height * 10), $"Glyph: {AscW(terrain.GlyphKey)}", White)
-        font.WriteText(displayBuffer, (Zero, font.Height * 11), $"Hue: {AllHues(terrain.HueIndex)}", White)
+        font.WriteText(displayBuffer, (Zero, font.Height * 11), $"Hue: {terrain.Hue}", White)
         font.WriteText(displayBuffer, (Zero, font.Height * 12), $"Tenantable: {terrain.Tenantability}", White)
         Return terrain
     End Function

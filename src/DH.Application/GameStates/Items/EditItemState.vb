@@ -24,7 +24,8 @@
                 Dim item As IItem = Editor.Items.Retrieve(ItemName)
                 Select Case menuItem
                     Case ChangeHueText
-                        item.HueIndex = (item.HueIndex + 1) Mod AllHues.Count
+                        'item.HueIndex = (item.HueIndex + 1) Mod AllHues.Count
+                        Throw New NotImplementedException
                     Case ChangeGlyphText
                         If item.Font IsNot Nothing Then
                             setState(GameState.PickItemGlyph, False)
@@ -53,7 +54,7 @@
             Dim terrainFont = item.Font.Font
             Dim width = terrainFont.TextWidth($"{item.GlyphKey}")
             Dim height = terrainFont.Height
-            terrainFont.WriteText(displayBuffer, (ViewWidth - width, ViewHeight - height), $"{item.GlyphKey}", AllHues(item.HueIndex))
+            terrainFont.WriteText(displayBuffer, (ViewWidth - width, ViewHeight - height), $"{item.GlyphKey}", item.Hue)
         End If
     End Sub
     Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of String)) As IItem
@@ -62,7 +63,7 @@
         font.WriteText(displayBuffer, (Zero, font.Height * 8), $"Name: {ItemName}", White)
         font.WriteText(displayBuffer, (Zero, font.Height * 9), $"Font: {item.Font?.FontName}", White)
         font.WriteText(displayBuffer, (Zero, font.Height * 10), $"Glyph: {AscW(item.GlyphKey)}", White)
-        font.WriteText(displayBuffer, (Zero, font.Height * 11), $"Hue: {AllHues(item.HueIndex)}", White)
+        font.WriteText(displayBuffer, (Zero, font.Height * 11), $"Hue: {item.Hue}", White)
         Return item
     End Function
 End Class

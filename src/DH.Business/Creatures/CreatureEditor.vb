@@ -8,12 +8,12 @@
         MyBase.New(Function() data.Creatures, Function(name) New Creature(data, name))
         Me._data = data
     End Sub
-    Public Function Create(name As String) As ICreature Implements ICreatureEditor.Create
+    Public Function Create(name As String, hue As String) As ICreature Implements ICreatureEditor.Create
         _data.Creatures.Add(name, New CreatureData With
                             {
                                 .FontName = String.Empty,
                                 .GlyphKey = ChrW(32),
-                                .HueIndex = Zero
+                                .Hue = hue
                             })
         Return New Creature(_data, name)
     End Function

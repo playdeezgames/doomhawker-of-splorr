@@ -56,7 +56,7 @@
                  End Sub,
                  Sub(buffer)
                      CreatureName = buffer
-                     Editor.Creatures.Create(CreatureName)
+                     Editor.Creatures.Create(CreatureName, Black)
                      TransitionToState(GameState.EditCreature)
                  End Sub))
         SetState(GameState.PickCreature, New BasePickState(
@@ -145,7 +145,7 @@
                  End Sub,
                  Sub(buffer)
                      ItemName = buffer
-                     Editor.Items.Create(ItemName)
+                     Editor.Items.Create(ItemName, Black)
                      TransitionToState(GameState.EditItem)
                  End Sub))
         SetState(GameState.PickItem, New BasePickState(
@@ -427,7 +427,7 @@
                  End Sub,
                  Sub(buffer)
                      TerrainName = buffer
-                     Editor.Terrains.Create(TerrainName)
+                     Editor.Terrains.Create(TerrainName, Black)
                      TransitionToState(GameState.EditTerrain)
                  End Sub))
         SetState(GameState.EditTerrain, New EditTerrainState(Me, AddressOf SetCurrentState))

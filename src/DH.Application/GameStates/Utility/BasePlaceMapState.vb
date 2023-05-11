@@ -83,17 +83,17 @@
                 Dim terrain = cell.Terrain
                 If terrain IsNot Nothing Then
                     Dim font = terrain.Font.Font
-                    font.WriteText(displayBuffer, (plotX, plotY), $"{terrain.GlyphKey}", AllHues(terrain.HueIndex))
+                    font.WriteText(displayBuffer, (plotX, plotY), $"{terrain.GlyphKey}", terrain.Hue)
                 End If
                 Dim itemInstance As IItemInstance = cell.Item
                 If itemInstance IsNot Nothing Then
                     Dim font = itemInstance.Item.Font.Font
-                    font.WriteText(displayBuffer, (plotX, plotY), $"{itemInstance.Item.GlyphKey}", AllHues(itemInstance.Item.HueIndex))
+                    font.WriteText(displayBuffer, (plotX, plotY), $"{itemInstance.Item.GlyphKey}", itemInstance.Item.Hue)
                 End If
                 Dim creatureInstance As ICreatureInstance = cell.Creature
                 If creatureInstance IsNot Nothing Then
                     Dim font = creatureInstance.Creature.Font.Font
-                    font.WriteText(displayBuffer, (plotX, plotY), $"{creatureInstance.Creature.GlyphKey}", AllHues(creatureInstance.Creature.HueIndex))
+                    font.WriteText(displayBuffer, (plotX, plotY), $"{creatureInstance.Creature.GlyphKey}", creatureInstance.Creature.Hue)
                 End If
             Next
         Next

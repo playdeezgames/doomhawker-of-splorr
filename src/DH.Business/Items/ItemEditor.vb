@@ -6,11 +6,11 @@
         MyBase.New(Function() data.Items, Function(name) New Item(data, name))
         Me._data = data
     End Sub
-    Public Function Create(name As String) As IItem Implements IItemEditor.Create
+    Public Function Create(name As String, hue As String) As IItem Implements IItemEditor.Create
         _data.Items(name) = New ItemData With {
             .FontName = String.Empty,
             .GlyphKey = " "c,
-            .HueIndex = Zero}
+            .Hue = hue}
         Return New Item(_data, name)
     End Function
 End Class
