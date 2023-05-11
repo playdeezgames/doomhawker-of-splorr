@@ -1,5 +1,5 @@
 ﻿Friend MustInherit Class BasePlaceMapState
-    Inherits BaseGameState(Of Integer, Command, Sfx, GameState)
+    Inherits BaseGameState(Of String, Command, Sfx, GameState)
     Private _column As Integer = Zero
     Private _row As Integer = Zero
     Private ReadOnly _onCancel As Action
@@ -16,7 +16,7 @@
     End Property
 
     Public Sub New(
-                  parent As IGameController(Of Integer, Command, Sfx),
+                  parent As IGameController(Of String, Command, Sfx),
                   setState As Action(Of GameState?, Boolean),
                   onPlace As Action(Of Integer, Integer),
                   onCancel As Action)
@@ -63,12 +63,12 @@
         _onCancel()
     End Sub
 
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
-        displayBuffer.Fill((Zero, Zero), (ViewWidth, ViewHeight), Zero)
-        DrawMap(displayBuffer, MapName, _column, _row, 15)
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
+        displayBuffer.Fill((Zero, Zero), (ViewWidth, ViewHeight), Black)
+        DrawMap(displayBuffer, MapName, _column, _row, White)
     End Sub
 
-    Friend Shared Sub DrawMap(displayBuffer As IPixelSink(Of Integer), mapName As String, column As Integer, row As Integer, cursorHue As Integer)
+    Friend Shared Sub DrawMap(displayBuffer As IPixelSink(Of String), mapName As String, column As Integer, row As Integer, cursorHue As String)
         Dim cellWidth = Editor.MapCellWidth
         Dim cellHeight = Editor.MapCellHeight
         displayBuffer.Fill((ViewWidth \ 2 - cellWidth \ 2, ViewHeight \ 2 - cellHeight \ 2), (cellWidth, cellHeight), cursorHue)

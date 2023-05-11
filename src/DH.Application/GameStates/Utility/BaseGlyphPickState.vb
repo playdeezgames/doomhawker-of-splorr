@@ -1,12 +1,12 @@
 ﻿Friend Class BaseGlyphPickState
-    Inherits BaseGameState(Of Integer, Command, Sfx, GameState)
+    Inherits BaseGameState(Of String, Command, Sfx, GameState)
     Private _row As Integer = Zero
     Private _column As Integer = Zero
     Private ReadOnly _onDone As Action(Of Char)
     Private ReadOnly _onCancel As Action
     Private ReadOnly _fontSource As Func(Of String)
     Public Sub New(
-                  parent As IGameController(Of Integer, Command, Sfx),
+                  parent As IGameController(Of String, Command, Sfx),
                   setState As Action(Of GameState?, Boolean),
                   onDone As Action(Of Char),
                   onCancel As Action,
@@ -49,17 +49,17 @@
                 _onDone(ChrW(_row * CellColumns + _column + FirstCharacter))
         End Select
     End Sub
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
-        displayBuffer.Fill((Zero, Zero), (ViewWidth, ViewHeight), 8)
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
+        displayBuffer.Fill((Zero, Zero), (ViewWidth, ViewHeight), DarkGray)
         RenderEditorFont(displayBuffer)
         Dim font = Fonts(GameFont.Font5x7)
-        Dim h As Integer = 7
+        Dim h As String = Gray
         Dim text As String
         Dim ascii = FirstCharacter + _row * CellColumns + _column
         text = $"Character: {ascii}({ChrW(ascii)})"
         font.WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(text) \ 2, Zero), text, h)
     End Sub
-    Private Sub RenderEditorFont(displayBuffer As IPixelSink(Of Integer))
+    Private Sub RenderEditorFont(displayBuffer As IPixelSink(Of String))
         Dim editorFont As IEditorFont = Editor.Fonts.Retrieve(_fontSource())
         Dim font As Font = editorFont.Font
         Dim cellWidth = font.TextWidth(" ")
@@ -72,11 +72,11 @@
                 Dim plotY = offsetY + cellHeight * row
                 Dim text = $"{ChrW(FirstCharacter + row * CellColumns + column)}"
                 If row = _row And column = _column Then
-                    displayBuffer.Fill((plotX, plotY), (cellWidth, cellHeight), 15)
-                    font.WriteText(displayBuffer, (plotX, plotY), text, Zero)
+                    displayBuffer.Fill((plotX, plotY), (cellWidth, cellHeight), White)
+                    font.WriteText(displayBuffer, (plotX, plotY), text, Black)
                 Else
-                    displayBuffer.Fill((plotX, plotY), (cellWidth, cellHeight), Zero)
-                    font.WriteText(displayBuffer, (plotX, plotY), text, 7)
+                    displayBuffer.Fill((plotX, plotY), (cellWidth, cellHeight), Black)
+                    font.WriteText(displayBuffer, (plotX, plotY), text, Gray)
                 End If
             Next
         Next

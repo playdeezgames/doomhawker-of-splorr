@@ -1,6 +1,6 @@
 ﻿Friend Class EditGlyphState
-    Inherits BaseGameState(Of Integer, Command, Sfx, GameState)
-    Public Sub New(parent As IGameController(Of Integer, Command, Sfx), setState As Action(Of GameState?, Boolean))
+    Inherits BaseGameState(Of String, Command, Sfx, GameState)
+    Public Sub New(parent As IGameController(Of String, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent, setState)
     End Sub
     Private _x As Integer = Zero
@@ -43,24 +43,24 @@
     End Sub
     Const CellWidth = 8
     Const CellHeight = 8
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
-        displayBuffer.Fill((Zero, Zero), (ViewWidth, ViewHeight), 8)
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
+        displayBuffer.Fill((Zero, Zero), (ViewWidth, ViewHeight), DarkGray)
         Dim glyph = Editor.Fonts.Retrieve(EditorContext.FontName).GetGlyph(EditorContext.GlyphKey)
         For x = Zero To glyph.Width - 1
             For y = Zero To glyph.Height - 1
                 Dim plot = (ViewWidth - glyph.Width * CellWidth + x * CellWidth, y * CellHeight)
                 If glyph.IsSet(x, y) Then
-                    displayBuffer.Fill(plot, (CellWidth, CellHeight), 15)
+                    displayBuffer.Fill(plot, (CellWidth, CellHeight), White)
                 Else
-                    displayBuffer.Fill(plot, (CellWidth, CellHeight), Zero)
+                    displayBuffer.Fill(plot, (CellWidth, CellHeight), Black)
                 End If
                 If x = _x AndAlso y = _y Then
-                    displayBuffer.Frame(plot, (CellWidth, CellHeight), 9)
+                    displayBuffer.Frame(plot, (CellWidth, CellHeight), LightBlue)
                 End If
             Next
         Next
         Dim font = Fonts(GameFont.Font5x7)
-        font.WriteText(displayBuffer, (Zero, Zero), $"X:{_x}", 7)
-        font.WriteText(displayBuffer, (Zero, font.Height), $"Y:{_y}", 7)
+        font.WriteText(displayBuffer, (Zero, Zero), $"X:{_x}", Gray)
+        font.WriteText(displayBuffer, (Zero, font.Height), $"Y:{_y}", Gray)
     End Sub
 End Class

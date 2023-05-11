@@ -1,6 +1,6 @@
 ﻿Friend Class PlaceMapItemState
     Inherits BasePlaceMapState
-    Public Sub New(parent As IGameController(Of Integer, Command, Sfx), setState As Action(Of GameState?, Boolean))
+    Public Sub New(parent As IGameController(Of String, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(
             parent,
             setState,
@@ -11,11 +11,11 @@
                 setState(GameState.EditMap, False)
             End Sub)
     End Sub
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font3x5)
         Dim currentItem = Editor.Maps.Retrieve(MapName).GetCell(Column, Row).Item?.Item?.Name
-        font.WriteText(displayBuffer, (Zero, Zero), $"({Column},{Row}) {If(currentItem, "(none)")}", 15)
-        font.WriteText(displayBuffer, (Zero, ViewHeight - font.Height), $"Placing: {ItemName}", 15)
+        font.WriteText(displayBuffer, (Zero, Zero), $"({Column},{Row}) {If(currentItem, "(none)")}", White)
+        font.WriteText(displayBuffer, (Zero, ViewHeight - font.Height), $"Placing: {ItemName}", White)
     End Sub
 End Class

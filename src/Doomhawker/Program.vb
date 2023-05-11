@@ -6,7 +6,7 @@ Module Program
             Function() (config.WindowWidth, config.WindowHeight),
             Function() config.SfxVolume,
             AddressOf SaveConfig)
-        Using host As New Host(Of Integer, Command, Sfx)(
+        Using host As New Host(Of String, Command, Sfx)(
             "Doomhawker of SPLORR!!",
             gameController,
             (EditorContext.ViewWidth, EditorContext.ViewHeight),
@@ -109,30 +109,30 @@ Module Program
         End If
         Return Nothing
     End Function
-    Private Function BufferCreatorator(texture As Texture2D) As IDisplayBuffer(Of Integer)
-        Return New DisplayBuffer(Of Integer)(texture, AddressOf TransformHue)
+    Private Function BufferCreatorator(texture As Texture2D) As IDisplayBuffer(Of String)
+        Return New DisplayBuffer(Of String)(texture, AddressOf TransformHue)
     End Function
-    Private ReadOnly hueTable As IReadOnlyDictionary(Of Integer, Color) =
-        New Dictionary(Of Integer, Color) From
+    Private ReadOnly hueTable As IReadOnlyDictionary(Of String, Color) =
+        New Dictionary(Of String, Color) From
         {
-            {0, New Color(0, 0, 0, 255)},
-            {1, New Color(0, 0, 170, 255)},
-            {2, New Color(0, 170, 0, 255)},
-            {3, New Color(0, 170, 170, 255)},
-            {4, New Color(170, 0, 0, 255)},
-            {5, New Color(170, 0, 170, 255)},
-            {6, New Color(170, 85, 0, 255)},
-            {7, New Color(170, 170, 170, 255)},
-            {8, New Color(85, 85, 85, 255)},
-            {9, New Color(85, 85, 255, 255)},
-            {10, New Color(85, 255, 85, 255)},
-            {11, New Color(85, 255, 255, 255)},
-            {12, New Color(255, 85, 85, 255)},
-            {13, New Color(255, 85, 255, 255)},
-            {14, New Color(255, 255, 85, 255)},
-            {15, New Color(255, 255, 255, 255)}
+            {Black, New Color(0, 0, 0, 255)},
+            {Blue, New Color(0, 0, 170, 255)},
+            {Green, New Color(0, 170, 0, 255)},
+            {Cyan, New Color(0, 170, 170, 255)},
+            {Red, New Color(170, 0, 0, 255)},
+            {Magenta, New Color(170, 0, 170, 255)},
+            {Brown, New Color(170, 85, 0, 255)},
+            {Gray, New Color(170, 170, 170, 255)},
+            {DarkGray, New Color(85, 85, 85, 255)},
+            {LightBlue, New Color(85, 85, 255, 255)},
+            {LightGreen, New Color(85, 255, 85, 255)},
+            {LightCyan, New Color(85, 255, 255, 255)},
+            {LightRed, New Color(255, 85, 85, 255)},
+            {LightMagenta, New Color(255, 85, 255, 255)},
+            {Yellow, New Color(255, 255, 85, 255)},
+            {White, New Color(255, 255, 255, 255)}
         }
-    Private Function TransformHue(hue As Integer) As Color
+    Private Function TransformHue(hue As String) As Color
         Return hueTable(hue)
     End Function
 End Module

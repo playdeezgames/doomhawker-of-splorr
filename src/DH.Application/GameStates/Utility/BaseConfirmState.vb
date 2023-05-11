@@ -1,15 +1,15 @@
 ﻿Friend Class BaseConfirmState
-    Inherits BaseGameState(Of Integer, Command, Sfx, GameState)
+    Inherits BaseGameState(Of String, Command, Sfx, GameState)
     Private _confirmation As Boolean = False
     Private ReadOnly _caption As String
-    Private ReadOnly _hue As Integer
+    Private ReadOnly _hue As String
     Private ReadOnly _onDone As Action(Of Boolean)
     Private ReadOnly _onCancel As Action
     Public Sub New(
-                  parent As IGameController(Of Integer, Command, Sfx),
+                  parent As IGameController(Of String, Command, Sfx),
                   setState As Action(Of GameState?, Boolean),
                   caption As String,
-                  hue As Integer,
+                  hue As String,
                   onDone As Action(Of Boolean),
                   onCancel As Action)
         MyBase.New(parent, setState)
@@ -28,11 +28,11 @@
                 _onDone(_confirmation)
         End Select
     End Sub
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
-        displayBuffer.Fill((Zero, Zero), (ViewWidth, ViewHeight), Zero)
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
+        displayBuffer.Fill((Zero, Zero), (ViewWidth, ViewHeight), Black)
         Dim font = Fonts(GameFont.Font5x7)
         font.WriteText(displayBuffer, (Zero, Zero), _caption, _hue)
-        font.WriteText(displayBuffer, (Zero, font.Height), "No", If(_confirmation, 1, 9))
-        font.WriteText(displayBuffer, (Zero, font.Height * 2), "Yes", If(_confirmation, 9, 1))
+        font.WriteText(displayBuffer, (Zero, font.Height), "No", If(_confirmation, Blue, LightBlue))
+        font.WriteText(displayBuffer, (Zero, font.Height * 2), "Yes", If(_confirmation, LightBlue, Blue))
     End Sub
 End Class

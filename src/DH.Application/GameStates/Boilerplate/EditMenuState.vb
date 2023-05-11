@@ -7,7 +7,7 @@
     Const EditMapsText = "Maps..."
     Const AvatarText = "Avatar..."
     Const SettingsText = "Settings..."
-    Public Sub New(parent As IGameController(Of Integer, Command, Sfx), setState As Action(Of GameState?, Boolean))
+    Public Sub New(parent As IGameController(Of String, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(
             parent,
             setState,

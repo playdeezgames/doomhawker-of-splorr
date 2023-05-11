@@ -6,7 +6,7 @@
     Const RenameItemText = "Rename Item..."
     Const CloneItemText = "Clone Item..."
     Const DeleteItemText = "Delete Item..."
-    Public Sub New(parent As IGameController(Of Integer, Command, Sfx), setState As Action(Of GameState?, Boolean))
+    Public Sub New(parent As IGameController(Of String, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(
             parent,
             setState,
@@ -46,7 +46,7 @@
             End Sub)
     End Sub
 
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
         MyBase.Render(displayBuffer)
         Dim item As IItem = ShowStatistics(displayBuffer)
         If item.Font IsNot Nothing Then
@@ -56,13 +56,13 @@
             terrainFont.WriteText(displayBuffer, (ViewWidth - width, ViewHeight - height), $"{item.GlyphKey}", AllHues(item.HueIndex))
         End If
     End Sub
-    Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of Integer)) As IItem
+    Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of String)) As IItem
         Dim font = Fonts(GameFont.Font5x7)
         Dim item As IItem = Editor.Items.Retrieve(ItemName)
-        font.WriteText(displayBuffer, (Zero, font.Height * 8), $"Name: {ItemName}", 15)
-        font.WriteText(displayBuffer, (Zero, font.Height * 9), $"Font: {item.Font?.FontName}", 15)
-        font.WriteText(displayBuffer, (Zero, font.Height * 10), $"Glyph: {AscW(item.GlyphKey)}", 15)
-        font.WriteText(displayBuffer, (Zero, font.Height * 11), $"Hue: {AllHues(item.HueIndex)}", 15)
+        font.WriteText(displayBuffer, (Zero, font.Height * 8), $"Name: {ItemName}", White)
+        font.WriteText(displayBuffer, (Zero, font.Height * 9), $"Font: {item.Font?.FontName}", White)
+        font.WriteText(displayBuffer, (Zero, font.Height * 10), $"Glyph: {AscW(item.GlyphKey)}", White)
+        font.WriteText(displayBuffer, (Zero, font.Height * 11), $"Hue: {AllHues(item.HueIndex)}", White)
         Return item
     End Function
 End Class
