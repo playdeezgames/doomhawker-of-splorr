@@ -52,7 +52,7 @@
                 Else
                     _column += 1
                 End If
-            Case Command.FireReleased
+            Case Command.OkReleased
                 _onPlace(_column, _row)
         End Select
     End Sub

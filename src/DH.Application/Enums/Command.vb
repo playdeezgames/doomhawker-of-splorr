@@ -3,10 +3,12 @@
     RightPressed
     DownPressed
     LeftPressed
-    FirePressed
+    OkPressed
+    CancelPressed
     UpReleased
     RightReleased
     DownReleased
     LeftReleased
-    FireReleased
+    OkReleased
+    CancelReleased
 End Enum

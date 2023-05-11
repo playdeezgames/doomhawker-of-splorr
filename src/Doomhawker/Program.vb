@@ -35,16 +35,16 @@ Module Program
             results.Add(Command.RightPressed)
         End If
         If newState.Buttons.X = ButtonState.Pressed AndAlso oldState.Buttons.X = ButtonState.Released Then
-            results.Add(Command.FirePressed)
+            results.Add(Command.OkPressed)
         End If
         If newState.Buttons.Y = ButtonState.Pressed AndAlso oldState.Buttons.Y = ButtonState.Released Then
-            results.Add(Command.FirePressed)
+            results.Add(Command.OkPressed)
         End If
         If newState.Buttons.A = ButtonState.Pressed AndAlso oldState.Buttons.A = ButtonState.Released Then
-            results.Add(Command.FirePressed)
+            results.Add(Command.OkPressed)
         End If
         If newState.Buttons.B = ButtonState.Pressed AndAlso oldState.Buttons.B = ButtonState.Released Then
-            results.Add(Command.FirePressed)
+            results.Add(Command.OkPressed)
         End If
 
         If newState.DPad.Up = ButtonState.Released AndAlso oldState.DPad.Up = ButtonState.Pressed Then
@@ -60,16 +60,16 @@ Module Program
             results.Add(Command.RightReleased)
         End If
         If newState.Buttons.X = ButtonState.Released AndAlso oldState.Buttons.X = ButtonState.Pressed Then
-            results.Add(Command.FireReleased)
+            results.Add(Command.OkReleased)
         End If
         If newState.Buttons.Y = ButtonState.Released AndAlso oldState.Buttons.Y = ButtonState.Pressed Then
-            results.Add(Command.FireReleased)
+            results.Add(Command.OkReleased)
         End If
         If newState.Buttons.A = ButtonState.Released AndAlso oldState.Buttons.A = ButtonState.Pressed Then
-            results.Add(Command.FireReleased)
+            results.Add(Command.OkReleased)
         End If
         If newState.Buttons.B = ButtonState.Released AndAlso oldState.Buttons.B = ButtonState.Pressed Then
-            results.Add(Command.FireReleased)
+            results.Add(Command.OkReleased)
         End If
         Return results.ToArray
     End Function
@@ -101,7 +101,7 @@ Module Program
             {Keys.Right, Command.RightReleased},
             {Keys.Left, Command.LeftReleased},
             {Keys.Down, Command.DownReleased},
-            {Keys.Space, Command.FireReleased}
+            {Keys.Space, Command.OkReleased}
         }
     Private Function CommandTransformerator(key As Keys) As Command?
         If keyTable.ContainsKey(key) Then

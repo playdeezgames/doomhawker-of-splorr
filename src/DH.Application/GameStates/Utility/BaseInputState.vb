@@ -34,7 +34,7 @@
                 Else
                     ChangeCharacterBy(-1)
                 End If
-            Case Command.FireReleased
+            Case Command.OkReleased
                 Select Case AscW(_character)
                     Case 128, 129, 130, 131
                         If _buffer.Length > 1 Then

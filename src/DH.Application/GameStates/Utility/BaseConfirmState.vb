@@ -24,7 +24,7 @@
                 _confirmation = Not _confirmation
             Case Command.LeftReleased
                 _onCancel()
-            Case Command.FireReleased
+            Case Command.OkReleased
                 _onDone(_confirmation)
         End Select
     End Sub

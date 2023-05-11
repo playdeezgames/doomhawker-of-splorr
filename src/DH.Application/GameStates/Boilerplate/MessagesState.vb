@@ -4,7 +4,7 @@
         MyBase.New(parent, setState)
     End Sub
     Public Overrides Sub HandleCommand(command As Command)
-        If command = Command.FireReleased Then
+        If command = Command.OkReleased Then
             Messages.Dequeue()
             If Not Messages.Any Then
                 PopState()

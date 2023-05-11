@@ -32,7 +32,7 @@
                 Else
                     _y = _y + 1
                 End If
-            Case Command.FireReleased
+            Case Command.OkReleased
                 glyph.Toggle(_x, _y)
         End Select
     End Sub

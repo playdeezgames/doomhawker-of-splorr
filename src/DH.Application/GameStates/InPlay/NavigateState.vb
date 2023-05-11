@@ -7,7 +7,7 @@
 
     Public Overrides Sub HandleCommand(command As Command)
         Select Case command
-            Case Command.FireReleased
+            Case Command.OkReleased
                 SetStates(GameState.GameMenu, GameState.Navigate)
             Case Command.UpReleased
                 Editor.Avatar.Creature.Move(Direction.North)

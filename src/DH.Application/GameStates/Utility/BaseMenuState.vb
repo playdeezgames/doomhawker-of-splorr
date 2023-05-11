@@ -29,7 +29,7 @@
                 _currentItem = (_currentItem + _menuItems.Count - 1) Mod _menuItems.Count
             Case Command.DownReleased
                 _currentItem = (_currentItem + 1) Mod _menuItems.Count
-            Case Command.FireReleased, Command.RightReleased
+            Case Command.OkReleased, Command.RightReleased
                 _onMenuItem(_menuItems(_currentItem))
             Case Command.LeftReleased
                 _onCancel()

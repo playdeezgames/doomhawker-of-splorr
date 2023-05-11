@@ -45,7 +45,7 @@
                 Else
                     _column += 1
                 End If
-            Case Command.FireReleased
+            Case Command.OkReleased
                 _onDone(ChrW(_row * CellColumns + _column + FirstCharacter))
         End Select
     End Sub

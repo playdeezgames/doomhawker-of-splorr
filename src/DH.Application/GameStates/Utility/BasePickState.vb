@@ -27,7 +27,7 @@
                 _index = (_index + 1) Mod _listSource().Count
             Case Command.LeftReleased
                 _onCancel()
-            Case Command.FireReleased
+            Case Command.OkReleased
                 _onPick(_listSource().ToList(_index))
         End Select
     End Sub
