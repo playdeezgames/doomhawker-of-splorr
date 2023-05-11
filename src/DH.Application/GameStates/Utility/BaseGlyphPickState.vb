@@ -22,31 +22,25 @@
     Public Overrides Sub HandleCommand(command As Command)
         Select Case command
             Case Command.UpReleased
-                If _row = Zero Then
-                    _onCancel()
-                Else
+                If _row > Zero Then
                     _row -= 1
                 End If
             Case Command.DownReleased
-                If _row = CellRows - 1 Then
-                    _onCancel()
-                Else
+                If _row < CellRows - 1 Then
                     _row += 1
                 End If
             Case Command.LeftReleased
-                If _column = Zero Then
-                    _onCancel()
-                Else
+                If _column > Zero Then
                     _column -= 1
                 End If
             Case Command.RightReleased
-                If _column = CellColumns - 1 Then
-                    _onCancel()
-                Else
+                If _column < CellColumns - 1 Then
                     _column += 1
                 End If
             Case Command.OkReleased
                 _onDone(ChrW(_row * CellColumns + _column + FirstCharacter))
+            Case Command.CancelReleased
+                _onCancel()
         End Select
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))

@@ -29,7 +29,7 @@
 
     Private Sub RenderFooter(displayBuffer As IPixelSink(Of String))
         Dim font = Fonts(GameFont.Font3x5)
-        Const text = "Press FIRE"
+        Const text = "Press (A) or Space"
         font.WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(text) \ 2, ViewHeight - font.Height), text, Gray)
     End Sub
 

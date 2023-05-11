@@ -53,6 +53,9 @@
                     Case Else
                         _buffer += _character
                 End Select
+            Case Command.CancelReleased
+                _buffer = ""
+                _onCancel()
         End Select
     End Sub
     Private Sub ChangeCharacterBy(delta As Integer)

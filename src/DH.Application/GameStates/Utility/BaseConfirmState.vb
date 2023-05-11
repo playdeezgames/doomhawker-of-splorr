@@ -22,7 +22,7 @@
         Select Case command
             Case Command.UpReleased, Command.DownReleased
                 _confirmation = Not _confirmation
-            Case Command.LeftReleased
+            Case Command.CancelReleased
                 _onCancel()
             Case Command.OkReleased
                 _onDone(_confirmation)

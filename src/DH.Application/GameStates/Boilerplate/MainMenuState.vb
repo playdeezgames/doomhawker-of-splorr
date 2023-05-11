@@ -10,7 +10,7 @@
     Public Sub New(parent As IGameController(Of String, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent,
                    setState,
-                   "",
+                   "Main Menu:",
                    New List(Of String) From {
                        EmbarkText,
                        EditText,

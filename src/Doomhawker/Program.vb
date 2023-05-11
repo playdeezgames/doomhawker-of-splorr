@@ -22,31 +22,6 @@ Module Program
 
     Private Function GamePadTransformer(newState As GamePadState, oldState As GamePadState) As Command()
         Dim results As New HashSet(Of Command)
-        If newState.DPad.Up = ButtonState.Pressed AndAlso oldState.DPad.Up = ButtonState.Released Then
-            results.Add(Command.UpPressed)
-        End If
-        If newState.DPad.Down = ButtonState.Pressed AndAlso oldState.DPad.Down = ButtonState.Released Then
-            results.Add(Command.DownPressed)
-        End If
-        If newState.DPad.Left = ButtonState.Pressed AndAlso oldState.DPad.Left = ButtonState.Released Then
-            results.Add(Command.LeftPressed)
-        End If
-        If newState.DPad.Right = ButtonState.Pressed AndAlso oldState.DPad.Right = ButtonState.Released Then
-            results.Add(Command.RightPressed)
-        End If
-        If newState.Buttons.X = ButtonState.Pressed AndAlso oldState.Buttons.X = ButtonState.Released Then
-            results.Add(Command.OkPressed)
-        End If
-        If newState.Buttons.Y = ButtonState.Pressed AndAlso oldState.Buttons.Y = ButtonState.Released Then
-            results.Add(Command.OkPressed)
-        End If
-        If newState.Buttons.A = ButtonState.Pressed AndAlso oldState.Buttons.A = ButtonState.Released Then
-            results.Add(Command.OkPressed)
-        End If
-        If newState.Buttons.B = ButtonState.Pressed AndAlso oldState.Buttons.B = ButtonState.Released Then
-            results.Add(Command.OkPressed)
-        End If
-
         If newState.DPad.Up = ButtonState.Released AndAlso oldState.DPad.Up = ButtonState.Pressed Then
             results.Add(Command.UpReleased)
         End If
@@ -59,17 +34,11 @@ Module Program
         If newState.DPad.Right = ButtonState.Released AndAlso oldState.DPad.Right = ButtonState.Pressed Then
             results.Add(Command.RightReleased)
         End If
-        If newState.Buttons.X = ButtonState.Released AndAlso oldState.Buttons.X = ButtonState.Pressed Then
-            results.Add(Command.OkReleased)
-        End If
-        If newState.Buttons.Y = ButtonState.Released AndAlso oldState.Buttons.Y = ButtonState.Pressed Then
-            results.Add(Command.OkReleased)
-        End If
         If newState.Buttons.A = ButtonState.Released AndAlso oldState.Buttons.A = ButtonState.Pressed Then
             results.Add(Command.OkReleased)
         End If
         If newState.Buttons.B = ButtonState.Released AndAlso oldState.Buttons.B = ButtonState.Pressed Then
-            results.Add(Command.OkReleased)
+            results.Add(Command.CancelReleased)
         End If
         Return results.ToArray
     End Function
@@ -101,7 +70,8 @@ Module Program
             {Keys.Right, Command.RightReleased},
             {Keys.Left, Command.LeftReleased},
             {Keys.Down, Command.DownReleased},
-            {Keys.Space, Command.OkReleased}
+            {Keys.Space, Command.OkReleased},
+            {Keys.Escape, Command.CancelReleased}
         }
     Private Function CommandTransformerator(key As Keys) As Command?
         If keyTable.ContainsKey(key) Then

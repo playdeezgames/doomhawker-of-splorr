@@ -29,31 +29,25 @@
         Dim map = Editor.Maps.Retrieve(MapName)
         Select Case command
             Case Command.UpReleased
-                If _row = Zero Then
-                    HandleCancel()
-                Else
+                If _row > Zero Then
                     _row -= 1
                 End If
             Case Command.DownReleased
-                If _row = map.Rows - 1 Then
-                    HandleCancel()
-                Else
+                If _row < map.Rows - 1 Then
                     _row += 1
                 End If
             Case Command.LeftReleased
-                If _column = Zero Then
-                    HandleCancel()
-                Else
+                If _column > Zero Then
                     _column -= 1
                 End If
             Case Command.RightReleased
-                If _column = map.Columns - 1 Then
-                    HandleCancel()
-                Else
+                If _column < map.Columns - 1 Then
                     _column += 1
                 End If
             Case Command.OkReleased
                 _onPlace(_column, _row)
+            Case Command.CancelReleased
+                _onCancel()
         End Select
     End Sub
 
