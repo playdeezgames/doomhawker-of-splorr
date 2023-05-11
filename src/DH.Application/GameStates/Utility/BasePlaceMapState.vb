@@ -47,14 +47,10 @@
             Case Command.OkReleased
                 _onPlace(_column, _row)
             Case Command.CancelReleased
+                _row = Zero
+                _column = Zero
                 _onCancel()
         End Select
-    End Sub
-
-    Private Sub HandleCancel()
-        _row = Zero
-        _column = Zero
-        _onCancel()
     End Sub
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))

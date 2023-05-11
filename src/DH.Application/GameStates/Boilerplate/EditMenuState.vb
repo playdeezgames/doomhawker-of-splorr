@@ -42,4 +42,10 @@
                 setState(GameState.MainMenu, False)
             End Sub)
     End Sub
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
+        MyBase.Render(displayBuffer)
+        Dim font = Fonts(GameFont.Font3x5)
+        Const text = "(B)/Esc to go back"
+        font.WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(text) \ 2, ViewHeight - font.Height), text, Gray)
+    End Sub
 End Class
