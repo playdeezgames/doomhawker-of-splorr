@@ -59,6 +59,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property Colors As IColorEditor Implements IEditor.Colors
+        Get
+            Return New ColorEditor(_data)
+        End Get
+    End Property
+
     Public Sub Save(fileName As String) Implements IEditor.Save
         File.WriteAllText(fileName, JsonSerializer.Serialize(_data))
     End Sub
