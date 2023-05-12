@@ -125,6 +125,22 @@
     Private Sub SetInPlayStates()
         SetState(GameState.Navigate, New NavigateState(Me, AddressOf SetCurrentState))
         SetState(GameState.GameMenu, New GameMenuState(Me, AddressOf SetCurrentState))
+        SetState(GameState.ConfirmAbandon, New BaseConfirmState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Confirm Abandon?",
+                 Red,
+                 Sub(confirm)
+                     If confirm Then
+                         SetCurrentState(Nothing, False)
+                         SetCurrentState(GameState.MainMenu, False)
+                     Else
+                         SetCurrentState(GameState.GameMenu, False)
+                     End If
+                 End Sub,
+                 Sub()
+                     SetCurrentState(GameState.GameMenu, False)
+                 End Sub))
     End Sub
 
     Private Sub SetAvatarStates()

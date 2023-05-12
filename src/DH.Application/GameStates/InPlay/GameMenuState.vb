@@ -17,8 +17,7 @@
                         setState(Nothing, False)
                         setState(GameState.Navigate, False)
                     Case AbandonGameText
-                        setState(Nothing, False)
-                        setState(GameState.MainMenu, False)
+                        setState(GameState.ConfirmAbandon, False)
                 End Select
             End Sub,
             Sub()
