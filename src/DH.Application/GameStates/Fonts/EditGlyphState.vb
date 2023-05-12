@@ -9,31 +9,25 @@
         Dim glyph = World.Fonts.Retrieve(WorldContext.FontName).GetGlyph(WorldContext.GlyphKey)
         Select Case command
             Case Command.LeftReleased
-                If _x = Zero Then
-                    HandleDone()
-                Else
+                If _x > Zero Then
                     _x -= 1
                 End If
             Case Command.RightReleased
-                If _x = glyph.Width - 1 Then
-                    HandleDone()
-                Else
+                If _x < glyph.Width - 1 Then
                     _x += 1
                 End If
             Case Command.UpReleased
-                If _y = Zero Then
-                    HandleDone()
-                Else
+                If _y > Zero Then
                     _y -= 1
                 End If
             Case Command.DownReleased
-                If _y = glyph.Height - 1 Then
-                    HandleDone()
-                Else
-                    _y = _y + 1
+                If _y < glyph.Height - 1 Then
+                    _y += 1
                 End If
             Case Command.OkReleased
                 glyph.Toggle(_x, _y)
+            Case Command.CancelReleased
+                HandleDone()
         End Select
     End Sub
     Private Sub HandleDone()
