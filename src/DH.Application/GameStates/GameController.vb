@@ -356,7 +356,7 @@
                  Sub(buffer)
                      Try
                          World.Load(buffer)
-                         TransitionToState(GameState.EditMenu)
+                         TransitionToState(GameState.MainMenu)
                      Catch ex As Exception
                          Messages.Enqueue(New EditorMessage With {
                          .Lines = New List(Of (String, String)) From
