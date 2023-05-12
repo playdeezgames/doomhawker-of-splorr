@@ -3,44 +3,60 @@
 
     Private ReadOnly _data As WorldData
     Private ReadOnly _mapName As String
-    Private ReadOnly _column As Integer
-    Private ReadOnly _row As Integer
+    Private _column As Integer
+    Private _row As Integer
 
     Public Sub New(data As WorldData, mapName As String, column As Integer, row As Integer)
-        Me._data = data
-        Me._mapName = mapName
-        Me._column = column
-        Me._row = row
+        _data = data
+        _mapName = mapName
+        _column = column
+        _row = row
     End Sub
 
     Public Sub Move(direction As Direction) Implements ICreatureInstance.Move
-        'determine next location
-        'check for untenantable terrain
-        'when untenantable:
-        '-trigger any bump event
-        '-cancel move
-        '-result: bump
-        'when tenantable:
-        '-check for creature
-        '-when creature found:
-        '--cancel move
-        '--result: creature
-        '-check for item
-        '-when item found:
-        '--cancel move
-        '--result: item
-        '-move avatar
-        '-trigger any move event there might be
-        '-result: moved
+        Dim nextColumn = direction.NextColumn(_column, _row)
+        Dim nextRow = direction.NextRow(_column, _row)
+        Dim map = New EditorMap(_data, _mapName)
+        Dim mapCell = map.GetCell(nextColumn, nextRow)
+        If mapCell Is Nothing Then
+            Return
+        End If
+        Dim terrain = mapCell.Terrain
+        If terrain.Tenantability Then
+            '-check for creature
+            '-when creature found:
+            '--cancel move
+            '--result: creature
+            '-check for item
+            '-when item found:
+            '--cancel move
+            '--result: item
+            '-move creature
+            Dim instanceData = CreatureInstanceData
+            MapCellData.Creature = Nothing
+            _column = nextColumn
+            _row = nextRow
+            MapCellData.Creature = instanceData
+            '-trigger any move event there might be
+            '-result: moved
+        Else
+            '-trigger any bump event
+            '-cancel move
+            '-result: bump
+        End If
     End Sub
 
     Private ReadOnly Property CreatureInstanceData As CreatureInstanceData
         Get
-            Dim map = _data.Maps(_mapName)
-            Return map.Cells(_column + _row * map.Columns).Creature
+            Return MapCellData.Creature
         End Get
     End Property
-
+    Private ReadOnly Property MapCellData As MapCellData
+        Get
+            Dim map = _data.Maps(_mapName)
+            Return map.Cells(_column + _row * map.Columns)
+        End Get
+    End Property
 
     Public ReadOnly Property Creature As ICreature Implements ICreatureInstance.Creature
         Get

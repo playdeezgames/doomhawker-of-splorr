@@ -7,16 +7,16 @@
 
     Public Overrides Sub HandleCommand(command As Command)
         Select Case command
-            Case Command.OkReleased
+            Case Command.OkReleased, Command.CancelReleased
                 SetStates(GameState.GameMenu, GameState.Navigate)
             Case Command.UpReleased
-                World.Avatar.Creature.Move(Direction.North)
+                World.Avatar.Move(Direction.North)
             Case Command.DownReleased
-                World.Avatar.Creature.Move(Direction.South)
+                World.Avatar.Move(Direction.South)
             Case Command.LeftReleased
-                World.Avatar.Creature.Move(Direction.West)
+                World.Avatar.Move(Direction.West)
             Case Command.RightReleased
-                World.Avatar.Creature.Move(Direction.East)
+                World.Avatar.Move(Direction.East)
         End Select
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))

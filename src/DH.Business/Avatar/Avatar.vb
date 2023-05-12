@@ -34,4 +34,11 @@
             Return New CreatureInstance(_data, MapName, Column, Row)
         End Get
     End Property
+
+    Public Sub Move(direction As Direction) Implements IAvatar.Move
+        Dim c = Creature
+        c.Move(direction)
+        Column = c.Column
+        Row = c.Row
+    End Sub
 End Class
