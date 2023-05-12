@@ -83,4 +83,6 @@
     ChangeHue
     ConfirmAbandon
     EditTriggers
+    NewTriggerName
+    EditTrigger
 End Enum

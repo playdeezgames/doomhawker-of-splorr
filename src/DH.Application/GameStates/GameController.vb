@@ -1,4 +1,6 @@
-﻿Public Class GameController
+﻿Imports DH.Data
+
+Public Class GameController
     Inherits BaseGameController(Of String, Command, Sfx, GameState)
     Private ReadOnly _configSink As Action(Of (Integer, Integer), Single)
 
@@ -26,14 +28,14 @@
                  Me,
                  AddressOf SetCurrentState,
                  "Color Name:",
-                Sub()
-                    ColorName = ""
-                    TransitionToState(GameState.ColorsMenu)
-                End Sub,
                 Sub(buffer)
                     ColorName = buffer
                     World.Colors.Create(ColorName, 0, 0, 0)
                     TransitionToState(GameState.EditColor)
+                End Sub,
+                Sub()
+                    ColorName = ""
+                    TransitionToState(GameState.ColorsMenu)
                 End Sub))
         SetState(GameState.PickColor, New BasePickState(
                  Me,
@@ -62,11 +64,11 @@
                  Me,
                  AddressOf SetCurrentState,
                  "Rename Color To:",
-                 Sub()
-                     TransitionToState(GameState.ColorsMenu)
-                 End Sub,
                  Sub(buffer)
                      World.Colors.Rename(ColorName, buffer)
+                     TransitionToState(GameState.ColorsMenu)
+                 End Sub,
+                 Sub()
                      TransitionToState(GameState.ColorsMenu)
                  End Sub))
         SetState(GameState.PickDeleteColor, New BasePickState(
@@ -111,13 +113,13 @@
                  Me,
                  AddressOf SetCurrentState,
                  "Cloned Color Name:",
-                 Sub()
-                     TransitionToState(GameState.ColorsMenu)
-                 End Sub,
                  Sub(buffer)
                      World.Colors.Clone(ColorName, buffer)
                      ColorName = buffer
                      TransitionToState(GameState.EditColor)
+                 End Sub,
+                 Sub()
+                     TransitionToState(GameState.ColorsMenu)
                  End Sub))
         SetState(GameState.ChangeHue, New ChangeHueState(Me, AddressOf SetCurrentState))
     End Sub
@@ -169,14 +171,14 @@
                  Me,
                  AddressOf SetCurrentState,
                  "Creature Name:",
-                 Sub()
-                     CreatureName = ""
-                     TransitionToState(GameState.CreaturesMenu)
-                 End Sub,
                  Sub(buffer)
                      CreatureName = buffer
                      World.Creatures.Create(CreatureName, Black)
                      TransitionToState(GameState.EditCreature)
+                 End Sub,
+                 Sub()
+                     CreatureName = ""
+                     TransitionToState(GameState.CreaturesMenu)
                  End Sub))
         SetState(GameState.PickCreature, New BasePickState(
                  Me,
@@ -192,26 +194,24 @@
                          Me,
                          AddressOf SetCurrentState,
                          "New Creature Name:",
-                         Sub()
-                             TransitionToState(GameState.EditCreature)
-                         End Sub,
                          Sub(buffer)
                              World.Creatures.Rename(CreatureName, buffer)
                              CreatureName = buffer
+                             TransitionToState(GameState.EditCreature)
+                         End Sub,
+                         Sub()
                              TransitionToState(GameState.EditCreature)
                          End Sub))
         SetState(GameState.CloneCreature, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,
                  "Cloned Creature Name:",
-                 Sub()
-                     TransitionToState(GameState.EditCreature)
-                 End Sub,
                  Sub(buffer)
                      World.Creatures.Clone(CreatureName, buffer)
                      CreatureName = buffer
                      TransitionToState(GameState.EditCreature)
-                 End Sub))
+                 End Sub,
+                 Sub() TransitionToState(GameState.EditCreature)))
         SetState(GameState.ConfirmDeleteCreature, New BaseConfirmState(
                          Me,
                          AddressOf SetCurrentState,
@@ -258,14 +258,14 @@
                  Me,
                  AddressOf SetCurrentState,
                  "Item Name:",
-                 Sub()
-                     ItemName = ""
-                     TransitionToState(GameState.ItemsMenu)
-                 End Sub,
                  Sub(buffer)
                      ItemName = buffer
                      World.Items.Create(ItemName, Black)
                      TransitionToState(GameState.EditItem)
+                 End Sub,
+                 Sub()
+                     ItemName = ""
+                     TransitionToState(GameState.ItemsMenu)
                  End Sub))
         SetState(GameState.PickItem, New BasePickState(
                  Me,
@@ -281,24 +281,24 @@
                          Me,
                          AddressOf SetCurrentState,
                          "New Item Name:",
-                         Sub()
-                             TransitionToState(GameState.EditItem)
-                         End Sub,
                          Sub(buffer)
                              World.Items.Rename(ItemName, buffer)
                              ItemName = buffer
+                             TransitionToState(GameState.EditItem)
+                         End Sub,
+                         Sub()
                              TransitionToState(GameState.EditItem)
                          End Sub))
         SetState(GameState.CloneItem, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,
                  "Cloned Item Name:",
-                 Sub()
-                     TransitionToState(GameState.EditItem)
-                 End Sub,
                  Sub(buffer)
                      World.Items.Clone(ItemName, buffer)
                      ItemName = buffer
+                     TransitionToState(GameState.EditItem)
+                 End Sub,
+                 Sub()
                      TransitionToState(GameState.EditItem)
                  End Sub))
         SetState(GameState.ConfirmDeleteItem, New BaseConfirmState(
@@ -354,7 +354,6 @@
                  Me,
                  AddressOf SetCurrentState,
                  "Save Filename:",
-                 Sub() TransitionToState(GameState.MainMenu),
                  Sub(buffer)
                      World.Save(buffer)
                      Messages.Enqueue(New EditorMessage With {
@@ -363,12 +362,12 @@
                         (Green, "You saved it!")
                      }})
                      SetStates(GameState.Messages, GameState.MainMenu)
-                 End Sub))
+                 End Sub,
+                 Sub() TransitionToState(GameState.MainMenu)))
         SetState(GameState.LoadFrom, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,
                  "Open Filename:",
-                 Sub() TransitionToState(GameState.MainMenu),
                  Sub(buffer)
                      Try
                          World.Load(buffer)
@@ -381,7 +380,8 @@
                          }})
                          SetStates(GameState.Messages, GameState.MainMenu)
                      End Try
-                 End Sub))
+                 End Sub,
+                 Sub() TransitionToState(GameState.MainMenu)))
     End Sub
 
     Private Sub SetMapStates()
@@ -391,11 +391,11 @@
                  Me,
                  AddressOf SetCurrentState,
                  "Map Name:",
-                 Sub() TransitionToState(GameState.MapsMenu),
                  Sub(buffer)
                      MapName = buffer
                      TransitionToState(GameState.NewMapSize)
-                 End Sub))
+                 End Sub,
+                 Sub() TransitionToState(GameState.MapsMenu)))
         SetState(GameState.PickMap, New BasePickState(
                  Me,
                  AddressOf SetCurrentState,
@@ -411,14 +411,12 @@
                          Me,
                          AddressOf SetCurrentState,
                          "Cloned Map Name:",
-                         Sub()
-                             TransitionToState(GameState.EditMap)
-                         End Sub,
                          Sub(buffer)
                              World.Maps.Clone(MapName, buffer)
                              MapName = buffer
                              TransitionToState(GameState.EditMap)
-                         End Sub))
+                         End Sub,
+                         Sub() TransitionToState(GameState.EditMap)))
         SetState(GameState.PickMapTerrain, New BasePickState(
                  Me,
                  AddressOf SetCurrentState,
@@ -468,14 +466,12 @@
                  Me,
                  AddressOf SetCurrentState,
                  "New Map Name:",
-                 Sub()
-                     TransitionToState(GameState.EditMap)
-                 End Sub,
                  Sub(buffer)
                      World.Maps.Rename(MapName, buffer)
                      MapName = buffer
                      TransitionToState(GameState.EditMap)
-                 End Sub))
+                 End Sub,
+                 Sub() TransitionToState(GameState.EditMap)))
         SetState(GameState.ConfirmDeleteMap, New BaseConfirmState(
                  Me,
                  AddressOf SetCurrentState,
@@ -493,6 +489,16 @@
                      TransitionToState(GameState.EditMap)
                  End Sub))
         SetState(GameState.EditTriggers, New EditTriggersState(Me, AddressOf SetCurrentState))
+        SetState(GameState.NewTriggerName, New BaseInputState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "New Trigger Name:",
+                 Sub(name)
+                     World.Maps.Retrieve(MapName).Triggers.Create(name, TriggerType.Teleport)
+                     TriggerName = name
+                     TransitionToState(GameState.EditTrigger)
+                 End Sub,
+                 Sub() TransitionToState(GameState.EditTriggers)))
     End Sub
 
     Private Sub SetTerrainStates()
@@ -500,26 +506,22 @@
                          Me,
                          AddressOf SetCurrentState,
                          "New Terrain Name:",
-                         Sub()
-                             TransitionToState(GameState.EditTerrain)
-                         End Sub,
                          Sub(buffer)
                              World.Terrains.Rename(TerrainName, buffer)
                              TerrainName = buffer
                              TransitionToState(GameState.EditTerrain)
-                         End Sub))
+                         End Sub,
+                         Sub() TransitionToState(GameState.EditTerrain)))
         SetState(GameState.CloneTerrain, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,
                  "Cloned Terrain Name:",
-                 Sub()
-                     TransitionToState(GameState.EditTerrain)
-                 End Sub,
                  Sub(buffer)
                      World.Terrains.Clone(TerrainName, buffer)
                      TerrainName = buffer
                      TransitionToState(GameState.EditTerrain)
-                 End Sub))
+                 End Sub,
+                 Sub() TransitionToState(GameState.EditTerrain)))
         SetState(GameState.ConfirmDeleteTerrain, New BaseConfirmState(
                          Me,
                          AddressOf SetCurrentState,
@@ -541,14 +543,14 @@
                  Me,
                  AddressOf SetCurrentState,
                  "Terrain Name:",
-                 Sub()
-                     TerrainName = ""
-                     TransitionToState(GameState.TerrainsMenu)
-                 End Sub,
                  Sub(buffer)
                      TerrainName = buffer
                      World.Terrains.Create(TerrainName, Black)
                      TransitionToState(GameState.EditTerrain)
+                 End Sub,
+                 Sub()
+                     TerrainName = ""
+                     TransitionToState(GameState.TerrainsMenu)
                  End Sub))
         SetState(GameState.EditTerrain, New EditTerrainState(Me, AddressOf SetCurrentState))
         SetState(GameState.PickTerrainFont, New BasePickState(
@@ -611,14 +613,14 @@
                  Me,
                  AddressOf SetCurrentState,
                  "Font Name:",
-                Sub()
-                    FontName = ""
-                    TransitionToState(GameState.FontsMenu)
-                End Sub,
                 Sub(buffer)
                     FontName = buffer
                     World.Fonts.Create(FontName, FontWidth, FontHeight)
                     TransitionToState(GameState.EditFont)
+                End Sub,
+                Sub()
+                    FontName = ""
+                    TransitionToState(GameState.FontsMenu)
                 End Sub))
         SetState(GameState.EditFont, New EditFontState(Me, AddressOf SetCurrentState))
         SetState(GameState.EditGlyph, New EditGlyphState(Me, AddressOf SetCurrentState))
@@ -664,13 +666,11 @@
                  Me,
                  AddressOf SetCurrentState,
                  "Rename Font To:",
-                 Sub()
-                     TransitionToState(GameState.FontsMenu)
-                 End Sub,
                  Sub(buffer)
                      World.Fonts.Rename(FontName, buffer)
                      TransitionToState(GameState.FontsMenu)
-                 End Sub))
+                 End Sub,
+                 Sub() TransitionToState(GameState.FontsMenu)))
         SetState(GameState.PickCloneFont, New BasePickState(
                  Me,
                  AddressOf SetCurrentState,
@@ -687,19 +687,16 @@
                  Me,
                  AddressOf SetCurrentState,
                  "Cloned Font Name:",
-                 Sub()
-                     TransitionToState(GameState.FontsMenu)
-                 End Sub,
                  Sub(buffer)
                      World.Fonts.Clone(FontName, buffer)
                      FontName = buffer
                      TransitionToState(GameState.EditFont)
-                 End Sub))
+                 End Sub,
+                 Sub() TransitionToState(GameState.FontsMenu)))
         SetState(GameState.ExportFontAs, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,
                  "Export Filename:",
-                 Sub() TransitionToState(GameState.FontsMenu),
                  Sub(buffer)
                      World.Fonts.Export(FontName, buffer)
                      Messages.Enqueue(New EditorMessage With {
@@ -708,7 +705,8 @@
                         (Green, "You exported it!")
                      }})
                      SetStates(GameState.Messages, GameState.FontsMenu)
-                 End Sub))
+                 End Sub,
+                 Sub() TransitionToState(GameState.FontsMenu)))
     End Sub
 
     Private Sub TransitionToState(nextState As GameState)

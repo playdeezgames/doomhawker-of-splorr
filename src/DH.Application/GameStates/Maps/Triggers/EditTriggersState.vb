@@ -12,7 +12,10 @@
                 PickTriggerText
             },
             Sub(menuItem)
-
+                Select Case menuItem
+                    Case NewTriggerText
+                        setState(GameState.NewTriggerName, False)
+                End Select
             End Sub,
             Sub()
                 setState(GameState.EditMap, False)

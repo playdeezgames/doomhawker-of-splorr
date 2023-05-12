@@ -15,10 +15,11 @@ Public Module WorldContext
     Public MapName As String = ""
     Public MapWidth As Integer
     Public MapHeight As Integer
+    Public TriggerName As String = ""
     Public Messages As New Queue(Of EditorMessage)
     Public HueChangeAction As Action(Of String)
     Friend Sub Initialize()
-        World = New DH.Business.World(New WorldData)
+        World = New World(New WorldData)
         InitializeFonts()
     End Sub
     Friend ReadOnly Fonts As New Dictionary(Of GameFont, Font)
