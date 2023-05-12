@@ -5,7 +5,7 @@
             parent,
             setState,
             Sub(column, row)
-                Editor.Maps.Retrieve(MapName).GetCell(column, row).Terrain = Editor.Terrains.Retrieve(TerrainName)
+                World.Maps.Retrieve(MapName).GetCell(column, row).Terrain = World.Terrains.Retrieve(TerrainName)
             End Sub,
             Sub()
                 setState(GameState.EditMap, False)
@@ -14,7 +14,7 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font3x5)
-        Dim currentTerrain = Editor.Maps.Retrieve(MapName).GetCell(Column, Row).Terrain.Name
+        Dim currentTerrain = World.Maps.Retrieve(MapName).GetCell(Column, Row).Terrain.Name
         font.WriteText(displayBuffer, (Zero, Zero), $"({Column},{Row}) {currentTerrain}", White)
         font.WriteText(displayBuffer, (Zero, ViewHeight - font.Height), $"Placing: {TerrainName}", White)
     End Sub

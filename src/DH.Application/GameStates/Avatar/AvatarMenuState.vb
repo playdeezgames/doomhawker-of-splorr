@@ -17,7 +17,7 @@
                     Case ChooseAvatarText
                         setState(GameState.PickAvatarMap, False)
                     Case ClearAvatarText
-                        Editor.ClearAvatar()
+                        World.ClearAvatar()
                 End Select
             End Sub,
             Sub()
@@ -26,7 +26,7 @@
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
         MyBase.Render(displayBuffer)
-        Dim avatar = Editor.Avatar
+        Dim avatar = World.Avatar
         If avatar IsNot Nothing Then
             Dim font = Fonts(GameFont.Font5x7)
             font.WriteText(displayBuffer, (Zero, font.Height * 5), $"Map Name: {avatar.MapName}", White)

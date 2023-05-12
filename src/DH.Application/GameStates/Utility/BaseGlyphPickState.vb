@@ -54,7 +54,7 @@
         font.WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(text) \ 2, Zero), text, h)
     End Sub
     Private Sub RenderEditorFont(displayBuffer As IPixelSink(Of String))
-        Dim editorFont As IEditorFont = Editor.Fonts.Retrieve(_fontSource())
+        Dim editorFont As IEditorFont = World.Fonts.Retrieve(_fontSource())
         Dim font As Font = editorFont.Font
         Dim cellWidth = font.TextWidth(" ")
         Dim cellHeight = font.Height

@@ -13,7 +13,7 @@
                     Case NewTerrainText
                         setState(GameState.NewTerrainName, False)
                     Case EditTerrainText
-                        If Editor.Terrains.HasAny Then
+                        If World.Terrains.HasAny Then
                             setState(GameState.PickTerrain, False)
                         Else
                             setState(GameState.NewTerrainName, False)
@@ -27,6 +27,6 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font5x7)
-        font.WriteText(displayBuffer, (Zero, ViewHeight - font.Height), $"Terrain Count: {Editor.Terrains.Names.Count}", White)
+        font.WriteText(displayBuffer, (Zero, ViewHeight - font.Height), $"Terrain Count: {World.Terrains.Names.Count}", White)
     End Sub
 End Class

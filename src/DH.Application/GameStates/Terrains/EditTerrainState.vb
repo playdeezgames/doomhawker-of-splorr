@@ -23,7 +23,7 @@
                 DeleteTerrainText
             },
             Sub(menuItem)
-                Dim terrain As ITerrain = Editor.Terrains.Retrieve(TerrainName)
+                Dim terrain As ITerrain = World.Terrains.Retrieve(TerrainName)
                 Select Case menuItem
                     Case ToggleTenantabilityText
                         terrain.Tenantability = Not terrain.Tenantability
@@ -37,7 +37,7 @@
                             setState(GameState.PickTerrainGlyph, False)
                         End If
                     Case ChangeFontText
-                        If Editor.Fonts.HasAny Then
+                        If World.Fonts.HasAny Then
                             setState(GameState.PickTerrainFont, False)
                         End If
                     Case RenameTerrainText
@@ -64,7 +64,7 @@
     End Sub
     Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of String)) As ITerrain
         Dim font = Fonts(GameFont.Font5x7)
-        Dim terrain As ITerrain = Editor.Terrains.Retrieve(TerrainName)
+        Dim terrain As ITerrain = World.Terrains.Retrieve(TerrainName)
         font.WriteText(displayBuffer, (Zero, font.Height * 8), $"Name: {TerrainName}", White)
         font.WriteText(displayBuffer, (Zero, font.Height * 9), $"Font: {terrain.Font?.FontName}", White)
         font.WriteText(displayBuffer, (Zero, font.Height * 10), $"Glyph: {AscW(terrain.GlyphKey)}", White)

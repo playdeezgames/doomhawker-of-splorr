@@ -32,7 +32,7 @@
                 End Sub,
                 Sub(buffer)
                     ColorName = buffer
-                    Editor.Colors.Create(ColorName, 0, 0, 0)
+                    World.Colors.Create(ColorName, 0, 0, 0)
                     TransitionToState(GameState.EditColor)
                 End Sub))
         SetState(GameState.PickColor, New BasePickState(
@@ -44,7 +44,7 @@
                     ColorName = picked
                     TransitionToState(GameState.EditColor)
                 End Sub,
-                Function() Editor.Colors.Names))
+                Function() World.Colors.Names))
         SetState(GameState.EditColor, New EditColorState(Me, AddressOf SetCurrentState))
         SetState(GameState.PickRenameColor, New BasePickState(
                  Me,
@@ -57,7 +57,7 @@
                      ColorName = picked
                      TransitionToState(GameState.RenameColor)
                  End Sub,
-                 Function() Editor.Colors.Names))
+                 Function() World.Colors.Names))
         SetState(GameState.RenameColor, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,
@@ -66,7 +66,7 @@
                      TransitionToState(GameState.ColorsMenu)
                  End Sub,
                  Sub(buffer)
-                     Editor.Colors.Rename(ColorName, buffer)
+                     World.Colors.Rename(ColorName, buffer)
                      TransitionToState(GameState.ColorsMenu)
                  End Sub))
         SetState(GameState.PickDeleteColor, New BasePickState(
@@ -80,7 +80,7 @@
                      ColorName = picked
                      TransitionToState(GameState.ConfirmDeleteColor)
                  End Sub,
-                 Function() Editor.Colors.Names))
+                 Function() World.Colors.Names))
         SetState(GameState.ConfirmDeleteColor, New BaseConfirmState(
                  Me,
                  AddressOf SetCurrentState,
@@ -88,7 +88,7 @@
                  Red,
                  Sub(confirmation)
                      If confirmation Then
-                         Editor.Colors.Delete(ColorName)
+                         World.Colors.Delete(ColorName)
                      End If
                      TransitionToState(GameState.ColorsMenu)
                  End Sub,
@@ -106,7 +106,7 @@
                      ColorName = picked
                      TransitionToState(GameState.CloneColor)
                  End Sub,
-                 Function() Editor.Colors.Names))
+                 Function() World.Colors.Names))
         SetState(GameState.CloneColor, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,
@@ -115,7 +115,7 @@
                      TransitionToState(GameState.ColorsMenu)
                  End Sub,
                  Sub(buffer)
-                     Editor.Colors.Clone(ColorName, buffer)
+                     World.Colors.Clone(ColorName, buffer)
                      ColorName = buffer
                      TransitionToState(GameState.EditColor)
                  End Sub))
@@ -140,7 +140,7 @@
                      MapName = picked
                      SetCurrentState(GameState.PickAvatarCreatureInstance, False)
                  End Sub,
-                 Function() Editor.Maps.Names))
+                 Function() World.Maps.Names))
         SetState(GameState.PickAvatarCreatureInstance, New PickAvatarCreatureInstanceState(
                  Me,
                  AddressOf SetCurrentState))
@@ -159,7 +159,7 @@
                  End Sub,
                  Sub(buffer)
                      CreatureName = buffer
-                     Editor.Creatures.Create(CreatureName, Black)
+                     World.Creatures.Create(CreatureName, Black)
                      TransitionToState(GameState.EditCreature)
                  End Sub))
         SetState(GameState.PickCreature, New BasePickState(
@@ -171,7 +171,7 @@
                      CreatureName = picked
                      TransitionToState(GameState.EditCreature)
                  End Sub,
-                 Function() Editor.Creatures.Names))
+                 Function() World.Creatures.Names))
         SetState(GameState.RenameCreature, New BaseInputState(
                          Me,
                          AddressOf SetCurrentState,
@@ -180,7 +180,7 @@
                              TransitionToState(GameState.EditCreature)
                          End Sub,
                          Sub(buffer)
-                             Editor.Creatures.Rename(CreatureName, buffer)
+                             World.Creatures.Rename(CreatureName, buffer)
                              CreatureName = buffer
                              TransitionToState(GameState.EditCreature)
                          End Sub))
@@ -192,7 +192,7 @@
                      TransitionToState(GameState.EditCreature)
                  End Sub,
                  Sub(buffer)
-                     Editor.Creatures.Clone(CreatureName, buffer)
+                     World.Creatures.Clone(CreatureName, buffer)
                      CreatureName = buffer
                      TransitionToState(GameState.EditCreature)
                  End Sub))
@@ -203,7 +203,7 @@
                          Red,
                          Sub(confirmation)
                              If confirmation Then
-                                 Editor.Creatures.Delete(CreatureName)
+                                 World.Creatures.Delete(CreatureName)
                                  TransitionToState(GameState.CreaturesMenu)
                                  Return
                              End If
@@ -218,21 +218,21 @@
                 "Choose Font",
                 Sub() TransitionToState(GameState.EditCreature),
                 Sub(picked)
-                    Editor.Creatures.Retrieve(CreatureName).Font = Editor.Fonts.Retrieve(picked)
+                    World.Creatures.Retrieve(CreatureName).Font = World.Fonts.Retrieve(picked)
                     TransitionToState(GameState.EditCreature)
                 End Sub,
-                Function() Editor.Fonts.Names))
+                Function() World.Fonts.Names))
         SetState(GameState.PickCreatureGlyph, New BaseGlyphPickState(
                  Me,
                  AddressOf SetCurrentState,
                  Sub(glyph)
-                     Editor.Creatures.Retrieve(CreatureName).GlyphKey = glyph
+                     World.Creatures.Retrieve(CreatureName).GlyphKey = glyph
                      TransitionToState(GameState.EditCreature)
                  End Sub,
                  Sub()
                      TransitionToState(GameState.EditCreature)
                  End Sub,
-                 Function() Editor.Creatures.Retrieve(CreatureName).FontName))
+                 Function() World.Creatures.Retrieve(CreatureName).FontName))
     End Sub
 
     Private Sub SetItemStates()
@@ -248,7 +248,7 @@
                  End Sub,
                  Sub(buffer)
                      ItemName = buffer
-                     Editor.Items.Create(ItemName, Black)
+                     World.Items.Create(ItemName, Black)
                      TransitionToState(GameState.EditItem)
                  End Sub))
         SetState(GameState.PickItem, New BasePickState(
@@ -260,7 +260,7 @@
                      ItemName = picked
                      TransitionToState(GameState.EditItem)
                  End Sub,
-                 Function() Editor.Items.Names))
+                 Function() World.Items.Names))
         SetState(GameState.RenameItem, New BaseInputState(
                          Me,
                          AddressOf SetCurrentState,
@@ -269,7 +269,7 @@
                              TransitionToState(GameState.EditItem)
                          End Sub,
                          Sub(buffer)
-                             Editor.Items.Rename(ItemName, buffer)
+                             World.Items.Rename(ItemName, buffer)
                              ItemName = buffer
                              TransitionToState(GameState.EditItem)
                          End Sub))
@@ -281,7 +281,7 @@
                      TransitionToState(GameState.EditItem)
                  End Sub,
                  Sub(buffer)
-                     Editor.Items.Clone(ItemName, buffer)
+                     World.Items.Clone(ItemName, buffer)
                      ItemName = buffer
                      TransitionToState(GameState.EditItem)
                  End Sub))
@@ -292,7 +292,7 @@
                          Red,
                          Sub(confirmation)
                              If confirmation Then
-                                 Editor.Items.Delete(ItemName)
+                                 World.Items.Delete(ItemName)
                                  TransitionToState(GameState.ItemsMenu)
                                  Return
                              End If
@@ -307,21 +307,21 @@
                 "Choose Font",
                 Sub() TransitionToState(GameState.EditItem),
                 Sub(picked)
-                    Editor.Items.Retrieve(ItemName).Font = Editor.Fonts.Retrieve(picked)
+                    World.Items.Retrieve(ItemName).Font = World.Fonts.Retrieve(picked)
                     TransitionToState(GameState.EditItem)
                 End Sub,
-                Function() Editor.Fonts.Names))
+                Function() World.Fonts.Names))
         SetState(GameState.PickItemGlyph, New BaseGlyphPickState(
                  Me,
                  AddressOf SetCurrentState,
                  Sub(glyph)
-                     Editor.Items.Retrieve(ItemName).GlyphKey = glyph
+                     World.Items.Retrieve(ItemName).GlyphKey = glyph
                      TransitionToState(GameState.EditItem)
                  End Sub,
                  Sub()
                      TransitionToState(GameState.EditItem)
                  End Sub,
-                 Function() Editor.Items.Retrieve(ItemName).FontName))
+                 Function() World.Items.Retrieve(ItemName).FontName))
     End Sub
 
     Private Sub SetBoilerplateStates()
@@ -340,7 +340,7 @@
                  "Save Filename:",
                  Sub() TransitionToState(GameState.MainMenu),
                  Sub(buffer)
-                     Editor.Save(buffer)
+                     World.Save(buffer)
                      Messages.Enqueue(New EditorMessage With {
                      .Lines = New List(Of (String, String)) From
                      {
@@ -355,7 +355,7 @@
                  Sub() TransitionToState(GameState.MainMenu),
                  Sub(buffer)
                      Try
-                         Editor.Load(buffer)
+                         World.Load(buffer)
                          TransitionToState(GameState.EditMenu)
                      Catch ex As Exception
                          Messages.Enqueue(New EditorMessage With {
@@ -389,7 +389,7 @@
                      MapName = picked
                      TransitionToState(GameState.EditMap)
                  End Sub,
-                 Function() Editor.Maps.Names))
+                 Function() World.Maps.Names))
         SetState(GameState.NewMapSize, New NewMapSizeState(Me, AddressOf SetCurrentState))
         SetState(GameState.CloneMap, New BaseInputState(
                          Me,
@@ -399,7 +399,7 @@
                              TransitionToState(GameState.EditMap)
                          End Sub,
                          Sub(buffer)
-                             Editor.Maps.Clone(MapName, buffer)
+                             World.Maps.Clone(MapName, buffer)
                              MapName = buffer
                              TransitionToState(GameState.EditMap)
                          End Sub))
@@ -412,7 +412,7 @@
                      TerrainName = picked
                      TransitionToState(GameState.PlaceMapTerrain)
                  End Sub,
-                 Function() Editor.Terrains.Names))
+                 Function() World.Terrains.Names))
         SetState(GameState.PickMapItem, New BasePickState(
                  Me,
                  AddressOf SetCurrentState,
@@ -422,7 +422,7 @@
                      ItemName = picked
                      TransitionToState(GameState.PlaceMapItem)
                  End Sub,
-                 Function() Editor.Items.Names))
+                 Function() World.Items.Names))
         SetState(GameState.PickMapCreature, New BasePickState(
                  Me,
                  AddressOf SetCurrentState,
@@ -432,7 +432,7 @@
                      CreatureName = picked
                      TransitionToState(GameState.PlaceMapCreature)
                  End Sub,
-                 Function() Editor.Creatures.Names))
+                 Function() World.Creatures.Names))
         SetState(GameState.PlaceMapTerrain, New PlaceMapTerrainState(Me, AddressOf SetCurrentState))
         SetState(GameState.PlaceMapItem, New PlaceMapItemState(Me, AddressOf SetCurrentState))
         SetState(GameState.PlaceMapCreature, New PlaceMapCreatureState(Me, AddressOf SetCurrentState))
@@ -447,7 +447,7 @@
                      TerrainName = picked
                      TransitionToState(GameState.NewMapSize)
                  End Sub,
-                 Function() Editor.Terrains.Names))
+                 Function() World.Terrains.Names))
         SetState(GameState.RenameMap, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,
@@ -456,7 +456,7 @@
                      TransitionToState(GameState.EditMap)
                  End Sub,
                  Sub(buffer)
-                     Editor.Maps.Rename(MapName, buffer)
+                     World.Maps.Rename(MapName, buffer)
                      MapName = buffer
                      TransitionToState(GameState.EditMap)
                  End Sub))
@@ -467,7 +467,7 @@
                  Red,
                  Sub(confirmation)
                      If confirmation Then
-                         Editor.Maps.Delete(MapName)
+                         World.Maps.Delete(MapName)
                          TransitionToState(GameState.MapsMenu)
                          Return
                      End If
@@ -487,7 +487,7 @@
                              TransitionToState(GameState.EditTerrain)
                          End Sub,
                          Sub(buffer)
-                             Editor.Terrains.Rename(TerrainName, buffer)
+                             World.Terrains.Rename(TerrainName, buffer)
                              TerrainName = buffer
                              TransitionToState(GameState.EditTerrain)
                          End Sub))
@@ -499,7 +499,7 @@
                      TransitionToState(GameState.EditTerrain)
                  End Sub,
                  Sub(buffer)
-                     Editor.Terrains.Clone(TerrainName, buffer)
+                     World.Terrains.Clone(TerrainName, buffer)
                      TerrainName = buffer
                      TransitionToState(GameState.EditTerrain)
                  End Sub))
@@ -510,7 +510,7 @@
                          Red,
                          Sub(confirmation)
                              If confirmation Then
-                                 Editor.Terrains.Delete(TerrainName)
+                                 World.Terrains.Delete(TerrainName)
                                  TransitionToState(GameState.TerrainsMenu)
                                  Return
                              End If
@@ -530,7 +530,7 @@
                  End Sub,
                  Sub(buffer)
                      TerrainName = buffer
-                     Editor.Terrains.Create(TerrainName, Black)
+                     World.Terrains.Create(TerrainName, Black)
                      TransitionToState(GameState.EditTerrain)
                  End Sub))
         SetState(GameState.EditTerrain, New EditTerrainState(Me, AddressOf SetCurrentState))
@@ -540,21 +540,21 @@
                 "Choose Font",
                 Sub() TransitionToState(GameState.EditTerrain),
                 Sub(picked)
-                    Editor.Terrains.Retrieve(TerrainName).Font = Editor.Fonts.Retrieve(picked)
+                    World.Terrains.Retrieve(TerrainName).Font = World.Fonts.Retrieve(picked)
                     TransitionToState(GameState.EditTerrain)
                 End Sub,
-                Function() Editor.Fonts.Names))
+                Function() World.Fonts.Names))
         SetState(GameState.PickTerrainGlyph, New BaseGlyphPickState(
                  Me,
                  AddressOf SetCurrentState,
                  Sub(glyph)
-                     Editor.Terrains.Retrieve(TerrainName).GlyphKey = glyph
+                     World.Terrains.Retrieve(TerrainName).GlyphKey = glyph
                      TransitionToState(GameState.EditTerrain)
                  End Sub,
                  Sub()
                      TransitionToState(GameState.EditTerrain)
                  End Sub,
-                 Function() Editor.Terrains.Retrieve(TerrainName).FontName))
+                 Function() World.Terrains.Retrieve(TerrainName).FontName))
         SetState(GameState.PickTerrain, New BasePickState(
                  Me,
                  AddressOf SetCurrentState,
@@ -564,7 +564,7 @@
                      TerrainName = picked
                      TransitionToState(GameState.EditTerrain)
                  End Sub,
-                 Function() Editor.Terrains.Names))
+                 Function() World.Terrains.Names))
     End Sub
 
     Private Sub SetFontStates()
@@ -579,7 +579,7 @@
                     FontName = picked
                     TransitionToState(GameState.EditFont)
                 End Sub,
-                Function() Editor.Fonts.Names))
+                Function() World.Fonts.Names))
         SetState(GameState.PickExportFont, New BasePickState(
                  Me,
                  AddressOf SetCurrentState,
@@ -589,7 +589,7 @@
                     FontName = picked
                     TransitionToState(GameState.ExportFontAs)
                 End Sub,
-                Function() Editor.Fonts.Names))
+                Function() World.Fonts.Names))
         SetState(GameState.NewFontName, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,
@@ -600,7 +600,7 @@
                 End Sub,
                 Sub(buffer)
                     FontName = buffer
-                    Editor.Fonts.Create(FontName, FontWidth, FontHeight)
+                    World.Fonts.Create(FontName, FontWidth, FontHeight)
                     TransitionToState(GameState.EditFont)
                 End Sub))
         SetState(GameState.EditFont, New EditFontState(Me, AddressOf SetCurrentState))
@@ -616,7 +616,7 @@
                      FontName = picked
                      TransitionToState(GameState.ConfirmDeleteFont)
                  End Sub,
-                 Function() Editor.Fonts.Names))
+                 Function() World.Fonts.Names))
         SetState(GameState.ConfirmDeleteFont, New BaseConfirmState(
                  Me,
                  AddressOf SetCurrentState,
@@ -624,7 +624,7 @@
                  Red,
                  Sub(confirmation)
                      If confirmation Then
-                         Editor.Fonts.Delete(FontName)
+                         World.Fonts.Delete(FontName)
                      End If
                      TransitionToState(GameState.FontsMenu)
                  End Sub,
@@ -642,7 +642,7 @@
                      FontName = picked
                      TransitionToState(GameState.RenameFont)
                  End Sub,
-                 Function() Editor.Fonts.Names))
+                 Function() World.Fonts.Names))
         SetState(GameState.RenameFont, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,
@@ -651,7 +651,7 @@
                      TransitionToState(GameState.FontsMenu)
                  End Sub,
                  Sub(buffer)
-                     Editor.Fonts.Rename(FontName, buffer)
+                     World.Fonts.Rename(FontName, buffer)
                      TransitionToState(GameState.FontsMenu)
                  End Sub))
         SetState(GameState.PickCloneFont, New BasePickState(
@@ -665,7 +665,7 @@
                      FontName = picked
                      TransitionToState(GameState.CloneFont)
                  End Sub,
-                 Function() Editor.Fonts.Names))
+                 Function() World.Fonts.Names))
         SetState(GameState.CloneFont, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,
@@ -674,7 +674,7 @@
                      TransitionToState(GameState.FontsMenu)
                  End Sub,
                  Sub(buffer)
-                     Editor.Fonts.Clone(FontName, buffer)
+                     World.Fonts.Clone(FontName, buffer)
                      FontName = buffer
                      TransitionToState(GameState.EditFont)
                  End Sub))
@@ -684,7 +684,7 @@
                  "Export Filename:",
                  Sub() TransitionToState(GameState.FontsMenu),
                  Sub(buffer)
-                     Editor.Fonts.Export(FontName, buffer)
+                     World.Fonts.Export(FontName, buffer)
                      Messages.Enqueue(New EditorMessage With {
                      .Lines = New List(Of (String, String)) From
                      {

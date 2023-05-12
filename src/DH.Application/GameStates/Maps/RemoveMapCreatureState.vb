@@ -5,7 +5,7 @@
             parent,
             setState,
             Sub(column, row)
-                Editor.Maps.Retrieve(MapName).GetCell(column, row).Creature = Nothing
+                World.Maps.Retrieve(MapName).GetCell(column, row).Creature = Nothing
             End Sub,
             Sub()
                 setState(GameState.EditMap, False)
@@ -14,7 +14,7 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font3x5)
-        Dim currentCreature = Editor.Maps.Retrieve(MapName).GetCell(Column, Row).Creature?.Creature?.Name
+        Dim currentCreature = World.Maps.Retrieve(MapName).GetCell(Column, Row).Creature?.Creature?.Name
         font.WriteText(displayBuffer, (Zero, Zero), $"({Column},{Row}) {If(currentCreature, "(none)")}", White)
         font.WriteText(displayBuffer, (Zero, ViewHeight - font.Height), $"Removing Creatures", White)
     End Sub

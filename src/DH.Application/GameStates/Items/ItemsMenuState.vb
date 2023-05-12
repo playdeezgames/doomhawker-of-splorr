@@ -16,7 +16,7 @@
                     Case NewItemText
                         setState(GameState.NewItemName, False)
                     Case PickItemText
-                        If Editor.Items.HasAny Then
+                        If World.Items.HasAny Then
                             setState(GameState.PickItem, False)
                         Else
                             setState(GameState.NewItemName, False)
@@ -30,6 +30,6 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font5x7)
-        font.WriteText(displayBuffer, (Zero, ViewHeight - font.Height), $"Item Count: {Editor.Items.Names.Count}", White)
+        font.WriteText(displayBuffer, (Zero, ViewHeight - font.Height), $"Item Count: {World.Items.Names.Count}", White)
     End Sub
 End Class

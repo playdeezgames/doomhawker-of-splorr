@@ -21,7 +21,7 @@
                 DeleteItemText
             },
             Sub(menuItem)
-                Dim item As IItem = Editor.Items.Retrieve(ItemName)
+                Dim item As IItem = World.Items.Retrieve(ItemName)
                 Select Case menuItem
                     Case ChangeHueText
                         HueChangeAction = Sub(hue)
@@ -33,7 +33,7 @@
                             setState(GameState.PickItemGlyph, False)
                         End If
                     Case ChangeFontText
-                        If Editor.Fonts.HasAny Then
+                        If World.Fonts.HasAny Then
                             setState(GameState.PickItemFont, False)
                         End If
                     Case RenameItemText
@@ -61,7 +61,7 @@
     End Sub
     Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of String)) As IItem
         Dim font = Fonts(GameFont.Font5x7)
-        Dim item As IItem = Editor.Items.Retrieve(ItemName)
+        Dim item As IItem = World.Items.Retrieve(ItemName)
         font.WriteText(displayBuffer, (Zero, font.Height * 8), $"Name: {ItemName}", White)
         font.WriteText(displayBuffer, (Zero, font.Height * 9), $"Font: {item.Font?.FontName}", White)
         font.WriteText(displayBuffer, (Zero, font.Height * 10), $"Glyph: {AscW(item.GlyphKey)}", White)

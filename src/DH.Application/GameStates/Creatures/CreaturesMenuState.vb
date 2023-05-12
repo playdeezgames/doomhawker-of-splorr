@@ -16,7 +16,7 @@
                     Case NewCreatureText
                         setState(GameState.NewCreatureName, False)
                     Case PickCreatureText
-                        If Editor.Items.HasAny Then
+                        If World.Items.HasAny Then
                             setState(GameState.PickCreature, False)
                         Else
                             setState(GameState.NewCreatureName, False)
@@ -30,6 +30,6 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font5x7)
-        font.WriteText(displayBuffer, (Zero, ViewHeight - font.Height), $"Creature Count: {Editor.Creatures.Names.Count}", White)
+        font.WriteText(displayBuffer, (Zero, ViewHeight - font.Height), $"Creature Count: {World.Creatures.Names.Count}", White)
     End Sub
 End Class

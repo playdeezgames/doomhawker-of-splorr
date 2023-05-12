@@ -21,7 +21,7 @@
                 DeleteCreatureText
             },
             Sub(menuItem)
-                Dim creature As ICreature = Editor.Creatures.Retrieve(CreatureName)
+                Dim creature As ICreature = World.Creatures.Retrieve(CreatureName)
                 Select Case menuItem
                     Case ChangeHueText
                         HueChangeAction = Sub(hue)
@@ -33,7 +33,7 @@
                             setState(GameState.PickCreatureGlyph, False)
                         End If
                     Case ChangeFontText
-                        If Editor.Fonts.HasAny Then
+                        If World.Fonts.HasAny Then
                             setState(GameState.PickCreatureFont, False)
                         End If
                     Case RenameCreatureText
@@ -60,7 +60,7 @@
     End Sub
     Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of String)) As ICreature
         Dim font = Fonts(GameFont.Font5x7)
-        Dim creature As ICreature = Editor.Creatures.Retrieve(CreatureName)
+        Dim creature As ICreature = World.Creatures.Retrieve(CreatureName)
         font.WriteText(displayBuffer, (Zero, font.Height * 8), $"Name: {CreatureName}", White)
         font.WriteText(displayBuffer, (Zero, font.Height * 9), $"Font: {creature.Font?.FontName}", White)
         font.WriteText(displayBuffer, (Zero, font.Height * 10), $"Glyph: {AscW(creature.GlyphKey)}", White)

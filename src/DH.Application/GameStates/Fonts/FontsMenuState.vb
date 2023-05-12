@@ -23,25 +23,25 @@
                     Case NewFontText
                         setState(GameState.NewFontSize, False)
                     Case PickFontText
-                        If Editor.Fonts.HasAny Then
+                        If World.Fonts.HasAny Then
                             setState(GameState.PickFont, False)
                         Else
                             setState(GameState.NewFontSize, False)
                         End If
                     Case RenameFontText
-                        If Editor.Fonts.HasAny Then
+                        If World.Fonts.HasAny Then
                             setState(GameState.PickRenameFont, False)
                         End If
                     Case CloneFontText
-                        If Editor.Fonts.HasAny Then
+                        If World.Fonts.HasAny Then
                             setState(GameState.PickCloneFont, False)
                         End If
                     Case DeleteFontText
-                        If Editor.Fonts.HasAny Then
+                        If World.Fonts.HasAny Then
                             setState(GameState.PickDeleteFont, False)
                         End If
                     Case ExportFontText
-                        If Editor.Fonts.HasAny Then
+                        If World.Fonts.HasAny Then
                             setState(GameState.PickExportFont, False)
                         End If
                 End Select
@@ -53,6 +53,6 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font5x7)
-        font.WriteText(displayBuffer, (Zero, ViewHeight - font.Height), $"Font Count: {Editor.Fonts.Names.Count}", White)
+        font.WriteText(displayBuffer, (Zero, ViewHeight - font.Height), $"Font Count: {World.Fonts.Names.Count}", White)
     End Sub
 End Class

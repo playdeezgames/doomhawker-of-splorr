@@ -16,7 +16,7 @@
                     Case NewMapText
                         setState(GameState.NewMapName, False)
                     Case EditMapText
-                        If Editor.Maps.HasAny Then
+                        If World.Maps.HasAny Then
                             setState(GameState.PickMap, False)
                         Else
                             setState(GameState.NewMapName, False)
@@ -30,6 +30,6 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font5x7)
-        font.WriteText(displayBuffer, (Zero, ViewHeight - font.Height), $"Map Count: {Editor.Maps.Names.Count}", White)
+        font.WriteText(displayBuffer, (Zero, ViewHeight - font.Height), $"Map Count: {World.Maps.Names.Count}", White)
     End Sub
 End Class

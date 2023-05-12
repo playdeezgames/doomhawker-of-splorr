@@ -10,18 +10,18 @@
             Case Command.OkReleased
                 SetStates(GameState.GameMenu, GameState.Navigate)
             Case Command.UpReleased
-                Editor.Avatar.Creature.Move(Direction.North)
+                World.Avatar.Creature.Move(Direction.North)
             Case Command.DownReleased
-                Editor.Avatar.Creature.Move(Direction.South)
+                World.Avatar.Creature.Move(Direction.South)
             Case Command.LeftReleased
-                Editor.Avatar.Creature.Move(Direction.West)
+                World.Avatar.Creature.Move(Direction.West)
             Case Command.RightReleased
-                Editor.Avatar.Creature.Move(Direction.East)
+                World.Avatar.Creature.Move(Direction.East)
         End Select
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
         displayBuffer.Fill((Zero, Zero), (ViewWidth, ViewHeight), Black)
-        Dim avatar = Editor.Avatar
+        Dim avatar = World.Avatar
         BasePlaceMapState.DrawMap(displayBuffer, avatar.MapName, avatar.Column, avatar.Row, Black)
     End Sub
 End Class

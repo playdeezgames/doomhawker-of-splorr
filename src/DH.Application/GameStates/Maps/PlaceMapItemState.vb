@@ -5,7 +5,7 @@
             parent,
             setState,
             Sub(column, row)
-                Editor.Maps.Retrieve(MapName).GetCell(column, row).Item = Editor.Items.Retrieve(ItemName).CreateInstance(MapName, column, row)
+                World.Maps.Retrieve(MapName).GetCell(column, row).Item = World.Items.Retrieve(ItemName).CreateInstance(MapName, column, row)
             End Sub,
             Sub()
                 setState(GameState.EditMap, False)
@@ -14,7 +14,7 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font3x5)
-        Dim currentItem = Editor.Maps.Retrieve(MapName).GetCell(Column, Row).Item?.Item?.Name
+        Dim currentItem = World.Maps.Retrieve(MapName).GetCell(Column, Row).Item?.Item?.Name
         font.WriteText(displayBuffer, (Zero, Zero), $"({Column},{Row}) {If(currentItem, "(none)")}", White)
         font.WriteText(displayBuffer, (Zero, ViewHeight - font.Height), $"Placing: {ItemName}", White)
     End Sub

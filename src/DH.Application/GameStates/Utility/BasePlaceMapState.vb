@@ -26,7 +26,7 @@
     End Sub
 
     Public Overrides Sub HandleCommand(command As Command)
-        Dim map = Editor.Maps.Retrieve(MapName)
+        Dim map = World.Maps.Retrieve(MapName)
         Select Case command
             Case Command.UpReleased
                 If _row > Zero Then
@@ -59,12 +59,12 @@
     End Sub
 
     Friend Shared Sub DrawMap(displayBuffer As IPixelSink(Of String), mapName As String, column As Integer, row As Integer, cursorHue As String)
-        Dim cellWidth = Editor.MapCellWidth
-        Dim cellHeight = Editor.MapCellHeight
+        Dim cellWidth = World.MapCellWidth
+        Dim cellHeight = World.MapCellHeight
         displayBuffer.Fill((ViewWidth \ 2 - cellWidth \ 2, ViewHeight \ 2 - cellHeight \ 2), (cellWidth, cellHeight), cursorHue)
         Dim offsetX = ViewWidth \ 2 - cellWidth \ 2 - column * cellWidth
         Dim offsetY = ViewHeight \ 2 - cellHeight \ 2 - row * cellHeight
-        Dim map = Editor.Maps.Retrieve(mapName)
+        Dim map = World.Maps.Retrieve(mapName)
         For c = Zero To map.Columns - 1
             For r = Zero To map.Rows - 1
                 Dim plotX = c * cellWidth + offsetX

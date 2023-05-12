@@ -19,13 +19,13 @@
             Sub(menuItem)
                 Select Case menuItem
                     Case IncreaseWidthText
-                        Editor.MapCellWidth += 1
+                        World.MapCellWidth += 1
                     Case IncreaseHeightText
-                        Editor.MapCellHeight += 1
+                        World.MapCellHeight += 1
                     Case DecreaseWidthText
-                        Editor.MapCellWidth -= 1
+                        World.MapCellWidth -= 1
                     Case DecreaseHeightText
-                        Editor.MapCellHeight -= 1
+                        World.MapCellHeight -= 1
                 End Select
             End Sub,
             Sub()
@@ -35,7 +35,7 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font5x7)
-        font.WriteText(displayBuffer, (Zero, 5 * font.Height), $"Cell Width: {Editor.MapCellWidth}", White)
-        font.WriteText(displayBuffer, (Zero, 6 * font.Height), $"Cell Height: {Editor.MapCellHeight}", White)
+        font.WriteText(displayBuffer, (Zero, 5 * font.Height), $"Cell Width: {World.MapCellWidth}", White)
+        font.WriteText(displayBuffer, (Zero, 6 * font.Height), $"Cell Height: {World.MapCellHeight}", White)
     End Sub
 End Class

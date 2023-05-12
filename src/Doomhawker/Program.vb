@@ -103,8 +103,8 @@ Module Program
             {White, New Color(255, 255, 255, 255)}
         }
     Private Function TransformHue(hue As String) As Color
-        If Editor.Colors.Names.Contains(hue) Then
-            Dim editorColor = Editor.Colors.Retrieve(hue)
+        If World.Colors.Names.Contains(hue) Then
+            Dim editorColor = World.Colors.Retrieve(hue)
             Return New Color(editorColor.Red, editorColor.Green, editorColor.Blue)
         End If
         Return hueTable(hue)

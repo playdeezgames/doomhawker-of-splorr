@@ -31,7 +31,7 @@
                     Case DecreaseHeightText
                         MapHeight = Math.Max(MapHeight - 1, 1)
                     Case CreateText
-                        Editor.Maps.Create(MapName, MapWidth, MapHeight, TerrainName)
+                        World.Maps.Create(MapName, MapWidth, MapHeight, TerrainName)
                         setState(GameState.EditMap, False)
                     Case PickTerrainText
                         setState(GameState.PickDefaultMapTerrain, False)

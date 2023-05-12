@@ -21,21 +21,21 @@
                     Case NewColorText
                         setState(GameState.NewColorName, False)
                     Case PickColorText
-                        If Editor.Colors.HasAny Then
+                        If World.Colors.HasAny Then
                             setState(GameState.PickColor, False)
                         Else
                             setState(GameState.NewColorName, False)
                         End If
                     Case RenameColorText
-                        If Editor.Colors.HasAny Then
+                        If World.Colors.HasAny Then
                             setState(GameState.PickRenameColor, False)
                         End If
                     Case CloneColorText
-                        If Editor.Colors.HasAny Then
+                        If World.Colors.HasAny Then
                             setState(GameState.PickCloneColor, False)
                         End If
                     Case DeleteColorText
-                        If Editor.Colors.HasAny Then
+                        If World.Colors.HasAny Then
                             setState(GameState.PickDeleteColor, False)
                         End If
                 End Select
@@ -47,6 +47,6 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font5x7)
-        font.WriteText(displayBuffer, (Zero, ViewHeight - font.Height), $"Color Count: {Editor.Colors.Names.Count}", White)
+        font.WriteText(displayBuffer, (Zero, ViewHeight - font.Height), $"Color Count: {World.Colors.Names.Count}", White)
     End Sub
 End Class

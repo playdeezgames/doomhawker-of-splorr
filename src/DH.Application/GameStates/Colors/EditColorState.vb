@@ -21,7 +21,7 @@
                 BluePlus16Text
             },
             Sub(menuItem)
-                Dim color = Editor.Colors.Retrieve(ColorName)
+                Dim color = World.Colors.Retrieve(ColorName)
                 Select Case menuItem
                     Case RedPlus1Text
                         color.Red = CByte((color.Red + 1) And 255)
@@ -45,7 +45,7 @@
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font5x7)
         Dim y = ViewHeight - font.Height * 4
-        Dim color = Editor.Colors.Retrieve(ColorName)
+        Dim color = World.Colors.Retrieve(ColorName)
         font.WriteText(displayBuffer, (0, y), $"Color: {ColorName}", White)
         y += font.Height
         font.WriteText(displayBuffer, (0, y), $"Red: {color.Red:X}h", White)

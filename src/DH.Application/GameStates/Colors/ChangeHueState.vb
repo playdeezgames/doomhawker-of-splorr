@@ -13,6 +13,6 @@
                 HueChangeAction = Nothing
                 setState(Nothing, False)
             End Sub,
-            Function() Editor.Colors.Names)
+            Function() World.Colors.Names)
     End Sub
 End Class
