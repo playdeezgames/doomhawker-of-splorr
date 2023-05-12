@@ -488,6 +488,10 @@ Public Class GameController
                  Sub()
                      TransitionToState(GameState.EditMap)
                  End Sub))
+        SetTriggerStates()
+    End Sub
+
+    Private Sub SetTriggerStates()
         SetState(GameState.EditTriggers, New EditTriggersState(Me, AddressOf SetCurrentState))
         SetState(GameState.NewTriggerName, New BaseInputState(
                  Me,
@@ -499,6 +503,7 @@ Public Class GameController
                      TransitionToState(GameState.EditTrigger)
                  End Sub,
                  Sub() TransitionToState(GameState.EditTriggers)))
+        SetState(GameState.EditTrigger, New EditTriggerState(Me, AddressOf SetCurrentState))
     End Sub
 
     Private Sub SetTerrainStates()
