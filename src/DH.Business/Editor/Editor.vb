@@ -1,7 +1,7 @@
 ﻿Public Class Editor
     Implements IEditor
-    Private _data As EditorData
-    Sub New(data As EditorData)
+    Private _data As WorldData
+    Sub New(data As WorldData)
         _data = data
     End Sub
     Public Property MapCellWidth As Integer Implements IEditor.MapCellWidth
@@ -69,7 +69,7 @@
         File.WriteAllText(fileName, JsonSerializer.Serialize(_data))
     End Sub
     Public Sub Load(fileName As String) Implements IEditor.Load
-        _data = JsonSerializer.Deserialize(Of EditorData)(File.ReadAllText(fileName))
+        _data = JsonSerializer.Deserialize(Of WorldData)(File.ReadAllText(fileName))
     End Sub
 
     Public Sub ClearAvatar() Implements IEditor.ClearAvatar

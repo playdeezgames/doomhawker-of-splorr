@@ -1,9 +1,9 @@
 ﻿Friend Class MapEditor
     Inherits ThingieEditor(Of MapData, IEditorMap)
     Implements IMapEditor
-    Private ReadOnly _data As EditorData
+    Private ReadOnly _data As WorldData
 
-    Public Sub New(data As EditorData)
+    Public Sub New(data As WorldData)
         MyBase.New(Function() data.Maps, Function(name) New EditorMap(data, name))
         _data = data
     End Sub

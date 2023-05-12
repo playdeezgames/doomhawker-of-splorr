@@ -2,7 +2,7 @@
     Inherits Sprite
     Implements ITerrain
 
-    Private ReadOnly _data As EditorData
+    Private ReadOnly _data As WorldData
     Private ReadOnly _terrainName As String
     Private ReadOnly Property TerrainData As TerrainData
         Get
@@ -10,7 +10,7 @@
         End Get
     End Property
 
-    Public Sub New(data As EditorData, terrainName As String)
+    Public Sub New(data As WorldData, terrainName As String)
         MyBase.New(data, data.Terrains(terrainName), terrainName)
         Me._data = data
         Me._terrainName = terrainName

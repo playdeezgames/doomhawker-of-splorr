@@ -1,14 +1,14 @@
 ﻿Friend Class Item
     Inherits Sprite
     Implements IItem
-    Private ReadOnly _data As EditorData
+    Private ReadOnly _data As WorldData
     Private ReadOnly _itemName As String
     Private ReadOnly Property ItemData As ItemData
         Get
             Return _data.Items(_itemName)
         End Get
     End Property
-    Public Sub New(data As EditorData, itemName As String)
+    Public Sub New(data As WorldData, itemName As String)
         MyBase.New(data, data.Items(itemName), itemName)
         _data = data
         _itemName = itemName

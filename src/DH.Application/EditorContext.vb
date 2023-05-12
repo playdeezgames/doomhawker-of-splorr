@@ -19,7 +19,7 @@ Public Module EditorContext
     Public Messages As New Queue(Of EditorMessage)
     Public HueChangeAction As Action(Of String)
     Friend Sub Initialize()
-        Editor = New DH.Business.Editor(New EditorData)
+        Editor = New DH.Business.Editor(New WorldData)
         InitializeFonts()
     End Sub
     Friend ReadOnly Fonts As New Dictionary(Of GameFont, Font)

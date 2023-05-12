@@ -1,7 +1,7 @@
 ﻿Friend Class EditorColor
     Implements IEditorColor
 
-    Private ReadOnly _data As EditorData
+    Private ReadOnly _data As WorldData
     Private ReadOnly _name As String
     Private ReadOnly Property ColorData As ColorData
         Get
@@ -9,7 +9,7 @@
         End Get
     End Property
 
-    Public Sub New(data As EditorData, name As String)
+    Public Sub New(data As WorldData, name As String)
         Me._data = data
         Me._name = name
     End Sub

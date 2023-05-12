@@ -1,8 +1,8 @@
 ﻿Friend Class ItemEditor
     Inherits ThingieEditor(Of ItemData, IItem)
     Implements IItemEditor
-    Private _data As EditorData
-    Public Sub New(data As EditorData)
+    Private _data As WorldData
+    Public Sub New(data As WorldData)
         MyBase.New(Function() data.Items, Function(name) New Item(data, name))
         Me._data = data
     End Sub

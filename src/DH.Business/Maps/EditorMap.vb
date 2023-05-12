@@ -1,6 +1,6 @@
 ﻿Friend Class EditorMap
     Implements IEditorMap
-    Private ReadOnly _data As EditorData
+    Private ReadOnly _data As WorldData
     Private ReadOnly _mapName As String
     Private ReadOnly Property MapData As MapData
         Get
@@ -20,7 +20,7 @@
         End Get
     End Property
 
-    Public Sub New(data As EditorData, mapName As String)
+    Public Sub New(data As WorldData, mapName As String)
         _data = data
         _mapName = mapName
     End Sub

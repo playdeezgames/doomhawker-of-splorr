@@ -1,4 +1,4 @@
-Public Class EditorData
+Public Class WorldData
     Public Property Colors As New Dictionary(Of String, ColorData) From
         {
             {"black", New ColorData With {

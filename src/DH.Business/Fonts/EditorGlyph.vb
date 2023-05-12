@@ -1,7 +1,7 @@
 ﻿Friend Class EditorGlyph
     Implements IEditorGlyph
 
-    Private ReadOnly _data As EditorData
+    Private ReadOnly _data As WorldData
     Private ReadOnly _fontName As String
     Private ReadOnly _glyphKey As Char
     Private ReadOnly Property FontData As FontData
@@ -15,7 +15,7 @@
         End Get
     End Property
 
-    Public Sub New(data As EditorData, fontName As String, glyphKey As Char)
+    Public Sub New(data As WorldData, fontName As String, glyphKey As Char)
         _data = data
         _fontName = fontName
         _glyphKey = glyphKey

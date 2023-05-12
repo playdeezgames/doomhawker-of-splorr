@@ -1,6 +1,6 @@
 ﻿Friend Class EditorFont
     Implements IEditorFont
-    Private ReadOnly _data As EditorData
+    Private ReadOnly _data As WorldData
     Private ReadOnly _fontName As String
     Private ReadOnly Property FontData As FontData
         Get
@@ -20,7 +20,7 @@
         End Get
     End Property
 
-    Public Sub New(data As EditorData, name As String)
+    Public Sub New(data As WorldData, name As String)
         Me._data = data
         Me._fontName = name
     End Sub

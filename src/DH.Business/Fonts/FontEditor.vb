@@ -1,8 +1,8 @@
 ﻿Friend Class FontEditor
     Inherits ThingieEditor(Of FontData, IEditorFont)
     Implements IFontEditor
-    Private ReadOnly _data As EditorData
-    Public Sub New(data As EditorData)
+    Private ReadOnly _data As WorldData
+    Public Sub New(data As WorldData)
         MyBase.New(Function() data.Fonts, Function(name) New EditorFont(data, name))
         Me._data = data
     End Sub

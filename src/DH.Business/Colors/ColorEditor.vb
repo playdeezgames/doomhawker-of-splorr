@@ -1,8 +1,8 @@
 ﻿Friend Class ColorEditor
     Inherits ThingieEditor(Of ColorData, IEditorColor)
     Implements IColorEditor
-    Private ReadOnly _data As EditorData
-    Public Sub New(data As EditorData)
+    Private ReadOnly _data As WorldData
+    Public Sub New(data As WorldData)
         MyBase.New(Function() data.Colors, Function(name) New EditorColor(data, name))
         _data = data
     End Sub

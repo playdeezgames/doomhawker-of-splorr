@@ -2,9 +2,9 @@
     Inherits ThingieEditor(Of CreatureData, ICreature)
     Implements ICreatureEditor
 
-    Private ReadOnly _data As EditorData
+    Private ReadOnly _data As WorldData
 
-    Public Sub New(data As EditorData)
+    Public Sub New(data As WorldData)
         MyBase.New(Function() data.Creatures, Function(name) New Creature(data, name))
         Me._data = data
     End Sub

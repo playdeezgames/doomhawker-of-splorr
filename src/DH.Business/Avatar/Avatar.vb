@@ -1,7 +1,7 @@
 ﻿Friend Class Avatar
     Implements IAvatar
-    Private ReadOnly _data As EditorData
-    Public Sub New(data As EditorData)
+    Private ReadOnly _data As WorldData
+    Public Sub New(data As WorldData)
         _data = data
     End Sub
     Public Property MapName As String Implements IAvatar.MapName

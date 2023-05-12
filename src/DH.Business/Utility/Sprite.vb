@@ -1,9 +1,9 @@
 ﻿Friend MustInherit Class Sprite
     Implements ISprite
-    Private ReadOnly _data As EditorData
+    Private ReadOnly _data As WorldData
     Private ReadOnly _spriteData As SpriteData
     Private ReadOnly _name As String
-    Sub New(data As EditorData, spriteData As SpriteData, name As String)
+    Sub New(data As WorldData, spriteData As SpriteData, name As String)
         _data = data
         _spriteData = spriteData
         _name = name
