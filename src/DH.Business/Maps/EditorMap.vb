@@ -20,6 +20,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property Triggers As ITriggerEditor Implements IEditorMap.Triggers
+        Get
+            Return New TriggerEditor(_data, _mapName)
+        End Get
+    End Property
+
     Public Sub New(data As WorldData, mapName As String)
         _data = data
         _mapName = mapName

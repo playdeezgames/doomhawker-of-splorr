@@ -48,6 +48,8 @@
                         setState(GameState.CloneMap, False)
                     Case DeleteMapText
                         setState(GameState.ConfirmDeleteMap, False)
+                    Case EditTriggersText
+                        setState(GameState.EditTriggers, False)
                 End Select
             End Sub,
             Sub()

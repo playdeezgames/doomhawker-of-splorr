@@ -82,4 +82,5 @@
     CloneColor
     ChangeHue
     ConfirmAbandon
+    EditTriggers
 End Enum

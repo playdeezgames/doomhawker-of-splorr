@@ -492,6 +492,7 @@
                  Sub()
                      TransitionToState(GameState.EditMap)
                  End Sub))
+        SetState(GameState.EditTriggers, New EditTriggersState(Me, AddressOf SetCurrentState))
     End Sub
 
     Private Sub SetTerrainStates()
