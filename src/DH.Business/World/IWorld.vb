@@ -1,4 +1,4 @@
-Public Interface IEditor
+Public Interface IWorld
     Sub Save(fileName As String)
     Sub Load(fileName As String)
     Sub ClearAvatar()

@@ -4,7 +4,7 @@ Imports DH.Data
 Public Module EditorContext
     Public Const ViewWidth = 192
     Public Const ViewHeight = 108
-    Public Editor As IEditor
+    Public Editor As IWorld
     Public FontWidth As Integer = 8
     Public FontHeight As Integer = 8
     Public FontName As String = ""
@@ -19,7 +19,7 @@ Public Module EditorContext
     Public Messages As New Queue(Of EditorMessage)
     Public HueChangeAction As Action(Of String)
     Friend Sub Initialize()
-        Editor = New DH.Business.Editor(New WorldData)
+        Editor = New DH.Business.World(New WorldData)
         InitializeFonts()
     End Sub
     Friend ReadOnly Fonts As New Dictionary(Of GameFont, Font)
