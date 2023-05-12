@@ -5,6 +5,9 @@
     Const RemoveItemsText = "Remove Items..."
     Const PlaceCreaturesText = "Place Creatures..."
     Const RemoveCreaturesText = "Remove Creatures..."
+    Const EditTriggersText = "Triggers..."
+    Const PlaceTriggersText = "Place Triggers..."
+    Const RemoveTriggersText = "Remove Triggers..."
     Const RenameMapText = "Rename Map..."
     Const CloneMapText = "Clone Map..."
     Const DeleteMapText = "Delete Map..."
@@ -20,6 +23,9 @@
                     RemoveItemsText,
                     PlaceCreaturesText,
                     RemoveCreaturesText,
+                    EditTriggersText,
+                    PlaceTriggersText,
+                    RemoveTriggersText,
                     RenameMapText,
                     CloneMapText,
                     DeleteMapText
