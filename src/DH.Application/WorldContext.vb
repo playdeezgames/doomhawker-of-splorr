@@ -1,6 +1,6 @@
 Imports DH.Data
 
-Public Module EditorContext
+Public Module WorldContext
     Public Const ViewWidth = 192
     Public Const ViewHeight = 108
     Public World As IWorld
