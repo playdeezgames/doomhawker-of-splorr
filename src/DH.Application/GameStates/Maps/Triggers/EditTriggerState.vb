@@ -11,7 +11,10 @@
                 ChangeTriggerTypeText
             },
             Sub(menuItem)
-
+                Select Case menuItem
+                    Case ChangeTriggerTypeText
+                        setState(GameState.PickTriggerType, False)
+                End Select
             End Sub,
             Sub()
                 setState(GameState.EditTriggers, False)

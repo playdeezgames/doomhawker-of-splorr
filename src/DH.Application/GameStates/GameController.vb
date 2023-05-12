@@ -504,6 +504,7 @@ Public Class GameController
                  End Sub,
                  Sub() TransitionToState(GameState.EditTriggers)))
         SetState(GameState.EditTrigger, New EditTriggerState(Me, AddressOf SetCurrentState))
+        SetState(GameState.PickTriggerType, New PickTriggerTypeState(Me, AddressOf SetCurrentState))
     End Sub
 
     Private Sub SetTerrainStates()
