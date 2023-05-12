@@ -119,6 +119,7 @@
                      ColorName = buffer
                      TransitionToState(GameState.EditColor)
                  End Sub))
+        SetState(GameState.ChangeHue, New ChangeHueState(Me, AddressOf SetCurrentState))
     End Sub
 
     Private Sub SetInPlayStates()

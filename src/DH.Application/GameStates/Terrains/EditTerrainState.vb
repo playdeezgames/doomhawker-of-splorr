@@ -28,8 +28,10 @@
                     Case ToggleTenantabilityText
                         terrain.Tenantability = Not terrain.Tenantability
                     Case ChangeHueText
-                        'terrain.HueIndex = (terrain.HueIndex + 1) Mod AllHues.Count
-                        Throw New NotImplementedException
+                        HueChangeAction = Sub(hue)
+                                              terrain.Hue = hue
+                                          End Sub
+                        setState(GameState.ChangeHue, True)
                     Case ChangeGlyphText
                         If terrain.Font IsNot Nothing Then
                             setState(GameState.PickTerrainGlyph, False)

@@ -80,4 +80,5 @@
     RenameColor
     ConfirmDeleteColor
     CloneColor
+    ChangeHue
 End Enum

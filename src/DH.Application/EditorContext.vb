@@ -1,3 +1,4 @@
+Imports System.Security.Cryptography.X509Certificates
 Imports DH.Data
 
 Public Module EditorContext
@@ -16,6 +17,7 @@ Public Module EditorContext
     Public MapWidth As Integer
     Public MapHeight As Integer
     Public Messages As New Queue(Of EditorMessage)
+    Public HueChangeAction As Action(Of String)
     Friend Sub Initialize()
         Editor = New DH.Business.Editor(New EditorData)
         InitializeFonts()

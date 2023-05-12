@@ -24,8 +24,10 @@
                 Dim creature As ICreature = Editor.Creatures.Retrieve(CreatureName)
                 Select Case menuItem
                     Case ChangeHueText
-                        'creature.HueIndex = (creature.HueIndex + 1) Mod AllHues.Count
-                        Throw New NotImplementedException
+                        HueChangeAction = Sub(hue)
+                                              creature.Hue = hue
+                                          End Sub
+                        setState(GameState.ChangeHue, True)
                     Case ChangeGlyphText
                         If creature.Font IsNot Nothing Then
                             setState(GameState.PickCreatureGlyph, False)
