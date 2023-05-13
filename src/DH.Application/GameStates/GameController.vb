@@ -489,6 +489,34 @@ Public Class GameController
     Private Sub SetTriggerStates()
         SetState(GameState.ChangeTrigger, New ChangeTriggerState(Me, AddressOf SetCurrentState))
         SetState(GameState.EditTriggers, New EditTriggersState(Me, AddressOf SetCurrentState))
+        SetState(GameState.CloneTrigger, New BaseInputState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Cloned Trigger Name:",
+                 Sub(buffer)
+                     World.Maps.Retrieve(MapName).Triggers.Clone(TriggerName, buffer)
+                     TriggerName = buffer
+                     TransitionToState(GameState.EditTrigger)
+                 End Sub,
+                 Sub()
+                     TransitionToState(GameState.EditTrigger)
+                 End Sub))
+        SetState(GameState.ConfirmDeleteTrigger, New BaseConfirmState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Confirm Trigger Deletion?",
+                 Red,
+                 Sub(confirmation)
+                     If confirmation Then
+                         World.Maps.Retrieve(MapName).Triggers.Delete(TriggerName)
+                         TransitionToState(GameState.EditTriggers)
+                     Else
+                         TransitionToState(GameState.EditTrigger)
+                     End If
+                 End Sub,
+                 Sub()
+                     TransitionToState(GameState.EditTrigger)
+                 End Sub))
         SetState(GameState.NewTriggerName, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,

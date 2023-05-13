@@ -4,6 +4,8 @@
     Const SetNextTriggerText = "Set Next Trigger..."
     Const ClearNextTriggerText = "Clear Next Trigger"
     Const RenameTriggerText = "Rename Trigger..."
+    Const CloneTriggerText = "Clone Trigger..."
+    Const DeleteTriggerText = "Delete Trigger"
     Public Sub New(parent As IGameController(Of String, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(
             parent,
@@ -14,10 +16,16 @@
                 ChangeTriggerTypeText,
                 SetNextTriggerText,
                 ClearNextTriggerText,
-                RenameTriggerText
+                RenameTriggerText,
+                CloneTriggerText,
+                DeleteTriggerText
             },
             Sub(menuItem)
                 Select Case menuItem
+                    Case CloneTriggerText
+                        setState(GameState.CloneTrigger, False)
+                    Case DeleteTriggerText
+                        setState(GameState.ConfirmDeleteTrigger, False)
                     Case ChangeTriggerTypeText
                         setState(GameState.PickTriggerType, False)
                     Case RenameTriggerText

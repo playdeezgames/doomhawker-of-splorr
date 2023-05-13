@@ -90,4 +90,6 @@
     RenameTrigger
     Options
     ChangeTrigger
+    CloneTrigger
+    ConfirmDeleteTrigger
 End Enum
