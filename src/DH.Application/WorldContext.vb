@@ -18,6 +18,7 @@ Public Module WorldContext
     Public TriggerName As String = ""
     Public Messages As New Queue(Of EditorMessage)
     Public HueChangeAction As Action(Of String)
+    Public TriggerChangeAction As Action(Of String)
     Friend Sub Initialize()
         World = New World(New WorldData)
         InitializeFonts()

@@ -487,6 +487,7 @@ Public Class GameController
     End Sub
 
     Private Sub SetTriggerStates()
+        SetState(GameState.ChangeTrigger, New ChangeTriggerState(Me, AddressOf SetCurrentState))
         SetState(GameState.EditTriggers, New EditTriggersState(Me, AddressOf SetCurrentState))
         SetState(GameState.NewTriggerName, New BaseInputState(
                  Me,
