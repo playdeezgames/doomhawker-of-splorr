@@ -15,6 +15,12 @@
                 Select Case menuItem
                     Case NewTriggerText
                         setState(GameState.NewTriggerName, False)
+                    Case PickTriggerText
+                        If World.Maps.Retrieve(MapName).Triggers.HasAny Then
+                            setState(GameState.PickTrigger, False)
+                        Else
+                            setState(GameState.NewTriggerName, False)
+                        End If
                 End Select
             End Sub,
             Sub()

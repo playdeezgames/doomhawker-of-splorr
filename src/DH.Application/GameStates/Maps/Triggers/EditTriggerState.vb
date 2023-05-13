@@ -23,6 +23,10 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font5x7)
-        font.WriteText(displayBuffer, (0, ViewHeight - font.Height), $"Trigger: {MapName}/{TriggerName}", White)
+        Dim trigger = World.Maps.Retrieve(MapName).Triggers.Retrieve(TriggerName)
+        Dim y = ViewHeight - font.Height * 2
+        font.WriteText(displayBuffer, (0, y), $"Trigger: {MapName}/{TriggerName}", White)
+        y += font.Height
+        font.WriteText(displayBuffer, (0, y), $"Trigger Type: {trigger.TriggerType}", White)
     End Sub
 End Class

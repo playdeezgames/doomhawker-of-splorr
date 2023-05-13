@@ -505,6 +505,18 @@ Public Class GameController
                  Sub() TransitionToState(GameState.EditTriggers)))
         SetState(GameState.EditTrigger, New EditTriggerState(Me, AddressOf SetCurrentState))
         SetState(GameState.PickTriggerType, New PickTriggerTypeState(Me, AddressOf SetCurrentState))
+        SetState(GameState.PickTrigger, New BasePickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Choose Trigger",
+                 Sub()
+                     TransitionToState(GameState.EditTriggers)
+                 End Sub,
+                 Sub(picked)
+                     TriggerName = picked
+                     TransitionToState(GameState.EditTrigger)
+                 End Sub,
+                 Function() World.Maps.Retrieve(MapName).Triggers.Names))
     End Sub
 
     Private Sub SetTerrainStates()
