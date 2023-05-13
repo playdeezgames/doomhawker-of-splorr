@@ -341,6 +341,7 @@ Public Class GameController
         SetState(GameState.EditMenu, New EditMenuState(Me, AddressOf SetCurrentState))
         SetState(GameState.Settings, New SettingsState(Me, AddressOf SetCurrentState))
         SetState(GameState.Messages, New MessagesState(Me, AddressOf SetCurrentState))
+        SetState(GameState.Options, New OptionsState(Me, AddressOf SetCurrentState))
     End Sub
 
     Private Sub SetFileStates()

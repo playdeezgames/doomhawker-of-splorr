@@ -33,6 +33,8 @@
                                setState(GameState.EditMenu, False)
                            Case QuitText
                                setState(GameState.ConfirmQuit, False)
+                           Case OptionsText
+                               setState(GameState.Options, False)
                        End Select
                    End Sub,
                    Sub()
