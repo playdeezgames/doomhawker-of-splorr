@@ -87,4 +87,5 @@
     EditTrigger
     PickTriggerType
     PickTrigger
+    RenameTrigger
 End Enum

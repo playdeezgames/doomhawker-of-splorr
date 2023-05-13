@@ -1,6 +1,7 @@
 ﻿Friend Class EditTriggerState
     Inherits BaseMenuState
     Const ChangeTriggerTypeText = "Change Trigger Type..."
+    Const RenameTriggerText = "Rename Trigger..."
     Public Sub New(parent As IGameController(Of String, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(
             parent,
@@ -8,12 +9,15 @@
             "",
             New List(Of String) From
             {
-                ChangeTriggerTypeText
+                ChangeTriggerTypeText,
+                RenameTriggerText
             },
             Sub(menuItem)
                 Select Case menuItem
                     Case ChangeTriggerTypeText
                         setState(GameState.PickTriggerType, False)
+                    Case RenameTriggerText
+                        setState(GameState.RenameTrigger, False)
                 End Select
             End Sub,
             Sub()

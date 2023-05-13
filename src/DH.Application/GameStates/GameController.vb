@@ -509,6 +509,18 @@ Public Class GameController
                      TransitionToState(GameState.EditTrigger)
                  End Sub,
                  Sub() TransitionToState(GameState.EditTriggers)))
+        SetState(GameState.RenameTrigger, New BaseInputState(
+                         Me,
+                         AddressOf SetCurrentState,
+                         "New Trigger Name:",
+                         Sub(buffer)
+                             World.Maps.Retrieve(MapName).Triggers.Rename(TriggerName, buffer)
+                             TriggerName = buffer
+                             TransitionToState(GameState.EditTrigger)
+                         End Sub,
+                         Sub()
+                             TransitionToState(GameState.EditTrigger)
+                         End Sub))
     End Sub
 
     Private Sub SetTerrainStates()
