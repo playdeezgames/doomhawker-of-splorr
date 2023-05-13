@@ -5,14 +5,14 @@
             parent,
             setState,
             "Change Hue:",
-            Sub()
-                setState(Nothing, False)
-            End Sub,
+            Function() World.Colors.Names,
             Sub(picked)
                 HueChangeAction(picked)
                 HueChangeAction = Nothing
                 setState(Nothing, False)
             End Sub,
-            Function() World.Colors.Names)
+            Sub()
+                setState(Nothing, False)
+            End Sub)
     End Sub
 End Class

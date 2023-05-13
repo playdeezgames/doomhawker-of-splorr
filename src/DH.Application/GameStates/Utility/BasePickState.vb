@@ -10,9 +10,9 @@
                   parent As IGameController(Of String, Command, Sfx),
                   setState As Action(Of GameState?, Boolean),
                   caption As String,
-                  onCancel As Action,
+                  listSource As Func(Of IEnumerable(Of String)),
                   onPick As Action(Of String),
-                  listSource As Func(Of IEnumerable(Of String)))
+                  onCancel As Action)
         MyBase.New(parent, setState)
         _caption = caption
         _onCancel = onCancel

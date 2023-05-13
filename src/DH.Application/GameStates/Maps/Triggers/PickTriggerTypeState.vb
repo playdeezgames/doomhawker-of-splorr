@@ -12,13 +12,11 @@ Friend Class PickTriggerTypeState
             parent,
             setState,
             "",
-            Sub()
-                setState(GameState.EditTrigger, False)
-            End Sub,
+            Function() table.Keys,
             Sub(picked)
                 World.Maps.Retrieve(MapName).Triggers.Retrieve(TriggerName).TriggerType = table(picked)
                 setState(GameState.EditTrigger, False)
             End Sub,
-            Function() table.Keys)
+            Sub() setState(GameState.EditTrigger, False))
     End Sub
 End Class

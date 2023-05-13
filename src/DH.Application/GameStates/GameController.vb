@@ -41,25 +41,25 @@ Public Class GameController
                  Me,
                  AddressOf SetCurrentState,
                 "Choose Color",
-                Sub() TransitionToState(GameState.ColorsMenu),
+                Function() World.Colors.Names,
                 Sub(picked)
                     ColorName = picked
                     TransitionToState(GameState.EditColor)
                 End Sub,
-                Function() World.Colors.Names))
+                Sub() TransitionToState(GameState.ColorsMenu)))
         SetState(GameState.EditColor, New EditColorState(Me, AddressOf SetCurrentState))
         SetState(GameState.PickRenameColor, New BasePickState(
                  Me,
                  AddressOf SetCurrentState,
                  "Pick Color To Rename",
-                 Sub()
-                     TransitionToState(GameState.ColorsMenu)
-                 End Sub,
+                 Function() World.Colors.Names,
                  Sub(picked)
                      ColorName = picked
                      TransitionToState(GameState.RenameColor)
                  End Sub,
-                 Function() World.Colors.Names))
+                 Sub()
+                     TransitionToState(GameState.ColorsMenu)
+                 End Sub))
         SetState(GameState.RenameColor, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,
@@ -75,14 +75,12 @@ Public Class GameController
                  Me,
                  AddressOf SetCurrentState,
                  "Pick Color to Delete",
-                 Sub()
-                     TransitionToState(GameState.ColorsMenu)
-                 End Sub,
+                 Function() World.Colors.Names,
                  Sub(picked)
                      ColorName = picked
                      TransitionToState(GameState.ConfirmDeleteColor)
                  End Sub,
-                 Function() World.Colors.Names))
+                 Sub() TransitionToState(GameState.ColorsMenu)))
         SetState(GameState.ConfirmDeleteColor, New BaseConfirmState(
                  Me,
                  AddressOf SetCurrentState,
@@ -101,14 +99,12 @@ Public Class GameController
                  Me,
                  AddressOf SetCurrentState,
                  "Pick Color To Clone",
-                 Sub()
-                     TransitionToState(GameState.ColorsMenu)
-                 End Sub,
+                 Function() World.Colors.Names,
                  Sub(picked)
                      ColorName = picked
                      TransitionToState(GameState.CloneColor)
                  End Sub,
-                 Function() World.Colors.Names))
+                 Sub() TransitionToState(GameState.ColorsMenu)))
         SetState(GameState.CloneColor, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,
@@ -151,14 +147,12 @@ Public Class GameController
                  Me,
                  AddressOf SetCurrentState,
                  "Pick Avatar Map",
-                 Sub()
-                     SetCurrentState(GameState.AvatarMenu, False)
-                 End Sub,
+                 Function() World.Maps.Names,
                  Sub(picked)
                      MapName = picked
                      SetCurrentState(GameState.PickAvatarCreatureInstance, False)
                  End Sub,
-                 Function() World.Maps.Names))
+                 Sub() SetCurrentState(GameState.AvatarMenu, False)))
         SetState(GameState.PickAvatarCreatureInstance, New PickAvatarCreatureInstanceState(
                  Me,
                  AddressOf SetCurrentState))
@@ -184,12 +178,12 @@ Public Class GameController
                  Me,
                  AddressOf SetCurrentState,
                  "Choose Creature",
-                 Sub() TransitionToState(GameState.CreaturesMenu),
+                 Function() World.Creatures.Names,
                  Sub(picked)
                      CreatureName = picked
                      TransitionToState(GameState.EditCreature)
                  End Sub,
-                 Function() World.Creatures.Names))
+                 Sub() TransitionToState(GameState.CreaturesMenu)))
         SetState(GameState.RenameCreature, New BaseInputState(
                          Me,
                          AddressOf SetCurrentState,
@@ -232,12 +226,12 @@ Public Class GameController
                  Me,
                  AddressOf SetCurrentState,
                 "Choose Font",
-                Sub() TransitionToState(GameState.EditCreature),
+                Function() World.Fonts.Names,
                 Sub(picked)
                     World.Creatures.Retrieve(CreatureName).Font = World.Fonts.Retrieve(picked)
                     TransitionToState(GameState.EditCreature)
                 End Sub,
-                Function() World.Fonts.Names))
+                Sub() TransitionToState(GameState.EditCreature)))
         SetState(GameState.PickCreatureGlyph, New BaseGlyphPickState(
                  Me,
                  AddressOf SetCurrentState,
@@ -271,12 +265,12 @@ Public Class GameController
                  Me,
                  AddressOf SetCurrentState,
                  "Choose Item",
-                 Sub() TransitionToState(GameState.ItemsMenu),
+                 Function() World.Items.Names,
                  Sub(picked)
                      ItemName = picked
                      TransitionToState(GameState.EditItem)
                  End Sub,
-                 Function() World.Items.Names))
+                 Sub() TransitionToState(GameState.ItemsMenu)))
         SetState(GameState.RenameItem, New BaseInputState(
                          Me,
                          AddressOf SetCurrentState,
@@ -321,12 +315,12 @@ Public Class GameController
                  Me,
                  AddressOf SetCurrentState,
                 "Choose Font",
-                Sub() TransitionToState(GameState.EditItem),
+                Function() World.Fonts.Names,
                 Sub(picked)
                     World.Items.Retrieve(ItemName).Font = World.Fonts.Retrieve(picked)
                     TransitionToState(GameState.EditItem)
                 End Sub,
-                Function() World.Fonts.Names))
+                Sub() TransitionToState(GameState.EditItem)))
         SetState(GameState.PickItemGlyph, New BaseGlyphPickState(
                  Me,
                  AddressOf SetCurrentState,
@@ -400,12 +394,12 @@ Public Class GameController
                  Me,
                  AddressOf SetCurrentState,
                  "Choose Map",
-                 Sub() TransitionToState(GameState.MapsMenu),
+                 Function() World.Maps.Names,
                  Sub(picked)
                      MapName = picked
                      TransitionToState(GameState.EditMap)
                  End Sub,
-                 Function() World.Maps.Names))
+                 Sub() TransitionToState(GameState.MapsMenu)))
         SetState(GameState.NewMapSize, New NewMapSizeState(Me, AddressOf SetCurrentState))
         SetState(GameState.CloneMap, New BaseInputState(
                          Me,
@@ -421,32 +415,32 @@ Public Class GameController
                  Me,
                  AddressOf SetCurrentState,
                  "Choose Terrain",
-                 Sub() TransitionToState(GameState.EditMap),
+                 Function() World.Terrains.Names,
                  Sub(picked)
                      TerrainName = picked
                      TransitionToState(GameState.PlaceMapTerrain)
                  End Sub,
-                 Function() World.Terrains.Names))
+                 Sub() TransitionToState(GameState.EditMap)))
         SetState(GameState.PickMapItem, New BasePickState(
                  Me,
                  AddressOf SetCurrentState,
                  "Choose Item",
-                 Sub() TransitionToState(GameState.EditMap),
+                 Function() World.Items.Names,
                  Sub(picked)
                      ItemName = picked
                      TransitionToState(GameState.PlaceMapItem)
                  End Sub,
-                 Function() World.Items.Names))
+                 Sub() TransitionToState(GameState.EditMap)))
         SetState(GameState.PickMapCreature, New BasePickState(
                  Me,
                  AddressOf SetCurrentState,
                  "Choose Creature",
-                 Sub() TransitionToState(GameState.EditMap),
+                 Function() World.Creatures.Names,
                  Sub(picked)
                      CreatureName = picked
                      TransitionToState(GameState.PlaceMapCreature)
                  End Sub,
-                 Function() World.Creatures.Names))
+                 Sub() TransitionToState(GameState.EditMap)))
         SetState(GameState.PlaceMapTerrain, New PlaceMapTerrainState(Me, AddressOf SetCurrentState))
         SetState(GameState.PlaceMapItem, New PlaceMapItemState(Me, AddressOf SetCurrentState))
         SetState(GameState.PlaceMapCreature, New PlaceMapCreatureState(Me, AddressOf SetCurrentState))
@@ -456,12 +450,12 @@ Public Class GameController
                  Me,
                  AddressOf SetCurrentState,
                  "Choose Terrain",
-                 Sub() TransitionToState(GameState.NewMapSize),
+                 Function() World.Terrains.Names,
                  Sub(picked)
                      TerrainName = picked
                      TransitionToState(GameState.NewMapSize)
                  End Sub,
-                 Function() World.Terrains.Names))
+                 Sub() TransitionToState(GameState.NewMapSize)))
         SetState(GameState.RenameMap, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,
@@ -509,14 +503,12 @@ Public Class GameController
                  Me,
                  AddressOf SetCurrentState,
                  "Choose Trigger",
-                 Sub()
-                     TransitionToState(GameState.EditTriggers)
-                 End Sub,
+                 Function() World.Maps.Retrieve(MapName).Triggers.Names,
                  Sub(picked)
                      TriggerName = picked
                      TransitionToState(GameState.EditTrigger)
                  End Sub,
-                 Function() World.Maps.Retrieve(MapName).Triggers.Names))
+                 Sub() TransitionToState(GameState.EditTriggers)))
     End Sub
 
     Private Sub SetTerrainStates()
@@ -575,12 +567,12 @@ Public Class GameController
                  Me,
                  AddressOf SetCurrentState,
                 "Choose Font",
-                Sub() TransitionToState(GameState.EditTerrain),
+                Function() World.Fonts.Names,
                 Sub(picked)
                     World.Terrains.Retrieve(TerrainName).Font = World.Fonts.Retrieve(picked)
                     TransitionToState(GameState.EditTerrain)
                 End Sub,
-                Function() World.Fonts.Names))
+                Sub() TransitionToState(GameState.EditTerrain)))
         SetState(GameState.PickTerrainGlyph, New BaseGlyphPickState(
                  Me,
                  AddressOf SetCurrentState,
@@ -596,12 +588,12 @@ Public Class GameController
                  Me,
                  AddressOf SetCurrentState,
                  "Choose Terrain",
-                 Sub() TransitionToState(GameState.TerrainsMenu),
+                 Function() World.Terrains.Names,
                  Sub(picked)
                      TerrainName = picked
                      TransitionToState(GameState.EditTerrain)
                  End Sub,
-                 Function() World.Terrains.Names))
+                 Sub() TransitionToState(GameState.TerrainsMenu)))
     End Sub
 
     Private Sub SetFontStates()
@@ -611,22 +603,22 @@ Public Class GameController
                  Me,
                  AddressOf SetCurrentState,
                 "Choose Font",
-                Sub() TransitionToState(GameState.FontsMenu),
+                Function() World.Fonts.Names,
                 Sub(picked)
                     FontName = picked
                     TransitionToState(GameState.EditFont)
                 End Sub,
-                Function() World.Fonts.Names))
+                Sub() TransitionToState(GameState.FontsMenu)))
         SetState(GameState.PickExportFont, New BasePickState(
                  Me,
                  AddressOf SetCurrentState,
                 "Choose Export Font",
-                Sub() TransitionToState(GameState.FontsMenu),
+                Function() World.Fonts.Names,
                 Sub(picked)
                     FontName = picked
                     TransitionToState(GameState.ExportFontAs)
                 End Sub,
-                Function() World.Fonts.Names))
+                Sub() TransitionToState(GameState.FontsMenu)))
         SetState(GameState.NewFontName, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,
@@ -646,14 +638,12 @@ Public Class GameController
                  Me,
                  AddressOf SetCurrentState,
                  "Pick Font to Delete",
-                 Sub()
-                     TransitionToState(GameState.FontsMenu)
-                 End Sub,
+                 Function() World.Fonts.Names,
                  Sub(picked)
                      FontName = picked
                      TransitionToState(GameState.ConfirmDeleteFont)
                  End Sub,
-                 Function() World.Fonts.Names))
+                 Sub() TransitionToState(GameState.FontsMenu)))
         SetState(GameState.ConfirmDeleteFont, New BaseConfirmState(
                  Me,
                  AddressOf SetCurrentState,
@@ -672,14 +662,12 @@ Public Class GameController
                  Me,
                  AddressOf SetCurrentState,
                  "Pick Font To Rename",
-                 Sub()
-                     TransitionToState(GameState.FontsMenu)
-                 End Sub,
+                 Function() World.Fonts.Names,
                  Sub(picked)
                      FontName = picked
                      TransitionToState(GameState.RenameFont)
                  End Sub,
-                 Function() World.Fonts.Names))
+                 Sub() TransitionToState(GameState.FontsMenu)))
         SetState(GameState.RenameFont, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,
@@ -693,14 +681,12 @@ Public Class GameController
                  Me,
                  AddressOf SetCurrentState,
                  "Pick Font To Clone",
-                 Sub()
-                     TransitionToState(GameState.FontsMenu)
-                 End Sub,
+                 Function() World.Fonts.Names,
                  Sub(picked)
                      FontName = picked
                      TransitionToState(GameState.CloneFont)
                  End Sub,
-                 Function() World.Fonts.Names))
+                 Sub() TransitionToState(GameState.FontsMenu)))
         SetState(GameState.CloneFont, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,
