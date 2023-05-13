@@ -24,7 +24,9 @@
             Return TriggerData.TriggerType
         End Get
         Set(value As TriggerType)
-            TriggerData.TriggerType = value
+            If value <> TriggerData.TriggerType Then
+                TriggerData.TriggerType = value
+            End If
         End Set
     End Property
     Public Property NextTrigger As IEditorTrigger Implements IEditorTrigger.NextTrigger
@@ -46,6 +48,15 @@
     Public ReadOnly Property Name As String Implements IEditorTrigger.Name
         Get
             Return _triggerName
+        End Get
+    End Property
+
+    Public ReadOnly Property Teleport As ITeleportTrigger Implements IEditorTrigger.Teleport
+        Get
+            If TriggerType <> TriggerType.Teleport Then
+                Return Nothing
+            End If
+            Return New TeleportTrigger(_data, _mapName, _triggerName)
         End Get
     End Property
 End Class

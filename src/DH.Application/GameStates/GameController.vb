@@ -489,6 +489,22 @@ Public Class GameController
     Private Sub SetTriggerStates()
         SetState(GameState.ChangeTrigger, New ChangeTriggerState(Me, AddressOf SetCurrentState))
         SetState(GameState.EditTriggers, New EditTriggersState(Me, AddressOf SetCurrentState))
+        SetState(GameState.PickTriggerTeleportMap, New BasePickState(
+                 Me,
+                 AddressOf SetCurrentState,
+                 "Pick Destination Map",
+                 Function() World.Maps.Names,
+                 Sub(picked)
+                     Dim teleport = World.Maps.Retrieve(MapName).Triggers.Retrieve(TriggerName).Teleport
+                     teleport.MapName = picked
+                     teleport.Column = 0
+                     teleport.Row = 0
+                     TransitionToState(GameState.PickTriggerTeleportMapCell)
+                 End Sub,
+                 Sub()
+                     TransitionToState(GameState.EditTrigger)
+                 End Sub))
+        SetState(GameState.PickTriggerTeleportMapCell, New PickTriggerTeleportMapCellState(Me, AddressOf SetCurrentState))
         SetState(GameState.CloneTrigger, New BaseInputState(
                  Me,
                  AddressOf SetCurrentState,

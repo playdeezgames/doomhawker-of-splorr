@@ -92,4 +92,6 @@
     ChangeTrigger
     CloneTrigger
     ConfirmDeleteTrigger
+    PickTriggerTeleportMap
+    PickTriggerTeleportMapCell
 End Enum

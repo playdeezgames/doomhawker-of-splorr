@@ -1,6 +1,7 @@
 ﻿Friend Class EditTriggerState
     Inherits BaseMenuState
     Const ChangeTriggerTypeText = "Change Trigger Type..."
+    Const TriggerDetailsText = "Trigger Details..."
     Const SetNextTriggerText = "Set Next Trigger..."
     Const ClearNextTriggerText = "Clear Next Trigger"
     Const RenameTriggerText = "Rename Trigger..."
@@ -14,6 +15,7 @@
             New List(Of String) From
             {
                 ChangeTriggerTypeText,
+                TriggerDetailsText,
                 SetNextTriggerText,
                 ClearNextTriggerText,
                 RenameTriggerText,
@@ -24,6 +26,13 @@
                 Select Case menuItem
                     Case CloneTriggerText
                         setState(GameState.CloneTrigger, False)
+                    Case TriggerDetailsText
+                        Select Case World.Maps.Retrieve(MapName).Triggers.Retrieve(TriggerName).TriggerType
+                            Case Data.TriggerType.Teleport
+                                setState(GameState.PickTriggerTeleportMap, False)
+                            Case Else
+                                Throw New NotImplementedException
+                        End Select
                     Case DeleteTriggerText
                         setState(GameState.ConfirmDeleteTrigger, False)
                     Case ChangeTriggerTypeText
@@ -51,10 +60,18 @@
         If trigger.NextTrigger IsNot Nothing Then
             y -= font.Height
         End If
+        If trigger.TriggerType = Data.TriggerType.Teleport Then
+            y -= font.Height
+        End If
         font.WriteText(displayBuffer, (0, y), $"Trigger: {MapName}/{trigger.Name}", White)
         y += font.Height
         font.WriteText(displayBuffer, (0, y), $"Trigger Type: {trigger.TriggerType}", White)
         y += font.Height
+        If trigger.TriggerType = Data.TriggerType.Teleport Then
+            Dim teleport = trigger.Teleport
+            font.WriteText(displayBuffer, (0, y), $"Teleport To: {teleport.MapName}({teleport.Column},{teleport.Row})", White)
+            y += font.Height
+        End If
         If trigger.NextTrigger IsNot Nothing Then
             font.WriteText(displayBuffer, (0, y), $"Next Trigger: {trigger.NextTrigger.Name}", White)
             y += font.Height
