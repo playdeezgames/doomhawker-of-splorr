@@ -1,5 +1,6 @@
 ﻿Friend MustInherit Class BasePlaceMapState
     Inherits BaseGameState(Of String, Command, Sfx, GameState)
+    Private ReadOnly _mapNameSource As Func(Of String)
     Private _column As Integer = Zero
     Private _row As Integer = Zero
     Private ReadOnly _onCancel As Action
@@ -18,15 +19,17 @@
     Public Sub New(
                   parent As IGameController(Of String, Command, Sfx),
                   setState As Action(Of GameState?, Boolean),
+                  mapNameSource As Func(Of String),
                   onPlace As Action(Of Integer, Integer),
                   onCancel As Action)
         MyBase.New(parent, setState)
         _onCancel = onCancel
         _onPlace = onPlace
+        _mapNameSource = mapNameSource
     End Sub
 
     Public Overrides Sub HandleCommand(command As Command)
-        Dim map = World.Maps.Retrieve(MapName)
+        Dim map = World.Maps.Retrieve(_mapNameSource())
         Select Case command
             Case Command.UpReleased
                 If _row > Zero Then
@@ -55,7 +58,7 @@
 
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
         displayBuffer.Fill((Zero, Zero), (ViewWidth, ViewHeight), Black)
-        DrawMap(displayBuffer, MapName, _column, _row, White)
+        DrawMap(displayBuffer, _mapNameSource(), _column, _row, White)
     End Sub
 
     Friend Shared Sub DrawMap(displayBuffer As IPixelSink(Of String), mapName As String, column As Integer, row As Integer, cursorHue As String)

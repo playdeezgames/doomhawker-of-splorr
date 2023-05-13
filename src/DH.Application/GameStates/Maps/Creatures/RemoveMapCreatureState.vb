@@ -4,6 +4,7 @@
         MyBase.New(
             parent,
             setState,
+            Function() MapName,
             Sub(column, row)
                 World.Maps.Retrieve(MapName).GetCell(column, row).Creature = Nothing
             End Sub,

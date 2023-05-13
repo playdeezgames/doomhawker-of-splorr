@@ -4,6 +4,7 @@
         MyBase.New(
             parent,
             setState,
+            Function() MapName,
             Sub(column, row)
                 World.Maps.Retrieve(MapName).GetCell(column, row).Item = World.Items.Retrieve(ItemName).CreateInstance(MapName, column, row)
             End Sub,

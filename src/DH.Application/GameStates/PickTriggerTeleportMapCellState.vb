@@ -5,6 +5,7 @@
         MyBase.New(
             parent,
             setState,
+            Function() World.Maps.Retrieve(MapName).Triggers.Retrieve(TriggerName).Teleport.MapName,
             Sub(column, row)
                 Dim teleport = World.Maps.Retrieve(MapName).Triggers.Retrieve(TriggerName).Teleport
                 teleport.Column = column
