@@ -15,6 +15,7 @@ Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "SPLORR.Game", "..\abettor-o
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_STUFF", "_STUFF", "{C5BF0C0A-1378-486E-855F-60699A07B8F4}"
 	ProjectSection(SolutionItems) = preProject
+		..\ideas.md = ..\ideas.md
 		..\README.md = ..\README.md
 		..\shippit.sh = ..\shippit.sh
 	EndProjectSection
