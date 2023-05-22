@@ -2,12 +2,17 @@
 
 Public Class GameController
     Inherits BaseGameController(Of String, Command, Sfx, GameState)
-    Private ReadOnly _configSink As Action(Of (Integer, Integer), Boolean, Single)
+    Private ReadOnly _configSink As Action(Of (Integer, Integer), Boolean, Single, String)
 
-    Public Sub New(windowSizeSource As Func(Of (Integer, Integer)), fullScreenSource As Func(Of Boolean), volumeSource As Func(Of Single), configSink As Action(Of (Integer, Integer), Boolean, Single))
+    Public Sub New(
+                  windowSizeSource As Func(Of (Integer, Integer)),
+                  fullScreenSource As Func(Of Boolean),
+                  volumeSource As Func(Of Single),
+                  autoLoadSource As Func(Of String),
+                  configSink As Action(Of (Integer, Integer), Boolean, Single, String))
         MyBase.New(windowSizeSource(), fullScreenSource(), volumeSource())
         _configSink = configSink
-        _configSink(Size, FullScreen, Volume)
+        _configSink(Size, FullScreen, Volume, autoLoadSource())
         Initialize()
         SetBoilerplateStates()
         SetFileStates()

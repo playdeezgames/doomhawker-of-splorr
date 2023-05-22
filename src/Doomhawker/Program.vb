@@ -2,10 +2,12 @@ Module Program
     Const ConfigFileName = "config.json"
     Sub Main(args As String())
         Dim config = LoadConfig()
+        WorldContext.AutoLoad = config.AutoLoad
         Dim gameController As New GameController(
             Function() (config.WindowWidth, config.WindowHeight),
             Function() config.FullScreen,
             Function() config.SfxVolume,
+            Function() AutoLoad,
             AddressOf SaveConfig)
         Using host As New Host(Of String, Command, Sfx)(
             "Doomhawker of SPLORR!!",
@@ -44,8 +46,8 @@ Module Program
         Return results.ToArray
     End Function
 
-    Private Sub SaveConfig(windowSize As (Integer, Integer), fullScreen As Boolean, volume As Single)
-        File.WriteAllText(ConfigFileName, JsonSerializer.Serialize(New DHConfig With {.SfxVolume = volume, .WindowHeight = windowSize.Item2, .WindowWidth = windowSize.Item1, .FullScreen = fullScreen}))
+    Private Sub SaveConfig(windowSize As (Integer, Integer), fullScreen As Boolean, volume As Single, autoLoad As String)
+        File.WriteAllText(ConfigFileName, JsonSerializer.Serialize(New DHConfig With {.SfxVolume = volume, .WindowHeight = windowSize.Item2, .WindowWidth = windowSize.Item1, .FullScreen = fullScreen, .AutoLoad = autoLoad}))
     End Sub
     Const DefaultWindowScale = 6
     Const DefaultWindowWidth = ViewWidth * DefaultWindowScale

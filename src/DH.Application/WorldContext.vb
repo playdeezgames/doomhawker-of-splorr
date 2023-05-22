@@ -24,6 +24,8 @@ Public Module WorldContext
         InitializeFonts()
     End Sub
     Friend ReadOnly Fonts As New Dictionary(Of GameFont, Font)
+    Public Property AutoLoad As String
+
     Private Sub InitializeFonts()
         Fonts.Clear()
         Fonts.Add(GameFont.Font3x5, New Font(JsonSerializer.Deserialize(Of FontData)(File.ReadAllText("Content/CyFont3x5.json"))))

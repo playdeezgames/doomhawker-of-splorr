@@ -7,7 +7,13 @@
 
     Public Overrides Sub HandleCommand(command As Command)
         If command = Command.OkReleased Then
-            SetState(GameState.MainMenu)
+            If String.IsNullOrEmpty(AutoLoad) Then
+                SetState(GameState.MainMenu)
+            Else
+                WorldContext.Initialize()
+                World.Load(AutoLoad)
+                SetState(GameState.Navigate)
+            End If
         End If
     End Sub
 
