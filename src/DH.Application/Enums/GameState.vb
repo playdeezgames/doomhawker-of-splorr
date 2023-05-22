@@ -94,4 +94,5 @@
     ConfirmDeleteTrigger
     PickTriggerTeleportMap
     PickTriggerTeleportMapCell
+    PlaceMapTrigger
 End Enum

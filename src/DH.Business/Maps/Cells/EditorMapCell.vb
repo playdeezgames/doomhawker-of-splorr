@@ -67,6 +67,15 @@
         End Set
     End Property
 
+    Public Property Trigger As String Implements IEditorMapCell.Trigger
+        Get
+            Return MapCellData.TriggerName
+        End Get
+        Set(value As String)
+            MapCellData.TriggerName = value
+        End Set
+    End Property
+
     Public Sub New(data As WorldData, mapName As String, column As Integer, row As Integer)
         Me._data = data
         Me._mapName = mapName
