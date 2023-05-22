@@ -95,4 +95,5 @@
     PickTriggerTeleportMap
     PickTriggerTeleportMapCell
     PlaceMapTrigger
+    RemoveMapTrigger
 End Enum

@@ -493,6 +493,7 @@ Public Class GameController
 
     Private Sub SetTriggerStates()
         SetState(GameState.PlaceMapTrigger, New PlaceMapTriggerState(Me, AddressOf SetCurrentState))
+        SetState(GameState.RemoveMapTrigger, New RemoveMapTriggerState(Me, AddressOf SetCurrentState))
         SetState(GameState.ChangeTrigger, New ChangeTriggerState(Me, AddressOf SetCurrentState))
         SetState(GameState.EditTriggers, New EditTriggersState(Me, AddressOf SetCurrentState))
         SetState(GameState.PickTriggerTeleportMap, New BasePickState(
