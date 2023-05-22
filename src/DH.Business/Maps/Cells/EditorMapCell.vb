@@ -5,10 +5,14 @@
     Private ReadOnly _mapName As String
     Private ReadOnly _column As Integer
     Private ReadOnly _row As Integer
+    Private ReadOnly Property MapData As MapData
+        Get
+            Return _data.Maps(_mapName)
+        End Get
+    End Property
     Private ReadOnly Property MapCellData As MapCellData
         Get
-            Dim map = _data.Maps(_mapName)
-            Return map.Cells(_column + _row * map.Columns)
+            Return MapData.Cells(_column + _row * MapData.Columns)
         End Get
     End Property
 
@@ -67,12 +71,12 @@
         End Set
     End Property
 
-    Public Property Trigger As String Implements IEditorMapCell.Trigger
+    Public Property Trigger As IEditorTrigger Implements IEditorMapCell.Trigger
         Get
-            Return MapCellData.TriggerName
+            Return New EditorTrigger(_data, _mapName, MapCellData.TriggerName)
         End Get
-        Set(value As String)
-            MapCellData.TriggerName = value
+        Set(value As IEditorTrigger)
+            MapCellData.TriggerName = value.Name
         End Set
     End Property
 

@@ -2,5 +2,5 @@
     Property Terrain As ITerrain
     Property Item As IItemInstance
     Property Creature As ICreatureInstance
-    Property Trigger As String
+    Property Trigger As IEditorTrigger
 End Interface

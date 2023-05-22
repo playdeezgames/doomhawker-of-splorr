@@ -16,6 +16,6 @@
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font5x7)
         Dim trigger = World.Maps.Retrieve(MapName).GetCell(Column, Row).Trigger
-        font.WriteText(displayBuffer, (0, ViewHeight - font.Height), If(trigger, ""), White)
+        font.WriteText(displayBuffer, (0, ViewHeight - font.Height), If(trigger?.Name, ""), White)
     End Sub
 End Class

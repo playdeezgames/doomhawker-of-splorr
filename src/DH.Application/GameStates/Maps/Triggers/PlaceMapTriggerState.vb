@@ -6,7 +6,8 @@
             setState,
             Function() MapName,
             Sub(column, row)
-                World.Maps.Retrieve(MapName).GetCell(column, row).Trigger = TriggerName
+                Dim map = World.Maps.Retrieve(MapName)
+                map.GetCell(column, row).Trigger = map.Triggers.Retrieve(TriggerName)
             End Sub,
             Sub()
                 setState(GameState.EditTrigger, False)
@@ -16,6 +17,6 @@
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font5x7)
         Dim trigger = World.Maps.Retrieve(MapName).GetCell(Column, Row).Trigger
-        font.WriteText(displayBuffer, (0, ViewHeight - font.Height), If(trigger, ""), White)
+        font.WriteText(displayBuffer, (0, ViewHeight - font.Height), If(trigger?.Name, ""), White)
     End Sub
 End Class
