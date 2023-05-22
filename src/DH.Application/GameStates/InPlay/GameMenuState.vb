@@ -15,7 +15,7 @@
                 Select Case menuItem
                     Case NavigateText
                         setState(Nothing, False)
-                        setState(GameState.Navigate, False)
+                        setState(GameState.Neutral, False)
                     Case AbandonGameText
                         setState(GameState.ConfirmAbandon, False)
                 End Select

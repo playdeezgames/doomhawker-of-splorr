@@ -8,7 +8,7 @@
     Public Overrides Sub HandleCommand(command As Command)
         Select Case command
             Case Command.OkReleased, Command.CancelReleased
-                SetStates(GameState.GameMenu, GameState.Navigate)
+                SetStates(GameState.GameMenu, GameState.Neutral)
             Case Command.UpReleased
                 World.Avatar.Move(Direction.North)
             Case Command.DownReleased

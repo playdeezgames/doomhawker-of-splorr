@@ -126,6 +126,7 @@ Public Class GameController
     End Sub
 
     Private Sub SetInPlayStates()
+        SetState(GameState.Neutral, New NeutralGameState(Me, AddressOf SetCurrentState))
         SetState(GameState.Navigate, New NavigateState(Me, AddressOf SetCurrentState))
         SetState(GameState.GameMenu, New GameMenuState(Me, AddressOf SetCurrentState))
         SetState(GameState.ConfirmAbandon, New BaseConfirmState(

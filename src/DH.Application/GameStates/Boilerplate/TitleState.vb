@@ -12,7 +12,7 @@
             Else
                 WorldContext.Initialize()
                 World.Load(AutoLoad)
-                SetState(GameState.Navigate)
+                SetState(GameState.Neutral)
             End If
         End If
     End Sub

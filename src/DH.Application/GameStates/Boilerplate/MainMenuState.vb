@@ -23,7 +23,7 @@
                        Select Case menuItem
                            Case EmbarkText
                                If World.Avatar IsNot Nothing Then
-                                   setState(GameState.Navigate, False)
+                                   setState(GameState.Neutral, False)
                                End If
                            Case SaveText
                                setState(GameState.SaveAs, False)
