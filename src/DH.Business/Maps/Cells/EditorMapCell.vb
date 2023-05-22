@@ -73,9 +73,16 @@
 
     Public Property Trigger As IEditorTrigger Implements IEditorMapCell.Trigger
         Get
+            If String.IsNullOrEmpty(MapCellData.TriggerName) Then
+                Return Nothing
+            End If
             Return New EditorTrigger(_data, _mapName, MapCellData.TriggerName)
         End Get
         Set(value As IEditorTrigger)
+            If value Is Nothing Then
+                MapCellData.TriggerName = Nothing
+                Return
+            End If
             MapCellData.TriggerName = value.Name
         End Set
     End Property

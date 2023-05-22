@@ -2,7 +2,7 @@
     Implements ICreatureInstance
 
     Private ReadOnly _data As WorldData
-    Private ReadOnly _mapName As String
+    Private _mapName As String
     Private _column As Integer
     Private _row As Integer
 
@@ -32,18 +32,40 @@
             '--cancel move
             '--result: item
             '-move creature
-            Dim instanceData = CreatureInstanceData
-            MapCellData.Creature = Nothing
-            _column = nextColumn
-            _row = nextRow
-            MapCellData.Creature = instanceData
+            MoveTo(_mapName, nextColumn, nextRow)
             '-trigger any move event there might be
             '-result: moved
         Else
-            '-trigger any bump event
-            '-cancel move
-            '-result: bump
+            ExecuteTrigger(mapCell.Trigger)
         End If
+    End Sub
+
+    Private Sub MoveTo(mapName As String, nextColumn As Integer, nextRow As Integer)
+        Dim instanceData = CreatureInstanceData
+        MapCellData.Creature = Nothing
+        _mapName = mapName
+        _column = nextColumn
+        _row = nextRow
+        MapCellData.Creature = instanceData
+    End Sub
+
+    Private Sub ExecuteTrigger(trigger As IEditorTrigger)
+        If trigger Is Nothing Then
+            Return
+        End If
+        Select Case trigger.TriggerType
+            Case TriggerType.Teleport
+                ExecuteTeleportTrigger(trigger.Teleport)
+            Case Else
+                Throw New NotImplementedException
+        End Select
+    End Sub
+
+    Private Sub ExecuteTeleportTrigger(teleport As ITeleportTrigger)
+        If teleport Is Nothing Then
+            Return
+        End If
+        MoveTo(teleport.MapName, teleport.Column, teleport.Row)
     End Sub
 
     Private ReadOnly Property CreatureInstanceData As CreatureInstanceData

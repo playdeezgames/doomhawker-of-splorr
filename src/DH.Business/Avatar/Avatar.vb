@@ -28,16 +28,15 @@
             _data.Avatar.Row = value
         End Set
     End Property
-
     Public ReadOnly Property Creature As ICreatureInstance Implements IAvatar.Creature
         Get
             Return New CreatureInstance(_data, MapName, Column, Row)
         End Get
     End Property
-
     Public Sub Move(direction As Direction) Implements IAvatar.Move
         Dim c = Creature
         c.Move(direction)
+        MapName = c.MapName
         Column = c.Column
         Row = c.Row
     End Sub
