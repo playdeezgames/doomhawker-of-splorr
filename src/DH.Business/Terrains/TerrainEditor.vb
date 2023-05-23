@@ -1,5 +1,5 @@
 ﻿Friend Class TerrainEditor
-    Inherits ThingieEditor(Of TerrainData, ITerrain)
+    Inherits Thingies(Of TerrainData, ITerrain)
     Implements ITerrainEditor
     Private ReadOnly _data As WorldData
     Public Sub New(data As WorldData)

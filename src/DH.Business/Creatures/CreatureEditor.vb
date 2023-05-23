@@ -1,5 +1,5 @@
 ﻿Friend Class CreatureEditor
-    Inherits ThingieEditor(Of CreatureData, ICreature)
+    Inherits Thingies(Of CreatureData, ICreature)
     Implements ICreatureEditor
 
     Private ReadOnly _data As WorldData

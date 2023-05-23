@@ -1,5 +1,5 @@
 ﻿Friend Class TriggerEditor
-    Inherits ThingieEditor(Of TriggerData, IEditorTrigger)
+    Inherits Thingies(Of TriggerData, IEditorTrigger)
     Implements ITriggerEditor
 
     Private ReadOnly _data As WorldData

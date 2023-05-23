@@ -1,5 +1,5 @@
 ﻿Friend Class FontEditor
-    Inherits ThingieEditor(Of FontData, IEditorFont)
+    Inherits Thingies(Of FontData, IEditorFont)
     Implements IFontEditor
     Private ReadOnly _data As WorldData
     Public Sub New(data As WorldData)
@@ -20,7 +20,7 @@
                     .Width = width,
                     .Lines = New Dictionary(Of Integer, IEnumerable(Of Integer))
                 }
-            For line = Zero To height - 1
+            For line = 0 To height - 1
                 glyphData.Lines(line) = Array.Empty(Of Integer)
             Next
             fontData.Glyphs(ChrW(character)) = glyphData

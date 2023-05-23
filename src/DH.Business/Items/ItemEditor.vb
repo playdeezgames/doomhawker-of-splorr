@@ -1,5 +1,5 @@
 ﻿Friend Class ItemEditor
-    Inherits ThingieEditor(Of ItemData, IItem)
+    Inherits Thingies(Of ItemData, IItem)
     Implements IItemEditor
     Private _data As WorldData
     Public Sub New(data As WorldData)

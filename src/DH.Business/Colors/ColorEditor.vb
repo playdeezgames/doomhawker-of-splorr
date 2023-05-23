@@ -1,5 +1,5 @@
 ﻿Friend Class ColorEditor
-    Inherits ThingieEditor(Of ColorData, IEditorColor)
+    Inherits Thingies(Of ColorData, IEditorColor)
     Implements IColorEditor
     Private ReadOnly _data As WorldData
     Public Sub New(data As WorldData)
