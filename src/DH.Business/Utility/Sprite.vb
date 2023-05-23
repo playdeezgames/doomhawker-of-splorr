@@ -1,45 +1,41 @@
 ﻿Friend MustInherit Class Sprite
+    Inherits SpriteDataClient
     Implements ISprite
-    Private ReadOnly _data As WorldData
-    Private ReadOnly _spriteData As Func(Of WorldData, String, SpriteData)
-    Private ReadOnly _name As String
     Sub New(data As WorldData, spriteData As Func(Of WorldData, String, SpriteData), name As String)
-        _data = data
-        _spriteData = spriteData
-        _name = name
+        MyBase.New(data, spriteData, name)
     End Sub
 
     Public Property FontName As String Implements ISprite.FontName
         Get
-            Return _spriteData(_data, _name).FontName
+            Return SpriteData.FontName
         End Get
         Set(value As String)
-            _spriteData(_data, _name).FontName = value
+            SpriteData.FontName = value
         End Set
     End Property
 
     Public Property GlyphKey As Char Implements ISprite.GlyphKey
         Get
-            Return _spriteData(_data, _name).GlyphKey
+            Return SpriteData.GlyphKey
         End Get
         Set(value As Char)
-            _spriteData(_data, _name).GlyphKey = value
+            SpriteData.GlyphKey = value
         End Set
     End Property
 
     Public Property Hue As String Implements ISprite.Hue
         Get
-            Return _spriteData(_data, _name).Hue
+            Return SpriteData.Hue
         End Get
         Set(value As String)
-            _spriteData(_data, _name).Hue = value
+            SpriteData.Hue = value
         End Set
     End Property
 
     Public Property Font As IEditorFont Implements ISprite.Font
         Get
-            If _data.Fonts.ContainsKey(_spriteData(_data, _name).FontName) Then
-                Return New EditorFont(_data, _spriteData(_data, _name).FontName)
+            If WorldData.Fonts.ContainsKey(SpriteData.FontName) Then
+                Return New EditorFont(WorldData, SpriteData.FontName)
             End If
             Return Nothing
         End Get
@@ -54,7 +50,7 @@
 
     Public ReadOnly Property Name As String Implements ISprite.Name
         Get
-            Return _name
+            Return _spriteName
         End Get
     End Property
 End Class
