@@ -10,7 +10,7 @@ Public Interface IWorld
     ReadOnly Property Terrains As ITerrainEditor
     ReadOnly Property Maps As IMapEditor
     ReadOnly Property Items As IItemEditor
-    ReadOnly Property Creatures As ICreatureEditor
+    ReadOnly Property Creatures As ICreatures
     ReadOnly Property Avatar As IAvatar
     ReadOnly Property Colors As IColors
 End Interface
