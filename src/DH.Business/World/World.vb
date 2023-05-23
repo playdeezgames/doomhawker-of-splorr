@@ -46,7 +46,7 @@
 
     Public ReadOnly Property Creatures As ICreatures Implements IWorld.Creatures
         Get
-            Return New CreatureEditor(WorldData)
+            Return New Creatures(WorldData)
         End Get
     End Property
 
