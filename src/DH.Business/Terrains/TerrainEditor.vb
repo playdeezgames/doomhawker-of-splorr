@@ -3,7 +3,7 @@
     Implements ITerrainEditor
     Private ReadOnly _data As WorldData
     Public Sub New(data As WorldData)
-        MyBase.New(Function() data.Terrains, Function(name) New Terrain(data, name))
+        MyBase.New(data, Function() data.Terrains, Function(name) New Terrain(data, name))
         _data = data
     End Sub
     Public Function Create(name As String, hue As String) As ITerrain Implements ITerrainEditor.Create

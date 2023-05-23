@@ -6,7 +6,7 @@
     Private ReadOnly _mapName As String
 
     Public Sub New(data As WorldData, mapName As String)
-        MyBase.New(Function() data.Maps(mapName).Triggers, Function(triggerName) New EditorTrigger(data, mapName, triggerName))
+        MyBase.New(data, Function() data.Maps(mapName).Triggers, Function(triggerName) New EditorTrigger(data, mapName, triggerName))
         Me._data = data
         Me._mapName = mapName
     End Sub

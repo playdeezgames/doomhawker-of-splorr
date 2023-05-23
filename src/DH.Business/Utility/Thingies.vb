@@ -1,9 +1,11 @@
 ﻿Friend MustInherit Class Thingies(Of TData, TThingie)
+    Inherits WorldDataClient
     Implements IThingies(Of TThingie)
     Private ReadOnly _thingieSource As Func(Of Dictionary(Of String, TData))
     Private ReadOnly _thingieRetriever As Func(Of String, TThingie)
 
-    Sub New(thingieSource As Func(Of Dictionary(Of String, TData)), thingieRetriever As Func(Of String, TThingie))
+    Sub New(data As WorldData, thingieSource As Func(Of Dictionary(Of String, TData)), thingieRetriever As Func(Of String, TThingie))
+        MyBase.New(data)
         _thingieSource = thingieSource
         _thingieRetriever = thingieRetriever
     End Sub

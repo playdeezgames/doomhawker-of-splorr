@@ -59,9 +59,9 @@
         End Get
     End Property
 
-    Public ReadOnly Property Colors As IColorEditor Implements IWorld.Colors
+    Public ReadOnly Property Colors As IColors Implements IWorld.Colors
         Get
-            Return New ColorEditor(WorldData)
+            Return New Colors(WorldData)
         End Get
     End Property
 

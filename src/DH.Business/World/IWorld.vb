@@ -12,5 +12,5 @@ Public Interface IWorld
     ReadOnly Property Items As IItemEditor
     ReadOnly Property Creatures As ICreatureEditor
     ReadOnly Property Avatar As IAvatar
-    ReadOnly Property Colors As IColorEditor
+    ReadOnly Property Colors As IColors
 End Interface

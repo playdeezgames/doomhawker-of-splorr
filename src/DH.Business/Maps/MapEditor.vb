@@ -4,7 +4,7 @@
     Private ReadOnly _data As WorldData
 
     Public Sub New(data As WorldData)
-        MyBase.New(Function() data.Maps, Function(name) New EditorMap(data, name))
+        MyBase.New(data, Function() data.Maps, Function(name) New EditorMap(data, name))
         _data = data
     End Sub
     Public Function Create(name As String, columns As Integer, rows As Integer, terrainName As String) As IEditorMap Implements IMapEditor.Create

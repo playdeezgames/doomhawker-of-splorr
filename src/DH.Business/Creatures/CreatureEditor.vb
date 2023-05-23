@@ -5,7 +5,7 @@
     Private ReadOnly _data As WorldData
 
     Public Sub New(data As WorldData)
-        MyBase.New(Function() data.Creatures, Function(name) New Creature(data, name))
+        MyBase.New(data, Function() data.Creatures, Function(name) New Creature(data, name))
         Me._data = data
     End Sub
     Public Function Create(name As String, hue As String) As ICreature Implements ICreatureEditor.Create
