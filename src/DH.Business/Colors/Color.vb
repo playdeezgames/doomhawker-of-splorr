@@ -1,4 +1,4 @@
-﻿Friend Class EditorColor
+﻿Friend Class Color
     Implements IColor
 
     Private ReadOnly _data As WorldData
