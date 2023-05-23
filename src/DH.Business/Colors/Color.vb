@@ -1,17 +1,9 @@
 ﻿Friend Class Color
+    Inherits ColorDataClient
     Implements IColor
 
-    Private ReadOnly _data As WorldData
-    Private ReadOnly _name As String
-    Private ReadOnly Property ColorData As ColorData
-        Get
-            Return _data.Colors(_name)
-        End Get
-    End Property
-
     Public Sub New(data As WorldData, name As String)
-        Me._data = data
-        Me._name = name
+        MyBase.New(data, name)
     End Sub
 
     Public Property Red As Byte Implements IColor.Red
