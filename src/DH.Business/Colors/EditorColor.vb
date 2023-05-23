@@ -1,5 +1,5 @@
 ﻿Friend Class EditorColor
-    Implements IEditorColor
+    Implements IColor
 
     Private ReadOnly _data As WorldData
     Private ReadOnly _name As String
@@ -14,7 +14,7 @@
         Me._name = name
     End Sub
 
-    Public Property Red As Byte Implements IEditorColor.Red
+    Public Property Red As Byte Implements IColor.Red
         Get
             Return ColorData.Red
         End Get
@@ -23,7 +23,7 @@
         End Set
     End Property
 
-    Public Property Green As Byte Implements IEditorColor.Green
+    Public Property Green As Byte Implements IColor.Green
         Get
             Return ColorData.Green
         End Get
@@ -32,7 +32,7 @@
         End Set
     End Property
 
-    Public Property Blue As Byte Implements IEditorColor.Blue
+    Public Property Blue As Byte Implements IColor.Blue
         Get
             Return ColorData.Blue
         End Get
