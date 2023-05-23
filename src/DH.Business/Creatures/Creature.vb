@@ -11,7 +11,7 @@
     End Property
 
     Public Sub New(data As WorldData, name As String)
-        MyBase.New(data, data.Creatures(name), name)
+        MyBase.New(data, Function() data.Creatures(name), name)
         Me._data = data
         Me._name = name
     End Sub

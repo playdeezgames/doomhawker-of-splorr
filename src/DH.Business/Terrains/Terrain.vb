@@ -11,7 +11,7 @@
     End Property
 
     Public Sub New(data As WorldData, terrainName As String)
-        MyBase.New(data, data.Terrains(terrainName), terrainName)
+        MyBase.New(data, Function() data.Terrains(terrainName), terrainName)
         Me._data = data
         Me._terrainName = terrainName
     End Sub

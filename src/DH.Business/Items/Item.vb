@@ -9,7 +9,7 @@
         End Get
     End Property
     Public Sub New(data As WorldData, itemName As String)
-        MyBase.New(data, data.Items(itemName), itemName)
+        MyBase.New(data, Function() data.Items(itemName), itemName)
         _data = data
         _itemName = itemName
     End Sub
