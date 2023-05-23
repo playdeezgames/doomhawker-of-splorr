@@ -1,4 +1,4 @@
-﻿Public Interface IThingieEditor(Of TThingie)
+﻿Public Interface IThingies(Of TThingie)
     Function Retrieve(name As String) As TThingie
     ReadOnly Property HasAny As Boolean
     ReadOnly Property Names As IEnumerable(Of String)

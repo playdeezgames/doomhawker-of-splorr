@@ -1,5 +1,5 @@
 ﻿Friend MustInherit Class ThingieEditor(Of TData, TThingie)
-    Implements IThingieEditor(Of TThingie)
+    Implements IThingies(Of TThingie)
     Private ReadOnly _thingieSource As Func(Of Dictionary(Of String, TData))
     Private ReadOnly _thingieRetriever As Func(Of String, TThingie)
     Protected Const Zero = 0
@@ -9,34 +9,34 @@
         _thingieRetriever = thingieRetriever
     End Sub
 
-    Public ReadOnly Property HasAny As Boolean Implements IThingieEditor(Of TThingie).HasAny
+    Public ReadOnly Property HasAny As Boolean Implements IThingies(Of TThingie).HasAny
         Get
             Return _thingieSource().Any
         End Get
     End Property
 
-    Public ReadOnly Property Names As IEnumerable(Of String) Implements IThingieEditor(Of TThingie).Names
+    Public ReadOnly Property Names As IEnumerable(Of String) Implements IThingies(Of TThingie).Names
         Get
             Return _thingieSource().Keys
         End Get
     End Property
 
-    Public Sub Rename(fromName As String, toName As String) Implements IThingieEditor(Of TThingie).Rename
+    Public Sub Rename(fromName As String, toName As String) Implements IThingies(Of TThingie).Rename
         Dim temp = _thingieSource()(fromName)
         _thingieSource().Remove(fromName)
         _thingieSource().Add(toName, temp)
     End Sub
 
-    Public Sub Clone(fromName As String, toName As String) Implements IThingieEditor(Of TThingie).Clone
+    Public Sub Clone(fromName As String, toName As String) Implements IThingies(Of TThingie).Clone
         Dim temp = _thingieSource()(fromName)
         _thingieSource().Add(toName, temp)
     End Sub
 
-    Public Sub Delete(name As String) Implements IThingieEditor(Of TThingie).Delete
+    Public Sub Delete(name As String) Implements IThingies(Of TThingie).Delete
         _thingieSource().Remove(name)
     End Sub
 
-    Public Function Retrieve(name As String) As TThingie Implements IThingieEditor(Of TThingie).Retrieve
+    Public Function Retrieve(name As String) As TThingie Implements IThingies(Of TThingie).Retrieve
         Return _thingieRetriever(name)
     End Function
 End Class
