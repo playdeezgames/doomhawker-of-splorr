@@ -9,7 +9,7 @@ Module Program
             Function() config.SfxVolume,
             Function() AutoLoad,
             AddressOf SaveConfig)
-        Using host As New Host(Of String, Command, Sfx)(
+        Using host As New Host(Of Integer, Command, Sfx)(
             "Doomhawker of SPLORR!!",
             gameController,
             (WorldContext.ViewWidth, WorldContext.ViewHeight),
@@ -82,11 +82,11 @@ Module Program
         End If
         Return Nothing
     End Function
-    Private Function BufferCreatorator(texture As Texture2D) As IDisplayBuffer(Of String)
-        Return New DisplayBuffer(Of String)(texture, AddressOf TransformHue)
+    Private Function BufferCreatorator(texture As Texture2D) As IDisplayBuffer(Of Integer)
+        Return New DisplayBuffer(Of Integer)(texture, AddressOf TransformHue)
     End Function
-    Private ReadOnly hueTable As IReadOnlyDictionary(Of String, Color) =
-        New Dictionary(Of String, Color) From
+    Private ReadOnly hueTable As IReadOnlyDictionary(Of Integer, Color) =
+        New Dictionary(Of Integer, Color) From
         {
             {Black, New Color(0, 0, 0, 255)},
             {Blue, New Color(0, 0, 170, 255)},
@@ -105,7 +105,7 @@ Module Program
             {Yellow, New Color(255, 255, 85, 255)},
             {White, New Color(255, 255, 255, 255)}
         }
-    Private Function TransformHue(hue As String) As Color
+    Private Function TransformHue(hue As Integer) As Color
         If World.Colors.Names.Contains(hue) Then
             Dim editorColor = World.Colors.Retrieve(hue)
             Return New Color(editorColor.Red, editorColor.Green, editorColor.Blue)

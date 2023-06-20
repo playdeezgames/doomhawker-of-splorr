@@ -6,7 +6,7 @@
     Const RenameCreatureText = "Rename Creature..."
     Const CloneCreatureText = "Clone Creature..."
     Const DeleteCreatureText = "Delete Creature..."
-    Public Sub New(parent As IGameController(Of String, Command, Sfx), setState As Action(Of GameState?, Boolean))
+    Public Sub New(parent As IGameController(Of Integer, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(
             parent,
             setState,
@@ -48,7 +48,7 @@
                 setState(GameState.CreaturesMenu, False)
             End Sub)
     End Sub
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
         MyBase.Render(displayBuffer)
         Dim creature As ICreature = ShowStatistics(displayBuffer)
         If creature.Font IsNot Nothing Then
@@ -58,7 +58,7 @@
             terrainFont.WriteText(displayBuffer, (ViewWidth - width, ViewHeight - height), $"{creature.GlyphKey}", creature.Hue)
         End If
     End Sub
-    Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of String)) As ICreature
+    Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of Integer)) As ICreature
         Dim font = Fonts(GameFont.Font5x7)
         Dim creature As ICreature = World.Creatures.Retrieve(CreatureName)
         font.WriteText(displayBuffer, (Zero, font.Height * 8), $"Name: {CreatureName}", White)

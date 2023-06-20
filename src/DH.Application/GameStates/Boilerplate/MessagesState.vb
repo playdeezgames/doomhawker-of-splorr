@@ -1,6 +1,6 @@
 ﻿Friend Class MessagesState
-    Inherits BaseGameState(Of String, Command, Sfx, GameState)
-    Public Sub New(parent As IGameController(Of String, Command, Sfx), setState As Action(Of GameState?, Boolean))
+    Inherits BaseGameState(Of Integer, Command, Sfx, GameState)
+    Public Sub New(parent As IGameController(Of Integer, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent, setState)
     End Sub
     Public Overrides Sub HandleCommand(command As Command)
@@ -11,7 +11,7 @@
             End If
         End If
     End Sub
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
         displayBuffer.Fill((Zero, Zero), (ViewWidth, ViewHeight), Black)
         Dim font = Fonts(GameFont.Font5x7)
         Dim y = Zero

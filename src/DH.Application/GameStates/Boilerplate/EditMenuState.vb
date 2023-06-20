@@ -8,7 +8,7 @@
     Const AvatarText = "Avatar..."
     Const SettingsText = "Settings..."
     Const EditColorsText = "Colors..."
-    Public Sub New(parent As IGameController(Of String, Command, Sfx), setState As Action(Of GameState?, Boolean))
+    Public Sub New(parent As IGameController(Of Integer, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(
             parent,
             setState,
@@ -46,7 +46,7 @@
                 setState(GameState.MainMenu, False)
             End Sub)
     End Sub
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font3x5)
         Const text = "(B)/Esc to go back"

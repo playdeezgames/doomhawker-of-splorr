@@ -1,12 +1,12 @@
 ﻿Friend Class BaseGlyphPickState
-    Inherits BaseGameState(Of String, Command, Sfx, GameState)
+    Inherits BaseGameState(Of Integer, Command, Sfx, GameState)
     Private _row As Integer = Zero
     Private _column As Integer = Zero
     Private ReadOnly _onDone As Action(Of Char)
     Private ReadOnly _onCancel As Action
     Private ReadOnly _fontSource As Func(Of String)
     Public Sub New(
-                  parent As IGameController(Of String, Command, Sfx),
+                  parent As IGameController(Of Integer, Command, Sfx),
                   setState As Action(Of GameState?, Boolean),
                   onDone As Action(Of Char),
                   onCancel As Action,
@@ -43,17 +43,17 @@
                 _onCancel()
         End Select
     End Sub
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
         displayBuffer.Fill((Zero, Zero), (ViewWidth, ViewHeight), DarkGray)
         RenderEditorFont(displayBuffer)
         Dim font = Fonts(GameFont.Font5x7)
-        Dim h As String = Gray
+        Dim h As Integer = Gray
         Dim text As String
         Dim ascii = FirstCharacter + _row * CellColumns + _column
         text = $"Character: {ascii}({ChrW(ascii)})"
         font.WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(text) \ 2, Zero), text, h)
     End Sub
-    Private Sub RenderEditorFont(displayBuffer As IPixelSink(Of String))
+    Private Sub RenderEditorFont(displayBuffer As IPixelSink(Of Integer))
         Dim editorFont As IEditorFont = World.Fonts.Retrieve(_fontSource())
         Dim font As Font = editorFont.Font
         Dim cellWidth = font.TextWidth(" ")

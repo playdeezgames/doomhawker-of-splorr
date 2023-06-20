@@ -1,3 +1,3 @@
 ﻿Public Class EditorMessage
-    Public Property Lines As New List(Of (String, String))
+    Public Property Lines As New List(Of (Integer, String))
 End Class

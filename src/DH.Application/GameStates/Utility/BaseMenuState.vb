@@ -1,5 +1,5 @@
 ﻿Friend Class BaseMenuState
-    Inherits BaseGameState(Of String, Command, Sfx, GameState)
+    Inherits BaseGameState(Of Integer, Command, Sfx, GameState)
     Private ReadOnly _caption As String
     Private ReadOnly _menuItems As IReadOnlyList(Of String)
     Private _currentItem As Integer = Zero
@@ -11,7 +11,7 @@
         End Get
     End Property
     Sub New(
-                     parent As IGameController(Of String, Command, Sfx),
+                     parent As IGameController(Of Integer, Command, Sfx),
                      setState As Action(Of GameState?, Boolean),
                      caption As String,
                      menuItems As IReadOnlyList(Of String),
@@ -35,7 +35,7 @@
                 _onCancel()
         End Select
     End Sub
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
         displayBuffer.Fill((Zero, Zero), (ViewWidth, ViewHeight), Black)
         Dim font = Fonts(GameFont.Font5x7)
         Dim y = Zero
@@ -45,7 +45,7 @@
         End If
         Dim row = Zero
         For Each menuItem In _menuItems
-            Dim h As String = If(row = _currentItem, LightBlue, Blue)
+            Dim h As Integer = If(row = _currentItem, LightBlue, Blue)
             font.WriteText(displayBuffer, (Zero, y), menuItem, h)
             row += 1
             y += font.Height

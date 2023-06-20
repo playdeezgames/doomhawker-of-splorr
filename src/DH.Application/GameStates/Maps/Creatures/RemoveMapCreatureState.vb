@@ -1,6 +1,6 @@
 ﻿Friend Class RemoveMapCreatureState
     Inherits BasePlaceMapState
-    Public Sub New(parent As IGameController(Of String, Command, Sfx), setState As Action(Of GameState?, Boolean))
+    Public Sub New(parent As IGameController(Of Integer, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(
             parent,
             setState,
@@ -12,7 +12,7 @@
                 setState(GameState.EditMap, False)
             End Sub)
     End Sub
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
         MyBase.Render(displayBuffer)
         Dim font = Fonts(GameFont.Font3x5)
         Dim currentCreature = World.Maps.Retrieve(MapName).GetCell(Column, Row).Creature?.Creature?.Name

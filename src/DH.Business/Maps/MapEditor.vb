@@ -1,5 +1,5 @@
 ﻿Friend Class MapEditor
-    Inherits Thingies(Of MapData, IEditorMap)
+    Inherits Thingies(Of MapData, IEditorMap, String)
     Implements IMapEditor
     Private ReadOnly _data As WorldData
 

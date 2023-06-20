@@ -1,7 +1,7 @@
 ﻿Imports DH.Data
 
 Public Class GameController
-    Inherits BaseGameController(Of String, Command, Sfx, GameState)
+    Inherits BaseGameController(Of Integer, Command, Sfx, GameState)
     Private ReadOnly _configSink As Action(Of (Integer, Integer), Boolean, Single, String)
 
     Public Sub New(
@@ -34,21 +34,21 @@ Public Class GameController
                  AddressOf SetCurrentState,
                  "Color Name:",
                 Sub(buffer)
-                    ColorName = buffer
-                    World.Colors.Create(ColorName, 0, 0, 0)
+                    ColorName = CInt(buffer)
+                    World.Colors.Create(CInt(ColorName), 0, 0, 0)
                     TransitionToState(GameState.EditColor)
                 End Sub,
                 Sub()
-                    ColorName = ""
+                    ColorName = 0
                     TransitionToState(GameState.ColorsMenu)
                 End Sub))
         SetState(GameState.PickColor, New BasePickState(
                  Me,
                  AddressOf SetCurrentState,
                 "Choose Color",
-                Function() World.Colors.Names,
+                Function() World.Colors.Names.Select(Function(x) x.ToString),
                 Sub(picked)
-                    ColorName = picked
+                    ColorName = CInt(picked)
                     TransitionToState(GameState.EditColor)
                 End Sub,
                 Sub() TransitionToState(GameState.ColorsMenu)))
@@ -57,9 +57,9 @@ Public Class GameController
                  Me,
                  AddressOf SetCurrentState,
                  "Pick Color To Rename",
-                 Function() World.Colors.Names,
+                 Function() World.Colors.Names.Select(Function(x) x.ToString),
                  Sub(picked)
-                     ColorName = picked
+                     ColorName = CInt(picked)
                      TransitionToState(GameState.RenameColor)
                  End Sub,
                  Sub()
@@ -70,7 +70,7 @@ Public Class GameController
                  AddressOf SetCurrentState,
                  "Rename Color To:",
                  Sub(buffer)
-                     World.Colors.Rename(ColorName, buffer)
+                     World.Colors.Rename(ColorName, CInt(buffer))
                      TransitionToState(GameState.ColorsMenu)
                  End Sub,
                  Sub()
@@ -80,9 +80,9 @@ Public Class GameController
                  Me,
                  AddressOf SetCurrentState,
                  "Pick Color to Delete",
-                 Function() World.Colors.Names,
+                 Function() World.Colors.Names.Select(Function(x) x.ToString),
                  Sub(picked)
-                     ColorName = picked
+                     ColorName = CInt(picked)
                      TransitionToState(GameState.ConfirmDeleteColor)
                  End Sub,
                  Sub() TransitionToState(GameState.ColorsMenu)))
@@ -104,9 +104,9 @@ Public Class GameController
                  Me,
                  AddressOf SetCurrentState,
                  "Pick Color To Clone",
-                 Function() World.Colors.Names,
+                 Function() World.Colors.Names.Select(Function(x) x.ToString),
                  Sub(picked)
-                     ColorName = picked
+                     ColorName = CInt(picked)
                      TransitionToState(GameState.CloneColor)
                  End Sub,
                  Sub() TransitionToState(GameState.ColorsMenu)))
@@ -115,8 +115,8 @@ Public Class GameController
                  AddressOf SetCurrentState,
                  "Cloned Color Name:",
                  Sub(buffer)
-                     World.Colors.Clone(ColorName, buffer)
-                     ColorName = buffer
+                     World.Colors.Clone(CInt(ColorName), CInt(buffer))
+                     ColorName = CInt(buffer)
                      TransitionToState(GameState.EditColor)
                  End Sub,
                  Sub()
@@ -358,7 +358,7 @@ Public Class GameController
                  Sub(buffer)
                      World.Save(buffer)
                      Messages.Enqueue(New EditorMessage With {
-                     .Lines = New List(Of (String, String)) From
+                     .Lines = New List(Of (Integer, String)) From
                      {
                         (Green, "You saved it!")
                      }})
@@ -375,7 +375,7 @@ Public Class GameController
                          TransitionToState(GameState.MainMenu)
                      Catch ex As Exception
                          Messages.Enqueue(New EditorMessage With {
-                         .Lines = New List(Of (String, String)) From
+                         .Lines = New List(Of (Integer, String)) From
                          {
                             (Red, "Failed to load!")
                          }})
@@ -770,7 +770,7 @@ Public Class GameController
                  Sub(buffer)
                      World.Fonts.Export(FontName, buffer)
                      Messages.Enqueue(New EditorMessage With {
-                     .Lines = New List(Of (String, String)) From
+                     .Lines = New List(Of (Integer, String)) From
                      {
                         (Green, "You exported it!")
                      }})

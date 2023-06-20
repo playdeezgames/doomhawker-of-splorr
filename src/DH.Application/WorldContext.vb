@@ -7,7 +7,7 @@ Public Module WorldContext
     Public FontWidth As Integer = 8
     Public FontHeight As Integer = 8
     Public FontName As String = ""
-    Public ColorName As String = ""
+    Public ColorName As Integer = 0
     Public GlyphKey As Char = ChrW(32)
     Public TerrainName As String = ""
     Public ItemName As String = ""
@@ -17,7 +17,7 @@ Public Module WorldContext
     Public MapHeight As Integer
     Public TriggerName As String = ""
     Public Messages As New Queue(Of EditorMessage)
-    Public HueChangeAction As Action(Of String)
+    Public HueChangeAction As Action(Of Integer)
     Public TriggerChangeAction As Action(Of String)
     Friend Sub Initialize()
         World = New World(New WorldData)

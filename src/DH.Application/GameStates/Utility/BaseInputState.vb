@@ -1,12 +1,12 @@
 ﻿Friend Class BaseInputState
-    Inherits BaseGameState(Of String, Command, Sfx, GameState)
+    Inherits BaseGameState(Of Integer, Command, Sfx, GameState)
     Private _character As Char = " "c
     Private _buffer As String = ""
     Private ReadOnly _caption As String
     Private ReadOnly _onCancel As Action
     Private ReadOnly _onDone As Action(Of String)
     Public Sub New(
-                  parent As IGameController(Of String, Command, Sfx),
+                  parent As IGameController(Of Integer, Command, Sfx),
                   setState As Action(Of GameState?, Boolean),
                   caption As String,
                   onDone As Action(Of String),
@@ -70,7 +70,7 @@
         End While
         _character = ChrW(ascii)
     End Sub
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
         displayBuffer.Fill((Zero, Zero), (ViewWidth, ViewHeight), Black)
         Dim font = Fonts(GameFont.Font5x7)
         Dim CellWidth = font.TextWidth(" ")

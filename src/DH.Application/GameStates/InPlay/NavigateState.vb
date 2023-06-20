@@ -1,7 +1,7 @@
 ﻿Friend Class NavigateState
-    Inherits BaseGameState(Of String, Command, Sfx, GameState)
+    Inherits BaseGameState(Of Integer, Command, Sfx, GameState)
 
-    Public Sub New(parent As IGameController(Of String, Command, Sfx), setState As Action(Of GameState?, Boolean))
+    Public Sub New(parent As IGameController(Of Integer, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent, setState)
     End Sub
 
@@ -19,7 +19,7 @@
                 World.Avatar.Move(Direction.East)
         End Select
     End Sub
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
         displayBuffer.Fill((Zero, Zero), (ViewWidth, ViewHeight), Black)
         Dim avatar = World.Avatar
         BasePlaceMapState.DrawMap(displayBuffer, avatar.MapName, avatar.Column, avatar.Row, Black)

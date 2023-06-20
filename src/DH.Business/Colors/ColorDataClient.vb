@@ -1,7 +1,7 @@
 ﻿Friend MustInherit Class ColorDataClient
     Inherits WorldDataClient
-    Protected ReadOnly Property ColorName As String
-    Protected Sub New(data As WorldData, colorName As String)
+    Protected ReadOnly Property ColorName As Integer
+    Protected Sub New(data As WorldData, colorName As Integer)
         MyBase.New(data)
         Me.ColorName = colorName
     End Sub

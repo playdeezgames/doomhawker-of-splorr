@@ -1,5 +1,5 @@
 ﻿Friend Class BasePickState
-    Inherits BaseGameState(Of String, Command, Sfx, GameState)
+    Inherits BaseGameState(Of Integer, Command, Sfx, GameState)
     Private _index As Integer = Zero
     Private ReadOnly _caption As String = ""
     Private ReadOnly _onPick As Action(Of String)
@@ -7,7 +7,7 @@
     Private ReadOnly _listSource As Func(Of IEnumerable(Of String))
 
     Public Sub New(
-                  parent As IGameController(Of String, Command, Sfx),
+                  parent As IGameController(Of Integer, Command, Sfx),
                   setState As Action(Of GameState?, Boolean),
                   caption As String,
                   listSource As Func(Of IEnumerable(Of String)),
@@ -32,7 +32,7 @@
         End Select
     End Sub
 
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
         displayBuffer.Fill((Zero, Zero), (ViewWidth, ViewHeight), Black)
         Dim font = Fonts(GameFont.Font5x7)
         Dim listItems = _listSource().ToList
@@ -41,7 +41,7 @@
         End If
         Dim y = ViewHeight \ 2 - font.Height \ 2 - _index * font.Height
         For index = Zero To listItems.Count - 1
-            Dim h As String = If(index = _index, LightBlue, Blue)
+            Dim h As Integer = If(index = _index, LightBlue, Blue)
             Dim text = listItems(index)
             font.WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(text) \ 2, y), text, h)
             y += font.Height

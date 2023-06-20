@@ -2,7 +2,7 @@
     Inherits ColorDataClient
     Implements IColor
 
-    Public Sub New(data As WorldData, name As String)
+    Public Sub New(data As WorldData, name As Integer)
         MyBase.New(data, name)
     End Sub
 

@@ -23,11 +23,11 @@
         End Set
     End Property
 
-    Public Property Hue As String Implements ISprite.Hue
+    Public Property Hue As Integer Implements ISprite.Hue
         Get
             Return SpriteData.Hue
         End Get
-        Set(value As String)
+        Set(value As Integer)
             SpriteData.Hue = value
         End Set
     End Property

@@ -1,82 +1,82 @@
 Public Class WorldData
-    Public Property Colors As New Dictionary(Of String, ColorData) From
+    Public Property Colors As New Dictionary(Of Integer, ColorData) From
         {
-            {"black", New ColorData With {
+            {0, New ColorData With {
                 .Red = 0,
                 .Green = 0,
                 .Blue = 0
             }},
-            {"blue", New ColorData With {
+            {1, New ColorData With {
                 .Red = 0,
                 .Green = 0,
                 .Blue = 170
             }},
-            {"green", New ColorData With {
+            {2, New ColorData With {
                 .Red = 0,
                 .Green = 170,
                 .Blue = 0
             }},
-            {"cyan", New ColorData With {
+            {3, New ColorData With {
                 .Red = 0,
                 .Green = 170,
                 .Blue = 170
             }},
-            {"red", New ColorData With {
+            {4, New ColorData With {
                 .Red = 170,
                 .Green = 0,
                 .Blue = 0
             }},
-            {"magenta", New ColorData With {
+            {5, New ColorData With {
                 .Red = 170,
                 .Green = 0,
                 .Blue = 170
             }},
-            {"brown", New ColorData With {
+            {6, New ColorData With {
                 .Red = 170,
                 .Green = 85,
                 .Blue = 0
             }},
-            {"gray", New ColorData With {
+            {7, New ColorData With {
                 .Red = 170,
                 .Green = 170,
                 .Blue = 170
             }},
-            {"darkgray", New ColorData With {
+            {8, New ColorData With {
                 .Red = 85,
                 .Green = 85,
                 .Blue = 85
             }},
-            {"lightblue", New ColorData With {
+            {9, New ColorData With {
                 .Red = 85,
                 .Green = 85,
                 .Blue = 255
             }},
-            {"lightgreen", New ColorData With {
+            {10, New ColorData With {
                 .Red = 85,
                 .Green = 255,
                 .Blue = 85
             }},
-            {"lightcyan", New ColorData With {
+            {11, New ColorData With {
                 .Red = 85,
                 .Green = 255,
                 .Blue = 255
             }},
-            {"lightred", New ColorData With {
+            {12, New ColorData With {
                 .Red = 255,
                 .Green = 85,
                 .Blue = 85
             }},
-            {"lightmagenta", New ColorData With {
+            {13, New ColorData With {
                 .Red = 255,
                 .Green = 85,
                 .Blue = 255
             }},
-            {"yellow", New ColorData With {
+            {14, New ColorData With {
                 .Red = 255,
                 .Green = 255,
                 .Blue = 85
             }},
-            {"white", New ColorData With {
+            {15, New ColorData With {
                 .Red = 255,
                 .Green = 255,
                 .Blue = 255

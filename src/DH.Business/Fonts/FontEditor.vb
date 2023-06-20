@@ -1,5 +1,5 @@
 ﻿Friend Class FontEditor
-    Inherits Thingies(Of FontData, IEditorFont)
+    Inherits Thingies(Of FontData, IEditorFont, String)
     Implements IFontEditor
     Private ReadOnly _data As WorldData
     Public Sub New(data As WorldData)

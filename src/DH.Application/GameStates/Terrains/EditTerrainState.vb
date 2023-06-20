@@ -7,7 +7,7 @@
     Const RenameTerrainText = "Rename Terrain..."
     Const CloneTerrainText = "Clone Terrain..."
     Const DeleteTerrainText = "Delete Terrain..."
-    Public Sub New(parent As IGameController(Of String, Command, Sfx), setState As Action(Of GameState?, Boolean))
+    Public Sub New(parent As IGameController(Of Integer, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(
             parent,
             setState,
@@ -52,7 +52,7 @@
                 setState(GameState.TerrainsMenu, False)
             End Sub)
     End Sub
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
         MyBase.Render(displayBuffer)
         Dim terrain As ITerrain = ShowStatistics(displayBuffer)
         If terrain.Font IsNot Nothing Then
@@ -62,7 +62,7 @@
             terrainFont.WriteText(displayBuffer, (ViewWidth - width, ViewHeight - height), $"{terrain.GlyphKey}", terrain.Hue)
         End If
     End Sub
-    Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of String)) As ITerrain
+    Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of Integer)) As ITerrain
         Dim font = Fonts(GameFont.Font5x7)
         Dim terrain As ITerrain = World.Terrains.Retrieve(TerrainName)
         font.WriteText(displayBuffer, (Zero, font.Height * 8), $"Name: {TerrainName}", White)

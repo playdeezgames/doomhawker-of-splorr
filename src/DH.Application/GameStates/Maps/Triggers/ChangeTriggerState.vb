@@ -1,6 +1,6 @@
 ﻿Friend Class ChangeTriggerState
     Inherits BasePickState
-    Public Sub New(parent As IGameController(Of String, Command, Sfx), setState As Action(Of GameState?, Boolean))
+    Public Sub New(parent As IGameController(Of Integer, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(
             parent,
             setState,

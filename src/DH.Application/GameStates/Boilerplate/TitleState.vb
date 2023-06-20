@@ -1,7 +1,7 @@
 ﻿Friend Class TitleState
-    Inherits BaseGameState(Of String, Command, Sfx, GameState)
+    Inherits BaseGameState(Of Integer, Command, Sfx, GameState)
 
-    Public Sub New(parent As IGameController(Of String, Command, Sfx), setState As Action(Of GameState?, Boolean))
+    Public Sub New(parent As IGameController(Of Integer, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent, setState)
     End Sub
 
@@ -17,7 +17,7 @@
         End If
     End Sub
 
-    ReadOnly hues As IReadOnlyList(Of String) = New List(Of String) From
+    ReadOnly hues As IReadOnlyList(Of Integer) = New List(Of Integer) From
         {
             White,
             Yellow,
@@ -27,19 +27,19 @@
             LightGreen,
             LightBlue
         }
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
         displayBuffer.Fill((Zero, Zero), (ViewWidth, ViewHeight), Black)
         RenderTitle(displayBuffer)
         RenderFooter(displayBuffer)
     End Sub
 
-    Private Sub RenderFooter(displayBuffer As IPixelSink(Of String))
+    Private Sub RenderFooter(displayBuffer As IPixelSink(Of Integer))
         Dim font = Fonts(GameFont.Font3x5)
         Const text = "Press (A) or Space"
         font.WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(text) \ 2, ViewHeight - font.Height), text, Gray)
     End Sub
 
-    Private Sub RenderTitle(displayBuffer As IPixelSink(Of String))
+    Private Sub RenderTitle(displayBuffer As IPixelSink(Of Integer))
         Dim font = Fonts(GameFont.Font8x8)
         Dim h = RNG.FromEnumerable(hues)
         font.WriteText(displayBuffer, (Zero, ViewHeight \ 2 - font.Height * 3 - font.Height \ 2), "Doomhawker", h)

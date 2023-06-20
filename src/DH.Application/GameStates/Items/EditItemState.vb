@@ -6,7 +6,7 @@
     Const RenameItemText = "Rename Item..."
     Const CloneItemText = "Clone Item..."
     Const DeleteItemText = "Delete Item..."
-    Public Sub New(parent As IGameController(Of String, Command, Sfx), setState As Action(Of GameState?, Boolean))
+    Public Sub New(parent As IGameController(Of Integer, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(
             parent,
             setState,
@@ -49,7 +49,7 @@
             End Sub)
     End Sub
 
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of String))
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Integer))
         MyBase.Render(displayBuffer)
         Dim item As IItem = ShowStatistics(displayBuffer)
         If item.Font IsNot Nothing Then
@@ -59,7 +59,7 @@
             terrainFont.WriteText(displayBuffer, (ViewWidth - width, ViewHeight - height), $"{item.GlyphKey}", item.Hue)
         End If
     End Sub
-    Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of String)) As IItem
+    Private Shared Function ShowStatistics(displayBuffer As IPixelSink(Of Integer)) As IItem
         Dim font = Fonts(GameFont.Font5x7)
         Dim item As IItem = World.Items.Retrieve(ItemName)
         font.WriteText(displayBuffer, (Zero, font.Height * 8), $"Name: {ItemName}", White)
